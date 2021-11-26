@@ -1,0 +1,70 @@
+<?php
+
+namespace {{ namespace }};
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use {{ rootNamespace }}Http\Resources\{{ model }}Resource;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class {{ class }} extends Controller
+{
+
+    public static function routeName(){
+        return Str::snake("{{model}}");
+    }
+    public function __construct(Request $request)
+    {
+        parent::__construct($request);
+    }
+    public function index(Request $request)
+    {
+        return {{ model }}Resource::collection({{ model }}::search($request)->sort($request)->paginate((request('per_page')??request('itemsPerPage'))??15));
+    }
+    public function store(Request $request)
+    {
+        if(!$this->user->is_permitted_to('store',{{ model }}::class,$request))
+            return response()->json(['message'=>'not_permitted'],422);
+
+        $validator = Validator::make($request->all(),{{ model }}::createRules($this->user));
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()],422);
+        }
+        ${{ modelVariable }} = {{ model }}::create($validator->validated());
+        if ($request->translations) {
+            foreach ($request->translations as $translation)
+                ${{ modelVariable }}->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
+        }
+        return new {{ model }}Resource(${{ modelVariable }});
+    }
+    public function show(Request $request,{{ model }} ${{ modelVariable }})
+    {
+        if(!$this->user->is_permitted_to('view',{{ model }}::class,$request))
+            return response()->json(['message'=>'not_permitted'],422);
+        return new {{ model }}Resource(${{modelVariable}});
+    }
+    public function update(Request $request, {{ model }} ${{ modelVariable }})
+    {
+        if(!$this->user->is_permitted_to('update',{{ model }}::class,$request))
+            return response()->json(['message'=>'not_permitted'],422);
+        $validator = Validator::make($request->all(),{{ model }}::updateRules($this->user));
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()],422);
+        }
+        ${{ modelVariable }}->update($validator->validated());
+          if ($request->translations) {
+            foreach ($request->translations as $translation)
+                ${{ modelVariable }}->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
+        }
+        return new {{ model }}Resource(${{ modelVariable }});
+    }
+    public function destroy(Request $request,{{ model }} ${{ modelVariable }})
+    {
+        if(!$this->user->is_permitted_to('delete',{{ model }}::class,$request))
+            return response()->json(['message'=>'not_permitted'],422);
+        ${{ modelVariable }}->delete();
+
+        return new {{ model }}Resource(${{ modelVariable }});
+    }
+}

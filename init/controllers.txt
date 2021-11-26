@@ -1,0 +1,18 @@
+ItemController -m Item
+CategoryController -m Category
+TaxController -m Tax
+CurrencyController -m Currency
+MediaController -m Media
+SettingCountroller -m Setting
+FavoriteController -m Favorite
+FavoriteItemController -m FavoriteItem -p Favorite
+ItemReactionController -m Reaction -p Item
+UserReactionController -m Reaction -p User
+UserFavoriteController -m Favorite -p User
+OrderController -m Order
+OrderItemController -m OrderItem -p Order
+PaymentController -m Payment
+OrderPaymentController -m Payment -p Order
+UserSettingController -m Setting -p User
+CouponController -m Coupon
+UnitController -m Unit
