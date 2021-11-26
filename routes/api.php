@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 $controllers = require base_path('vendor/composer/autoload_classmap.php');
 $controllers = array_keys($controllers);
 $controllers = array_filter($controllers, function ($controller) {
-    return (strpos( $controller, 'TenantControllers') !== false || strpos($controller, 'MasterControllers') !== false) && strlen($controller) > 0 && strpos($controller, 'Base') == false;
+    return (strpos($controller, 'Controllers') !== false) && strlen($controller) > 0 && strpos($controller, 'Base') == false;
 });
 array_map(function ($controller) {
     Route::apiResource($controller::routeName(), $controller);
@@ -36,5 +36,5 @@ Route::group([
     foreach ($auth_routes as $auth_route) {
         Route::post("/" . $auth_route, [AuthController::class, $auth_route])->name($auth_route);
     }
-    Route::get("user",[AuthController::class,'user']);
+    Route::get("user", [AuthController::class, 'user']);
 });
