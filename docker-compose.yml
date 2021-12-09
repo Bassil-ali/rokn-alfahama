@@ -22,18 +22,19 @@ services:
         networks:
             - sail
         depends_on:
-            - pgsql
-    pgsql:
-        image: 'postgres:13'
+            - mysql
+    mysql:
+        image: 'mysql:8.0'
         ports:
-            - '${FORWARD_DB_PORT:-5432}:5432'
+            - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
-            PGPASSWORD: '${DB_PASSWORD:-secret}'
-            POSTGRES_DB: '${DB_DATABASE}'
-            POSTGRES_USER: '${DB_USERNAME}'
-            POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         volumes:
-            - 'sailpgsql:/var/lib/postgresql/data'
+            - 'sailmysql:/var/lib/mysql'
         networks:
             - sail
         healthcheck:

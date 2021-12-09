@@ -17,12 +17,12 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->json('name');
             $table->json('description')->nullable();
-            $table->unsignedBigIntege('category_id')->nullable()->index();
+            $table->unsignedBigInteger('category_id')->nullable()->index();
             $table->integer('type')->default(0);
             $table->integer('quantity')->default(0);
             $table->unsignedBigInteger('parent_id')->nullable()->index();
-            $table->dobule('selling_price');
-            $table->dobule('purchasing_price')->nullable();
+            $table->double('selling_price');
+            $table->double('purchasing_price')->nullable();
             $table->unsignedBigInteger('tax_id')->nullable();
             $table->unsignedBigInteger('currency_id')->nullable();
             $table->timestamps();

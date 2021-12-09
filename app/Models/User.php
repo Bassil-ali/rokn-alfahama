@@ -132,4 +132,8 @@ class User extends BaseModel implements JWTSubject
     public function favorites(){
         return $this->hasMany(Favorite::class);
     }
+
+    public function address(){
+        return $this->hasMany(Address::class);
+    }
 }

@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('order_id')->nullable();
             $table->double('amount');
             $table->dateTime('date');
-            $table->unsingedBigInteger('currency_id')->nullable();
+            $table->unsignedBigInteger('currency_id')->nullable();
             $table->unsignedBigInteger('main_currency_id')->nullable();
             $table->double('conversion_factor')->default(1);
             $table->double('main_currency_amount');
