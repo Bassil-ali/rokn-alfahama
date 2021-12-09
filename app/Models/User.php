@@ -11,11 +11,15 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends BaseModel implements JWTSubject
+
+class User extends Authenticatable implements JWTSubject,MustVerifyEmail
 {
     use LaratrustUserTrait;
     use HasFactory, Notifiable;
+    use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
