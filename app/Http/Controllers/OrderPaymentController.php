@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Pluralizer;
 use Illuminate\Support\Str;
 
-class OrderPaymentController extends Controller
+class OrderPaymentController extends BaseController
 {
     public static function routeName(){
         return Str::snake("Payment");

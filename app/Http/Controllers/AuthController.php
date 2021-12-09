@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
     /**
      * Create a new AuthController instance.
      *
      * @return void
      */
+    public static function routeName(){
+        return '';
+    }
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);

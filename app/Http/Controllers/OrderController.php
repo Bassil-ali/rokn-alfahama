@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class OrderController extends Controller
+class OrderController extends BaseController
 {
 
     public static function routeName(){
