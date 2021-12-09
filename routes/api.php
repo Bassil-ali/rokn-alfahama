@@ -23,9 +23,9 @@ $controllers = array_keys($controllers);
 $controllers = array_filter($controllers, function ($controller) {
     return (strpos($controller, 'Controllers') !== false) && strlen($controller) > 0 && strpos($controller, 'Base') == false;
 });
-array_map(function ($controller) {
-    Route::apiResource($controller::routeName(), $controller);
-}, $controllers);
+// array_map(function ($controller) {
+//     Route::apiResource($controller::routeName(), $controller);
+// }, $controllers);
 
 Route::group([
     'prefix' => 'auth',
