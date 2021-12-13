@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use App\Jobs\CustomerEmail;
 
 
-class OrderController extends Controller
+class OrderController extends BaseController
 {
 
     public static function routeName(){

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Pluralizer;
 use Illuminate\Support\Str;
 
-class UserFavoriteController extends Controller
+class UserFavoriteController extends BaseController
 {
     public static function routeName(){
         return Str::snake("Favorite");

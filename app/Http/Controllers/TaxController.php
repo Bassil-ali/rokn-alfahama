@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class TaxController extends Controller
+class TaxController extends BaseController
 {
 
     public static function routeName(){

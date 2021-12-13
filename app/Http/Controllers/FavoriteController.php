@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class FavoriteController extends Controller
+class FavoriteController extends BaseController
 {
 
     public static function routeName(){
