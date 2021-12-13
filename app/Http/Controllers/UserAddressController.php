@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Pluralizer;
 use Illuminate\Support\Str;
 
-class UserAddressController extends Controller
+class UserAddressController extends BaseController
 {
     public static function routeName(){
         return Str::snake("Address");
