@@ -6,6 +6,8 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Jobs\CustomerEmail;
+
 
 class OrderController extends BaseController
 {
@@ -35,6 +37,8 @@ class OrderController extends BaseController
             foreach ($request->translations as $translation)
                 $order->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
         }
+        // dispatch(new CustomerEmail($request));
+
         return new OrderResource($order);
     }
     public function show(Request $request,Order $order)

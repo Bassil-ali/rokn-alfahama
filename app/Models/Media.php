@@ -9,6 +9,7 @@ class Media extends BaseModel
 {
     use HasFactory;
     protected $guarded = [];
+    protected $appends = ['url'];
     public function mediable()
     {
         return $this->morphTo();
@@ -17,7 +18,7 @@ class Media extends BaseModel
     {
         return [
             'name' => 'nullable',
-            'file' => 'required|file|size:1024|mimes:jpg,png'
+            'file' => 'required|file|mimes:jpg,png'
         ];
     }
     public static function updateRules($user)
@@ -27,5 +28,8 @@ class Media extends BaseModel
             'file' => 'required|file|size:1024|mimes:jpg,png'
 
         ];
+    }
+    public function getUrlAttribute(){
+        return config('app.url').'/storage/'.$this->path;
     }
 }

@@ -17,14 +17,14 @@ class Payment extends BaseModel
         return [
             'order_id'=>'sometimes|exists:orders,id',
             'amount'=>'required|numeric',
-            'date'=>'required|timestamp',
+            'date'=>'required|date',
             'currency_id'=>'sometimes|exists:currencies,id',
             'main_currency_id'=>'sometimes|exists:currencies,id',
             'conversion_factor'=>'sometimes|numeric',
-            'main_currency_amount'=>'required|numeric',
-            'currency'=>'required',
-            'main_currency'=>'required',
-            'status'=>'required|in:0,1,255'
+            'main_currency_amount'=>'sometimes|numeric',
+            'currency'=>'nullable',
+            'main_currency'=>'nullable',
+            'status'=>'sometimes|in:0,1,255'
         ];
     }
     public static function updateRules($user)

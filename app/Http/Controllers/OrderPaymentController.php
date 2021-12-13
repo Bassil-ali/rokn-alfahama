@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class OrderPaymentController extends BaseController
 {
     public static function routeName(){
-        return Str::snake("Payment");
+        return "order.payment";
     }
     public $childRelationName; 
     public function __construct(Request $request)

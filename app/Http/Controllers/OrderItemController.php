@@ -13,13 +13,13 @@ use Illuminate\Support\Str;
 class OrderItemController extends BaseController
 {
     public static function routeName(){
-        return Str::snake("OrderItem");
+        return "order.item";
     }
     public $childRelationName; 
     public function __construct(Request $request)
     {
         parent::__construct($request);
-        $this->childRelationName = Pluralizer::plural(Str::snake(array_slice(explode('\\', OrderItem::class), -1)[0]));
+        $this->childRelationName = 'items';
     }
     public function index(Request $request,Order $order)
     {

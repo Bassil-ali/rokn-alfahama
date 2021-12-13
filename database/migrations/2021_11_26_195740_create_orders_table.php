@@ -27,6 +27,7 @@ class CreateOrdersTable extends Migration
             $table->double('taxed_total')->default(0);
             $table->integer('status')->default(0);
             $table->unsignedBigInteger('currency_id')->nullable();
+            $table->unsignedBigInteger('address_id')->nullable();
             $table->timestamps();
         });
     }

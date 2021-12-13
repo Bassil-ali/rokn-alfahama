@@ -15,16 +15,19 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->json('name');
-            $table->json('description')->nullable();
-            $table->unsignedBigIntege('category_id')->nullable()->index();
+            $table->string('name');
+            $table->string('code');
+            $table->text('description')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable()->index();
             $table->integer('type')->default(0);
             $table->integer('quantity')->default(0);
             $table->unsignedBigInteger('parent_id')->nullable()->index();
-            $table->dobule('selling_price');
-            $table->dobule('purchasing_price')->nullable();
+            $table->double('selling_price');
+            $table->double('purchasing_price')->nullable();
             $table->unsignedBigInteger('tax_id')->nullable();
+            $table->unsignedBigInteger('unit_id')->nullable();
             $table->unsignedBigInteger('currency_id')->nullable();
+            $table->unsignedBigInteger('cover_image_id')->nullable();
             $table->timestamps();
         });
     }

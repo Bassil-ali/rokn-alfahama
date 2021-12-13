@@ -15,8 +15,8 @@ class CreateCouponItemsTable extends Migration
     {
         Schema::create('coupon_items', function (Blueprint $table) {
             $table->id();
-            $table->unsingedBigInteger('item_id');
-            $table->unsingedBigInteger('coupon_id');
+            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('coupon_id');
             $table->timestamps();
         });
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
+
 
 class AuthController extends BaseController
 {
@@ -11,9 +13,10 @@ class AuthController extends BaseController
      *
      * @return void
      */
-    public static function routeName(){
-        return '';
+     public static function routeName(){
+        return Str::snake("Auth");
     }
+
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);

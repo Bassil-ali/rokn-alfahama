@@ -16,12 +16,14 @@ class Tax extends BaseModel
     public static function createRules($user)
     {
         return [
+            'name'=>'required',
             'percentage'=>'required|numeric'
         ];
     }
     public static function updateRules($user)
     {
         return [
+            'name'=>'required',
             'percentage'=>'required|numeric'
         ];
     }

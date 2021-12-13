@@ -11,11 +11,15 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends BaseModel implements JWTSubject
+
+class User extends Authenticatable implements JWTSubject,MustVerifyEmail
 {
     use LaratrustUserTrait;
     use HasFactory, Notifiable;
+    use Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,7 +46,7 @@ class User extends BaseModel implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
     protected $appends = [
-        'permissions',
+        'permissions','reaction_count'
     ];
     public function getJWTIdentifier()
     {
@@ -89,6 +93,7 @@ class User extends BaseModel implements JWTSubject
     {
         return [
             'name' => 'required',
+            'user_name' => 'required|unique:users,name',
             'email' => 'required|unique:users,email',
             'mobile' => 'required|unique:users,mobile',
             'status' => 'somtimes|integer',
@@ -131,5 +136,12 @@ class User extends BaseModel implements JWTSubject
     }
     public function favorites(){
         return $this->hasMany(Favorite::class);
+    }
+
+    public function address(){
+        return $this->hasMany(Address::class);
+    }
+    public function getReactionCountAttribute(){
+        return $this->reactions()->count();
     }
 }

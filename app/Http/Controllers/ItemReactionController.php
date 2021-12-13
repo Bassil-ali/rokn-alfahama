@@ -13,13 +13,13 @@ use Illuminate\Support\Str;
 class ItemReactionController extends BaseController
 {
     public static function routeName(){
-        return Str::snake("Reaction");
+        return "item.reaction";
     }
     public $childRelationName; 
     public function __construct(Request $request)
     {
         parent::__construct($request);
-        $this->childRelationName = Pluralizer::plural(Str::snake(array_slice(explode('\\', Reaction::class), -1)[0]));
+        $this->childRelationName = "reactions";
     }
     public function index(Request $request,Item $item)
     {

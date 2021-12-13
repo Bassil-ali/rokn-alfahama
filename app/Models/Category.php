@@ -11,7 +11,7 @@ class Category extends BaseModel
     use HasFactory;
     use HasTranslations;
     public $translatable= ['name'];
-    protected $appends =['translations'];
+    protected $appends =['translations','image'];
     protected $guarded = [];
     public function items(){
         return $this->hasMany(Item::class);
@@ -23,12 +23,20 @@ class Category extends BaseModel
     {
         return [
             'name' => 'required',
+            'cover_image_id' => 'required',
         ];
     }
     public static function updateRules($user)
     {
         return [
             'name' => 'required',
+            'cover_image_id' => 'required',
         ];
+    }
+    public function cover_image(){
+        return $this->belongsTo(Media::class);
+    }
+    public function getImageAttribute(){
+        return $this->cover_image->url;
     }
 }

@@ -31,10 +31,10 @@ class ItemController extends BaseController
             return response()->json(['errors'=>$validator->errors()],422);
         }
         $item = Item::create($validator->validated());
-        if ($request->translations) {
-            foreach ($request->translations as $translation)
-                $item->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
-        }
+        // if ($request->translations) {
+        //     foreach ($request->translations as $translation)
+        //         $item->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
+        // }
         return new ItemResource($item);
     }
     public function show(Request $request,Item $item)
