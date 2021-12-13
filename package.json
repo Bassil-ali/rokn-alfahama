@@ -46,6 +46,7 @@
     "vue-slick": "^1.1.16",
     "vue-social-auth": "^1.4.9",
     "vue-social-sharing": "^3.0.7",
+    "vue-sweetalert2": "^5.0.2",
     "vue2-google-maps": "^0.10.7",
     "vuetify": "^2.4.0",
     "vuetify-phone-number-input": "^1.0.0",
