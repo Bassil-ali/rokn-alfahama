@@ -75,7 +75,7 @@ export default {
       });
     },
     remove(module,item){
-
+//remove from store
     },
     navigate_to_form(item){
       this.$router.push(`${this.form_route}/${item.id}`);
