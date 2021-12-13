@@ -1,0 +1,77 @@
+<template>
+   <div class="entry-content">
+        <nav aria-label="breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"><i class="bi bi-house-door"></i></a></li>
+                    <li class="breadcrumb-item"><a href="#">حسابي</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">معلوماتي</li>
+                </ol>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="menu-user">
+                        <li><a href=""><span><img src="@/main/assets/images/user-icon.svg" alt=""></span> معلوماتي</a></li>
+                        <li><a href=""><span><img src="@/main/assets/images/history.svg" alt=""></span> تاريخ الطلب</a></li>
+                        <li><a href=""><span><img src="@/main/assets/images/address.svg" alt=""></span> عناويني</a></li>
+                        <li><a href=""><span><img src="@/main/assets/images/006-close-envelope.svg" alt=""></span> تغير كلمة المرور</a></li>
+                        <li><a href=""><span><img src="@/main/assets/images/logout.svg" alt=""></span> تسجيل الخروج</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+
+                            <div class="entry-content-myaccount form">
+                                <h2>معلومات شخصية</h2>
+
+                                <form action="">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                <input type="text" class="form-control" placeholder="ادخل الاسم كامل">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                <input type="text" class="form-control" placeholder="ادخل اسم المستخدم">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                                <input type="text" class="form-control" placeholder="ادخل رقم الجوال">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                <input type="email" class="form-control" placeholder="ادخل البريد الالكتروني">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="button">تحديث البيانات</button>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</template>
+<script>
+export default {
+    
+}
+</script>
