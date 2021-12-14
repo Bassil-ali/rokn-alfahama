@@ -6,7 +6,7 @@
           <div class="form">
             <h2>أهلا وسهلا بك</h2>
             <p><small>تسجيل الدخول في موقعنا</small></p>
-            <form @submit.prevent="$store.dispatch('auth/login', user)">
+            <form @submit.prevent="login(user)">
               <div class="input-group mb-3">
                 <span class="input-group-text"
                   ><i class="fas fa-envelope"></i
@@ -70,6 +70,23 @@ export default {
     return {
       user: {},
     };
+  },
+  methods: {
+    login(user) {
+      this.$store.dispatch("auth/login", user).then(() => {
+        this.$swal
+          .fire({
+            title: "أهلاً بك",
+            text: "تم تسجيل دخولك بنجاح",
+            icon: "success",
+            confirmButtonText: "تم",
+            confirmButtonColor: "#41b882",
+          })
+          .then(() => {
+            this.$router.push("/");
+          });
+      });
+    },
   },
 };
 </script>

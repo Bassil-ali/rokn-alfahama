@@ -10,7 +10,7 @@
       <v-btn icon fab large dark color="red" to="/taxes/form">
         <v-icon large> fas fa-plus </v-icon>
       </v-btn>
-      <data-table module="item" :params="{}" />
+      <data-table module="tax" :params="{}" />
     </base-material-card>
 
     <div class="py-3" />

@@ -1,14 +1,24 @@
 export default {
-    data(){
+    data() {
         return {
-            test:'asdsds'
+            test: 'asdsds'
         }
     },
     methods: {
-        save(item,resource=null,redirect=null){
+        save(item, resource = null, redirect = null) {
             console.log('mixins loaded');
-            console.log(item);
-            this.$store.dispatch(`${resource}/store`,item);
+
+            if (item.id) {
+                this.$store.dispatch(`${resource}/update`, item);
+            } else {
+                this.$store.dispatch(`${resource}/store`, item);
+            }
+            if (redirect) {
+                this.$store.dispatch('setRedirect', redirect);
+                redirect = null
+            }
+            // this.$store.dispatch(`${resource}/store`, item);
+
         }
     }
 }

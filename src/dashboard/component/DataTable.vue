@@ -16,7 +16,7 @@
     <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"
       ><slot :name="slot" v-bind="scope"
     /></template>
-    <template v-slot:item.actions>
+    <template v-slot:item.actions="{item}">
       <v-btn icon @click="remove(item)"> 
         <v-icon> fas fa-times</v-icon>
       </v-btn>
@@ -36,6 +36,7 @@ export default {
   },
   data() {
     return {
+       
       options: {
         sortBy: [],
         sortDesc: [],

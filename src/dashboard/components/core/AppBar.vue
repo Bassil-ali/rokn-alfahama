@@ -15,16 +15,15 @@
       small
       @click="setDrawer(!drawer)"
     >
-      <v-icon v-if="value">
-        mdi-view-quilt
-      </v-icon>
+      <i class="fas fa-bars">
+       
+      </i>
 
-      <v-icon v-else>
-        mdi-dots-vertical
-      </v-icon>
+ 
     </v-btn>
 
     <v-toolbar-title
+    style="padding-right:50px"
       class="hidden-sm-and-down font-weight-light"
       v-text="$route.name"
     />
@@ -63,7 +62,7 @@
       <v-icon>mdi-view-dashboard</v-icon>
     </v-btn>
 
-    <v-menu
+    <!-- <v-menu
       bottom
       left
       offset-y
@@ -105,16 +104,16 @@
           </app-bar-item>
         </div>
       </v-list>
-    </v-menu>
+    </v-menu> -->
 
-    <v-btn
+    <!-- <v-btn
       class="ml-2"
       min-width="0"
       text
       to="/pages/user"
     >
       <v-icon>mdi-account</v-icon>
-    </v-btn>
+    </v-btn> -->
             <v-row  justify="start" style="max-width:80px; margin: -20px 0px 0px 20px ">
           <v-spacer></v-spacer>
           <v-spacer></v-spacer>

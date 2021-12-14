@@ -28,6 +28,7 @@
                             <ul>
                                 <li><router-link to="/login">تسجيل دخول</router-link></li>
                                 <li><router-link to="/register">تسجيل جديد</router-link></li>
+                                <li><a href="/dashboard"><i class="fas fa-cat"></i></a> </li>
                             </ul>
                         </div>
                         <div class="user-login-reg" v-else>
@@ -65,3 +66,6 @@ export default {
     }
 }
 </script>
+<style>
+
+</style>

@@ -6,7 +6,7 @@
           <div class="form">
             <h2>أهلا وسهلا بك</h2>
             <p><small>انشاء حساب في موقعنا</small></p>
-            <form @submit.prevent="$root.save(item,'user')">
+            <form @submit.prevent="$root.save(item, 'user', '/')">
               <div class="input-group mb-3">
                 <span class="input-group-text"
                   ><i class="fas fa-user"></i
@@ -75,9 +75,7 @@
                   </label>
                 </div>
               </div>
-              <button type="submit" class="button">
-                انشاء حساب
-              </button>
+              <button type="submit" class="button">انشاء حساب</button>
             </form>
             <p class="text-center mt-3 mb-0">
               هل لديك حساب سابق؟ <a href=""><strong>تسجيل دخول</strong></a>

@@ -35,6 +35,10 @@ export default {
     };
   },
   mounted() {
+        if(this.$route.params.id){
+    this.$store.dispatch("unit/show",{id:this.$route.params.id});
+
+    }
     if (this.$props.item.id) {
       this.$store
         .dispatch("unit/show", { id: this.$props.item.id })
