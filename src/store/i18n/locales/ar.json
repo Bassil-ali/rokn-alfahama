@@ -232,5 +232,20 @@
   "the_average": "المعدل",
   "Minimum_price": "سعر الحد الأدنى",
   "Maximum_price": "سعر الحد الأكبر",
-  "Reviews":"التقييمات"
+  "Reviews": "التقييمات",
+  "Checkout": "إتمام عملية الشراء",
+  "Order_information": "معلومات الطلب",
+  "Enter_the_coupon_code": "ادخل رمز الكوبون",
+  "Activate_the_coupon": "تفعيل الكوبون",
+  "number_of_products": "عدد المنتجات",
+  "Discount": "الخصم",
+  "Delivery_price": "سعر التوصيل",
+  "Delivery_details": "تفاصيل التسليم",
+  "guest": "لا , المتابعة كضيف",
+  "yes": "نعم",
+  "not_registered": "أنت غير مسجل, هل ترغب بالتسجيل؟",
+  "Choose_payment_method": "أختر طريقة الدفع",
+  "agree_condision": "بالضغط على اتمام الطلب انت توافق على جميع الشروط والقوانين",
+  "payment_safe": "الدفع لدينا آمان . يتم إرسال معلوماتك الشخصية ومعلومات الدفع الخاصة بك بشكل امن لانقوم بتخزين أي معلومات بطاقة دفع على منصتنا",
+  "register_as": "أنت مسجل باسم"
 }

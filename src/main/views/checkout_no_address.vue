@@ -1,12 +1,12 @@
 <template>
      <div class="container">
         <div class="entry-content checkout">
-            <h2>إتمام عملية الشراء</h2>
+            <h2>{{$t('Checkout')}}</h2>
 
             <div class="row">
                 <div class="col-md-4">
                     <div class="block">
-                        <h4>معلومات الطلب</h4>
+                        <h4>{{$t('Order_information')}}</h4>
                         <div class="orders">
                             <div class="order-item">
                                 <div class="d-flex">
@@ -48,99 +48,99 @@
                             </div>
                         </div>
                         <form action="" class="copon">
-                            <input type="text" placeholder="ادخل رمز الكوبون">
-                            <button>تفعيل الكوبون</button>
+                            <input type="text" placeholder="$t('Enter_the_coupon_code')">
+                            <button>{{$t('Activate_the_coupon')}}</button>
                         </form>
                         <div class="footer">
                             <ul>
-                                <li>عدد المنتجات <span>2</span></li>
-                                <li>المجموع <span>1300 ر.س</span></li>
-                                <li>الخصم <span>100 ر.س</span></li>
-                                <li>سعر التوصيل <span>35 ر.س</span></li>
-                                <li class="toot">المجموع الكلي <span>1250 ر.س</span></li>
+                                <li>{{$t('number_of_products')}} <span>2</span></li>
+                                <li>{{$t('Total')}}} <span>1300 ر.س</span></li>
+                                <li>{{$t('Discount')}} <span>100 ر.س</span></li>
+                                <li>{{$t('Delivery_price')}} <span>35 ر.س</span></li>
+                                <li class="toot">{{$t('total_summation')}} <span>1250 ر.س</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="block">
-                        <h4>تفاصيل التسليم</h4>
+                        <h4>{{$t('Delivery_details')}}</h4>
                         <div class="row justify-content-center">
                             <div class="col-md-11">
                                 <div class="content">
-                                    <p>أنت غير مسجل, هل ترغب بالتسجيل؟ <a href="">نعم</a> <a href="">لا , المتابعة كضيف</a></p>
+                                    <p>{{$t('not_registered')}}} <a href="">{{$t('yes')}}</a> <a href="">{{$t('guest')}}</a></p>
                                     <div class="box">
                                         <div class="entry-content-myaccount address">
-                                            <h2>اضافة موقع جديدة</h2>
-                                            <form action="" class="form">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="mb-3">
-                                                            <label>اسم العنوان <span>*</span></label>
-                                                            <input type="text" class="form-control" placeholder="اضافة اسم العنوان">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label>المنطقة <span>*</span></label>
-                                                            <input type="text" class="form-control" placeholder="اضافة اسم المنطقة">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label>القطعة <span>*</span></label>
-                                                            <input type="text" class="form-control" placeholder="اضافة اسم القطعة">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label>الشارع <span>*</span></label>
-                                                            <input type="text" class="form-control" placeholder="اضافة اسم الشارع">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label>جادة</label>
-                                                            <input type="text" class="form-control" placeholder="اضافة اسم الجادة">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label>رقم المنزل <span>*</span></label>
-                                                            <input type="text" class="form-control" placeholder="اضافة رقم المنزل">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label>رقم الطابق</label>
-                                                            <input type="text" class="form-control" placeholder="اضافة رقم الطابق">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label>رقم الشقة</label>
-                                                            <input type="text" class="form-control" placeholder="اضافة رقم الشقة">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label>ملاحظات</label>
-                                                            <input type="text" class="form-control" placeholder="اضافة الملاحظات">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button type="submit" class="button">اضافة الموقع</button>
-                                            </form>
+                                           <h2>{{$t('Add_a_new_site')}}</h2>
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label>{{$t('address_name')}} <span>*</span></label>
+                                                <input type="text" class="form-control" placeholder="$t('address_name_add')">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label>{{$t('site')}} <span>*</span></label>
+                                                <input type="text" class="form-control" placeholder="$t('site_add')">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label>{{$t('widget')}} <span>*</span></label>
+                                                <input type="text" class="form-control" placeholder="$t('widget_add')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label>{{$t('street')}} <span>*</span></label>
+                                                <input type="text" class="form-control" placeholder="$t('street_add')">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label>{{$t('Avenue')}}</label>
+                                                <input type="text" class="form-control" placeholder="$t('Avenue_add')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label>{{$t('house_number')}} <span>*</span></label>
+                                                <input type="text" class="form-control" placeholder="$t('house_number_add')">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label>{{$t('Floor_No')}}</label>
+                                                <input type="text" class="form-control" placeholder="$t('Floor_No_add')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label>{{$t('Apartment_number')}}</label>
+                                                <input type="text" class="form-control" placeholder="$t('Apartment_number_add')">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label>{{$t('Notes')}}</label>
+                                                <input type="text" class="form-control" placeholder="$t('Notes_add')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="button">{{$t('add_site')}}</button>
+                                </form>
 
                                         </div>
                                         <div class="pay-box form">
-                                            <h6>أختر طريقة الدفع</h6>
+                                            <h6>{{$t('Choose_payment_method')}}</h6>
                                             <form action="">
                                                 <div class="d-flex">
                                                     <div class="form-check form-check-inline">
@@ -156,9 +156,9 @@
                                                         <label class="form-check-label" for="inlineRadio3">كاش <img src="@/main/assets/images/wallet.jpg" alt=""></label>
                                                     </div>
                                                 </div>
-                                                <button class="button">إتمام الطلب</button>
+                                                <button class="button">{{$t('Complete_the_order')}}</button>
                                             </form>
-                                            <p>بالضغط على اتمام الطلب انت توافق على جميع الشروط والقوانين</p>
+                                            <p>{{$t('agree_condision')}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
             </div>
             <div class="row justify-content-center infoo">
                 <div class="col-md-10 text-center">
-                    <p>الدفع لدينا آمان . يتم إرسال معلوماتك الشخصية ومعلومات الدفع الخاصة بك بشكل امن لانقوم بتخزين أي معلومات بطاقة دفع على منصتنا</p>
+                    <p>{{$t('pyment_safe')}}</p>
                 </div>
             </div>
         </div>
