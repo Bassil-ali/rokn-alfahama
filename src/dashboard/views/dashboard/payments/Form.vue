@@ -69,6 +69,10 @@ export default {
     };
   },
   mounted() {
+        if(this.$route.params.id){
+    this.$store.dispatch("payment/show",{id:this.$route.params.id});
+
+    }
     this.$store.dispatch("order/index");
     // this.$store.dispatch("user/index");
   },
@@ -81,7 +85,15 @@ export default {
     ...mapState({
       users: (state) => state.user.all,
       orders: (state) => state.order.all,
+      one: (state) => state.payment.all,
     }),
+  },
+  watch: {
+    one(val) {
+      if (val) {
+        this.item = JSON.parse(JSON.stringify(val));
+      }
+    },
   },
 };
 </script>

@@ -4,6 +4,7 @@ export default {
         let modules = {};
         resources.map((resource) => {
             let state = {
+                form_route: null,
                 one: {},
                 all: [],
                 meta: {
@@ -20,7 +21,7 @@ export default {
                 headers: state => state.headers
             };
             let actions = {
-                async index({commit}, params) {
+                async index({ commit }, params) {
                     const response = await this.$axios.get(`/${resource.name}`, {
                         params: {
                             page: state?.meta?.current_page || 1,
@@ -28,6 +29,12 @@ export default {
                         }
                     });
                     console.log(resource);
+                    console.log("resource");
+                    console.log("resource");
+                    console.log("resource");
+                    if (resource.form_route) {
+                        commit('setFormRoute', resource.form_route);
+                    }
                     commit('setHeaders', resource.headers || []);
                     commit('setMeta', response.data.meta);
                     commit('setAll', response.data.data);
@@ -69,7 +76,7 @@ export default {
                 //     value:'value'
                 //   },
 
-                async store({ commit }, data) {
+                async store({ commit, dispatch }, data) {
                     let post_data = {};
                     console.log(data);
                     if (data.id) {
@@ -78,12 +85,12 @@ export default {
                             if (data[key])
                                 post_data[key] = data[key];
                         });
-                        return this.dispatch(`${resource.name}/update`, post_data);
+                        return dispatch(`${resource.name}/update`, post_data);
                     } else {
 
                         post_data = data;
                     }
-                                    // gallery_id  = 1
+                    // gallery_id  = 1
                     let parent_id = data[resource.parent + '_id'];
                     console.log(`A7AAAAAAAAAAAAAAA${parent_id}`)
                     if (data.is_file) {
@@ -94,13 +101,18 @@ export default {
                         });
                         data = form_data;
                         post_data = data;
-                        
+
                     }
-                    try{
-                        const response = await this.$axios.post(`${resource.parent?'/'+resource.parent+'/'+parent_id:''}/${resource.name}`, post_data);
+                    try {
+                        const response = await this.$axios.post(`${resource.parent ? '/' + resource.parent + '/' + parent_id : ''}/${resource.name}`, post_data).then(() => {
+                            dispatch('setSuccessMsg', 'added_successfully', {
+                                root: true
+                            })
+                        });
+
                         commit('setOne', response.data);
                         return response.data.data;
-                    }catch(ex) {
+                    } catch (ex) {
                         console.log(ex);
                         let errors = (ex.response.data.errors);
                         if (errors) {
@@ -118,7 +130,7 @@ export default {
 
 
 
-                async delete({ commit ,  dispatch}, data) {
+                async delete({ commit, dispatch }, data) {
 
                     const response = await this.$axios.delete(`/${resource.name}/${data.id}`);
                     commit('setOne', response.data);
@@ -131,7 +143,7 @@ export default {
                     commit('setCurrentPage', current_page);
                     dispatch('index');
                 },
-                flipPage({commit, dispatch}) {
+                flipPage({ commit, dispatch }) {
                     commit('goNext');
                     dispatch('index');
                 }
@@ -151,9 +163,10 @@ export default {
                 loadedData: (state) => state.loaded = true,
                 setHeaders: (state, headers) => state.headers = headers,
                 setErrors: (state, errors) => state.errors = errors,
-                setCurrentPage: (state, page) => state.meta.current_page = page
+                setCurrentPage: (state, page) => state.meta.current_page = page,
+                setFormRoute: (state, formRoute) => state.form_route = formRoute
             }
-            modules[resource.module_name || (resource.parent?resource.parent+'_':'')+resource.name] = {
+            modules[resource.module_name || (resource.parent ? resource.parent + '_' : '') + resource.name] = {
                 namespaced: true,
                 state,
                 getters,

@@ -1,6 +1,6 @@
 <template>
   <v-data-table
-    :headers="translateHeaders(headers)"
+    :headers="translateHeaders(headers.concat('actions'))"
     :items="data"
     :options.sync="options"
     :page.sync="options.page"
@@ -16,6 +16,14 @@
     <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"
       ><slot :name="slot" v-bind="scope"
     /></template>
+    <template v-slot:item.actions="{item}">
+      <v-btn icon @click="remove(item)"> 
+        <v-icon> fas fa-times</v-icon>
+      </v-btn>
+      <v-btn icon @click="navigate_to_form(item)"> 
+        <v-icon> fas fa-edit</v-icon>
+      </v-btn>
+    </template>
   </v-data-table>
 </template>
 <script>
@@ -28,6 +36,7 @@ export default {
   },
   data() {
     return {
+       
       options: {
         sortBy: [],
         sortDesc: [],
@@ -52,6 +61,9 @@ export default {
       meta: function (state) {
         return state[this.module].meta;
       },
+      form_route:function(state){
+        return state[this.module].form_route;
+      }
     }),
   },
   methods: {
@@ -62,6 +74,12 @@ export default {
           value: i,
         };
       });
+    },
+    remove(module,item){
+//remove from store
+    },
+    navigate_to_form(item){
+      this.$router.push(`${this.form_route}/${item.id}`);
     },
   },
 };

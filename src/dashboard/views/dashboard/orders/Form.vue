@@ -183,6 +183,10 @@ export default {
     };
   },
   mounted() {
+        if(this.$route.params.id){
+    this.$store.dispatch("order/show",{id:this.$route.params.id});
+
+    }
     this.$store.dispatch("item/index");
     this.$store.dispatch("tax/index");
     this.$store.dispatch("user/index");
@@ -213,6 +217,7 @@ export default {
       items: (state) => state.item.all,
       users: (state) => state.user.all,
       taxes: (state) => state.tax.all,
+      one: (state) => state.order.all,
     }),
     total() {
       return this.all.reduce(
@@ -238,6 +243,13 @@ export default {
     },
     taxed_total() {
       return this.total_tax + this.total;
+    },
+  },
+  watch: {
+    one(val) {
+      if (val) {
+        this.item = JSON.parse(JSON.stringify(val));
+      }
     },
   },
 };

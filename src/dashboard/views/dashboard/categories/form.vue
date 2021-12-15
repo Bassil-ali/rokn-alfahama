@@ -13,7 +13,14 @@
             <v-text-field v-model="item.name" :label="$t('name')" dense />
           </v-col>
           <v-col cols="3">
-            <v-autocomplete v-model="item.parent_id" :label="$t('parent')" dense :items="categories" item-text="name" item-value="id" />
+            <v-autocomplete
+              v-model="item.parent_id"
+              :label="$t('parent')"
+              dense
+              :items="categories"
+              item-text="name"
+              item-value="id"
+            />
           </v-col>
         </v-row>
         <v-row>
@@ -76,11 +83,14 @@ export default {
         url: null,
       },
       language: this.$store.state.locales.locale,
-      item:{}
+      item: {},
     };
   },
   mounted() {
     // this.$store.dispatch("type/index");
+    if (this.$route.params.id) {
+      this.$store.dispatch("category/show", { id: this.$route.params.id });
+    }
     this.$store.dispatch("category/index");
     if (this.$props.item.id) {
       this.$store
@@ -119,16 +129,16 @@ export default {
     async save(item) {
       let cover_image = null;
       if (typeof this.cover_image.url != "string") {
-        cover_image = await this.$store.dispatch(
-          "media/store",
-          {
-            file:this.cover_image.url,
-            is_file:true
-          }
-        );
+        cover_image = await this.$store.dispatch("media/store", {
+          file: this.cover_image.url,
+          is_file: true,
+        });
       }
+
       item.cover_image_id = cover_image.id;
+      console.log("ahmad hassouna");
       let item_data = await this.$store.dispatch("category/store", item);
+      console.log("ahmad hassouna");
     },
 
     remove_image(image, index) {
@@ -146,7 +156,15 @@ export default {
     ...mapState({
       // types: (state) => state.type.all,
       categories: (state) => state.category.all,
+      one: (state) => state.category.one,
     }),
+  },
+  watch: {
+    one(val) {
+      if (val) {
+        this.item = JSON.parse(JSON.stringify(val));
+      }
+    },
   },
 };
 </script>

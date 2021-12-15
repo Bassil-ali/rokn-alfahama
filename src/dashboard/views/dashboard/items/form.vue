@@ -285,6 +285,15 @@ export default {
 
     async save(item) {
       let cover_image_id = null;
+      console.log("befor !!!!");
+      item.cover_image_id = cover_image_id;
+      let item_data = await this.$store
+        .dispatch("item/store", item)
+        .then(() => {
+          console.log("item CREATED !!!!");
+        });
+      console.log("after !!!!");
+
       if (typeof this.cover_image.url != "string") {
         let cover_image = await this.$store.dispatch("media/store", {
           file: this.cover_image.url,
@@ -292,8 +301,7 @@ export default {
         });
         cover_image_id = cover_image.id;
       }
-      item.cover_image_id = cover_image_id;
-      let item_data = await this.$store.dispatch("item/store", item);
+
       if (this.images.length > 0) {
         this.images.map((image) => {
           if (image.id) {
@@ -328,7 +336,16 @@ export default {
       categories: (state) => state.category.all,
       units: (state) => state.unit.all,
       taxes: (state) => state.tax.all,
+      one: (state) => state.item.one,
+
     }),
+  },
+  watch: {
+    one(val) {
+      if (val) {
+        this.item = JSON.parse(JSON.stringify(val));
+      }
+    },
   },
 };
 </script>

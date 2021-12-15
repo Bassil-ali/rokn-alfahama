@@ -12,9 +12,11 @@ Vue.config.productionTip = false;
 import VuePhoneNumberInput from 'vue-phone-number-input';
 import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 import mixins from './mixins/mixins';
+import sweatAleart from './plugins/sweet_alert';
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);
 Vue.prototype.jQuery = jQuery;
 Vue.use(VueMeta)
+Vue.use(sweatAleart)
 // Vue.use(FlagIcon);
 new Vue({
   mixins: [mixins],

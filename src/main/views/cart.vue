@@ -1,7 +1,7 @@
 <template>
   <div class="entry-content cart">
     <div class="head">
-      <h2>سلة التسوق</h2>
+      <h2>{{$t('Shopping_cart')}}</h2>
     </div>
     <div class="entry-content cart-empty" v-if="items.length == 0">
       <div class="entry-content">
@@ -15,11 +15,11 @@
                     alt=""
                   />
                 </figure>
-                <h3>سلة التسوق فارغة</h3>
+                <h3>{{$t('cart_empty')}}</h3>
                 <p>
-                  يمكنك الانتقال الى خيار متابعة التسوق واضافة منتجاتك المفضلة
+                  {{$t('go_to_option')}}
                 </p>
-                <a href="" class="button">متابعة التسوق</a>
+                <a href="" class="button"> {{$t('Continue_shopping')}}</a>
               </div>
             </div>
           </div>
@@ -31,11 +31,11 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col" class="image">الصورة</th>
-              <th scope="col">المنتج</th>
-              <th scope="col">الكمية</th>
-              <th scope="col">المجموع</th>
-              <th scope="col">حذف</th>
+              <th scope="col" class="image">{{$t('Photo')}}</th>
+              <th scope="col">{{$t('Product')}}</th>
+              <th scope="col">{{$t('Quantity')}}</th>
+              <th scope="col">{{$t('Total')}}</th>
+              <th scope="col">{{$t('delete')}}</th>
             </tr>
           </thead>
           <tbody>
@@ -88,7 +88,7 @@
                 <div class="d-flex justify-content-end">
                   <div class="d-flex">
                     <div class="totel me-3">
-                      المجموع الكلي:
+                      {{$t('total_summation')}}:
                       <strong>
                         {{
                           items.reduce(
@@ -99,7 +99,7 @@
                         ر.س</strong
                       >
                     </div>
-                    <div class="button0"><router-link to="checkout">اتمام الطلب</router-link></div>
+                    <div class="button0"><router-link to="checkout">{{$t('Complete_the_order')}}</router-link></div>
                   </div>
                 </div>
               </td>

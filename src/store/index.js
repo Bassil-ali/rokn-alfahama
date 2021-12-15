@@ -6,7 +6,7 @@ import registrar from './module_registrar';
 import resources from './resources';
 let r_modules = registrar.register(resources);
 let locale = localStorage.getItem("locale");
-let rtl =  locale == 'ar';
+let rtl = locale == 'ar';
 // console.log(locale + " "+rtl);
 Vue.use(Vuex)
 let store = new Vuex.Store({
@@ -15,7 +15,7 @@ let store = new Vuex.Store({
     get_alert: false,
     post_alert: false,
     post_fail_alert: false,
-    category:[],
+    category: [],
     theme: {
       dark: true,
     },
@@ -26,9 +26,12 @@ let store = new Vuex.Store({
     errors: [],
     error_timeout: 2000,
     success_timeout: 2000,
-    locale
+    locale,
+    redirect: null,
+    success_msg: null,
   },
   mutations: {
+
     SET_BAR_IMAGE(state, payload) {
       state.barImage = payload
     },
@@ -45,13 +48,33 @@ let store = new Vuex.Store({
     },
     setLocale(state, locale) {
       state.locale = locale;
-    }
+    },
+    setSuccessMsg: (state, msg) => {
+      state.success_msg = msg;
+    },
+    clearSuccessMsg: (state) => {
+      state.success_msg = null;
+      state.redirect = null;
+    },
+    setRedirect: (state, redirect) => {
+      state.redirect = redirect;
+    },
+
   },
   actions: {
     updateLocale({
       commit
     }, data) {
       commit('setLocale', data);
+    },
+    setSuccessMsg({ commit }, msg) {
+      commit('setSuccessMsg', msg);
+    },
+    clearSuccessMsg({ commit }) {
+      commit('clearSuccessMsg');
+    },
+    setRedirect({ commit }, redirect) {
+      commit('setRedirect', redirect);
     },
 
   },
@@ -64,9 +87,9 @@ let store = new Vuex.Store({
 axios.interceptors.response.use(
   (response) => {
     store.state.overlay = false;
-    setTimeout(()=>{
+    setTimeout(() => {
       store.state.get_alert = false;
-    },2000)
+    }, 2000)
     if ((response.status == 200 || response.status == 201) && response.config.method == 'post' || response.config.method == 'options') {
       store.state.post_alert = true;
       setTimeout(() => {

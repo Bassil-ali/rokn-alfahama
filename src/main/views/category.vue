@@ -5,7 +5,7 @@
                 <div class="col-md-3">
                     <div class="siadbar">
                         <div class="box">
-                            <h2><i class="bi bi-list"></i> ALL CATEGORIES</h2>
+                            <h2><i class="bi bi-list"></i>{{$t('Categories')}}</h2>
                             <ul class="category">
                                 <li>
                                     <a class="d-flex justify-content-between">
@@ -66,19 +66,19 @@
                             </ul>
                         </div>
                         <div class="box">
-                            <h2>فلترة</h2>
+                            <h2>{{$t('filter')}}</h2>
                             <div>
                                 <div class="min-max-slider" data-legendnum="2">
-                                    <span class="model">المعدل</span>
-                                    <label for="min">Minimum price</label>
+                                    <span class="model">{{$t('the_average')}}</span>
+                                    <label for="min">{{$t('Minimum_price')}}</label>
                                     <input id="min" class="min" name="min" type="range" step="1" min="0" max="3000" />
-                                    <label for="max">Maximum price</label>
+                                    <label for="max"> {{$t('Maximum_price')}}</label>
                                     <input id="max" class="max" name="max" type="range" step="1" min="0" max="3000" />
                                 </div>
                             </div>
                         </div>
                         <div class="box">
-                            <h2>التقييمات</h2>
+                            <h2>{{$t('Reviews')}}</h2>
                             <div>
                                 <div class="rating">
                                     <label id="star"><i class="bi bi-star-fill"></i>

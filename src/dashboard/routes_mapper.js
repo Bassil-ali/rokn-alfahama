@@ -14,10 +14,10 @@ context.keys().map((i) => {
     }
     let name = path.split("/").join('.').slice(1);//.splice(0,1);
     routes.push({
-        path,
+        path: path + '/:id?',
         component: context(i).default,
         name,
-        props:true
+        // props:true
     });
 });
 

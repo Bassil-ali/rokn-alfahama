@@ -8,9 +8,11 @@ const routes = [
 context.keys().map(i => {
     if (i != './index.js')
         routes.push({
-            path: '/' + kebabCase(i.split(".")[1]),
+            path: '/' + kebabCase(i.split(".")[1]) + "/:id?",
             component: context(i).default,
-            name: i.split(".")[1].split("/").map(r => kebabCase(r)).join(".")
+            name: i.split(".")[1].split("/").map(r => kebabCase(r)).join("."),
+            // props: true
         });
+    console.log('/' + kebabCase(i.split(".")[1]) + "/:id?")
 });
 export default routes;
