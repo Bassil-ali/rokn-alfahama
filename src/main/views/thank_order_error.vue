@@ -1,7 +1,7 @@
 <template>
      <div class="container">
         <div class="entry-content checkout">
-            <h2>إتمام عملية الشراء</h2>
+            <h2 :label="$t('thanks_error_tile')"></h2>
 
             <div class="row justify-content-center">
                 <div class="col-md-8">

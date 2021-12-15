@@ -194,7 +194,13 @@
   "sub_total":"المبلغ المستحق",
   "select_country_code":"رمز الدولة",
   "phone_number":"رقم الهاتف",
-  "example":"مثال"
+  "example":"مثال",
+  "This_page_is_not_available":"هذه الصفحة غير متوفرة",
+  "this_page_not_found": "ربما تمت إزالة الصفحة التي تبحث عنها إذا تم تغيير اسمها أو عدم توفرها مؤقتًا",
+  "Categories":"الفئات",
+  "Shop_with_ease_by_categories":"تسوق بكل سهولة حسب الفئات"
+
+
 
 
 

@@ -202,7 +202,11 @@
   "cash":"Pay with Credit Card",
   "sub_total":"Sub Total",
   "select_country_code":"Country Code",
-  "phone_number":"Phone Number"
+  "phone_number":"Phone Number",
+  "This_page_is_not_available":"This page is not available",
+  "this_page_not_found": "The page you are looking for may have been removed if its name has changed or is temporarily unavailable",
+  "Categories":"Categories",
+  "Shop_with_ease_by_categories": "Shop with ease by categories"
 
 
   

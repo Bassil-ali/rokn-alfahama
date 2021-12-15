@@ -4,7 +4,7 @@
       <div class="Asection-01">
         <div class="container">
           <div class="head">
-            <h2>من نحن</h2>
+            <h2>{{$t('about')}}</h2>
           </div>
           <div class="row align-items-center">
             <div class="col-md-6">
@@ -77,8 +77,8 @@
       <div class="Asection-03 section-03 categuory">
         <div class="container">
           <div class="head">
-            <h2>الفئات</h2>
-            <p>تسوق بكل سهولة حسب الفئات</p>
+            <h2>{{$t('Categories')}}</h2>
+            <p>{{$t('Shop_with_ease_by_categories')}}</p>
           </div>
           <div class="row">
             <div class="col">

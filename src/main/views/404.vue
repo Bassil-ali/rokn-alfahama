@@ -4,9 +4,9 @@
         <div class="container">
             <div class="content text-center">
                 <h3>404</h3>
-                <h1>هذه الصفحة غير متوفرة</h1>
-                <p>ربما تمت إزالة الصفحة التي تبحث عنها إذا تم تغيير اسمها أو عدم توفرها مؤقتًا</p>
-                <a href="" class="button">الصفحة الرئيسية</a>
+                <h1>{{$t('This_page_is_not_available')}}</h1>
+                <p>{{$t('this_page_not_found')}}</p>
+                <a href="" class="button">{{$t('dashboard')}}</a>
                 <div class="socail d-flex">
                     <a href=""><i class="fab fa-instagram"></i></a>
                     <a href=""><i class="fab fa-facebook-f"></i></a>
