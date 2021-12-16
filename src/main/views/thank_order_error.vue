@@ -11,16 +11,16 @@
                                 <div>
                                     <div class="text-center">
                                         <figure><img src="@/main/assets/images/false.svg" alt=""></figure>
-                                        <h5>نعتذر منك</h5>
-                                        <p>لم تتم عملية الطلب بنجاح</p>
-                                        <p>لا تقلق قم بالمحاولة مرة أخرى</p>
+                                        <h5>{{$t('We_apologize')}}</h5>
+                                        <p>{{$t('not_complete')}}</p>
+                                        <p>{{$t('try')}}</p>
                                     </div>
-                                    <h4>معلومات التواصل</h4>
+                                    <h4>{{$t('Contact_info')}}</h4>
                                     <ul>
                                         <li><i class="far fa-user-circle"></i> Salah kamal katiib</li>
                                         <li><i class="fas fa-mobile-alt"></i> 96597687419</li>
                                     </ul>
-                                    <h4>معلومات التواصل</h4>
+                                    <h4>{{$t('Contact_info')}}</h4>
                                     <ul>
                                         <li><i class="fas fa-map-marker-alt"></i> السعودية - المدينة المنورة - شارع الملك عبد الله</li>
                                         <li>السعودية - المدينة المنورة - شارع الملك عبد الله</li>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-md-6 p-0">
                             <div class="block left">
-                                <h4>معلومات الطلب</h4>
+                                <h4>{{$t('Order_information')}}</h4>
                                 <div class="orders">
                                     <div class="order-item">
                                         <div class="d-flex">
@@ -41,7 +41,7 @@
                                                 <div class="d-flex justify-content-between">
                                                     <div class="price">1300 ر.س</div>
                                                     <div class="quantity">
-                                                        العدد : <strong>3</strong>
+                                                         {{$t('quantity')}}  : <strong>3</strong>
                                                     </div>
                                                 </div>
                                             </div>
@@ -56,7 +56,7 @@
                                                 <div class="d-flex justify-content-between">
                                                     <div class="price">1300 ر.س</div>
                                                     <div class="quantity">
-                                                        العدد : <strong>3</strong>
+                                                         {{$t('quantity')}}  : <strong>3</strong>
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,19 +64,19 @@
                                     </div>
                                 </div>
                                 <div class="footer">
-                                    <ul>
-                                        <li>عدد المنتجات <span>2</span></li>
-                                        <li>المجموع <span>1300 ر.س</span></li>
-                                        <li>الخصم <span>100 ر.س</span></li>
-                                        <li>سعر التوصيل <span>35 ر.س</span></li>
-                                        <li class="toot">المجموع الكلي <span>1250 ر.س</span></li>
+                                   <ul>
+                                        <li>{{$t('number_of_products')}} <span>2</span></li>
+                                        <li>{{$t('Total')}}} <span>1300 ر.س</span></li>
+                                        <li>{{$t('quantity')}}} <span>100 ر.س</span></li>
+                                        <li>{{$t('Discount')}}}  <span>35 ر.س</span></li>
+                                        <li class="toot"> {{$t('total_summation')}}} <span>1250 ر.س</span></li>
                                     </ul>
                                 </div>
                                 <div class="footer">
                                     <ul>
-                                        <li>رقم العملية <span>462758964660-8059078</span></li>
-                                        <li>رقم الطلب <span>462758964660-8059078</span></li>
-                                        <li>معرف الطلب <span>462758964660-8059078</span></li>
+                                        <li> {{$t('operation_number')}}<span>462758964660-8059078</span></li>
+                                        <li>{{$t('order_number')}}} <span>462758964660-8059078</span></li>
+                                        <li>{{$t('Order_ID')}}} <span>462758964660-8059078</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -86,10 +86,10 @@
             </div>
             <div class="mt-5 mb-5 text-center">
                 <a href="" class="button fill me-3">
-                    إعادة المحاولة
+                    {{$t('try_again')}}
                 </a>
                 <a href="" class="button fill no">
-                    خروج
+                    {{$t('exit')}}
                 </a>
             </div>
         </div>

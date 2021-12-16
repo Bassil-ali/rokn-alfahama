@@ -1,7 +1,7 @@
 <template>
   <div class="entry-content contact">
     <div class="head">
-      <h2>تواصل معنا</h2>
+      <h2>{{$t('contact')}}</h2>
     </div>
     <div class="Csection-01">
       <div class="container position-relative">
@@ -9,23 +9,23 @@
           <div class="col-md-6">
             <div class="content text-center">
               <form action="">
-                <h4>عندك سؤال ؟</h4>
-                <h2>تواصل معنا</h2>
+                <h4>{{$t('do_you_have_question')}}</h4>
+                <h2>{{$t('contact')}}</h2>
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="الاسم" />
+                  <input type="text" class="form-control" placeholder="$t('name')" />
                 </div>
                 <div class="mb-3">
                   <input
                     type="email"
                     class="form-control"
-                    placeholder="البريد الإلكتروني"
+                    placeholder="$t('email')"
                   />
                 </div>
                 <div class="mb-3">
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="الموضوع"
+                    placeholder="$t('subject')"
                   />
                 </div>
                 <div class="mb-3">
@@ -35,10 +35,10 @@
                     cols="30"
                     rows="10"
                     class="form-control"
-                    placeholder="الرسالة"
+                    placeholder="$t('message')"
                   ></textarea>
                 </div>
-                <button type="submit" class="button">إرسال</button>
+                <button type="submit" class="button">{{$t('send_message')}}</button>
               </form>
             </div>
           </div>
@@ -53,7 +53,7 @@
                 </li>
               </ul>
               <div class="socail">
-                <span>تابعونا على</span>
+                <span>{{$t('follow_us_on')}}</span>
                 <div class="links">
                   <a href=""><i class="fab fa-instagram"></i></a>
                   <a href=""><i class="fab fa-facebook-f"></i></a>

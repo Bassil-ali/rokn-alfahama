@@ -4,8 +4,8 @@
       <div class="row">
         <div class="col-md-5">
           <div class="form">
-            <h2>أهلا وسهلا بك</h2>
-            <p><small>تسجيل الدخول في موقعنا</small></p>
+            <h2>{{$t('welcome')}}</h2>
+            <p><small>{{$t('Lon_in_to_our_site')}}</small></p>
             <form @submit.prevent="login(user)">
               <div class="input-group mb-3">
                 <span class="input-group-text"
@@ -15,7 +15,7 @@
                   v-model="user.email"
                   type="email"
                   class="form-control"
-                  placeholder="ادخال اسم المستخدم او البريد الالكتروني"
+                  placeholder="$t('username_email')"
                 />
               </div>
               <div class="input-group mb-3">
@@ -26,7 +26,7 @@
                   v-model="user.password"
                   type="password"
                   class="form-control"
-                  placeholder="كلمة المرور"
+                  placeholder="$t('password')"
                 />
               </div>
               <div class="d-flex mb-3 justify-content-between">
@@ -38,26 +38,25 @@
                     id="flexCheckDefault"
                   />
                   <label class="form-check-label" for="flexCheckDefault">
-                    تذكرنى
+                    {{$t('remember_me')}}
                   </label>
                 </div>
-                <a href=""><strong>هل نسيت كلمة المرور؟</strong></a>
+                <a href=""><strong>{{$t('forget_pass')}}</strong></a>
               </div>
-              <button type="submit" class="button">تسجيل دخول</button>
+              <button type="submit" class="button">{{$t('Login')}}</button>
             </form>
             <p class="text-center mt-3 mb-0">
-              لا يوجد لدي حساب؟ <a href=""><strong>انشاء حساب</strong></a>
+              {{$t('account_not')}} <a href=""><strong>{{$t('Create_account')}}</strong></a>
             </p>
           </div>
         </div>
         <div class="col-md-7">
           <div class="left">
-            <h3>أنا عميل جديد</h3>
+            <h3>{{$t('new_customer')}}</h3>
             <p>
-              انشاء حساب سريع وسهل ومجاني. ستكون قادرًا على إدارة عملياتك الآلية
-              ، وتتبع طلباتك ، وكتابة التعليقات ، والمزيد!
+              {{$t('new_customer_message')}}
             </p>
-            <a href="" class="button">إنشاء حساب</a>
+            <a href="" class="button">{{$t('Create_account')}}</a>
           </div>
         </div>
       </div>

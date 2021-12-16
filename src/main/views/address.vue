@@ -78,7 +78,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="" class="button"><img src="@/main/assets/images/pin-add.svg" alt="">  {{$t('add_site_new')}}}</a>
+                                <a href="" class="button"><img src="@/main/assets/images/pin-add.svg" alt="">  {{$t('add_site_new')}}</a>
                             </div>
 
                         </div>

@@ -3,7 +3,7 @@
         <div class="container">
 
             <div class="head">
-                <h2>أحدث العروض</h2>
+                <h2>{{$t('Latest_Offers')}}</h2>
             </div>
 
             <div class="head-offer">
@@ -34,7 +34,7 @@
                                         <span>350</span>
                                     </div>
                                     <div class="discount">
-                                        <strong>خصم</strong>
+                                        <strong>{{$t('Discount')}}</strong>
                                         <span>20%</span>
                                     </div>
                                 </div>
