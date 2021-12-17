@@ -15,7 +15,7 @@
                   v-model="item.name"
                   type="text"
                   class="form-control"
-                  :placeholder="ادخل الاسم كامل"
+                  :placeholder="$t('full_name')"
                 />
               </div>
               <div class="input-group mb-3">
