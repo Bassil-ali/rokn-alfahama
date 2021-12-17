@@ -4,7 +4,7 @@
 
     <base-material-card
       icon="mdi-clipboard-text"
-      title="Item Form"
+      title="category_form"
       class="px-5 py-3"
     >
       <v-form>

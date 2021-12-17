@@ -1,10 +1,10 @@
 <template>
   <v-container id="regular-tables" fluid tag="section">
-    <base-v-component :heading="$t('categories_form')" />
+    <base-v-component :heading="$t('')" />
 
     <base-material-card
       icon="mdi-clipboard-text"
-      title="Item Form"
+      title="user_form"
       class="px-5 py-3"
     >
       <v-form>

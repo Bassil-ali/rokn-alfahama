@@ -15,7 +15,7 @@
                   v-model="user.email"
                   type="email"
                   class="form-control"
-                  placeholder="$t('username_email')"
+                  :placeholder="$t('username_email')"
                 />
               </div>
               <div class="input-group mb-3">
@@ -26,7 +26,7 @@
                   v-model="user.password"
                   type="password"
                   class="form-control"
-                  placeholder="$t('password')"
+                  :placeholder="$t('password')"
                 />
               </div>
               <div class="d-flex mb-3 justify-content-between">

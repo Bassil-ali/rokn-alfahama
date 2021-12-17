@@ -42,7 +42,7 @@
             <form action="" class="copon" @submit.prevent="addCoupon">
               <input
                 type="text"
-                placeholder="$t('Enter_the_coupon_code')"
+                :placeholder="$t('Enter_the_coupon_code')"
                 v-model="item.coupon"
               />
               <button>{{ $t("Activate_the_coupon") }}</button>

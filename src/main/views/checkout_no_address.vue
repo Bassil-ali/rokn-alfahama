@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         <form action="" class="copon">
-                            <input type="text" placeholder="$t('Enter_the_coupon_code')">
+                            <input type="text" :placeholder="$t('Enter_the_coupon_code')">
                             <button>{{$t('Activate_the_coupon')}}</button>
                         </form>
                         <div class="footer">
@@ -77,19 +77,19 @@
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label>{{$t('address_name')}} <span>*</span></label>
-                                                <input type="text" class="form-control" placeholder="$t('address_name_add')">
+                                                <input type="text" class="form-control" :placeholder="$t('address_name_add')">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label>{{$t('site')}} <span>*</span></label>
-                                                <input type="text" class="form-control" placeholder="$t('site_add')">
+                                                <input type="text" class="form-control" :placeholder="$t('site_add')">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label>{{$t('widget')}} <span>*</span></label>
-                                                <input type="text" class="form-control" placeholder="$t('widget_add')">
+                                                <input type="text" class="form-control" :placeholder="$t('widget_add')">
                                             </div>
                                         </div>
                                     </div>
@@ -97,13 +97,13 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label>{{$t('street')}} <span>*</span></label>
-                                                <input type="text" class="form-control" placeholder="$t('street_add')">
+                                                <input type="text" class="form-control" :placeholder="$t('street_add')">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label>{{$t('Avenue')}}</label>
-                                                <input type="text" class="form-control" placeholder="$t('Avenue_add')">
+                                                <input type="text" class="form-control" :placeholder="$t('Avenue_add')">
                                             </div>
                                         </div>
                                     </div>
@@ -111,13 +111,13 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label>{{$t('house_number')}} <span>*</span></label>
-                                                <input type="text" class="form-control" placeholder="$t('house_number_add')">
+                                                <input type="text" class="form-control" :placeholder="$t('house_number_add')">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label>{{$t('Floor_No')}}</label>
-                                                <input type="text" class="form-control" placeholder="$t('Floor_No_add')">
+                                                <input type="text" class="form-control" :placeholder="$t('Floor_No_add')">
                                             </div>
                                         </div>
                                     </div>
@@ -125,13 +125,13 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label>{{$t('Apartment_number')}}</label>
-                                                <input type="text" class="form-control" placeholder="$t('Apartment_number_add')">
+                                                <input type="text" class="form-control" :placeholder="$t('Apartment_number_add')">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label>{{$t('Notes')}}</label>
-                                                <input type="text" class="form-control" placeholder="$t('Notes_add')">
+                                                <input type="text" class="form-control" :placeholder="$t('Notes_add')">
                                             </div>
                                         </div>
                                     </div>

@@ -35,21 +35,21 @@
                                                     <label>{{$t('old_pass')}}</label>
                                                     <div class="input-group">
                                                         <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                                        <input type="password" class="form-control" placeholder="$t('add_old_pass')">
+                                                        <input type="password" class="form-control" :placeholder="$t('add_old_pass')">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
                                                     <label>{{$t('new_pass')}}</label>
                                                     <div class="input-group">
                                                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                                        <input type="password" class="form-control" placeholder="$t('add_new_pass')">
+                                                        <input type="password" class="form-control" :placeholder="$t('add_new_pass')">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
                                                     <label>{{$t('confirm_pass')}}</label>
                                                     <div class="input-group">
                                                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                                        <input type="password" class="form-control" placeholder="$t('add_confirm_pass')">
+                                                        <input type="password" class="form-control" :placeholder="$t('add_confirm_pass')">
                                                     </div>
                                                 </div>
                                             </div>

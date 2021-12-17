@@ -338,6 +338,18 @@
   "Connect_with_us": "Connect with us",
   "who_are_we": "who are we",
   "rokn_reserved": "Luxury Corner, All Rights Reserved",
-  "search_pro":"Find your favorite product",
-  "Offers":"Offers"
+  "search_pro": "Find your favorite product",
+  "Offers": "Offers",
+  "coupons_table": "coupons table",
+  "coupons": "coupons",
+  "coupons_form": "Add coupons",
+  "items_table": "items table",
+  "category_form": "category form",
+  "order_form": "Order form",
+  "payments_Form": "payments Form",
+  "units": "units",
+  "unit_Form": "Unit Form",
+  "users": "Users",
+  "user_form": "User form",
+  "users_table": "users table"
 }

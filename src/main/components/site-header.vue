@@ -9,7 +9,7 @@
                     </div>
                     <div class="search-menu">
                         <form action="">
-                            <input type="text" placeholder="$t('search_pro')">
+                            <input type="text" :placeholder="$t('search_pro')">
                             <button type="submit"><i class="bi bi-search"></i></button>
                         </form>
                         <ul id="primary-menu">

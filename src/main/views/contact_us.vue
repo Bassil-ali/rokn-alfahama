@@ -12,20 +12,20 @@
                 <h4>{{$t('do_you_have_question')}}</h4>
                 <h2>{{$t('contact')}}</h2>
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="$t('name')" />
+                  <input type="text" class="form-control" :placeholder="$t('name')" />
                 </div>
                 <div class="mb-3">
                   <input
                     type="email"
                     class="form-control"
-                    placeholder="$t('email')"
+                    :placeholder="$t('email')"
                   />
                 </div>
                 <div class="mb-3">
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="$t('subject')"
+                    :placeholder="$t('subject')"
                   />
                 </div>
                 <div class="mb-3">
@@ -35,7 +35,7 @@
                     cols="30"
                     rows="10"
                     class="form-control"
-                    placeholder="$t('message')"
+                    :placeholder="$t('message')"
                   ></textarea>
                 </div>
                 <button type="submit" class="button">{{$t('send_message')}}</button>

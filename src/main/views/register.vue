@@ -15,7 +15,7 @@
                   v-model="item.name"
                   type="text"
                   class="form-control"
-                  placeholder="ادخل الاسم كامل"
+                  :placeholder="ادخل الاسم كامل"
                 />
               </div>
               <div class="input-group mb-3">
@@ -26,7 +26,7 @@
                   v-model="item.user_name"
                   type="text"
                   class="form-control"
-                  placeholder="$t('enter_username')"/>
+                  :placeholder="$t('enter_username')"/>
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text"
@@ -36,7 +36,7 @@
                   v-model="item.mobile"
                   type="text"
                   class="form-control"
-                  placeholder="$t('mobile_no')"
+                  :placeholder="$t('mobile_no')"
                 />
               </div>
               <div class="input-group mb-3">
@@ -47,7 +47,7 @@
                   v-model="item.email"
                   type="email"
                   class="form-control"
-                  placeholder="$t('email')"
+                  :placeholder="$t('email')"
                                   />
               </div>
               <div class="input-group mb-3">
@@ -58,7 +58,7 @@
                   v-model="item.password"
                   type="password"
                   class="form-control"
-                  placeholder="$t('password')"
+                  :placeholder="$t('password')"
                 />
               </div>
               <div class="mb-3">

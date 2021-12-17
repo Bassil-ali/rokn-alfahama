@@ -32,13 +32,13 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                                <input type="text" class="form-control" placeholder="$t('full_name')">
+                                                <input type="text" class="form-control" :placeholder="$t('full_name')">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                                <input type="text" class="form-control" placeholder="$t('enter_username')">
+                                                <input type="text" class="form-control" :placeholder="$t('enter_username')">
                                             </div>
                                         </div>
                                     </div>
@@ -46,13 +46,13 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
-                                                <input type="text" class="form-control" placeholder="$t('mobile_no')">
+                                                <input type="text" class="form-control" :placeholder="$t('mobile_no')">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                                <input type="email" class="form-control" placeholder="$t('email')">
+                                                <input type="email" class="form-control" :placeholder="$t('email')">
                                             </div>
                                         </div>
                                     </div>
