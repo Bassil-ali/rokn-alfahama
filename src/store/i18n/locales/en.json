@@ -320,7 +320,7 @@
   "add_new_pass": "Add new password",
   "add_confirm_pass": "Add Confirm the new password",
   "Confirm_the_change": "Confirm the change",
-  "help": "help",
+  "help": "Help",
   "Similar_Products": "Similar Products",
   "Product_Description": "Product Description",
   "Properties": "Properties",
@@ -334,5 +334,10 @@
   "not_complete": "The request was not completed successfully",
   "try": "Don't worry try again",
   "try_again": "Try Again",
-  "exit": "Exit"
+  "exit": "Exit",
+  "Connect_with_us": "Connect with us",
+  "who_are_we": "who are we",
+  "rokn_reserved": "Luxury Corner, All Rights Reserved",
+  "search_pro":"Find your favorite product",
+  "Offers":"Offers"
 }

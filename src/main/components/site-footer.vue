@@ -9,7 +9,7 @@
                 <img src="@/main/assets/images/logo-w.svg" alt="" />
               </div>
               <div class="d-flex align-items-center">
-                <span>تابعونا على</span>
+                <span>{{$t('follow_us_on')}}</span>
                 <ul>
                   <li>
                     <a href=""><i class="fab fa-instagram"></i></a>
@@ -26,7 +26,7 @@
           </div>
           <div class="col-md-3">
             <div class="item-footer">
-              <h2>تواصل معنا</h2>
+              <h2>{{$t('')}}</h2>
               <ul class="menu">
                 <li><i class="bi bi-telephone-fill"></i> 1234567890</li>
                 <li><i class="bi bi-phone"></i> 1234567890</li>
@@ -40,18 +40,18 @@
           </div>
           <div class="col-md-3">
             <div class="item-footer">
-              <h2>المساعدة</h2>
+              <h2>{{$t('help')}}</h2>
               <ul class="menu">
-                <li><a href="">من نحن</a></li>
-                <li><a href="">الأسئلة الشائعة</a></li>
-                <li><a href="">تواصل معنا</a></li>
-                <li><a href="">شروط الاستخدام</a></li>
+                <li><a href="">{{$t('who_are_we')}}</a></li>
+                <li><a href="">{{$t('common_questions')}}</a></li>
+                <li><a href="">{{$t('Connect_with_us')}}</a></li>
+                <li><a href="">{{$t('Terms_of_use')}}</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md-3">
             <div class="item-footer">
-              <h2>التصنيفات</h2>
+              <h2>{{$t('Categories')}}</h2>
               <ul class="menu">
                 <li><a href="">عطور شرقية</a></li>
                 <li><a href="">زيوت عصرية فاخرة</a></li>
@@ -68,7 +68,7 @@
     </div>
     <div class="buttom">
       <div class="container">
-        <p class="m-0 text-center">© 2021 ركن الفخامة, حقوق النشر محفوظة</p>
+        <p class="m-0 text-center">© 2021 {{$t('rokn_reserved')}}</p>
       </div>
     </div>
   </footer>
