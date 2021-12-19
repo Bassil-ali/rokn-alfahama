@@ -10,7 +10,7 @@ let list = [{
 },
 {
     title: 'items',
-    icon: 'mdi-sitemap',
+    icon: 'fas fa-cart-plus',
     to: '/items',
     children: [{
         title: 'view',

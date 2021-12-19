@@ -118,13 +118,13 @@
           <v-spacer></v-spacer>
           <v-spacer></v-spacer>
           <v-col >
-            <v-btn  fixed height="20" width="20"  @click="changeLocaleToEnglish('en')" icon>
-              <flag style="font-size: 30px;border-radius:2em;" iso="gb" />
+            <v-btn style="font-size:17px" fixed height="30" width="30"  @click="changeLocaleToEnglish('en')" icon>
+              <flag style="font-size: 60px;border-radius:2em;" iso="gb" />en
             </v-btn>
           </v-col>
           <v-col cols="2">
-            <v-btn fixed width="20" height="20" @click="changeLocaleToArabic('ar')" icon>
-              <flag style="font-size: 30px ;border-radius:2em;" iso="sa" />
+            <v-btn style="font-size:17px" fixed width="30" height="30" @click="changeLocaleToArabic('ar')" icon>
+              <flag style="font-size: 60px ;border-radius:2em;" iso="sa" />ar
             </v-btn>
           </v-col>
         </v-row>
