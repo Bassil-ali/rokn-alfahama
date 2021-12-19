@@ -26,7 +26,7 @@
 
                             <div class="entry-content-myaccount address form">
                                 <h2>{{$t('Add_a_new_site')}}</h2>
-                                <form @submit.prevent="$root.save(item, 'user.address', '/address_add')">
+                                <form @submit.prevent="$root.save(item, 'user.address', '/address')">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3">

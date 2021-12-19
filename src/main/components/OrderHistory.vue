@@ -1,14 +1,16 @@
 <template>
   <div class="col-md-10">
     <div class="entry-content-myaccount order-details">
-      <h2>تاريخ الطلبات</h2>
+      <h2>{{ $t("The_date_of_order") }}</h2>
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">الصورة</th>
-            <th scope="col">الاسم</th>
-            <th scope="col">الكمية</th>
-            <th scope="col">السعر الاجمالي</th>
+            <th scope="col">#</th>
+            <th scope="col">{{ $t("order_date") }}</th>
+            <th scope="col">{{ $t("The_date_of_order") }}</th>
+            <th scope="col">{{ $t("status") }}</th>
+            <th scope="col">{{ $t("total_summation") }}</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -40,9 +42,9 @@
           </tr>
         </tbody>
       </table>
-      <h2>مكان الشحن</h2>
+        <h2>{{$t('Shipping_place')}}</h2>
       <div class="box address">
-        <strong><i class="fas fa-map-marker-alt"></i> العنوان</strong>
+        <strong><i class="fas fa-map-marker-alt"></i> {{$t('address')}}</strong>
         <ul>
           <li>السعودية - المدينة المنورة - شارع الملك عبد الله</li>
           <li>السعودية - المدينة المنورة - شارع الملك عبد الله</li>
