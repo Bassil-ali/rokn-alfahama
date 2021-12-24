@@ -12,6 +12,7 @@
           <v-col cols="3">
             <v-text-field v-model="item.code" :label="$t('name')" dense />
           </v-col>
+          
           <v-col cols="3">
             <v-text-field v-model="item.value" :label="$t('percentage')" dense />
           </v-col>

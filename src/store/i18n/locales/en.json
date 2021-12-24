@@ -54,7 +54,10 @@
   "item": "Item",
   "accessor": "Accessors",
   "quantity": "Quantity",
-  "name": "Name",
+  "name_en": "Name english",
+    "name_ar": "Name  arabic",
+    "name":"Name",
+
   "discreption": "Discreption",
   "first_name": "First Name",
   "middle_name": "Middle Name",
@@ -177,7 +180,9 @@
   "tree_height": "Tree Hieght",
   "sort_by": "Sort By",
   "add_as_accessory": "Add as accessory",
-  "Item_brief": "Item brief",
+  "Item_brief_ar": "Item brief arabic",
+    "Item_brief_en": "Item brief english",
+
   "SHARE_THIS_PRODUCT": "SHARE THIS PRODUCT",
   "our_pages": "OUR PAGES",
   "friends_page": "friends pages",
@@ -351,5 +356,7 @@
   "unit_Form": "Unit Form",
   "users": "Users",
   "user_form": "User form",
-  "users_table": "Users table"
+  "users_table": "Users table",
+    "parent":"parent"
+
 }

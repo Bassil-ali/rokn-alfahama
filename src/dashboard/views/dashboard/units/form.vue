@@ -10,7 +10,12 @@
       <v-form>
         <v-row>
           <v-col cols="3">
-            <v-text-field v-model="item.name" :label="$t('name')" dense />
+            <v-text-field v-model="item.name_ar" :label="$t('name_ar')" dense />
+          </v-col>
+        </v-row>
+         <v-row>
+          <v-col cols="3">
+            <v-text-field v-model="item.name_ar" :label="$t('name_en')" dense />
           </v-col>
         </v-row>
         <v-row>

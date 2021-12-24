@@ -10,7 +10,10 @@
       <v-form>
         <v-row>
           <v-col cols="3">
-            <v-text-field v-model="item.name" :label="$t('name')" dense />
+            <v-text-field v-model="item.name_ar" :label="$t('name_ar')" dense />
+          </v-col>
+           <v-col cols="3">
+            <v-text-field v-model="item.name_en" :label="$t('name_ar')" dense />
           </v-col>
           <!-- <v-col cols="3">
             <v-autocomplete
@@ -93,9 +96,20 @@
         <v-row>
           <v-col cols="12">
             <v-textarea
-              v-model="item.brief"
+              v-model="item.brief_ar"
               outlined
-              :label="$t('Item_brief')"
+              :label="$t('Item_brief_ar')"
+              dense
+            >
+            </v-textarea>
+          </v-col>
+        </v-row>
+         <v-row>
+          <v-col cols="12">
+            <v-textarea
+              v-model="item.brief_en"
+              outlined
+              :label="$t('Item_brief_en')"
               dense
             >
             </v-textarea>
