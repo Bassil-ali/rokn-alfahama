@@ -10,10 +10,10 @@
       <v-form>
         <v-row>
           <v-col cols="3">
-            <v-text-field v-model="item.name_ar" :label="$t('name_ar')" dense />
+            <v-text-field v-model="item.translations[0].value" :label="$t('name_ar')" dense />
           </v-col>
            <v-col cols="3">
-            <v-text-field v-model="item.name_en" :label="$t('name_ar')" dense />
+            <v-text-field v-model="item.translations[1].value" :label="$t('name_ar')" dense />
           </v-col>
           <!-- <v-col cols="3">
             <v-autocomplete
@@ -96,7 +96,7 @@
         <v-row>
           <v-col cols="12">
             <v-textarea
-              v-model="item.brief_ar"
+              v-model="item.translations[2].value"
               outlined
               :label="$t('Item_brief_ar')"
               dense
@@ -107,7 +107,7 @@
          <v-row>
           <v-col cols="12">
             <v-textarea
-              v-model="item.brief_en"
+              v-model="item.translations[3].value"
               outlined
               :label="$t('Item_brief_en')"
               dense
@@ -196,7 +196,30 @@ export default {
   name: "ItemForm",
   data() {
     return {
-      item: {},
+      item: {
+        translations: [
+          {
+          field:"name",
+          value:"",
+          locale:"en",
+          },
+           {
+          field:"name",
+          value:"",
+          locale:"ar",
+          },
+           {
+          field:"Item_brief",
+          value:"",
+          locale:"en",
+          },
+           {
+          field:"Item_brief",
+          value:"",
+          locale:"ar",
+          },
+        ],
+      },
       radio: null,
       NewTags: { name: null },
       dialog: false,
