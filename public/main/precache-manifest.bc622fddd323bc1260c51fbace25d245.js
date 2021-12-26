@@ -1,42 +1,42 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ecc6963d28da49f14baf",
-    "url": "/main/css/chunk-08d49068-chunk-css"
+    "url": "/main/css/chunk-08d49068-chunk.css"
   },
   {
     "revision": "fab772c7c6a7f10630a8",
-    "url": "/main/css/chunk-1cb25960-chunk-css"
+    "url": "/main/css/chunk-1cb25960-chunk.css"
   },
   {
     "revision": "2ecf3dd909f4ad8652a6",
-    "url": "/main/css/chunk-2a9fa0af-chunk-css"
+    "url": "/main/css/chunk-2a9fa0af-chunk.css"
   },
   {
     "revision": "3ace8596ab028e5a9a72",
-    "url": "/main/css/chunk-400199aa-chunk-css"
+    "url": "/main/css/chunk-400199aa-chunk.css"
   },
   {
     "revision": "8b7639da1e83935c1f46",
-    "url": "/main/css/chunk-79992c5a-chunk-css"
+    "url": "/main/css/chunk-79992c5a-chunk.css"
   },
   {
     "revision": "1699fb00c98b92b765c5",
-    "url": "/main/css/chunk-94033094-chunk-css"
+    "url": "/main/css/chunk-94033094-chunk.css"
   },
   {
     "revision": "41a8ed6fd6b01ade03b7",
-    "url": "/main/css/chunk-vendors-chunk-css"
+    "url": "/main/css/chunk-vendors-chunk.css"
   },
   {
-    "revision": "4664545705f3d280f68a",
-    "url": "/main/css/dashboard-css"
+    "revision": "874937fa423930deb241",
+    "url": "/main/css/dashboard.css"
   },
   {
-    "revision": "08123fc2087087bbe637",
-    "url": "/main/css/index-css"
+    "revision": "b0c55d03a5a4127fe647",
+    "url": "/main/css/index.css"
   },
   {
-    "revision": "6f1bacf0d54beb8e72eeff91b28f25b7",
+    "revision": "6212c4be269d8ffab5ec993509328091",
     "url": "/main/dashboard.html"
   },
   {
@@ -440,7 +440,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/img/user.0608d5e2.svg"
   },
   {
-    "revision": "2b28aeabdde8da13c34843c4c409c785",
+    "revision": "cfb5738409e6b11b3bacd34a400dc6ef",
     "url": "/main/index.html"
   },
   {
@@ -468,10 +468,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/js/chunk-vendors.abd.41a8ed6fd6b01ade03b7.min.js"
   },
   {
-    "url": "/main/js/dashboard.c08.4664545705f3d280f68a.min.js"
+    "url": "/main/js/dashboard.489.874937fa423930deb241.min.js"
   },
   {
-    "url": "/main/js/index.980.08123fc2087087bbe637.min.js"
+    "url": "/main/js/index.694.b0c55d03a5a4127fe647.min.js"
   },
   {
     "revision": "4b14c64efaf846819b9a229b4193c8b7",
