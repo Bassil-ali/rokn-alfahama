@@ -13,7 +13,11 @@
             <v-text-field v-model="item.code" :label="$t('name')" dense />
           </v-col>
           <v-col cols="3">
-            <v-text-field v-model="item.value" :label="$t('percentage')" dense />
+            <v-text-field
+              v-model="item.value"
+              :label="$t('percentage')"
+              dense
+            />
           </v-col>
         </v-row>
         <v-row>
@@ -38,9 +42,8 @@ export default {
     };
   },
   mounted() {
-        if(this.$route.params.id){
-    this.$store.dispatch("coupon/show",{id:this.$route.params.id});
-
+    if (this.$route.params.id) {
+      this.$store.dispatch("coupon/show", { id: this.$route.params.id });
     }
     if (this.$props.item.id) {
       this.$store
@@ -50,20 +53,20 @@ export default {
   },
   methods: {
     async save(item) {
-      this.$store.dispatch('coupon/store',item);
+      this.$store.dispatch("coupon/store", item);
     },
   },
-  computed:{
+  computed: {
     ...mapState({
-      one:state=>state.coupon.one
-    })
+      one: (state) => state.coupon.one,
+    }),
   },
-  watch:{
-    one(val){
-      if(val){
+  watch: {
+    one(val) {
+      if (val) {
         this.item = JSON.parse(JSON.stringify(val));
       }
-    }
-  }
+    },
+  },
 };
 </script>
