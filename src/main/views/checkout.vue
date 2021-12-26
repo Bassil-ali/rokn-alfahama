@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <div class="entry-content checkout">
-      <h2>إتمام عملية الشراء</h2>
+      <h2>{{ $t("Checkout") }}</h2>
 
       <div class="row">
         <div class="col-md-4">
           <div class="block">
-            <h4>معلومات الطلب</h4>
+            <h4>{{ $t("Order_information") }}</h4>
             <div class="orders">
               <div class="order-item" v-for="item in items" :key="item.id">
                 <div class="d-flex">
@@ -42,21 +42,21 @@
             <form action="" class="copon" @submit.prevent="addCoupon">
               <input
                 type="text"
-                placeholder="ادخل رمز الكوبون"
+                :placeholder="$t('Enter_the_coupon_code')"
                 v-model="item.coupon"
               />
-              <button>تفعيل الكوبون</button>
+              <button>{{ $t("Activate_the_coupon") }}</button>
             </form>
             <div class="footer">
               <ul>
                 <li>
-                  عدد المنتجات
+                  {{ $t("number_of_products") }}
                   <span>{{
                     items.reduce((c, n) => c + n.item_quantity, 0)
                   }}</span>
                 </li>
                 <li>
-                  المجموع
+                  {{ $t("total_summation") }}
                   <span
                     >{{
                       (item.total = items.reduce(
@@ -68,7 +68,7 @@
                   >
                 </li>
                 <li>
-                  الخصم
+                  {{ $t("Discount") }}
                   <span
                     >{{
                       (item.discount = items.reduce(
@@ -83,10 +83,11 @@
                   >
                 </li>
                 <li>
-                  سعر التوصيل <span>{{ item.shipment_price }} ر.س</span>
+                  {{ $t("Delivery_price") }}
+                  <span>{{ item.shipment_price }} ر.س</span>
                 </li>
                 <li class="toot">
-                  المجموع الكلي
+                  {{ $t("total_summation") }}
                   <span
                     >{{
                       item.total - item.discount + item.shipment_price
@@ -100,16 +101,16 @@
         </div>
         <div class="col-md-8">
           <div class="block">
-            <h4>تفاصيل التسليم</h4>
+            <h4>{{ $t("Delivery_details") }}</h4>
             <div class="row justify-content-center">
               <div class="col-md-11">
                 <div class="content">
                   <p>
-                    أنت مسجل باسم : <strong>{{ user.name }}</strong>
+                    {{ $t("register_as") }} : <strong>{{ user.name }}</strong>
                   </p>
                   <div class="box">
                     <div class="entry-content-myaccount address">
-                      <h2>عناويني</h2>
+                      <h2>{{ $t("my_addresses") }}</h2>
                       <div class="items">
                         <div
                           class="box address"
@@ -149,10 +150,12 @@
                           </div>
                         </div>
                       </div>
-                      <a href="" class="button online">اضافة موقع جديد</a>
+                      <a href="" class="button online">{{
+                        $t("add_site_new")
+                      }}</a>
                     </div>
                     <div class="pay-box form">
-                      <h6>أختر طريقة الدفع</h6>
+                      <h6>{{ $t("Choose_payment_method") }}</h6>
                       <form @submit.prevent="save">
                         <div class="d-flex">
                           <div class="form-check form-check-inline">
@@ -197,12 +200,11 @@
                             /></label>
                           </div>
                         </div>
-                        <button class="button">إتمام الطلب</button>
+                        <button class="button">
+                          {{ $t("Complete_the_order") }}
+                        </button>
                       </form>
-                      <p>
-                        بالضغط على اتمام الطلب انت توافق على جميع الشروط
-                        والقوانين
-                      </p>
+                      <p>{{ $t("agree_condision") }}</p>
                     </div>
                   </div>
                 </div>
@@ -213,10 +215,7 @@
       </div>
       <div class="row justify-content-center infoo">
         <div class="col-md-10 text-center">
-          <p>
-            الدفع لدينا آمان . يتم إرسال معلوماتك الشخصية ومعلومات الدفع الخاصة
-            بك بشكل امن لانقوم بتخزين أي معلومات بطاقة دفع على منصتنا
-          </p>
+          <p>{{ $t("pyment_safe") }}</p>
         </div>
       </div>
     </div>
@@ -239,20 +238,24 @@ export default {
   },
   methods: {
     save() {
-      this.item.issue_date= new Date(Date.now());
-      this.item.status=1;
-      this.item.taxed_total=this.item.total;
+      this.item.issue_date = new Date(Date.now());
+      this.item.status = 1;
+      this.item.taxed_total = this.item.total;
       this.$store.dispatch("order/store", this.item);
     },
     addCoupon() {
-      this.$store.dispatch("coupon/show",{id: this.item.coupon}).then((data) => {
-        this.$store.dispatch("cart/setDiscount", data.value);
-      });
+      this.$store
+        .dispatch("coupon/show", { id: this.item.coupon })
+        .then((data) => {
+          this.$store.dispatch("cart/setDiscount", data.value);
+        });
     },
-    checkAddress(address){
+    checkAddress(address) {
       this.item.address_id = address.id;
-      this.addresses.filter(i=>i.id!=address.id).map(i=>i.checked=false);
-    }
+      this.addresses
+        .filter((i) => i.id != address.id)
+        .map((i) => (i.checked = false));
+    },
   },
   computed: {
     ...mapState({

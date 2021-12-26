@@ -2,7 +2,7 @@
   <div class="entry-content offer">
     <div class="container">
       <div class="head">
-        <h2>المفضلة</h2>
+        <h2>{{$t('Favorite')}}</h2>
       </div>
 
       <div class="product">
@@ -36,7 +36,7 @@
                       src="@/main/assets/images/shopping-cart-2.svg"
                       alt=""
                     />
-                    اضف إلى السلة</a
+                    {{$t('add_to_cart')}}</a
                   >
                   <a
                     href=""

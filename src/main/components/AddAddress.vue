@@ -1,41 +1,39 @@
 <template>
   <div class="col-md-10">
     <div class="entry-content-myaccount address form">
-      <h2>اضافة موقع جديدة</h2>
+      <h2>{{ $t("Add_a_new_site") }}</h2>
       <form @submit.prevent="save(item)">
         <div class="row">
           <div class="col-md-12">
             <div class="mb-3">
-              <label>اسم العنوان <span>*</span></label>
+              <label>{{ $t("address_name") }} <span>*</span></label>
               <input
                 type="text"
-                class="form-control"
                 v-model="item.title_name"
-                placeholder="اضافة اسم العنوان"
+                class="form-control"
+                :placeholder="$t('address_name_add')"
               />
             </div>
           </div>
           <div class="col-md-6">
             <div class="mb-3">
-              <label>المنطقة <span>*</span></label>
+              <label>{{ $t("site") }} <span>*</span></label>
               <input
                 type="text"
-                class="form-control"
                 v-model="item.area"
-
-                placeholder="اضافة اسم المنطقة"
+                class="form-control"
+                :placeholder="$t('site_add')"
               />
             </div>
           </div>
           <div class="col-md-6">
             <div class="mb-3">
-              <label>القطعة <span>*</span></label>
+              <label>{{ $t("widget") }} <span>*</span></label>
               <input
                 type="text"
-                class="form-control"
                 v-model="item.widget"
-
-                placeholder="اضافة اسم القطعة"
+                class="form-control"
+                :placeholder="$t('widget_add')"
               />
             </div>
           </div>
@@ -43,25 +41,23 @@
         <div class="row">
           <div class="col-md-6">
             <div class="mb-3">
-              <label>الشارع <span>*</span></label>
+              <label>{{ $t("street") }} <span>*</span></label>
               <input
                 type="text"
-                class="form-control"
                 v-model="item.street"
-
-                placeholder="اضافة اسم الشارع"
+                class="form-control"
+                :placeholder="$t('street_add')"
               />
             </div>
           </div>
           <div class="col-md-6">
             <div class="mb-3">
-              <label>جادة</label>
+              <label>{{ $t("Avenue") }}</label>
               <input
                 type="text"
-                class="form-control"
                 v-model="item.avenue"
-
-                placeholder="اضافة اسم الجادة"
+                class="form-control"
+                :placeholder="$t('Avenue_add')"
               />
             </div>
           </div>
@@ -69,25 +65,23 @@
         <div class="row">
           <div class="col-md-6">
             <div class="mb-3">
-              <label>رقم المنزل <span>*</span></label>
+              <label>{{ $t("house_number") }} <span>*</span></label>
               <input
                 type="text"
-                class="form-control"
                 v-model="item.house_number"
-
-                placeholder="اضافة رقم المنزل"
+                class="form-control"
+                :placeholder="$t('house_number_add')"
               />
             </div>
           </div>
           <div class="col-md-6">
             <div class="mb-3">
-              <label>رقم الطابق</label>
+              <label>{{ $t("Floor_No") }}</label>
               <input
                 type="text"
-                class="form-control"
                 v-model="item.floor_no"
-
-                placeholder="اضافة رقم الطابق"
+                class="form-control"
+                :placeholder="$t('Floor_No_add')"
               />
             </div>
           </div>
@@ -95,45 +89,43 @@
         <div class="row">
           <div class="col-md-6">
             <div class="mb-3">
-              <label>رقم الشقة</label>
+              <label>{{ $t("Apartment_number") }}</label>
               <input
                 type="text"
-                class="form-control"
                 v-model="item.apartment_number"
-
-                placeholder="اضافة رقم الشقة"
+                class="form-control"
+                :placeholder="$t('Apartment_number_add')"
               />
             </div>
           </div>
           <div class="col-md-6">
             <div class="mb-3">
-              <label>ملاحظات</label>
+              <label>{{ $t("Notes") }}</label>
               <input
                 type="text"
-                class="form-control"
                 v-model="item.notes"
-
-                placeholder="اضافة الملاحظات"
+                class="form-control"
+                :placeholder="$t('Notes_add')"
               />
             </div>
           </div>
         </div>
-        <button type="submit" class="button">اضافة الموقع</button>
+        <button type="submit" class="button">{{ $t("add_site") }}</button>
       </form>
     </div>
   </div>
 </template>
 <script>
 export default {
-  data(){
+  data() {
     return {
-      item:{}
-    }
+      item: {},
+    };
   },
-  methods:{
-    save(item){
-      this.$store.dispatch('address/store',item);
-    }
-  }
-}
+  methods: {
+    save(item) {
+      this.$store.dispatch("address/store", item);
+    },
+  },
+};
 </script>

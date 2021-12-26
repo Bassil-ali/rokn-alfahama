@@ -1,16 +1,21 @@
 <template>
   <v-container id="regular-tables" fluid tag="section">
-    <base-v-component :heading="$t('categories_form')" />
+    <base-v-component :heading="$t('units')" />
 
     <base-material-card
       icon="mdi-clipboard-text"
-      title="Item Form"
+      title="unit_Form"
       class="px-5 py-3"
     >
       <v-form>
         <v-row>
           <v-col cols="3">
-            <v-text-field v-model="item.name" :label="$t('name')" dense />
+            <v-text-field v-model="item.translations[0].value" :label="$t('name_ar')" dense />
+          </v-col>
+        </v-row>
+         <v-row>
+          <v-col cols="3">
+            <v-text-field v-model="item.translations[1].value" :label="$t('name_en')" dense />
           </v-col>
         </v-row>
         <v-row>
@@ -31,7 +36,22 @@ export default {
   name: "ItemForm",
   data() {
     return {
-      item: {},
+      item: {
+         translations: [
+          {
+          field:"name",
+          value:"",
+          locale:"en",
+          },
+           {
+          field:"name",
+          value:"",
+          locale:"ar",
+          },
+           
+         
+        ],
+      },
     };
   },
   mounted() {

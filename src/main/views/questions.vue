@@ -1,7 +1,7 @@
 <template>
      <div class="entry-content faq">
         <div class="head">
-            <h2>الاسئلة الشائعة</h2>
+            <h2>{{$t('common_questions')}}</h2>
         </div>
         <div class="Fsection-01 position-relative">
             <div class="decor"></div>
@@ -12,8 +12,8 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        ما هو موقعنا؟
-                                </button>
+                                        {{$t('What_is_our_site?')}}
+                                                                       </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
@@ -27,7 +27,7 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        كيفية استخدام الموقع؟
+                                        {{$t('How_to_use_the_site?')}}
                                 </button>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -42,7 +42,7 @@
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingThree">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        كيفية طلب شراء خاص؟
+                                        {{$t('how_to_order')}}
                                 </button>
                                 </h2>
                                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">

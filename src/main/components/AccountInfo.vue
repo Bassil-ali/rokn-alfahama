@@ -12,7 +12,7 @@
                 type="text"
                 class="form-control"
                 v-model="user.name"
-                placeholder="ادخل الاسم كامل"
+                :placeholder="$t('full_name')"
               />
             </div>
           </div>
@@ -22,7 +22,7 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="ادخل اسم المستخدم"
+                :placeholder="$t('enter_username')"
                 v-model="user.user_name"
               />
             </div>
@@ -37,7 +37,7 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="ادخل رقم الجوال"
+                :placeholder="$t('mobile_no')"
                 v-model="user.mobile"
               />
             </div>
@@ -51,12 +51,12 @@
                 type="email"
                 class="form-control"
                 v-model="user.email"
-                placeholder="ادخل البريد الالكتروني"
+                :placeholder="$t('email')"
               />
             </div>
           </div>
         </div>
-        <button type="submit" class="button">تحديث البيانات</button>
+        <button type="submit" class="button">{{ $t("update") }}</button>
       </form>
     </div>
   </div>

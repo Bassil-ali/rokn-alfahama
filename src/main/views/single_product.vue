@@ -77,7 +77,7 @@
                                         <strong>300</strong> <span>ريال سعودي</span>
                                     </div>
                                     <div class="quantity d-flex align-items-center">
-                                        <span>الكمية</span>
+                                        <span>{{$t('quantity')}}</span>
                                         <div id="quantity" class="d-flex align-items-center">
                                             <button class="btn-subtract" type="button">-</button>
                                             <input type="number" class="item-quantity" min="0" value="1">
@@ -85,7 +85,7 @@
                                         </div>
                                     </div>
                                     <div class="buttons d-flex justify-content-between align-items-center">
-                                        <a href="" class="addToCart button"><img src="@/main/assets/images/shopping-cart-2.svg" alt=""> اضف إلى السلة</a>
+                                        <a href="" class="addToCart button"><img src="@/main/assets/images/shopping-cart-2.svg" alt=""> {{$t('add_to_cart')}}</a>
                                         <a href="" class="addToFavorite button"><img src="@/main/assets/images/hearts.svg" alt=""></a>
                                     </div>
                                 </div>
@@ -97,18 +97,18 @@
                     <div class="section-01">
                         <div class="item mb-5 text-center">
                             <figure><img src="@/main/assets/images/discount.svg" alt=""></figure>
-                            <h3>عروض دائمة</h3>
-                            <p>تخفيضات وعروض بشكل مستمر على اغلب المنتجات</p>
+                            <h3>{{$t('permanent_offers')}}</h3>
+                            <p>{{$t('discount_offer')}}</p>
                         </div>
                         <div class="item mb-5 text-center">
                             <figure><img src="@/main/assets/images/shipped.svg" alt=""></figure>
-                            <h3>توصيل مجاني</h3>
-                            <p>التوصيل مجاني اذا كانت قيمة الطلب اكثر من 300$</p>
+                            <h3>{{$t('free_delivery')}}</h3>
+                            <p>{{$t('Free_delivery_if')}}</p>
                         </div>
                         <div class="item mb-3 text-center">
                             <figure><img src="@/main/assets/images/headphones.svg" alt=""></figure>
-                            <h3>المساعدة</h3>
-                            <p>خدمة ومتابعة العملاء</p>
+                            <h3>{{$t('help')}}</h3>
+                            <p>{{$t('Customer_service')}}</p>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                 <div class="col-md-3">
                     <div class="sidebar">
                         <div class="box">
-                            <h2>منتجات متشابهة</h2>
+                            <h2>{{$t('Similar_Products')}}</h2>
                             <div class="product-list">
                                 <div class="item">
                                     <div class="d-flex">
@@ -212,13 +212,13 @@
                     <div class="tabs">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">وصف المنتج</button>
+                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">{{$t('Product_Description')}}</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">الخصائص</button>
+                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">{{$t('Properties')}}</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">التقييمات</button>
+                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">{{$t('Reviews')}}</button>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">

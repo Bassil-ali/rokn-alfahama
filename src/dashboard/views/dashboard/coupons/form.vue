@@ -1,10 +1,10 @@
 <template>
   <v-container id="regular-tables" fluid tag="section">
-    <base-v-component :heading="$t('categories_form')" />
+    <base-v-component :heading="$t('coupons_form')" />
 
     <base-material-card
       icon="mdi-clipboard-text"
-      title="Item Form"
+      title="coupons_form"
       class="px-5 py-3"
     >
       <v-form>
@@ -12,6 +12,7 @@
           <v-col cols="3">
             <v-text-field v-model="item.code" :label="$t('name')" dense />
           </v-col>
+          
           <v-col cols="3">
             <v-text-field
               v-model="item.value"

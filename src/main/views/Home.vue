@@ -12,8 +12,8 @@
               alt=""
             />
             <div class="caption">
-              <h3>تميز بأناقتك</h3>
-              <h2>مع ركن الفخامة</h2>
+              <h3>{{$t('Stand_out_with_your_style')}}</h3>
+              <h2>{{$t('with_corner')}}</h2>
             </div>
           </div>
           <div class="left">
@@ -31,8 +31,8 @@
               <figure>
                 <img src="@/main/assets/images/headphones.svg" alt="" />
               </figure>
-              <h3>المساعدة</h3>
-              <p>خدمة ومتابعة العملاء</p>
+              <h3>{{$t('support_and_help')}}</h3>
+              <p>{{$t('Customer_service')}}</p>
             </div>
           </div>
           <div class="col-md-4">
@@ -40,8 +40,8 @@
               <figure>
                 <img src="@/main/assets/images/shipped.svg" alt="" />
               </figure>
-              <h3>توصيل مجاني</h3>
-              <p>التوصيل مجاني اذا كانت قيمة الطلب اكثر من 300$</p>
+              <h3>{{$t('free delivery')}}</h3>
+              <p>{{$t('Free_delivery_if')}}</p>
             </div>
           </div>
           <div class="col-md-4">
@@ -49,8 +49,8 @@
               <figure>
                 <img src="@/main/assets/images/discount.svg" alt="" />
               </figure>
-              <h3>عروض دائمة</h3>
-              <p>تخفيضات وعروض بشكل مستمر على اغلب المنتجات</p>
+              <h3>{{$t('permanent_offers')}}</h3>
+              <p>{{$t('discount_offer')}}</p>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@
     <div class="section-02 product">
       <div class="container">
         <div class="head">
-          <h2>أحدث المنتجات</h2>
+          <h2>{{$t('latest_product')}}</h2>
         </div>
         <carousel dir="ltr" :autoplay="true" :nav="false">
           <div class="item" v-for="item in recent_items" :key="item.id">
@@ -73,8 +73,8 @@
     <div class="section-03 categuory">
       <div class="container">
         <div class="head">
-          <h2>الفئات</h2>
-          <p>تسوق بكل سهولة حسب الفئات</p>
+          <h2>{{$$t('category')}}</h2>
+          <p>{{$t('Shop_with_ease_by_categories')}}</p>
         </div>
         <div class="row">
           <div class="col" v-for="category in categories" :key="category.id">
@@ -104,7 +104,7 @@
     <div class="section-02 product">
       <div class="container">
         <div class="head">
-          <h2>الاكثر طلباً</h2>
+          <h2>{{$t('the_most_wanted')}}</h2>
         </div>
         <carousel dir="ltr" class="carousel" :autoplay="true" :nav="false">
           <div class="item">

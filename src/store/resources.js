@@ -32,7 +32,6 @@ let resources = [
         name: 'user',
         parent: '',
         form_route: '/users/form',
-
         headers: ['name', 'user_name', 'email', 'mobile', 'created_at'],
         discreption: 'customers resource'
     },
@@ -109,6 +108,12 @@ let resources = [
     {
         name: 'rank',
         parent: 'item',
+    },
+    {
+        name: 'user.address',
+        parent: 'user',
+        //form_route: '/coupon/form',
+        discreption: 'address resource'
     }
 ]
 export default resources;

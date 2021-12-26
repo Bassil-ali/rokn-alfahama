@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-10">
     <div class="entry-content-myaccount address">
-      <h2>عناويني</h2>
+                                <h2> {{$t('my_info')}}</h2>
       <div class="items">
         <div class="box address" v-for="address in addresses" :key="address.id">
           <div class="d-flex">
@@ -46,8 +46,7 @@
         </div>
       </div>
       <router-link to="add_address" class="button"
-        ><img src="assets/images/pin-add.svg" alt="" />اضافة موقع
-        جديد</router-link
+        ><img src="assets/images/pin-add.svg" alt="" />{{$t('add_site_new')}}</router-link
       >
     </div>
   </div>
