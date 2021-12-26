@@ -1,0 +1,1 @@
+{!! file_get_contents(base_path() . '/public/main/index.html') !!}
