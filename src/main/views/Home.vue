@@ -73,7 +73,7 @@
     <div class="section-03 categuory">
       <div class="container">
         <div class="head">
-          <h2>{{$$t('category')}}</h2>
+          <h2>{{$t('category')}}</h2>
           <p>{{$t('Shop_with_ease_by_categories')}}</p>
         </div>
         <div class="row">
