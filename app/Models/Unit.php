@@ -16,13 +16,11 @@ class Unit extends BaseModel
     public static function createRules($user)
     {
         return [
-            'name'=>'required'
         ];
     }
     public static function updateRules($user)
     {
         return [
-            'name'=>'required'
         ];
     }
 }

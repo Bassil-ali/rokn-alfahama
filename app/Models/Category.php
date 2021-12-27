@@ -22,14 +22,12 @@ class Category extends BaseModel
     public static function createRules($user)
     {
         return [
-            'name' => 'required',
             'cover_image_id' => 'required',
         ];
     }
     public static function updateRules($user)
     {
         return [
-            'name' => 'required',
             'cover_image_id' => 'required',
         ];
     }

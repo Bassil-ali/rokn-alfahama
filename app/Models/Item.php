@@ -33,7 +33,6 @@ class Item extends BaseModel
     public static function createRules($user)
     {
         return [
-            'name' => 'required',
             'code' => 'required',
             'category_id' => 'required|exists:categories,id',
             'type' => 'sometimes|numeric',
@@ -50,7 +49,6 @@ class Item extends BaseModel
     public static function updateRules($user)
     {
         return [
-            'name' => 'required',
             'code' => 'required',
             'category_id' => 'sometimes|exists:categories,id',
             'type' => 'sometimes|numeric',
