@@ -25,7 +25,7 @@ module.exports = {
       enableInSFC: false,
     },
   },
-  outputDir: '../../garden/public/main',
+  outputDir: '../backend/public/main',
   publicPath: '/main/',
   devServer: {
     port: process.env.PORT || 8090,
@@ -51,8 +51,8 @@ module.exports = {
   css: {
     extract: {
       ignoreOrder: true,
-      filename: 'css/[name]-css',
-      chunkFilename: 'css/[name]-chunk-css',
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[name]-chunk.css',
     },
   },
 }

@@ -43,6 +43,7 @@
     "vue-owl-carousel2": "^2.0.7",
     "vue-phone-number-input": "^1.1.12",
     "vue-router": "^3.2.0",
+    "vue-server-renderer": "^2.6.14",
     "vue-slick": "^1.1.16",
     "vue-social-auth": "^1.4.9",
     "vue-social-sharing": "^3.0.7",
