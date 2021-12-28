@@ -26,6 +26,7 @@ $controllers = array_filter($controllers, function ($controller) {
 array_map(function ($controller) {
     if (method_exists($controller,'routeName'))
         Route::apiResource($controller::routeName(), $controller);
+        
 }, $controllers);
 
 Route::group([
@@ -39,3 +40,5 @@ Route::group([
     }
     Route::get("user", [AuthController::class, 'user']);
 });
+
+// Route::post('/patment', 'PaymentController@handleonlinepay')->name('patment');
