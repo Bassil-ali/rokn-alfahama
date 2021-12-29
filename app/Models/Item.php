@@ -11,7 +11,7 @@ class Item extends BaseModel
     use HasFactory;
     protected $guarded = [];
     use HasTranslations;
-    public $translatable = ['name', 'description'];
+    public $translatable = ['name', 'description', 'brief'];
     protected $appends = ['translations', 'image', 'liked', 'rank'];
     protected $with = ['tax', 'unit'];
     public function unit()
@@ -33,7 +33,6 @@ class Item extends BaseModel
     public static function createRules($user)
     {
         return [
-            'name' => 'required',
             'code' => 'required',
             'category_id' => 'required|exists:categories,id',
             'type' => 'sometimes|numeric',
@@ -50,7 +49,6 @@ class Item extends BaseModel
     public static function updateRules($user)
     {
         return [
-            'name' => 'required',
             'code' => 'required',
             'category_id' => 'sometimes|exists:categories,id',
             'type' => 'sometimes|numeric',
@@ -81,10 +79,14 @@ class Item extends BaseModel
         $query->when($request->most_sold, function ($query) {
             $query->whereRaw('items.id in (select item_id from order_items group by item_id order by (sum(item_quantity))');
         });
-        $query->when($request->liked, function ($query,$liked) {
-            $user=auth()->user();
-            if($user){
-                $user_id=$user->id;
+        $query->when($request->category_id, function ($query, $category_id) {
+            // dd($category_id);
+            $query->where("category_id", '=', "$category_id");
+        });
+        $query->when($request->liked, function ($query, $liked) {
+            $user = auth()->user();
+            if ($user) {
+                $user_id = $user->id;
                 $query->whereRaw("items.id in (select item_id from reactions where user_id=$user_id)");
             }
         });

@@ -15,10 +15,11 @@ class Setting extends BaseModel
     public static function createRules($user)
     {
         return [
-            'user_id'=>'sometimes|exists:users,id',
-            'key'=>'required',
-            'value'=>'nullable',
-            'description'=>'nullable'
+            'settings'=>'required',
+            // 'user_id'=>'sometimes|exists:users,id',
+            // 'key'=>'required',
+            // 'value'=>'nullable',
+            // 'description'=>'nullable'
         ];
     }
     public static function updateRules($user)

@@ -30,12 +30,11 @@ class SettingCountroller extends BaseController
         if($validator->fails()){
             return response()->json(['errors'=>$validator->errors()],422);
         }
-        $setting = Setting::create($validator->validated());
-        if ($request->translations) {
-            foreach ($request->translations as $translation)
-                $setting->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
+        $setting = ($validator->validated())['settings'];
+        foreach ($setting as $key => $value) {
+            Setting::updateOrCreate(['key'=>$key],['key'=>$key,'value'=>is_array($value)?json_encode($value):$value]);
         }
-        return new SettingResource($setting);
+        return SettingResource::collection(Setting::all());
     }
     public function show(Request $request,Setting $setting)
     {

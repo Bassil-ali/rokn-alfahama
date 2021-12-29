@@ -13,10 +13,11 @@ class AuthController extends BaseController
      *
      * @return void
      */
-     public static function routeName(){
+    public static function routeName()
+    {
         return Str::snake("Auth");
     }
-    
+
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);

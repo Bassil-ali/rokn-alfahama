@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/dashboard/{any1?}', function () {
+    header('content-type:text/html');
+    header('Cache-Control:no-cache, no-store, must-revalidate');
+    header('Pragma:no-cache');
+    header('Expires:0');
+    return view('dashboard');
+})->where('any1', '.+');
+Route::get('/{any?}', function () {
+    header('content-type:text/html');
+    header('Cache-Control:no-cache, no-store, must-revalidate');
+    header('Pragma:no-cache');
+    header('Expires:0');
+    return view('home');
+})->where('any', '.+');

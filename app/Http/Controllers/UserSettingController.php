@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class UserSettingController extends BaseController
 {
     public static function routeName(){
-        return Str::snake("Setting");
+        return Str::snake("UserSetting");
     }
     public $childRelationName; 
     public function __construct(Request $request)
