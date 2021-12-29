@@ -5,7 +5,7 @@
         <div class="col-md-5">
           <div class="form">
             <h2>{{$t('welcome')}}</h2>
-            <p><small>{{$t('Lon_in_to_our_site')}}</small></p>
+            <p><small>{{$t('Log_in_to_our_site')}}</small></p>
             <form @submit.prevent="login(user)">
               <div class="input-group mb-3">
                 <span class="input-group-text"

@@ -10,10 +10,18 @@
       <v-form>
         <v-row>
           <v-col cols="3">
-            <v-text-field v-model="item.translations[0].value" :label="$t('name_ar')" dense />
+            <v-text-field
+              v-model="item.translations[0].value"
+              :label="$t('name_ar')"
+              dense
+            />
           </v-col>
-           <v-col cols="3">
-            <v-text-field v-model="item.translations[1].value" :label="$t('name_ar')" dense />
+          <v-col cols="3">
+            <v-text-field
+              v-model="item.translations[1].value"
+              :label="$t('name_ar')"
+              dense
+            />
           </v-col>
           <!-- <v-col cols="3">
             <v-autocomplete
@@ -87,6 +95,7 @@
               width="300"
             >
             </v-img>
+            <v-img  :src="item.image" width="300"> </v-img>
             <!-- <v-img :src="get_url(image)" width="300"></v-img> -->
           </v-col>
         </v-row>
@@ -104,7 +113,7 @@
             </v-textarea>
           </v-col>
         </v-row>
-         <v-row>
+        <v-row>
           <v-col cols="12">
             <v-textarea
               v-model="item.translations[3].value"
@@ -120,7 +129,14 @@
           <v-col cols="12">
             <ckeditor
               :editor="editor"
-              v-model="item.description"
+              v-model="item.translations[4].value"
+              :config="editorConfig"
+            ></ckeditor>
+          </v-col>
+          <v-col cols="12">
+            <ckeditor
+              :editor="editor"
+              v-model="item.translations[5].value"
               :config="editorConfig"
             ></ckeditor>
           </v-col> </v-row
@@ -132,7 +148,7 @@
               </v-card-title>
               <v-card-text>
                 <v-row>
-                  <v-col cols="4" v-for="(image, index) in images">
+                  <v-col cols="4" :key="index" v-for="(image, index) in images">
                     <v-hover>
                       <template v-slot:default="{ hover }">
                         <v-img :src="get_url(image)" width="300">
@@ -199,24 +215,34 @@ export default {
       item: {
         translations: [
           {
-          field:"name",
-          value:"",
-          locale:"en",
+            field: "name",
+            value: "",
+            locale: "en",
           },
-           {
-          field:"name",
-          value:"",
-          locale:"ar",
+          {
+            field: "name",
+            value: "",
+            locale: "ar",
           },
-           {
-          field:"Item_brief",
-          value:"",
-          locale:"en",
+          {
+            field: "brief",
+            value: "",
+            locale: "en",
           },
-           {
-          field:"Item_brief",
-          value:"",
-          locale:"ar",
+          {
+            field: "brief",
+            value: "",
+            locale: "ar",
+          },
+          {
+            field: "description",
+            value: "",
+            locale: "en",
+          },
+          {
+            field: "description",
+            value: "",
+            locale: "ar",
           },
         ],
       },
@@ -283,9 +309,9 @@ export default {
     this.$store.dispatch("category/index");
     this.$store.dispatch("unit/index");
     this.$store.dispatch("tax/index");
-    if (this.$props.item.id) {
+    if (this.$route.params.id) {
       this.$store
-        .dispatch("item/show", { id: this.$props.item.id })
+        .dispatch("item/show", { id: this.$route.params.id })
         .then((res) => {
           this.cover_image = res.gallery.cover_image;
           this.item.categories = res.category_ids;
@@ -322,15 +348,6 @@ export default {
 
     async save(item) {
       let cover_image_id = null;
-      console.log("befor !!!!");
-      item.cover_image_id = cover_image_id;
-      let item_data = await this.$store
-        .dispatch("item/store", item)
-        .then(() => {
-          console.log("item CREATED !!!!");
-        });
-      console.log("after !!!!");
-
       if (typeof this.cover_image.url != "string") {
         let cover_image = await this.$store.dispatch("media/store", {
           file: this.cover_image.url,
@@ -338,7 +355,12 @@ export default {
         });
         cover_image_id = cover_image.id;
       }
-
+      item.cover_image_id = cover_image_id;
+      let item_data = await this.$store
+        .dispatch("item/store", item)
+        .then(() => {
+          console.log("item CREATED !!!!");
+        });
       if (this.images.length > 0) {
         this.images.map((image) => {
           if (image.id) {
@@ -374,7 +396,6 @@ export default {
       units: (state) => state.unit.all,
       taxes: (state) => state.tax.all,
       one: (state) => state.item.one,
-
     }),
   },
   watch: {

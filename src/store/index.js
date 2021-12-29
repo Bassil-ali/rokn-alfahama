@@ -5,7 +5,7 @@ import axios from '../plugins/axios';
 import registrar from './module_registrar';
 import resources from './resources';
 let r_modules = registrar.register(resources);
-let locale = localStorage.getItem("locale");
+let locale = localStorage.getItem("locale") || 'ar';
 let rtl = locale == 'ar';
 // console.log(locale + " "+rtl);
 Vue.use(Vuex)
@@ -29,6 +29,7 @@ let store = new Vuex.Store({
     locale,
     redirect: null,
     success_msg: null,
+    settings: null
   },
   mutations: {
 
@@ -59,6 +60,9 @@ let store = new Vuex.Store({
     setRedirect: (state, redirect) => {
       state.redirect = redirect;
     },
+    set_settings: (state, settings) => {
+      state.settings = settings;
+    },
 
   },
   actions: {
@@ -75,6 +79,9 @@ let store = new Vuex.Store({
     },
     setRedirect({ commit }, redirect) {
       commit('setRedirect', redirect);
+    },
+    setSettings({ commit }, settings) {
+      commit('set_settings', settings);
     },
 
   },

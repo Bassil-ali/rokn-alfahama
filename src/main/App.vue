@@ -29,6 +29,7 @@ export default {
     // window.FB.getLoginStatus(function (response) {
     //   console.log(response);
     // });
+    this.$store.dispatch("setting/index");
   },
   updated() {},
   computed: {
@@ -38,6 +39,7 @@ export default {
       rtl: (state) => state.rtl,
       success_msg: (state) => state.success_msg,
       redirect: (state) => state.redirect,
+      all_settings: (state) => state.setting.all,
     }),
 
     home() {
@@ -51,6 +53,19 @@ export default {
     DashboardCoreSettings: () => import("@/dashboard/components/core/Settings"),
   },
   watch: {
+    all_settings(val) {
+      if (val) {
+        let newItem = JSON.parse(JSON.stringify(val));
+        let paresedSettings = newItem
+          .map((i) => {
+            return { [i.key]: i.value };
+          })
+          .reduce((c, n) => {
+            return { ...c, ...n };
+          });
+        this.$store.dispatch("setSettings", paresedSettings);
+      }
+    },
     // redirect: function (val) {
     //   console.log(val);
     //   if (val != "customer") this.$router.push("/dashboard");

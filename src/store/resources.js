@@ -52,7 +52,7 @@ let resources = [
     {
         name: 'payment',
         parent: 'order',
-        form_route:'/payments/form',
+        form_route: '/payments/form',
 
         module_name: 'order_payment',
         headers: ['order_id', 'amount', 'created_at'],
@@ -66,7 +66,8 @@ let resources = [
     {
         name: 'reaction',
         parent: 'item',
-        discreption: 'item reaction resource'
+        discreption: 'item reaction resource',
+        no_success_msg: true
     },
     {
         name: 'setting',
@@ -86,7 +87,8 @@ let resources = [
     {
         name: 'rank',
         parent: 'item',
-        discreption: 'friends resource'
+        discreption: 'friends resource',
+        no_success_msg: true
     },
     {
         name: 'address',
@@ -96,18 +98,10 @@ let resources = [
     {
         name: 'coupon',
         parent: '',
-        form_route:'/coupon/form',
+        form_route: '/coupon/form',
 
         headers: ['id', 'code', 'value'],
         discreption: 'address resource'
-    },
-    {
-        name: 'reaction',
-        parent: 'item',
-    },
-    {
-        name: 'rank',
-        parent: 'item',
     },
     {
         name: 'user.address',

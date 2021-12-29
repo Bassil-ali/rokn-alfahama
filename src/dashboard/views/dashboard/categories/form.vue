@@ -10,10 +10,18 @@
       <v-form>
         <v-row>
           <v-col cols="3">
-            <v-text-field v-model="item.translations[0].value" :label="$t('name_ar')" dense />
+            <v-text-field
+              v-model="item.translations[0].value"
+              :label="$t('name_ar')"
+              dense
+            />
           </v-col>
-           <v-col cols="3">
-            <v-text-field v-model="item.translations[1].value" :label="$t('name_en')" dense />
+          <v-col cols="3">
+            <v-text-field
+              v-model="item.translations[1].value"
+              :label="$t('name_en')"
+              dense
+            />
           </v-col>
           <v-col cols="3">
             <v-autocomplete
@@ -39,32 +47,13 @@
               width="300"
             >
             </v-img>
-            <!-- <v-img :src="get_url(image)" width="300"></v-img> -->
+            <v-img v-if="item.image" :src="item.image" width="300"></v-img>
           </v-col>
         </v-row>
         <v-row>
           <v-col> </v-col>
         </v-row>
-        <v-row>
-          <v-col cols="12">
-            <v-textarea
-              v-model="item.translations[2].value"
-              outlined
-              :label="$t('Item_brief_ar')"
-              dense
-            >
-            </v-textarea>
-          </v-col>
-           <v-col cols="12">
-            <v-textarea
-              v-model="item.translations[3].value"
-              outlined
-              :label="$t('Item_brief_en')"
-              dense
-            >
-            </v-textarea>
-          </v-col>
-        </v-row>
+
         <v-row>
           <v-col cols="12">
             <v-btn dark color="primary" block @click="save(item)">
@@ -98,28 +87,17 @@ export default {
       item: {
         translations: [
           {
-          field:"name",
-          value:"",
-          locale:"en",
+            field: "name",
+            value: "",
+            locale: "en",
           },
-           {
-          field:"name",
-          value:"",
-          locale:"ar",
-          },
-           {
-          field:"Item_brief",
-          value:"",
-          locale:"en",
-          },
-           {
-          field:"Item_brief",
-          value:"",
-          locale:"ar",
+          {
+            field: "name",
+            value: "",
+            locale: "ar",
           },
         ],
       },
-
     };
   },
   mounted() {
@@ -172,7 +150,7 @@ export default {
       }
 
       item.cover_image_id = cover_image.id;
-      console.log("ahmad hassouna");
+
       let item_data = await this.$store.dispatch("category/store", item);
       console.log("ahmad hassouna");
     },

@@ -3,10 +3,23 @@ let list = [{
     title: 'dashboard',
     to: '/',
 },
+// {
+//     icon: 'fas fa-user',
+//     title: 'user',
+//     to: '/profile',
+// },
 {
-    icon: 'fas fa-user',
-    title: 'user',
-    to: '/profile',
+    title: 'site_settings',
+    icon: 'fas fa-cog',
+    to: '/settings',
+    children: [
+        {
+            title: 'create',
+            icon: 'fas fa-plus',
+            to: 'form',
+            group: 'settings'
+        },
+    ]
 },
 {
     title: 'items',
@@ -26,6 +39,7 @@ let list = [{
     },
     ]
 },
+
 {
     title: 'categories',
     icon: 'fas fa-tags',

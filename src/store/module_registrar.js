@@ -99,15 +99,17 @@ export default {
                         Object.keys(data).map(key => {
                             form_data.append(key, data[key])
                         });
-                        data = form_data;
-                        post_data = data;
+                        post_data = form_data;
 
                     }
                     try {
-                        const response = await this.$axios.post(`${resource.parent ? '/' + resource.parent + '/' + parent_id : ''}/${resource.name}`, post_data).then(() => {
+                        const response = await this.$axios.post(`${resource.parent ? '/' + resource.parent + '/' + parent_id : ''}/${resource.name}`, post_data).then((data) => {
+                            if (resource.no_success_msg) return data;
                             dispatch('setSuccessMsg', 'added_successfully', {
                                 root: true
                             })
+
+                            return data;
                         });
 
                         commit('setOne', response.data);

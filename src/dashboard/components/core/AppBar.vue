@@ -1,29 +1,11 @@
 <template>
-
-  <v-app-bar
-    id="app-bar"
-    absolute
-    app
-    color="transparent"
-    flat
-    height="75"
-  >
-    <v-btn
-      class="mr-3"
-      elevation="1"
-      fab
-      small
-      @click="setDrawer(!drawer)"
-    >
-      <i class="fas fa-bars">
-       
-      </i>
-
- 
+  <v-app-bar id="app-bar" absolute app color="transparent" flat height="75">
+    <v-btn class="mr-3" elevation="1" fab small @click="setDrawer(!drawer)">
+      <i class="fas fa-bars"> </i>
     </v-btn>
 
     <v-toolbar-title
-    style="padding-right:50px"
+      style="padding-right: 50px"
       class="hidden-sm-and-down font-weight-light"
       v-text="$route.name"
     />
@@ -53,12 +35,7 @@
 
     <div class="mx-3" />
 
-    <v-btn
-      class="ml-2"
-      min-width="0"
-      text
-      to="/"
-    >
+    <v-btn class="ml-2" min-width="0" text to="/">
       <v-icon>mdi-view-dashboard</v-icon>
     </v-btn>
 
@@ -114,101 +91,119 @@
     >
       <v-icon>mdi-account</v-icon>
     </v-btn> -->
-            <v-row  justify="start" style="max-width:80px; margin: -20px 0px 0px 20px ">
-          <v-spacer></v-spacer>
-          <v-spacer></v-spacer>
-          <v-col >
-            <v-btn style="font-size:17px" fixed height="30" width="30"  @click="changeLocaleToEnglish('en')" icon>
-              <flag style="font-size: 60px;border-radius:2em;" iso="gb" />en
-            </v-btn>
-          </v-col>
-          <v-col cols="2">
-            <v-btn style="font-size:17px" fixed width="30" height="30" @click="changeLocaleToArabic('ar')" icon>
-              <flag style="font-size: 60px ;border-radius:2em;" iso="sa" />ar
-            </v-btn>
-          </v-col>
-        </v-row>
+    <v-row justify="start" style="max-width: 80px; margin: -20px 0px 0px 20px">
+      <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
+      <v-col>
+        <v-btn
+          style="font-size: 17px"
+          fixed
+          height="30"
+          width="30"
+          @click="changeLocaleToEnglish('en')"
+          icon
+        >
+          <!-- <flag style="font-size: 60px;border-radius:2em;" iso="gb" /> -->
+          en
+        </v-btn>
+      </v-col>
+      <v-col cols="2">
+        <v-btn
+          style="font-size: 17px"
+          fixed
+          width="30"
+          height="30"
+          @click="changeLocaleToArabic('ar')"
+          icon
+        >
+          <!-- <flag style="font-size: 60px ;border-radius:2em;" iso="sa" /> -->
+          ar
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-app-bar>
 </template>
 
 <script>
-  // Components
-  import { VHover, VListItem } from 'vuetify/lib'
+// Components
+import { VHover, VListItem } from "vuetify/lib";
 
-  // Utilities
-  import { mapState, mapMutations } from 'vuex'
+// Utilities
+import { mapState, mapMutations } from "vuex";
 
-  export default {
-    name: 'DashboardCoreAppBar',
+export default {
+  name: "DashboardCoreAppBar",
 
-    components: {
-      AppBarItem: {
-        render (h) {
-          return h(VHover, {
-            scopedSlots: {
-              default: ({ hover }) => {
-                return h(VListItem, {
+  components: {
+    AppBarItem: {
+      render(h) {
+        return h(VHover, {
+          scopedSlots: {
+            default: ({ hover }) => {
+              return h(
+                VListItem,
+                {
                   attrs: this.$attrs,
                   class: {
-                    'black--text': !hover,
-                    'white--text secondary elevation-12': hover,
+                    "black--text": !hover,
+                    "white--text secondary elevation-12": hover,
                   },
                   props: {
-                    activeClass: '',
+                    activeClass: "",
                     dark: hover,
                     link: true,
                     ...this.$attrs,
                   },
-                }, this.$slots.default)
-              },
+                },
+                this.$slots.default
+              );
             },
-          })
-        },
+          },
+        });
       },
     },
+  },
 
-    props: {
-      value: {
-        type: Boolean,
-        default: false,
-      },
+  props: {
+    value: {
+      type: Boolean,
+      default: false,
     },
+  },
 
-    data: () => ({
-       rtl: true ,
-      notifications: [
-        'Mike John Responded to your email',
-        'You have 5 new tasks',
-        'You\'re now friends with Andrew',
-        'Another Notification',
-        'Another one',
-      ],
+  data: () => ({
+    rtl: true,
+    notifications: [
+      "Mike John Responded to your email",
+      "You have 5 new tasks",
+      "You're now friends with Andrew",
+      "Another Notification",
+      "Another one",
+    ],
+  }),
+
+  computed: {
+    ...mapState(["drawer"]),
+  },
+
+  methods: {
+    ...mapMutations({
+      setDrawer: "SET_DRAWER",
     }),
-
-    computed: {
-      ...mapState(['drawer']),
-    },
-
-    methods: {
-      ...mapMutations({
-        setDrawer: 'SET_DRAWER',
-      }),
-          changeLocaleToArabic(val) {
+    changeLocaleToArabic(val) {
       this.rtl = true;
       this.$store.dispatch("locales/change", val);
       this.$i18n.locale = val;
       localStorage.setItem("locale", val);
-
     },
     changeLocaleToEnglish(val) {
       this.rtl = false;
       this.$store.dispatch("locales/change", val);
       this.$i18n.locale = val;
       localStorage.setItem("locale", val);
-
     },
-    },
-    watch: {
+  },
+  watch: {
     rtl: {
       handler(newval, oldval) {
         this.$vuetify.rtl = newval;
@@ -216,5 +211,5 @@
       },
     },
   },
-  }
+};
 </script>

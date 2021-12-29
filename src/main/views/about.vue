@@ -4,31 +4,21 @@
       <div class="Asection-01">
         <div class="container">
           <div class="head">
-            <h2>{{$t('about')}}</h2>
+            <h2>{{ $t("about") }}</h2>
           </div>
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="content">
                 <p>
-                  هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضهاi في هذا
-                  المكان و حجم و لون الخط حيث يتم التحكم في هذا النص وامكانية
-                  تغييرة في اي وقت عن طريق ادارة الموقع . يتم اضافة هذا النص كنص
-                  تجريبي للمعاينة .هذا نص تجريبي لاختبار شكل و حجم النصوص و
-                  طريقة عرضهاi في هذا المكان و حجم و لون الخط حيث يتم التحكم في
-                  هذا النص وامكانية تغييرة في اي وقت عن طريق ادارة الموقع . يتم
-                  اضافة هذا النص كنص تجريبي للمعاينة .هذا نص تجريبي لاختبار شكل
-                  و حجم النصوص و المكان و حجم و لون الخط حيث يتم التحكم في هذا
-                  النص وامكانية تغييرة في اي وقت عن طريق ادارة الموقع . يتم
-                  اضافة هذا النص كنص تجريبي للمعاينة .
+                  {{ locale == 'ar' ? settings.who_us[0].content_ar:settings.who_us[0].content_en }}
+                
                 </p>
               </div>
             </div>
             <div class="col-md-6">
               <figure class="main-img">
-                <img
-                  src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                  alt=""
-                />
+                <img v-if="settings.who_us[0].image_url" :src="settings.who_us[0].image_url" alt="" />
+                <img v-else src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg" alt="" />
               </figure>
             </div>
           </div>
@@ -38,34 +28,18 @@
         <div class="container">
           <div class="row">
             <div class="col-md-5">
-              <figure><img src="@/main/assets/images/Image-21.jpg" alt="" /></figure>
+              <figure>
+                <img v-if="settings.who_us[1].image_url" :src="settings.who_us[1].image_url" alt=""/>
+                <img v-else src="@/main/assets/images/Image-21.jpg" alt="" />
+              </figure>
             </div>
             <div class="col-md-7">
               <div class="content">
                 <ul>
-                  <li>
-                    هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضهاi في هذا
-                    المكان و حجم
-                  </li>
-                  <li>
-                    هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضهاi في هذا
-                    المكان و حجم
-                  </li>
-                  <li>
-                    هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضهاi في هذا
-                    المكان و حجم
-                  </li>
-                  <li>
-                    هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضهاi في هذا
-                    المكان و حجم
-                  </li>
-                  <li>
-                    هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضهاi في هذا
-                    المكان و حجم
-                  </li>
-                  <li>
-                    هذا نص تجريبي لاختبار شكل و حجم النصوص و طريقة عرضهاi في هذا
-                    المكان و حجم
+                  <li style="line-height:2em">
+                     {{ locale == 'ar' ? settings.who_us[1].content_ar:settings.who_us[1].content_en }}
+                  
+                
                   </li>
                 </ul>
               </div>
@@ -77,14 +51,16 @@
       <div class="Asection-03 section-03 categuory">
         <div class="container">
           <div class="head">
-            <h2>{{$t('Categories')}}</h2>
-            <p>{{$t('Shop_with_ease_by_categories')}}</p>
+            <h2>{{ $t("Categories") }}</h2>
+            <p>{{ $t("Shop_with_ease_by_categories") }}</p>
           </div>
           <div class="row">
             <div class="col">
               <div class="item">
                 <a href="">
-                  <figure><img src="@/main/assets/images/cat01.svg" alt="" /></figure>
+                  <figure>
+                    <img src="@/main/assets/images/cat01.svg" alt="" />
+                  </figure>
                   <span>عطور شرقية</span>
                 </a>
               </div>
@@ -92,7 +68,9 @@
             <div class="col">
               <div class="item">
                 <a href="">
-                  <figure><img src="@/main/assets/images/cat02.svg" alt="" /></figure>
+                  <figure>
+                    <img src="@/main/assets/images/cat02.svg" alt="" />
+                  </figure>
                   <span>زيوت عصرية فاخرة</span>
                 </a>
               </div>
@@ -100,7 +78,9 @@
             <div class="col">
               <div class="item">
                 <a href="">
-                  <figure><img src="@/main/assets/images/cat03.svg" alt="" /></figure>
+                  <figure>
+                    <img src="@/main/assets/images/cat03.svg" alt="" />
+                  </figure>
                   <span>بخور ومباخر عربية</span>
                 </a>
               </div>
@@ -108,7 +88,9 @@
             <div class="col">
               <div class="item">
                 <a href="">
-                  <figure><img src="@/main/assets/images/cat04.svg" alt="" /></figure>
+                  <figure>
+                    <img src="@/main/assets/images/cat04.svg" alt="" />
+                  </figure>
                   <span>مستلزمات نسائية</span>
                 </a>
               </div>
@@ -116,7 +98,9 @@
             <div class="col">
               <div class="item">
                 <a href="">
-                  <figure><img src="@/main/assets/images/cat05.svg" alt="" /></figure>
+                  <figure>
+                    <img src="@/main/assets/images/cat05.svg" alt="" />
+                  </figure>
                   <span>أزياء عربية للجنسين</span>
                 </a>
               </div>
@@ -124,7 +108,9 @@
             <div class="col">
               <div class="item">
                 <a href="">
-                  <figure><img src="@/main/assets/images/cat06.svg" alt="" /></figure>
+                  <figure>
+                    <img src="@/main/assets/images/cat06.svg" alt="" />
+                  </figure>
                   <span>أحذية عربية وفضيات</span>
                 </a>
               </div>
@@ -132,7 +118,9 @@
             <div class="col">
               <div class="item">
                 <a href="">
-                  <figure><img src="@/main/assets/images/cat07.svg" alt="" /></figure>
+                  <figure>
+                    <img src="@/main/assets/images/cat07.svg" alt="" />
+                  </figure>
                   <span>عسل</span>
                 </a>
               </div>
@@ -144,5 +132,13 @@
   </div>
 </template>
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  computed: {
+    ...mapState({
+      settings: (state) => state.settings,
+      locale: (state) => state.locales.locale,
+    }),
+  },
+};
 </script>

@@ -1,7 +1,8 @@
 const LocalesList = require('locales-list').default;
+let locale = localStorage.getItem("locale") || 'ar';
 
 // console.log(LocalesList.getAll());
-let locale = navigator.language
+// let locale = navigator.language
 let state = {
     all: [],
     available_locales: [{
@@ -12,7 +13,7 @@ let state = {
         iso_639: 'en'
     }],
     loaded: false,
-    locale: 'en'
+    locale
 };
 
 let getters = {
@@ -27,7 +28,7 @@ let actions = {
         commit('setAll', LocalesList.getAll());
         commit('loadedData');
     },
-    
+
     async change({
         commit
     }, locale) {
