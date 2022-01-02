@@ -52,7 +52,7 @@ class Category extends BaseModel
     {
         $query->when($request->top, function ($query, $top) {
             // dd($category_id);
-            $query->whererow("limit $top");
+            // $query->whererow("limit $top");
         });
-    }   
+    }
 }

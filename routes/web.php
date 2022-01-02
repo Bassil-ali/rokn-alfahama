@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/complete-order/{id?}', function () {
+    // App::setLocale('ar');
+    return view('checkout');
+});
+
+Route::post('/complete-payment/{id?}',[PaymentController::class,
+ 'createAnAcceptPaymentTransaction']
+);
 
 Route::get('/dashboard/{any1?}', function () {
     header('content-type:text/html');
