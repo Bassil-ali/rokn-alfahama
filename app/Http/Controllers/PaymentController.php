@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PaymentResource;
+use App\Models\Address;
+use App\Models\Order;
 use App\Models\Payment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use net\authorize\api\controller as AnetController;
 use net\authorize\api\contract\v1 as AnetAPI;
+
 
 
 class PaymentController extends BaseController
@@ -28,12 +32,12 @@ class PaymentController extends BaseController
     }
     public function store(Request $request)
     {
-        if(!$this->user->is_permitted_to('store',Payment::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        if (!$this->user->is_permitted_to('store', Payment::class, $request))
+            return response()->json(['message' => 'not_permitted'], 422);
 
-        $validator = Validator::make($request->all(),Payment::createRules($this->user));
-        if($validator->fails()){
-            return response()->json(['errors'=>$validator->errors()],422);
+        $validator = Validator::make($request->all(), Payment::createRules($this->user));
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
         }
         $payment = Payment::create($validator->validated());
         if ($request->translations) {
@@ -72,93 +76,31 @@ class PaymentController extends BaseController
         return new PaymentResource($payment);
     }
 
-    public function handleonlinepay(Request $request)
+    public function createAnAcceptPaymentTransaction($myOrderId)
     {
-        $request = $request->input();
+        $myOrder = Order::find($myOrderId);
 
-        /* Create a merchantAuthenticationType object with authentication details
-          retrieved from the constants file */
-        $merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
-        $merchantAuthentication->setName(env('MERCHANT_LOGIN_ID'));
-        $merchantAuthentication->setTransactionKey(env('MERCHANT_TRANSACTION_KEY'));
-
-        // Set the transaction's refId
-        $refId = 'ref' . time();
-        $cardNumber = preg_replace('/\s+/', '', $request['cardNumber']);
-
-        // Create the payment data for a credit card
-        $creditCard = new AnetAPI\CreditCardType();
-        $creditCard->setCardNumber($cardNumber);
-        $creditCard->setExpirationDate($request['expiration-year'] . "-" . $request['expiration-month']);
-        $creditCard->setCardCode($request['cvv']);
-
-        // Add the payment data to a paymentType object
-        $paymentOne = new AnetAPI\PaymentType();
-        $paymentOne->setCreditCard($creditCard);
-
-        // Create a TransactionRequestType object and add the previous objects to it
-        $transactionRequestType = new AnetAPI\TransactionRequestType();
-        $transactionRequestType->setTransactionType("authCaptureTransaction");
-        $transactionRequestType->setAmount($request['amount']);
-        $transactionRequestType->setPayment($paymentOne);
-
-        // Assemble the complete transaction request
-        $requests = new AnetAPI\CreateTransactionRequest();
-        $requests->setMerchantAuthentication($merchantAuthentication);
-        $requests->setRefId($refId);
-        $requests->setTransactionRequest($transactionRequestType);
-
-        // Create the controller and get the response
-        $controller = new AnetController\CreateTransactionController($requests);
-        $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
-
-        if ($response != null) {
-            if ($response->getMessages()->getResultCode() == "Ok") {
-                // Since the API request was successful, look for a transaction response
-                // and parse it to display the results of authorizing the card
-                $tresponse = $response->getTransactionResponse();
-
-                if ($tresponse != null && $tresponse->getMessages() != null) {
-                    $message_text = $tresponse->getMessages()[0]->getDescription() . ", Transaction ID: " . $tresponse->getTransId();
-                    $msg_type = "success_msg";
-
-                    Payment::create([
-                        'amount' => $request['amount'],
-                        'response_code' => $tresponse->getResponseCode(),
-                        'transaction_id' => $tresponse->getTransId(),
-                        'auth_id' => $tresponse->getAuthCode(),
-                        'message_code' => $tresponse->getMessages()[0]->getCode(),
-                        'name_on_card' => trim($request['owner']),
-                        'quantity' => 1
-                    ]);
-                } else {
-                    $message_text = 'There were some issue with the payment. Please try again later.';
-                    $msg_type = "error_msg";
-
-                    if ($tresponse->getErrors() != null) {
-                        $message_text = $tresponse->getErrors()[0]->getErrorText();
-                        $msg_type = "error_msg";
-                    }
-                }
-                // Or, print errors if the API request wasn't successful
-            } else {
-                $message_text = 'There were some issue with the payment. Please try again later.';
-                $msg_type = "error_msg";
-
-                $tresponse = $response->getTransactionResponse();
-
-                if ($tresponse != null && $tresponse->getErrors() != null) {
-                    $message_text = $tresponse->getErrors()[0]->getErrorText();
-                    $msg_type = "error_msg";
-                } else {
-                    $message_text = $response->getMessages()->getMessage()[0]->getText();
-                    $msg_type = "error_msg";
-                }
-            }
-        } else {
-            $message_text = "No response returned";
-            $msg_type = "error_msg";
+        $validator = Validator::make(['order_id' => $myOrderId, "amount" => $myOrder->total, "date" => Carbon::now(), "status" => 0], Payment::createRules($this->user));
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
         }
-        return response(["msg_type" => $msg_type, "message_text" => $message_text], 200);
+
+        $payment = Payment::create($validator->validated());
+        $confirmation = $payment->confirm($myOrder);
+        if ($confirmation['status'] == 200) {
+            $payment->update(["status" => 1]);
+            return view('completed-payment', ["status" => $confirmation['status'], "description" => "payment completed successfully"]);
+        } else {
+            return view('completed-payment', ["status" => $confirmation['status'], "description" => $confirmation['messages']]);
+        }
+        // return new PaymentResource($payment);
+    }
+
+    // if (!defined('DONT_RUN_SAMPLES')) {
+    //       createAnAcceptPaymentTransaction("2.23");
+    // }
+    public function test()
+    {
+        dd("test");
     }
 }
