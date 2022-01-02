@@ -139,7 +139,7 @@ export default {
   computed: {
     ...mapState({
       settings: (state) => state.settings,
-      categories: (state) => state.category.all,
+      categories: (state) => state.category.all || [],
       locale: (state) => state.locales.locale,
     }),
   },

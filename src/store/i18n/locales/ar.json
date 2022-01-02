@@ -361,5 +361,9 @@
   "firts_paragraph_en": "الفقرة الاولي بالإنجليزية",
   "second_paragraph_en": "الفقرة الثانية بالإنجليزية",
   "firts_paragraph_ar": "الفقرة الاولي بالعربية",
-  "account_not": "ليس لديك حساب ؟"
+  "account_not": "ليس لديك حساب ؟",
+  "latest items": "العناصر الاخيرة",
+  "added_successfully": "تمت العملية بنجاح",
+  "success": "نجاح",
+  "Ok": "حسناً"
 }

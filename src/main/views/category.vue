@@ -152,15 +152,17 @@
             <div class="d-flex justify-content-between align-items-center">
               <div class="right-block">
                 <div class="d-flex align-items-center">
-                  <h2>{{ selected_category.name || "العناصر الاخيرة " }}</h2>
-                  <span
-                    >{{
+                  <h2>{{ selected_category.name || $t("latest items") }}</h2>
+
+                  <span v-if="!selected_category">
+                    {{
                       selected_category.items_count > 0
                         ? selected_category.items_count
                         : 0
                     }}
                     عنصر متوفر</span
                   >
+                  <span v-else>{{ category_items.length }} عنصر متوفر </span>
                 </div>
               </div>
               <div class="left-block">

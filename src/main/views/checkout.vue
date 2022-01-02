@@ -200,6 +200,7 @@
                             /></label>
                           </div>
                         </div>
+
                         <button class="button">
                           {{ $t("Complete_the_order") }}
                         </button>
@@ -237,11 +238,25 @@ export default {
     };
   },
   methods: {
-    save() {
-      this.item.issue_date = new Date(Date.now());
+    getTime() {
+      var date = new Date();
+      return date.toISOString().slice(0, 19).replace("T", " ");
+    },
+    async save() {
+      this.item.issue_date = this.getTime();
       this.item.status = 1;
       this.item.taxed_total = this.item.total;
-      this.$store.dispatch("order/store", this.item);
+      let order_id = null;
+      let new_order = await this.$store
+        .dispatch("order/store", this.item)
+        .then((data) => {
+          return data;
+        });
+      console.log(new_order);
+      order_id = new_order.id;
+      if (order_id) {
+        window.open(`http://127.0.0.1/complete-order/${order_id}`);
+      }
     },
     addCoupon() {
       this.$store

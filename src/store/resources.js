@@ -41,7 +41,8 @@ let resources = [
         form_route: '/orders/form',
 
         headers: ['id', 'user.name', 'total', 'discount', 'tax', 'taxed_total', 'status', 'created_at'],
-        discreption: 'orders resource'
+        discreption: 'orders resource',
+        no_success_msg: true
     },
     {
         name: 'item',

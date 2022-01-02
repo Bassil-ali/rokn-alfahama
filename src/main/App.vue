@@ -81,10 +81,10 @@ export default {
       if (val) {
         this.$swal
           .fire({
-            title: "Success",
-            text: val,
+            title: this.$t("success"),
+            text: this.$t(val),
             icon: "success",
-            confirmButtonText: "Ok",
+            confirmButtonText: this.$t("Ok"),
             confirmButtonColor: "#41b882",
           })
           .then(() => {
