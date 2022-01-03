@@ -45,8 +45,9 @@ class Payment extends BaseModel
             'status' => 'sometimes|in:0,1,255'
         ];
     }
-    public function confirm($myOrder)
+    public function confirm()
     {
+        $myOrder = $this->order;
         $myAddress = Address::find($myOrder->address_id);
         $amount = $myOrder->total;
         /* Create a merchantAuthenticationType object with authentication details
@@ -78,7 +79,7 @@ class Payment extends BaseModel
         $customerAddress->setFirstName($myOrder->customer_name ?? "Ahmad");
 
         $customerAddress->setAddress("$myAddress->widget  $myAddress->area  $myAddress->street " ?? "12 Main Street");
-        $customerAddress->setCity($myAddress->area);
+        $customerAddress->setCity($myAddress->area );
         // $customerAddress->setState("TX");
         // $customerAddress->setZip("44628");
         // $customerAddress->setCountry("USA");

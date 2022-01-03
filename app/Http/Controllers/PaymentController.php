@@ -86,7 +86,7 @@ class PaymentController extends BaseController
         }
 
         $payment = Payment::create($validator->validated());
-        $confirmation = $payment->confirm($myOrder);
+        $confirmation = $payment->confirm();
         if ($confirmation['status'] == 200) {
             $payment->update(["status" => 1]);
             return view('completed-payment', ["status" => $confirmation['status'], "description" => "payment completed successfully"]);

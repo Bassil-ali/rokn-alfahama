@@ -21,6 +21,7 @@
         }
 
         .inner-center {
+            height: 140px;
             width: 900px;
             background-color: #ffffff;
             box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -32,9 +33,15 @@
 
         }
 
+        .success-happend {
+            border: rgb(100 191 71) 1px solid;
+            color: rgb(100 191 71);
+
+        }
+
 
         .button {
-
+            text-decoration: none;
             background: #c99820;
             color: #FFF;
             border-radius: 50px;
@@ -46,7 +53,6 @@
             border-radius: 0;
             font-size: 1.09rem;
             background: linear-gradient(35deg, #efc64c 0%, #7c4707 118.6%, #e9bb42 77.21%, #efc64c 100%);
-
             display: inline-block;
             border: 1px solid var(--c2);
             padding: .5rem .8rem;
@@ -85,12 +91,12 @@
                     <h1> {{ $description }}</h1>
                 </div>
             @else
-                <div>
+                <div class="success-happend">
                     <h1> {{ $description }}</h1>
                 </div>
 
             @endif
-            <div>
+            <div style="margin-top: 10px">
                 <a class="button" href="/main">main</a>
             </div>
 
