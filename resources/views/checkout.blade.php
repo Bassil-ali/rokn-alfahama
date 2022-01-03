@@ -70,10 +70,9 @@
     </script>
     <div class="center-screen">
         <div class="inner-center">
-            <h2> {{ __('add yours payment infotmation !!') }} </h2>
+            <h2> {{ __('add your payment infotmation') }} </h2>
             <div>
-                <span hidden> {{ $id = request()->id }} </span>
-                <form id="paymentForm" method="POST" action="/complete-payment/{{ $id }}">
+                <form id="paymentForm" method="POST" action="/complete-payment/{{ request()->id }}">
                     @csrf
                     <input type="hidden" name="dataValue" id="dataValue" />
                     <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
@@ -81,7 +80,8 @@
                         data-billingAddressOptions='{"show":true, "required":false}' data-apiLoginID="6gRn57Qhb6Ts"
                         data-clientKey="4RP8BUF6nhjXaVY825qVy8rJh3p3SFNgwap5J2V746V9Tr4xmbWvtdRy7PhaMh2L"
                         data-acceptUIFormBtnTxt="Submit" data-acceptUIFormHeaderTxt="Card Information"
-                        data-responseHandler="responseHandler">Pay
+                        data-responseHandler="responseHandler">
+                        {{ __('add') }}
                     </button>
                 </form>
             </div>
