@@ -11,7 +11,7 @@
         </nav>
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
+                <!-- <div class="col-md-3">
                     <ul class="menu-user">
                          <li><a href=""><span><img src="@/main/assets/images/user-icon.svg" alt=""></span> {{$t('my_info')}}</a></li>
                         <li><a href=""><span><img src="@/main/assets/images/history.svg" alt=""></span> {{$t('The_date_of_order')}}</a></li>
@@ -19,8 +19,8 @@
                         <li><a href=""><span><img src="@/main/assets/images/006-close-envelope.svg" alt=""></span> {{$t('change_Password')}}</a></li>
                         <li><a href=""><span><img src="@/main/assets/images/logout.svg" alt=""></span> {{$t('sign_out')}}</a></li>
                     </ul>
-                </div>
-                <div class="col-md-9">
+                </div> -->
+                <div class="col-md-12">
                     <div class="row justify-content-center">
                         <div class="col-md-10">
 

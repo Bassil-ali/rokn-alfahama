@@ -9,6 +9,7 @@
             <div class="input-group">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
               <input
+              disabled
                 type="text"
                 class="form-control"
                 v-model="user.name"
@@ -49,6 +50,7 @@
               ></span>
               <input
                 type="email"
+                disabled
                 class="form-control"
                 v-model="user.email"
                 :placeholder="$t('email')"

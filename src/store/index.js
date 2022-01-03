@@ -5,7 +5,7 @@ import axios from '../plugins/axios';
 import registrar from './module_registrar';
 import resources from './resources';
 let r_modules = registrar.register(resources);
-let locale = localStorage.getItem("locale") || 'ar';
+let locale = localStorage.getItem("locale") || 'en';
 let rtl = locale == 'ar';
 // console.log(locale + " "+rtl);
 Vue.use(Vuex)

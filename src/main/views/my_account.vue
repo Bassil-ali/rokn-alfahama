@@ -3,8 +3,8 @@
         <nav aria-label="breadcrumb">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#"><i class="bi bi-house-door"></i></a></li>
-                    <li class="breadcrumb-item"><a href="#">{{$t('My_Account')}}</a></li>
+                    <li class="breadcrumb-item"><a href="/main"><i class="bi bi-house-door"></i></a></li>
+                    <li class="breadcrumb-item"><a href="/main/my-account/change_info">{{$t('My_Account')}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{$t('my_info')}}</li>
                 </ol>
             </div>

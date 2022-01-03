@@ -211,9 +211,9 @@
   "Add_a_new_site": "اضافة موقع جديدة",
   "address_name": "اسم العنوان",
   "site": "المنطقة",
-  "widget": "القطعة",
+  "widget": "المقاطعة",
   "street": "الشارع",
-  "Avenue": "جادة",
+  "Avenue": "الجادة",
   "house_number": "رقم المنزل",
   "Floor_No": "رقم الطابق",
   "Apartment_number": "رقم الشقة",
@@ -366,8 +366,9 @@
   "added_successfully": "تمت العملية بنجاح",
   "success": "نجاح",
   "Ok": "حسناً",
-  "older orders":"الطلبات السابقة",
-  "my addresses":"عناويني",
-  "change password":"تغيير كلمة المرور",
-  "logout":"تسجيل خروج"
+  "older orders": "الطلبات السابقة",
+  "my addresses": "عناويني",
+  "change password": "تغيير كلمة المرور",
+  "logout": "تسجيل خروج",
+  "updated_successfully": "تم التحديث بنجاح"
 }

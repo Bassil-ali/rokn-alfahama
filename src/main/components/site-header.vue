@@ -60,9 +60,9 @@
                   <span class="name">{{ user.user.user_name }}</span>
                 </li>
                 <li>
-                  <span class="user"
+                  <a href="/main/my-account/change_info" class="user"
                     ><img src="@/main/assets/images/user.jpg" alt=""
-                  /></span>
+                  /></a>
                 </li>
                 <li v-show="user.user.role_id == 1 ? true : false">
                   <a href="/dashboard"><i class="fas fa-user-cog"></i></a>

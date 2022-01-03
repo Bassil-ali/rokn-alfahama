@@ -1709,7 +1709,7 @@ nav[aria-label="breadcrumb"] ol.breadcrumb {
 }
 
 ul.menu-user {
-    min-height: 410px;
+    min-height: 244px;
     display: flex;
     flex-direction: column;
     background: #F5F5F5;

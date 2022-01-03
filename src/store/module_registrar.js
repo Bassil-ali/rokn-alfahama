@@ -49,7 +49,7 @@ export default {
                     commit('setOne', response.data.data);
                     return response.data.data;
                 },
-                async update({ commit }, data) {
+                async update({ commit, dispatch }, data) {
                     // let parent_id = data[resource.parent + '_id'];
                     let id = data.id;
                     if (data.is_file) {
@@ -62,7 +62,12 @@ export default {
                     try {
 
                         const response = await this.$axios.put(`/${resource.name}/${id}`, data);
-                        commit('setOne', response.data);
+                        commit('setOne', response.data.data);
+                        dispatch('setSuccessMsg', 'updated_successfully', {
+                            root: true
+                        })
+
+
                     } catch (exception) {
                         console.log(exception)
                     }
@@ -78,14 +83,15 @@ export default {
 
                 async store({ commit, dispatch }, data) {
                     let post_data = {};
-                    console.log(data);
+
                     if (data.id) {
                         post_data = {};
                         data = Object.keys(data).map((key) => {
                             if (data[key])
                                 post_data[key] = data[key];
                         });
-                        return dispatch(`${resource.name}/update`, post_data);
+                        dispatch("update", post_data);
+                        return;
                     } else {
 
                         post_data = data;

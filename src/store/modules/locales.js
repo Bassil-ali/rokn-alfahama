@@ -1,5 +1,5 @@
 const LocalesList = require('locales-list').default;
-let locale = localStorage.getItem("locale") || 'ar';
+let locale = localStorage.getItem("locale") || 'en';
 
 // console.log(LocalesList.getAll());
 // let locale = navigator.language

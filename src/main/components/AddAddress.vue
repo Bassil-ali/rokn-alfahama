@@ -1,8 +1,6 @@
 <template>
   <div class="col-md-10">
     <div class="entry-content-myaccount address form">
-      <h2>{{ $route.params }}</h2>
-      <h2>{{ $route.params }}</h2>
       <h2>{{ $t("Add_a_new_site") }}</h2>
       <form @submit.prevent="save(item)">
         <div class="row">
@@ -13,7 +11,7 @@
                 type="text"
                 v-model="item.title_name"
                 class="form-control"
-                :placeholder="$t('address_name_add')"
+                :placeholder="$t('address_name')"
               />
             </div>
           </div>
@@ -24,7 +22,7 @@
                 type="text"
                 v-model="item.area"
                 class="form-control"
-                :placeholder="$t('site_add')"
+                :placeholder="$t('site')"
               />
             </div>
           </div>
@@ -35,7 +33,7 @@
                 type="text"
                 v-model="item.widget"
                 class="form-control"
-                :placeholder="$t('widget_add')"
+                :placeholder="$t('widget')"
               />
             </div>
           </div>
@@ -48,7 +46,7 @@
                 type="text"
                 v-model="item.street"
                 class="form-control"
-                :placeholder="$t('street_add')"
+                :placeholder="$t('street')"
               />
             </div>
           </div>
@@ -59,7 +57,7 @@
                 type="text"
                 v-model="item.avenue"
                 class="form-control"
-                :placeholder="$t('Avenue_add')"
+                :placeholder="$t('Avenue')"
               />
             </div>
           </div>
@@ -72,7 +70,7 @@
                 type="text"
                 v-model="item.house_number"
                 class="form-control"
-                :placeholder="$t('house_number_add')"
+                :placeholder="$t('house_number')"
               />
             </div>
           </div>
@@ -83,7 +81,7 @@
                 type="text"
                 v-model="item.floor_no"
                 class="form-control"
-                :placeholder="$t('Floor_No_add')"
+                :placeholder="$t('Floor_No')"
               />
             </div>
           </div>
@@ -96,7 +94,7 @@
                 type="text"
                 v-model="item.apartment_number"
                 class="form-control"
-                :placeholder="$t('Apartment_number_add')"
+                :placeholder="$t('Apartment_number')"
               />
             </div>
           </div>
@@ -107,7 +105,7 @@
                 type="text"
                 v-model="item.notes"
                 class="form-control"
-                :placeholder="$t('Notes_add')"
+                :placeholder="$t('Notes')"
               />
             </div>
           </div>
