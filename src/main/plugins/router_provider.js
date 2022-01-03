@@ -9,7 +9,7 @@ context.keys().map(i => {
     // console.log(i.split(".")[1].split("/").map(r => kebabCase(r)).join("."));
     if (i != './index.js')
         routes.push({
-            path: '/' + kebabCase(i.split(".")[1]) + '/:id?',
+            path: '/' + kebabCase(i.split(".")[1]) + '/:id?' + '/:eid?',
             component: context(i).default,
             name: i.split(".")[1].split("/").map(r => kebabCase(r)).join(".").slice(1),
             props: true

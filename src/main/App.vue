@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="locale == 'en' ? 'ltr-class' : ''">
     <!-- pageWrapper -->
     <site-header />
     <router-view></router-view>
@@ -22,6 +22,9 @@ export default {
     if (!this.logged_in) {
       // this.$router.redirect("/login");
     }
+    localStorage.getItem('locale') == "ar"
+      ? (document.body.style.direction = "rtl")
+      : (document.body.style.direction = "ltr");
     this.$vuetify.rtl = this.$store.state.rtl;
     this.$vuetify.locale = this.locale;
     this.$i18n.locale = this.locale;
@@ -73,6 +76,9 @@ export default {
     locale: function (val) {
       this.$vuetify.locale = val;
       this.$i18n.locale = val;
+      val == "ar"
+        ? (document.body.style.direction = "rtl")
+        : (document.body.style.direction = "ltr");
     },
     rtl: function (val) {
       this.$vuetify.rtl = val;
@@ -96,6 +102,10 @@ export default {
       }
     },
   },
+  created() {
+    var locale = localStorage.getItem("locale");
+    if (!locale) localStorage.setItem("locale", "en");
+  },
 };
 </script>
 <style>
@@ -103,7 +113,10 @@ export default {
 @import "assets/css/bootstrap-icons.css";
 @import "assets/css/all.min.css";
 @import "assets/css/style.css";
-body {
-  direction: rtl;
+</style>
+
+<style lang="scss">
+.ltr-class {
+  @import "assets/css/style.ltr.scss";
 }
 </style>

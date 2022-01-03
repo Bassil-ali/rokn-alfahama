@@ -10,7 +10,7 @@
             <div class="orders">
               <div class="order-item" v-for="item in items" :key="item.id">
                 <div class="d-flex">
-                  <a href="" class="del"
+                  <a @click="remove(item)"  class="del"
                     ><img src="@/main/assets/images/del.svg" alt=""
                   /></a>
                   <figure>
@@ -24,14 +24,25 @@
                       </div>
                       <div class="quantity d-flex align-items-center">
                         <div id="quantity" class="d-flex align-items-center">
-                          <button class="btn-subtract" type="button">-</button>
+                          <button
+                            @click="decrement(item)"
+                            class="btn-subtract"
+                            type="button"
+                          >
+                            -
+                          </button>
                           <input
+                            v-model="item.item_quantity"
                             type="number"
                             class="item-quantity"
-                            min="0"
-                            value="1"
                           />
-                          <button class="btn-add" type="button">+</button>
+                          <button
+                            @click="increment(item)"
+                            class="btn-add"
+                            type="button"
+                          >
+                            +
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -150,9 +161,11 @@
                           </div>
                         </div>
                       </div>
-                      <a href="" class="button online">{{
-                        $t("add_site_new")
-                      }}</a>
+                      <a
+                        href="/my-account/my_addresses"
+                        class="button online"
+                        >{{ $t("add_site_new") }}</a
+                      >
                     </div>
                     <div class="pay-box form">
                       <h6>{{ $t("Choose_payment_method") }}</h6>
@@ -234,10 +247,21 @@ export default {
         shipment_price: 0,
         discount: 0,
         total: 0,
+        item_quantity: 1,
       },
     };
   },
   methods: {
+    remove(item) {
+      this.$store.dispatch("cart/removeItem", item);
+    },
+
+    increment(item) {
+      this.$store.dispatch("cart/incrementItem", item);
+    },
+    decrement(item) {
+      this.$store.dispatch("cart/decrementItem", item);
+    },
     getTime() {
       var date = new Date();
       return date.toISOString().slice(0, 19).replace("T", " ");
@@ -255,7 +279,11 @@ export default {
       console.log(new_order);
       order_id = new_order.id;
       if (order_id) {
-        window.open(`http://127.0.0.1/complete-order/${order_id}`);
+        let domain = `${process.env.URL || window.location.protocol}//${
+          window.location.host
+        }`;
+
+        window.open(`${domain}/complete-order/${order_id}`);
       }
     },
     addCoupon() {

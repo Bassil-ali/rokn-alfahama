@@ -47,6 +47,11 @@
                     $t("Create_account")
                   }}</router-link>
                 </li>
+                <li>
+                  <a @click="switchLocale()" style="cursor: pointer">
+                    {{ $t(locale == "ar" ? "en" : "ar") }}
+                  </a>
+                </li>
               </ul>
             </div>
             <div class="user-login-reg" v-else>
@@ -121,6 +126,7 @@ export default {
       localStorage.clear();
     },
     switchLocale() {
+      window.location.reload();
       this.$store.dispatch("locales/change", this.locale == "ar" ? "en" : "ar");
     },
   },

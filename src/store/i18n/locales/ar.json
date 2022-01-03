@@ -365,5 +365,9 @@
   "latest items": "العناصر الاخيرة",
   "added_successfully": "تمت العملية بنجاح",
   "success": "نجاح",
-  "Ok": "حسناً"
+  "Ok": "حسناً",
+  "older orders":"الطلبات السابقة",
+  "my addresses":"عناويني",
+  "change password":"تغيير كلمة المرور",
+  "logout":"تسجيل خروج"
 }

@@ -13,10 +13,10 @@ const actions = {
         let ex_item = state.items.find((i) => i.id == item.id);
         if (ex_item == undefined) {
             let item_data = {
-                item_quantity:item.item_quantity || 1,
-                name:item.name,
-                image:item.image,
-                item_price:item.selling_price,
+                item_quantity: item.item_quantity || 1,
+                name: item.name,
+                image: item.image,
+                item_price: item.selling_price,
             }
             // item.qty = item.qty || 1;
             commit('add_item', item_data);
@@ -46,8 +46,8 @@ const actions = {
     },
     setDiscount({
         commit
-    },discount){
-        commit('set_discount',discount);
+    }, discount) {
+        commit('set_discount', discount);
     }
 }
 const mutations = {
@@ -58,12 +58,13 @@ const mutations = {
     increment_item: (state, item) => {
         let item_s = state.items.find(i => i.id == item.id)
         item_s.item_quantity++;
-        state.counter ++;
+        state.counter++;
     },
-   decrement_item: (state, item) => {
+    decrement_item: (state, item) => {
         let item_s = state.items.find(i => i.id == item.id)
+        if (item.item_quantity == 0) return;
         item_s.item_quantity--;
-        state.counter --;
+        state.counter--;
     },
     update_quantity: (state, item) => {
         state.items.find(i => i.id == item.id).item_quantity = item.item_quantity;
@@ -76,8 +77,8 @@ const mutations = {
         if (index > -1)
             state.items.splice(index, 1)
     },
-    set_discount:(state,discount)=>{
-        state.items.map(i=>i.discount=discount);
+    set_discount: (state, discount) => {
+        state.items.map(i => i.discount = discount);
     }
 
 }

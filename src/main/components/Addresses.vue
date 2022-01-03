@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-10">
     <div class="entry-content-myaccount address">
-                                <h2> {{$t('my_info')}}</h2>
+      <h2>{{ $t("my_info") }}</h2>
       <div class="items">
         <div class="box address" v-for="address in addresses" :key="address.id">
           <div class="d-flex">
@@ -14,39 +14,48 @@
               />
               <label class="form-check-label" for="flexCheckDefault"> </label>
             </div>
-            <div >
+            <div>
               <div class="d-flex justify-content-between align-items-center">
-                <strong><i class="fas fa-map-marker-alt"></i> 
-                  {{address.title_name}}
+                <strong
+                  ><i class="fas fa-map-marker-alt"></i>
+                  {{ address.title_name }}
                 </strong>
                 <div class="option">
-                  <a href="" data-title="تعديل"
+                  <!-- :href="`/main/my-account/my_addresses/${address.id}`" -->
+                  <a
+                    @click="
+                      $router.push({
+                        name: 'my-account',
+                        params: { id: 'add_address', eid: address.id },
+                      })
+                    "
+                    data-title="تعديل"
                     ><img src="@/main/assets/images/edit.svg" alt=""
                   /></a>
-                  <a href="" data-title="حذف"
+                  <a @click="deleteAddress(address)" data-title="حذف"
                     ><img src="@/main/assets/images/delete.svg" alt=""
                   /></a>
                 </div>
               </div>
               <ul>
-                  <li>
-                    {{address.area}} - {{address.widget}}
-                    - {{address.street}}
-                    - {{address.avenue}}
-                    - {{address.house_number}}
-                    - {{address.floor_no}}
-                    - {{address.apartment_number}}
-                  </li>
-                  <li>
-                    {{address.notes}}
-                  </li>
-                 </ul>
+                <li>
+                  {{ address.area }} - {{ address.widget }} -
+                  {{ address.street }} - {{ address.avenue }} -
+                  {{ address.house_number }} - {{ address.floor_no }} -
+                  {{ address.apartment_number }}
+                </li>
+                <li>
+                  {{ address.notes }}
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
       <router-link to="add_address" class="button"
-        ><img src="assets/images/pin-add.svg" alt="" />{{$t('add_site_new')}}</router-link
+        ><img src="assets/images/pin-add.svg" alt="" />{{
+          $t("add_site_new")
+        }}</router-link
       >
     </div>
   </div>
@@ -61,6 +70,11 @@ export default {
     ...mapState({
       addresses: (state) => state.address.all,
     }),
+  },
+  methods: {
+    deleteAddress(item) {
+      this.$store.dispatch("address/delete", item);
+    },
   },
 };
 </script>

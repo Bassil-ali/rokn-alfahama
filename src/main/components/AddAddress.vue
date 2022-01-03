@@ -1,6 +1,8 @@
 <template>
   <div class="col-md-10">
     <div class="entry-content-myaccount address form">
+      <h2>{{ $route.params }}</h2>
+      <h2>{{ $route.params }}</h2>
       <h2>{{ $t("Add_a_new_site") }}</h2>
       <form @submit.prevent="save(item)">
         <div class="row">
@@ -116,15 +118,33 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       item: {},
     };
   },
+  mounted() {
+    if (this.$route.params.eid) {
+      this.$store.dispatch("address/show", { id: this.$route.params.eid });
+    }
+  },
   methods: {
     save(item) {
       this.$store.dispatch("address/store", item);
+    },
+  },
+  computed: {
+    ...mapState({
+      one: (state) => state.address.one,
+    }),
+  },
+  watch: {
+    one(val) {
+      if (val) {
+        this.item = JSON.parse(JSON.stringify(val));
+      }
     },
   },
 };

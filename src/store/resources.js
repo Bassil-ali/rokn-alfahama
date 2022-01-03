@@ -102,13 +102,13 @@ let resources = [
         form_route: '/coupon/form',
 
         headers: ['id', 'code', 'value'],
-        discreption: 'address resource'
+        discreption: 'coupon resource'
     },
     {
         name: 'user.address',
         parent: 'user',
         //form_route: '/coupon/form',
-        discreption: 'address resource'
+        discreption: 'user address resource'
     }
 ]
 export default resources;
