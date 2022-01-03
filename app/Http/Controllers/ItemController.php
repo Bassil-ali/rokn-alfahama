@@ -25,7 +25,6 @@ class ItemController extends BaseController
     }
     public function store(Request $request)
     {
-        dd($request->all());
         if (!$this->user->is_permitted_to('store', Item::class, $request))
             return response()->json(['message' => 'not_permitted'], 422);
 
