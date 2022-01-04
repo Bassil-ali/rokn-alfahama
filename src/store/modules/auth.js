@@ -11,7 +11,7 @@ const actions = {
         commit
     }, data) {
         this.state.overlay = true;
-        this.$axios.post('/auth/login', data).then((response) => {
+       return this.$axios.post('/auth/login', data).then((response) => {
             commit('setUser', response.data);
             this.$axios.defaults.headers.common['Authorization'] = "Bearer " + response.data.access_token;
             this.state.overlay = false;
@@ -24,10 +24,13 @@ const actions = {
             localStorage.user_data = JSON.stringify({
                 user
             });
+           return 200 ;
         }).catch(err => {
-            this.state.overlay = false;
 
+            this.state.overlay = false;
             commit('setErrors', err);
+            return 401;
+
         });
     },
     loadUserFromSocialToken({

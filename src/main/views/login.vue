@@ -4,8 +4,10 @@
       <div class="row">
         <div class="col-md-5">
           <div class="form">
-            <h2>{{$t('welcome')}}</h2>
-            <p><small>{{$t('Log_in_to_our_site')}}</small></p>
+            <h2>{{ $t("welcome") }}</h2>
+            <p>
+              <small>{{ $t("Log_in_to_our_site") }}</small>
+            </p>
             <form @submit.prevent="login(user)">
               <div class="input-group mb-3">
                 <span class="input-group-text"
@@ -38,25 +40,30 @@
                     id="flexCheckDefault"
                   />
                   <label class="form-check-label" for="flexCheckDefault">
-                    {{$t('remember_me')}}
+                    {{ $t("remember_me") }}
                   </label>
                 </div>
-                <a href=""><strong>{{$t('forget_pass')}}</strong></a>
+                <a href=""
+                  ><strong>{{ $t("forget_pass") }}</strong></a
+                >
               </div>
-              <button type="submit" class="button">{{$t('Login')}}</button>
+              <button type="submit" class="button">{{ $t("Login") }}</button>
             </form>
             <p class="text-center mt-3 mb-0">
-              {{$t('account_not')}} <a href=""><strong>{{$t('Create_account')}}</strong></a>
+              {{ $t("account_not") }}
+              <a href=""
+                ><strong>{{ $t("Create_account") }}</strong></a
+              >
             </p>
           </div>
         </div>
         <div class="col-md-7">
           <div class="left">
-            <h3>{{$t('new_customer')}}</h3>
+            <h3>{{ $t("new_customer") }}</h3>
             <p>
-              {{$t('new_customer_message')}}
+              {{ $t("new_customer_message") }}
             </p>
-            <a href="" class="button">{{$t('Create_account')}}</a>
+            <a href="" class="button">{{ $t("Create_account") }}</a>
           </div>
         </div>
       </div>
@@ -72,18 +79,28 @@ export default {
   },
   methods: {
     login(user) {
-      this.$store.dispatch("auth/login", user).then(() => {
-        this.$swal
-          .fire({
-            title: "أهلاً بك",
-            text: "تم تسجيل دخولك بنجاح",
-            icon: "success",
+      this.$store.dispatch("auth/login", user).then((data) => {
+        if (data == 200) {
+          this.$swal
+            .fire({
+              title: "أهلاً بك",
+              text: "تم تسجيل دخولك بنجاح",
+              icon: "success",
+              confirmButtonText: "تم",
+              confirmButtonColor: "#41b882",
+            })
+            .then(() => {
+              this.$router.push("/");
+            });
+        } else {
+          this.$swal.fire({
+            title: "خطأ",
+            text: "خطأ في كلمة المرور او البريد الإلكتروني",
+            icon: "error",
             confirmButtonText: "تم",
-            confirmButtonColor: "#41b882",
-          })
-          .then(() => {
-            this.$router.push("/");
+            confirmButtonColor: "#f11818",
           });
+        }
       });
     },
   },

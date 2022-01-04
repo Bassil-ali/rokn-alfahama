@@ -12,8 +12,7 @@ context.keys().map(i => {
             path: '/' + kebabCase(i.split(".")[1]) + '/:id?' + '/:eid?',
             component: context(i).default,
             name: i.split(".")[1].split("/").map(r => kebabCase(r)).join(".").slice(1),
-            props: true
-
+            props: true,
         });
 });
 export default routes;

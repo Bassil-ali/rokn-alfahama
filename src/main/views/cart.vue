@@ -19,7 +19,7 @@
                 <p>
                   {{$t('go_to_option')}}
                 </p>
-                <a href="" class="button"> {{$t('Continue_shopping')}}</a>
+                <a href="/main/category" class="button"> {{$t('Continue_shopping')}}</a>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
                 {{ item.item_price * item.item_quantity }}
               </td>
               <td data-title="حذف">
-                <a href="#" @click.prevent="remove(item)" class="button"
+                <a  @click.prevent="remove(item)" class="button"
                   ><img src="@/main/assets/images/delete-red.svg" alt=""
                 /></a>
               </td>
