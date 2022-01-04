@@ -59,7 +59,7 @@ class UserController extends BaseController
             $new_password = Hash::make($validator->validated()['password']);
             $user->update(['password' => $new_password]);
         } else {
-            $user->update(["mobile" => $validator->validated()['mobile'], "user_name" => $validator->validated()['user_name']]);
+            $user->update($validator->validated());
         }
         if ($request->translations) {
             foreach ($request->translations as $translation)
