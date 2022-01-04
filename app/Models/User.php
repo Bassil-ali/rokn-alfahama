@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class User extends Authenticatable implements JWTSubject,MustVerifyEmail
+class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     use LaratrustUserTrait;
     use HasFactory, Notifiable;
@@ -46,7 +46,7 @@ class User extends Authenticatable implements JWTSubject,MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
     protected $appends = [
-        'permissions','reaction_count'
+        'permissions', 'reaction_count'
     ];
     public function getJWTIdentifier()
     {
@@ -100,11 +100,20 @@ class User extends Authenticatable implements JWTSubject,MustVerifyEmail
             'password' => 'required|min:6',
         ];
     }
-    public static function updateRules($user)
+    public static function updateRules($request)
+
     {
+        if ($request['password']) {
+            return [
+                'old_password' => 'current_password:api',
+                'password' => 'required|min:6',
+                'confirm_password' => 'required_with:password|same:password|min:6',
+            ];
+        }
         return [
-            'name' => 'required',
-            'mobile' => 'required|unique:pgsql.users,mobile',
+            'user_name' => 'required',
+            'mobile' => 'required|unique:pqsql.users,mobile',
+
         ];
     }
     public function scopeSearch($query, $request)
@@ -118,8 +127,6 @@ class User extends Authenticatable implements JWTSubject,MustVerifyEmail
     }
     public function getCurrentRoleAttribute()
     {
-        
-       
     }
     public function getPermissionsAttribute()
     {
@@ -128,20 +135,25 @@ class User extends Authenticatable implements JWTSubject,MustVerifyEmail
             $permissions = $this->current_role->permissions;
         return $permissions;
     }
-    public function orders(){
+    public function orders()
+    {
         return $this->hasMany(Order::class);
     }
-    public function reactions(){
+    public function reactions()
+    {
         return $this->hasMany(Reaction::class);
     }
-    public function favorites(){
+    public function favorites()
+    {
         return $this->hasMany(Favorite::class);
     }
 
-    public function address(){
+    public function address()
+    {
         return $this->hasMany(Address::class);
     }
-    public function getReactionCountAttribute(){
+    public function getReactionCountAttribute()
+    {
         return $this->reactions()->count();
     }
 }
