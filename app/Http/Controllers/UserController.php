@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -25,8 +26,8 @@ class UserController extends BaseController
     }
     public function store(Request $request)
     {
-        // if(!$this->user->is_permitted_to('store',User::class,$request))
-        //     return response()->json(['message'=>'not_permitted'],422);
+        if (!$this->user->is_permitted_to('store', User::class, $request))
+            return response()->json(['message' => 'not_permitted'], 422);
 
         $validator = Validator::make($request->all(), User::createRules($this->user));
         if ($validator->fails()) {
@@ -50,14 +51,16 @@ class UserController extends BaseController
 
         if (!$this->user->is_permitted_to('update', User::class, $request))
             return response()->json(['message' => 'not_permitted'], 422);
-        $validator = Validator::make($request->all(), User::updateRules($this->user));
-
-
-        // if ($validator->fails()) {
-        //     return response()->json(['errors' => $validator->errors()], 422);
-        // }
-        dd($validator->validated());
-        $user->update($validator->validated());
+        $validator = Validator::make($request->all(), User::updateRules($request));
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        if ($request['password']) {
+            $new_password = Hash::make($validator->validated()['password']);
+            $user->update(['password' => $new_password]);
+        } else {
+            $user->update($validator->validated());
+        }
         if ($request->translations) {
             foreach ($request->translations as $translation)
                 $user->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
