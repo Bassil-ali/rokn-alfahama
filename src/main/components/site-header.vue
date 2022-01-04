@@ -123,7 +123,8 @@ export default {
   },
   methods: {
     logout() {
-      localStorage.clear();
+      this.$store.dispatch("auth/unload");
+      // localStorage.clear();
     },
     switchLocale() {
       window.location.reload();

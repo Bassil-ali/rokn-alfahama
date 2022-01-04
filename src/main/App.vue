@@ -19,10 +19,7 @@ export default {
     logged_in: false,
   }),
   mounted() {
-    if (!this.logged_in) {
-      // this.$router.redirect("/login");
-    }
-    localStorage.getItem('locale') == "ar"
+    localStorage.getItem("locale") == "ar"
       ? (document.body.style.direction = "rtl")
       : (document.body.style.direction = "ltr");
     this.$vuetify.rtl = this.$store.state.rtl;

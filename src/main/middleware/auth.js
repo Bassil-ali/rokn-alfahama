@@ -12,7 +12,7 @@ export default function auth(to, from, next) {
   }
   let un_guarded_routes = ['login', 'register', 'reset_password', 'code_check', 'new_password', 'admin',];
   let un_guarded = un_guarded_routes.find(route => route == to.name) != undefined;
-  let guarded_routes = ['my-account'];
+  let guarded_routes = ['my-account', 'cart' , 'favorite'];
   let guarded = guarded_routes.find(route => route == to.name) != undefined;
   if (loggedIn && !un_guarded)
     return next();

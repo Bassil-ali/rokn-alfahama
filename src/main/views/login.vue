@@ -51,7 +51,7 @@
             </form>
             <p class="text-center mt-3 mb-0">
               {{ $t("account_not") }}
-              <a href=""
+              <a href="/main/register"
                 ><strong>{{ $t("Create_account") }}</strong></a
               >
             </p>

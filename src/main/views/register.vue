@@ -4,8 +4,10 @@
       <div class="row">
         <div class="col-md-5">
           <div class="form">
-            <h2>{{$t('welcome')}}</h2>
-            <p><small>{{$t('create_account')}}</small></p>
+            <h2>{{ $t("welcome") }}</h2>
+            <p>
+              <small>{{ $t("create_account") }}</small>
+            </p>
             <form @submit.prevent="$root.save(item, 'user', '/')">
               <div class="input-group mb-3">
                 <span class="input-group-text"
@@ -26,7 +28,8 @@
                   v-model="item.user_name"
                   type="text"
                   class="form-control"
-                  :placeholder="$t('enter_username')"/>
+                  :placeholder="$t('enter_username')"
+                />
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text"
@@ -48,7 +51,7 @@
                   type="email"
                   class="form-control"
                   :placeholder="$t('email')"
-                                  />
+                />
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text"
@@ -70,28 +73,34 @@
                     id="flexCheckDefault"
                   />
                   <label class="form-check-label" for="flexCheckDefault">
-                    {{$t('agree')}} <a href="">{{$t('Terms_of_use')}}</a>
+                    {{ $t("agree") }}
+                    <a href="/main/condition">{{ $t("Terms_of_use") }}</a>
                   </label>
                 </div>
               </div>
-              <button type="submit" class="button">{{$t('create_account')}}</button>
+              <button type="submit" class="button">
+                {{ $t("create_account") }}
+              </button>
             </form>
-           <p class="text-center mt-3 mb-0">
-              {{$t('account_not')}} <a href=""><strong>{{$t('Create_account')}}</strong></a>
+            <p class="text-center mt-3 mb-0">
+              {{ $t("customer already") + "?" }}
+              <a href="/main/login"
+                ><strong>{{ $t("Login") }}</strong></a
+              >
             </p>
           </div>
         </div>
         <div class="col-md-7">
           <div class="left">
-          <p>
-              {{$t('new_customer_message')}}
+            <p>
+              {{ $t("new_customer_message") }}
             </p>
             <ul>
-              <li>{{$t('Track_your_orders')}}</li>
-              <li>{{$t('Automation_management')}}</li>
-              <li>{{$t('View_your_order_history')}}</li>
-              <li>{{$t('Rate_and_review_products')}}</li>
-              <li>{{$t('discount_and_more')}}</li>
+              <li>{{ $t("Track_your_orders") }}</li>
+              <li>{{ $t("Automation_management") }}</li>
+              <li>{{ $t("View_your_order_history") }}</li>
+              <li>{{ $t("Rate_and_review_products") }}</li>
+              <li>{{ $t("discount_and_more") }}</li>
             </ul>
           </div>
         </div>

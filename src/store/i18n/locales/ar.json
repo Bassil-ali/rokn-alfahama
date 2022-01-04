@@ -370,5 +370,11 @@
   "my addresses": "عناويني",
   "change password": "تغيير كلمة المرور",
   "logout": "تسجيل خروج",
-  "updated_successfully": "تم التحديث بنجاح"
+  "updated_successfully": "تم التحديث بنجاح",
+  "customer already": "لديك حساب بالفعل",
+  "free delivery": "توصيل مجاني",
+  "condition_title_ar": " عنوان الشرط بالعربية",
+  "condition_title_en": "عنوان الشرط بالانجليزية",
+  "paragaph_ar": "جملة الشرط بالعربية",
+  "paragaph_en": "جملة الشرط بالانجليزية"
 }

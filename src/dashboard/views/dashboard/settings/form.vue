@@ -99,7 +99,7 @@
 
           <v-col cols="12" lg="6">
             <v-row>
-              <v-col style="display:block" cols="12" lg="6">
+              <v-col style="display: block" cols="12" lg="6">
                 <v-textarea
                   v-model="item.who_us[1].content_ar"
                   :label="$t('second_paragraph_ar')"
@@ -138,18 +138,22 @@
       class="px-5 py-3"
     >
       <v-form>
-        <v-row class="mt-5 mb-5" >
+        <v-row class="mt-5 mb-5">
           <v-btn @click="addQuestion()" icon>
             <v-icon color="green"> fas fa-plus </v-icon>
           </v-btn>
         </v-row>
-        <v-row style="border:lightgrey solid 1px ;" :key="index" v-for="(question, index) in item.questions">
-          <v-col  cols="12">
+        <v-row
+          style="border: lightgrey solid 1px"
+          :key="index"
+          v-for="(question, index) in item.questions"
+        >
+          <v-col cols="12">
             <v-row>
               <v-col cols="12" md="2">
                 <v-text-field
-                dense
-                outlined
+                  dense
+                  outlined
                   v-model="question.title_ar"
                   :label="$t('quastion_title_ar')"
                 >
@@ -160,8 +164,8 @@
               </v-col>
               <v-col cols="12" md="2">
                 <v-text-field
-                dense
-                outlined
+                  dense
+                  outlined
                   v-model="question.title_en"
                   :label="$t('quastion_title_en')"
                 >
@@ -179,7 +183,7 @@
               </v-col>
               <v-col cols="12" md="3">
                 <v-textarea
-                dense
+                  dense
                   outlined
                   height="20px"
                   v-model="question.answer_en"
@@ -189,6 +193,75 @@
               </v-col>
               <v-col cols="1">
                 <v-btn @click="deleteQuestion(index)" icon>
+                  <v-icon color="red"> fas fa-times </v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-form>
+    </base-material-card>
+    <base-material-card
+      icon="mdi-clipboard-text"
+      :title="$t('Terms_of_use')"
+      class="px-5 py-3"
+    >
+      <v-form>
+        <v-row class="mt-5 mb-5">
+          <v-btn @click="addCondition()" icon>
+            <v-icon color="green"> fas fa-plus </v-icon>
+          </v-btn>
+        </v-row>
+        <v-row
+          style="border: lightgrey solid 1px"
+          :key="index"
+          v-for="(condition, index) in item.conditions"
+        >
+          <v-col cols="12">
+            <v-row>
+              <v-col cols="12" md="2">
+                <v-text-field
+                  dense
+                  outlined
+                  v-model="condition.title_ar"
+                  :label="$t('condition_title_ar')"
+                >
+                  <template v-slot:prepend>
+                    {{ "(" + (index + 1) }}
+                  </template>
+                </v-text-field>
+              </v-col>
+              <v-col cols="12" md="2">
+                <v-text-field
+                  dense
+                  outlined
+                  v-model="condition.title_en"
+                  :label="$t('condition_title_en')"
+                >
+                </v-text-field>
+              </v-col>
+              <v-col cols="12" md="3">
+                <v-textarea
+                  outlined
+                  dense
+                  height="20px"
+                  v-model="condition.paragraph_ar"
+                  :label="$t('paragaph_ar')"
+                >
+                </v-textarea>
+              </v-col>
+              <v-col cols="12" md="3">
+                <v-textarea
+                  dense
+                  outlined
+                  height="20px"
+                  v-model="condition.paragraph_en"
+                  :label="$t('paragaph_en')"
+                >
+                </v-textarea>
+              </v-col>
+              <v-col cols="1">
+                <v-btn @click="deleteCondition(index)" icon>
                   <v-icon color="red"> fas fa-times </v-icon>
                 </v-btn>
               </v-col>
@@ -215,11 +288,11 @@ export default {
     return {
       item: {
         who_us: [
-          { content_en:null , content_ar: null, image_url: null },
-          { content_en:null , content_ar: null, image_url: null },
-          
+          { content_en: null, content_ar: null, image_url: null },
+          { content_en: null, content_ar: null, image_url: null },
         ],
         questions: [{}],
+        conditions: [{}],
       },
     };
   },
@@ -227,6 +300,12 @@ export default {
     this.$store.dispatch("setting/index");
   },
   methods: {
+    addCondition() {
+      this.item.conditions.push({});
+    },
+    deleteCondition(index) {
+      this.item.conditions.splice(index, 1);
+    },
     addQuestion() {
       this.item.questions.push({});
     },
@@ -274,7 +353,17 @@ export default {
             return { [i.key]: i.value };
           })
           .reduce((c, n) => {
-            return { ...c, ...n };
+            let new_item = {
+              who_us: [
+                { content_en: null, content_ar: null, image_url: null },
+                { content_en: null, content_ar: null, image_url: null },
+              ],
+              questions: [{}],
+              conditions: [{}],
+              ...c,
+              ...n,
+            };
+            return new_item;
           });
       }
     },
