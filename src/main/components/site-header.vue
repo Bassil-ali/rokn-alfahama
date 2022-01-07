@@ -4,7 +4,31 @@
       <div class="logo-container">
         <div class="d-flex align-items-center">
           <div class="logo">
-            <a href=""><img src="@/main/assets/images/logo.png" alt="" /></a>
+            <a href="/main"
+              ><img src="@/main/assets/images/logo.png" alt=""
+            /></a>
+          </div>
+          <div v-if="toggleMenu" id="mobile-menu">
+            <ul>
+              <li>
+                <a href="/main">{{ $t("home") }}</a>
+              </li>
+              <li>
+                <a href="/main/category">{{ $t("category") }}</a>
+              </li>
+              <li>
+                <a href="/main/offers">{{ $t("Offers") }}</a>
+              </li>
+              <li>
+                <a href="/main/about">{{ $t("about") }}</a>
+              </li>
+              <li>
+                <a href="/main/contact-us">{{ $t("contact") }}</a>
+              </li>
+              <li>
+                <a href="/main/questions">{{ $t("common_questions") }}</a>
+              </li>
+            </ul>
           </div>
           <div class="search-menu">
             <form action="">
@@ -33,7 +57,7 @@
                 }}</router-link>
               </li>
             </ul>
-            <div id="toggle"></div>
+            <div @click="toggleMenu = !toggleMenu" id="toggle"></div>
           </div>
           <div class="user-area">
             <div class="user-login-reg" v-if="!user">
@@ -114,6 +138,11 @@
 <script>
 import { mapState } from "vuex";
 export default {
+  data() {
+    return {
+      toggleMenu: false,
+    };
+  },
   computed: {
     ...mapState({
       user: (state) => state.auth.user,

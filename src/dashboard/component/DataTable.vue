@@ -16,11 +16,11 @@
     <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"
       ><slot :name="slot" v-bind="scope"
     /></template>
-    <template v-slot:item.actions="{item}">
-      <v-btn icon @click="remove(item)"> 
+    <template v-slot:item.actions="{ item }">
+      <v-btn icon @click="remove(module, item)">
         <v-icon> fas fa-times</v-icon>
       </v-btn>
-      <v-btn icon @click="navigate_to_form(item)"> 
+      <v-btn icon @click="navigate_to_form(item)">
         <v-icon> fas fa-edit</v-icon>
       </v-btn>
     </template>
@@ -36,7 +36,6 @@ export default {
   },
   data() {
     return {
-       
       options: {
         sortBy: [],
         sortDesc: [],
@@ -61,9 +60,9 @@ export default {
       meta: function (state) {
         return state[this.module].meta;
       },
-      form_route:function(state){
+      form_route: function (state) {
         return state[this.module].form_route;
-      }
+      },
     }),
   },
   methods: {
@@ -75,10 +74,10 @@ export default {
         };
       });
     },
-    remove(module,item){
-//remove from store
+    remove(module, item) {
+      this.$store.dispatch(`${module}/delete`, item);
     },
-    navigate_to_form(item){
+    navigate_to_form(item) {
       this.$router.push(`${this.form_route}/${item.id}`);
     },
   },

@@ -1,10 +1,6 @@
 import store from '../../store';
 
 export default function auth(to, from, next) {
-  console.log('ahmnad from middleware')
-  console.log('ahmnad from middleware')
-  console.log('ahmnad from middleware')
-  console.log('ahmnad from middleware')
   let loggedIn = store.state.auth.user != null;
   if (localStorage.user_data) {
     loggedIn = true;
@@ -23,5 +19,6 @@ export default function auth(to, from, next) {
   }
   if (un_guarded_routes.find(route => route == to.name) != undefined || to.name == '403')
     return next();
+    
   return next();
 }

@@ -376,5 +376,16 @@
   "condition_title_ar": " عنوان الشرط بالعربية",
   "condition_title_en": "عنوان الشرط بالانجليزية",
   "paragaph_ar": "جملة الشرط بالعربية",
-  "paragaph_en": "جملة الشرط بالانجليزية"
+  "paragaph_en": "جملة الشرط بالانجليزية",
+  "arabic item description": "شرح المنتج بالعربية",
+  "english item description": "شرح المنتج بالانجليزية",
+  "back to website": "الرجوع للصفحة الرئيسية",
+  "offer name": "اسم العرض",
+  "english offer name": "اسم العرض بالانجليزية",
+  "discount percentage": "نسبة الخصم",
+  "offer breif": "وصف مختصر للعرض",
+  "english offer breif": "وصف مختصر للعرض بالانجليزية",
+  "offer start date": "تاريخ بداية العرض",
+  "offer end date": "تاريخ نهاية العرض",
+  "offerts": "العروض"
 }

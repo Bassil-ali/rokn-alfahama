@@ -108,6 +108,9 @@ export default {
                         post_data = form_data;
 
                     }
+                    console.log("post_data");
+                    console.log(post_data);
+                    console.log("post_data");
                     try {
                         const response = await this.$axios.post(`${resource.parent ? '/' + resource.parent + '/' + parent_id : ''}/${resource.name}`, post_data).then((data) => {
                             if (resource.no_success_msg) return data;

@@ -22,6 +22,24 @@ let list = [{
     ]
 },
 {
+    title: 'offerts',
+    icon: 'fas fa-cart-plus',
+    to: '/offerts',
+    children: [{
+        title: 'view',
+        icon: 'fas fa-eye',
+        to: '',
+        group: 'offerts'
+    },
+    {
+        title: 'create',
+        icon: 'fas fa-plus',
+        to: 'form',
+        group: 'offerts'
+    },
+    ]
+},
+{
     title: 'items',
     icon: 'fas fa-cart-plus',
     to: '/items',

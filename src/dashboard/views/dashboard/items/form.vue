@@ -19,7 +19,7 @@
           <v-col cols="3">
             <v-text-field
               v-model="item.translations[1].value"
-              :label="$t('name_ar')"
+              :label="$t('name_en')"
               dense
             />
           </v-col>
@@ -59,6 +59,7 @@
           </v-col>
           <v-col cols="3">
             <v-text-field
+              type="number"
               v-model="item.selling_price"
               :label="$t('price')"
               dense
@@ -66,6 +67,7 @@
           </v-col>
           <v-col cols="3">
             <v-text-field
+              type="number"
               v-model="item.quantity"
               :label="$t('quantity')"
               dense
@@ -95,8 +97,6 @@
               width="300"
             >
             </v-img>
-            <v-img  :src="item.image" width="300"> </v-img>
-            <!-- <v-img :src="get_url(image)" width="300"></v-img> -->
           </v-col>
         </v-row>
         <v-row>
@@ -127,6 +127,10 @@
 
         <v-row>
           <v-col cols="12">
+            <h4>
+              {{ $t("arabic item description") }}
+            </h4>
+            <pre></pre>
             <ckeditor
               :editor="editor"
               v-model="item.translations[4].value"
@@ -134,6 +138,10 @@
             ></ckeditor>
           </v-col>
           <v-col cols="12">
+            <h4>
+              {{ $t("english item description") }}
+            </h4>
+            <pre></pre>
             <ckeditor
               :editor="editor"
               v-model="item.translations[5].value"
@@ -217,16 +225,11 @@ export default {
           {
             field: "name",
             value: "",
-            locale: "en",
+            locale: "ar",
           },
           {
             field: "name",
             value: "",
-            locale: "ar",
-          },
-          {
-            field: "brief",
-            value: "",
             locale: "en",
           },
           {
@@ -235,7 +238,7 @@ export default {
             locale: "ar",
           },
           {
-            field: "description",
+            field: "brief",
             value: "",
             locale: "en",
           },
@@ -243,6 +246,11 @@ export default {
             field: "description",
             value: "",
             locale: "ar",
+          },
+          {
+            field: "description",
+            value: "",
+            locale: "en",
           },
         ],
       },
@@ -256,6 +264,7 @@ export default {
       },
       editor: ClassicEditor,
       new_tag: null,
+
       editorConfig: {
         toolbar: {
           items: [
@@ -310,27 +319,26 @@ export default {
     this.$store.dispatch("unit/index");
     this.$store.dispatch("tax/index");
     if (this.$route.params.id) {
-      this.$store
-        .dispatch("item/show", { id: this.$route.params.id })
-        .then((res) => {
-          this.cover_image = res.gallery.cover_image;
-          this.item.categories = res.category_ids;
-          this.item.tags = res.tag_ids;
-          this.images = res.gallery.media;
-        });
+      this.$store.dispatch("item/show", { id: this.$route.params.id });
+      // .then((res) => {
+      //   // this.cover_image = res.gallery.cover_image;
+      //   // this.item.categories = res.category_ids;
+      //   // this.item.tags = res.tag_ids;
+      //   // this.images = res.gallery.media;
+      // });
     }
   },
   methods: {
-    clearCategories() {
-      this.item.item_type == 1 ? (this.item.categories = null) : "";
-    },
-    AddNew_Item() {
-      this.NewTags.push(this.NewTags);
-    },
-    runDialog() {
-      this.dialog = !this.dialog;
-    },
-    ...mapActions("item", ["store"]),
+    // clearCategories() {
+    //   this.item.item_type == 1 ? (this.item.categories = null) : "";
+    // },
+    // AddNew_Item() {
+    //   this.NewTags.push(this.NewTags);
+    // },
+    // runDialog() {
+    //   this.dialog = !this.dialog;
+    // },
+    // ...mapActions("item", ["store"]),
 
     get_url(image) {
       return typeof image.url != "string"
@@ -355,34 +363,41 @@ export default {
         });
         cover_image_id = cover_image.id;
       }
+
       item.cover_image_id = cover_image_id;
-      let item_data = await this.$store
-        .dispatch("item/store", item)
-        .then(() => {
-          console.log("item CREATED !!!!");
-        });
-      if (this.images.length > 0) {
-        this.images.map((image) => {
-          if (image.id) {
-            this.$store.dispatch("media/delete", { image });
-          }
-          if (!image.id) {
-            image = {
-              file: image.url,
-              is_file: true,
-              item_id: item_data.id,
-            };
-            console.table(image);
-            this.$store.dispatch("item_media/store", image);
-          }
-        });
+      if (item.id) {
+        if (this.images.length > 0) {
+          this.images.map((image) => {
+            if (typeof image.url != "string") {
+              this.$store.dispatch("item_media/store", {
+                file: image.url,
+                is_file: true,
+                item_id: item.id,
+              });
+            }
+          });
+        }
+        await this.$store.dispatch("item/store", item);
+      } else {
+        let new_item = await this.$store.dispatch("item/store", item);
+        if (this.images.length > 0) {
+          this.images.map((image) => {
+            if (typeof image.url != "string") {
+              this.$store.dispatch("item_media/store", {
+                file: image.url,
+                is_file: true,
+                item_id: new_item.id,
+              });
+            }
+          });
+        }
       }
     },
 
     remove_image(image, index) {
       if (image.id) {
-        this.$store.dispatch("gallery_media/delete", {
-          gallery_id: image.gallery_id,
+        this.$store.dispatch("media/delete", {
+          // gallery_id: image.gallery_id,
           id: image.id,
         });
       }
@@ -402,6 +417,8 @@ export default {
     one(val) {
       if (val) {
         this.item = JSON.parse(JSON.stringify(val));
+        this.images = this.item.media;
+        this.cover_image = this.item.cover_image;
       }
     },
   },

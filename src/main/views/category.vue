@@ -7,17 +7,6 @@
             <div class="box">
               <h2><i class="bi bi-list"></i>{{ $t("Categories") }}</h2>
               <ul class="category">
-                <li>
-                  <a class="d-flex justify-content-between">
-                    <span class="title">
-                      <figure>
-                        <img src="@/main/assets/images/cat01.svg" alt="" />
-                      </figure>
-                      عطور شرقية
-                    </span>
-                    <i class="bi bi-chevron-left"></i>
-                  </a>
-                </li>
                 <li
                   @click="selected_category = category"
                   :key="index"

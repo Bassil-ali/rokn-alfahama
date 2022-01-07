@@ -11,7 +11,9 @@
     />
 
     <v-spacer />
-
+    <v-btn href="/main" class="primary">
+      {{ $t("back to website") }}
+    </v-btn>
     <!-- <v-text-field
       :label="$t('search')"
       color="secondary"
@@ -34,10 +36,10 @@
     </v-text-field> -->
 
     <div class="mx-3" />
-
+<!-- 
     <v-btn class="ml-2" min-width="0" text to="/">
       <v-icon>mdi-view-dashboard</v-icon>
-    </v-btn>
+    </v-btn> -->
 
     <!-- <v-menu
       bottom

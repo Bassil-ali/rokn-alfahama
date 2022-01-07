@@ -105,6 +105,18 @@ let resources = [
         discreption: 'coupon resource'
     },
     {
+        name: 'offer',
+        parent: '',
+        form_route: '/offerts/form',
+        headers: ['id', 'name', 'percentage'],
+        discreption: 'offer resource'
+    },
+    {
+        name: 'item',
+        parent: 'offer',
+        discreption: 'offer resource'
+    },
+    {
         name: 'user.address',
         parent: 'user',
         //form_route: '/coupon/form',
