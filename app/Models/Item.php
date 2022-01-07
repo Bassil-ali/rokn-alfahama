@@ -13,7 +13,7 @@ class Item extends BaseModel
     use HasTranslations;
     public $translatable = ['name', 'description', 'brief'];
     protected $appends = ['translations', 'image', 'liked', 'rank'];
-    protected $with = ['tax', 'unit'];
+    protected $with = ['tax', 'unit' , 'media'];
     public function unit()
     {
         return $this->belongsTo(Unit::class);

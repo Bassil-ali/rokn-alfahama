@@ -36,12 +36,12 @@ class MediaController extends BaseController
         }
         $arr = $validator->validated();
         unset($arr['file']);
-        $file= $request->file('file');
+        $file = $request->file('file');
         $path = $file->store(
             'media',
             'public'
         );
-        $arr += ['path' => $path,'mimetype'=>$file->getExtension()];
+        $arr += ['path' => $path, 'mimetype' => $file->getExtension()];
         $media = Media::create($arr);
         return new MediaResource($media);
     }
@@ -66,12 +66,13 @@ class MediaController extends BaseController
         }
         return new MediaResource($media);
     }
-    public function destroy(Request $request, Media $media)
+    public function destroy(Request $request, $mediaId)
     {
+
         if (!$this->user->is_permitted_to('delete', Media::class, $request))
             return response()->json(['message' => 'not_permitted'], 422);
-        $media->delete();
 
-        return new MediaResource($media);
+
+        return Media::destroy($mediaId);
     }
 }

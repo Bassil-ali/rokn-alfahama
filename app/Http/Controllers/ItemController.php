@@ -25,7 +25,6 @@ class ItemController extends BaseController
     }
     public function store(Request $request)
     {
-        dd($request->all());
         if (!$this->user->is_permitted_to('store', Item::class, $request))
             return response()->json(['message' => 'not_permitted'], 422);
 
@@ -42,12 +41,13 @@ class ItemController extends BaseController
     }
     public function show(Request $request, Item $item)
     {
-        if (!$this->user->is_permitted_to('view', Item::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('view', Item::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
         return new ItemResource($item);
     }
     public function update(Request $request, Item $item)
     {
+
         if (!$this->user->is_permitted_to('update', Item::class, $request))
             return response()->json(['message' => 'not_permitted'], 422);
         $validator = Validator::make($request->all(), Item::updateRules($this->user));

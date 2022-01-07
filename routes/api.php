@@ -24,9 +24,8 @@ $controllers = array_filter($controllers, function ($controller) {
     return (strpos($controller, 'Controllers') !== false) && strlen($controller) > 0 && strpos($controller, 'Base') == false && strpos($controller, 'Auth') == false && strpos($controller, 'App') >= 0;
 });
 array_map(function ($controller) {
-    if (method_exists($controller,'routeName'))
+    if (method_exists($controller, 'routeName'))
         Route::apiResource($controller::routeName(), $controller);
-        
 }, $controllers);
 
 Route::group([

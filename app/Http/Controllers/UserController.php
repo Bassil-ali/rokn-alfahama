@@ -26,8 +26,8 @@ class UserController extends BaseController
     }
     public function store(Request $request)
     {
-        if (!$this->user->is_permitted_to('store', User::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('store', User::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
 
         $validator = Validator::make($request->all(), User::createRules($this->user));
         if ($validator->fails()) {
@@ -51,6 +51,7 @@ class UserController extends BaseController
 
         if (!$this->user->is_permitted_to('update', User::class, $request))
             return response()->json(['message' => 'not_permitted'], 422);
+
         $validator = Validator::make($request->all(), User::updateRules($request));
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
