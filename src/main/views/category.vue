@@ -151,7 +151,7 @@
                     }}
                     عنصر متوفر</span
                   >
-                  <span v-else>{{ category_items.length }} عنصر متوفر </span>
+                  <!-- <span v-else>{{ category_items.length }} عنصر متوفر </span> -->
                 </div>
               </div>
               <div class="left-block">
@@ -925,6 +925,12 @@ export default {
   mounted() {
     this.$store.dispatch("category/index");
     this.$store.dispatch("item/index");
+    // if (this.$route.query.type) {
+    //   let type = this.$route.query.type;
+    //   if (this.categories.length >= 1) {
+    //     this.selected_category = this.categories.find((v) => v.id == type);
+    //   }
+    // }
   },
   computed: {
     ...mapState({

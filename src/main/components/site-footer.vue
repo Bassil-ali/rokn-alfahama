@@ -85,7 +85,9 @@
               <h2>{{ $t("Categories") }}</h2>
               <ul class="menu">
                 <li v-for="categorie in categories">
-                  <a href="">{{ categorie.name }}</a>
+                  <a :href="`/main/category?type=${categorie.name}`">{{
+                    categorie.name
+                  }}</a>
                 </li>
                 <!-- <li><a href="">زيوت عصرية فاخرة</a></li>
                 <li><a href="">بخور ومباخر عربية</a></li>
@@ -132,15 +134,15 @@
 import { mapState } from "vuex";
 export default {
   mounted() {
-    if (this.categories.length <= 0) {
-      this.$store.dispatch("category/index", { top: 5 });
-    }
+    // if (this.categories.length <= 0) {
+    //   this.$store.dispatch("category/index", { top: 5 });
+    // }
   },
   computed: {
     ...mapState({
-      settings: (state) => state.settings,
+      settings: (state) => state.settings || [],
       categories: (state) => state.category.all || [],
-      locale: (state) => state.locales.locale,
+      locale: (state) => state.locales.locale || [],
     }),
   },
 };

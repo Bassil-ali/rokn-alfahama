@@ -6,7 +6,7 @@ export default {
             let state = {
                 form_route: null,
                 one: {},
-                all: [],
+                all: null,
                 meta: {
                     current_page: 1
                 },
@@ -22,7 +22,10 @@ export default {
             };
             let actions = {
                 async index({ commit }, params) {
-                    const response = await this.$axios.get(`/${resource.name}`, {
+
+                    let parent_id = resource.parent ? params[resource.parent + `_id`] : '';
+
+                    const response = await this.$axios.get(resource.parent ? `/${resource.parent}/${parent_id}/${resource.name}` : `/${resource.name}`, {
                         params: {
                             page: state?.meta?.current_page || 1,
                             ...params

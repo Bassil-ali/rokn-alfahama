@@ -63,6 +63,7 @@
           ></v-col>
           <v-col cols="12" lg="3">
             <v-autocomplete
+              :label="$t('items in the offer')"
               v-model="offer_items_ids"
               :items="items"
               item-value="id"
@@ -133,10 +134,16 @@ export default {
   },
   mounted() {
     this.$store.dispatch("item/index");
+    console.log("this.$route.params");
+
+    if (this.$route.params.id) {
+      this.$store.dispatch("offer/show", { id: this.$route.params.id });
+    }
   },
   computed: {
     ...mapState({
       items: (state) => state.item.all,
+      one: (state) => state.offer.one,
     }),
   },
   methods: {
@@ -168,6 +175,15 @@ export default {
     dateFormat(date) {
       return date;
       return new Date(date).toISOString().slice(0, 19).replace("T", " ");
+    },
+  },
+  watch: {
+    one(val) {
+      if (val) {
+        this.item = JSON.parse(JSON.stringify(val));
+        this.offer_items_ids = this.item.items.map((v) => v.id);
+        this.cover_image = this.item.image;
+      }
     },
   },
 };

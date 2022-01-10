@@ -102,6 +102,7 @@ export default {
   created() {
     var locale = localStorage.getItem("locale");
     if (!locale) localStorage.setItem("locale", "en");
+    this.$store.dispatch("cart/load");
   },
 };
 </script>

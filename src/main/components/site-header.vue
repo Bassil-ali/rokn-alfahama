@@ -143,6 +143,9 @@ export default {
       toggleMenu: false,
     };
   },
+  mounted() {
+    this.$store.dispatch("order/index");
+  },
   computed: {
     ...mapState({
       user: (state) => state.auth.user,

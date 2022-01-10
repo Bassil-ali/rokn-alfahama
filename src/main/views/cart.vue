@@ -1,7 +1,7 @@
 <template>
   <div class="entry-content cart">
     <div class="head">
-      <h2>{{$t('Shopping_cart')}}</h2>
+      <h2>{{ $t("Shopping_cart") }}</h2>
     </div>
     <div class="entry-content cart-empty" v-if="items.length == 0">
       <div class="entry-content">
@@ -15,11 +15,13 @@
                     alt=""
                   />
                 </figure>
-                <h3>{{$t('cart_empty')}}</h3>
+                <h3>{{ $t("cart_empty") }}</h3>
                 <p>
-                  {{$t('go_to_option')}}
+                  {{ $t("go_to_option") }}
                 </p>
-                <a href="/main/category" class="button"> {{$t('Continue_shopping')}}</a>
+                <a href="/main/category" class="button">
+                  {{ $t("Continue_shopping") }}</a
+                >
               </div>
             </div>
           </div>
@@ -31,11 +33,11 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col" class="image">{{$t('Photo')}}</th>
-              <th scope="col">{{$t('Product')}}</th>
-              <th scope="col">{{$t('Quantity')}}</th>
-              <th scope="col">{{$t('Total')}}</th>
-              <th scope="col">{{$t('delete')}}</th>
+              <th scope="col" class="image">{{ $t("Photo") }}</th>
+              <th scope="col">{{ $t("Product") }}</th>
+              <th scope="col">{{ $t("Quantity") }}</th>
+              <th scope="col">{{ $t("Total") }}</th>
+              <th scope="col">{{ $t("delete") }}</th>
             </tr>
           </thead>
           <tbody>
@@ -44,7 +46,7 @@
                 <figure><img :src="item.image" alt="" /></figure>
               </td>
               <td>
-                {{ item.name }}
+                {{ item.item_name }}
               </td>
               <td data-title="الكمية">
                 <div class="quantity d-flex align-items-center">
@@ -76,7 +78,7 @@
                 {{ item.item_price * item.item_quantity }}
               </td>
               <td data-title="حذف">
-                <a  @click.prevent="remove(item)" class="button"
+                <a @click.prevent="remove(item)" class="button"
                   ><img src="@/main/assets/images/delete-red.svg" alt=""
                 /></a>
               </td>
@@ -88,7 +90,7 @@
                 <div class="d-flex justify-content-end">
                   <div class="d-flex">
                     <div class="totel me-3">
-                      {{$t('total_summation')}}:
+                      {{ $t("total_summation") }}:
                       <strong>
                         {{
                           items.reduce(
@@ -99,7 +101,11 @@
                         ر.س</strong
                       >
                     </div>
-                    <div class="button0"><router-link to="checkout">{{$t('Complete_the_order')}}</router-link></div>
+                    <div class="button0">
+                      <router-link to="checkout">{{
+                        $t("Complete_the_order")
+                      }}</router-link>
+                    </div>
                   </div>
                 </div>
               </td>
@@ -113,21 +119,24 @@
 <script>
 import { mapState } from "vuex";
 export default {
+  data() {
+    return {};
+  },
   computed: {
     ...mapState({
-      items: (state) => state.cart.items,
+      items: (state) => state.cart.order.items,
     }),
   },
+  watch: {},
   methods: {
-    remove(item) {
-      this.$store.dispatch("cart/removeItem", item);
-    },
-
     increment(item) {
       this.$store.dispatch("cart/incrementItem", item);
     },
     decrement(item) {
       this.$store.dispatch("cart/decrementItem", item);
+    },
+    remove(item) {
+      this.$store.dispatch("cart/removeItem", item);
     },
   },
 };

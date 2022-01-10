@@ -23,140 +23,6 @@
                   :src="one.image"
                   alt=""
                 />
-
-                <!-- <div id="sync1" class="owl-carousel" dir="ltr">
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                </div>
-
-                <div id="sync2" class="owl-carousel" dir="ltr">
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                  <div class="item">
-                    <figure>
-                      <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                      />
-                    </figure>
-                  </div>
-                </div> -->
               </div>
               <div class="col-md-7">
                 <div class="desc">
@@ -175,9 +41,34 @@
                     }}
                   </p>
                   <div class="price">
-                    <strong>{{ one.selling_price }}</strong>
+                    <strong>{{
+                      one.offer
+                        ? one.selling_price -
+                          (one.offer.percentage / 100) * one.selling_price
+                        : one.selling_price
+                    }}</strong>
                     <span>ريال سعودي</span>
+                    <div
+                      v-if="one.offer"
+                      class="
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        discount-offer
+                      "
+                    >
+                      <div
+                        style="
+                          color: #9f9f9f;
+                          text-decoration: line-through;
+                          font-weight: 500;
+                        "
+                      >
+                        <span>{{ one.selling_price }} </span>
+                      </div>
+                    </div>
                   </div>
+
                   <!-- <div class="quantity d-flex align-items-center">
                     <span>{{ $t("quantity") }}</span>
                     <div id="quantity" class="d-flex align-items-center">
