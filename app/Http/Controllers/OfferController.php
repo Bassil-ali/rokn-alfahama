@@ -68,6 +68,7 @@ class OfferController extends BaseController
             return response()->json(['message' => 'not_permitted'], 422);
         $offer_id = $offer->id;
         $offer->delete();
+        $offer->delete();
         OfferItem::where('offer_id', $offer_id)->delete();
         return new OfferResource($offer);
     }

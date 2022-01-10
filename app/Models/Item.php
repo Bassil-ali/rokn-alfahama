@@ -13,7 +13,7 @@ class Item extends BaseModel
     use HasTranslations;
     public $translatable = ['name', 'description', 'brief'];
     protected $appends = ['translations', 'image', 'liked', 'rank'];
-    protected $with = ['tax', 'unit' , 'media'];
+    protected $with = ['tax', 'unit', 'media', 'offer']; //, 'offer'
     public function unit()
     {
         return $this->belongsTo(Unit::class);
@@ -108,5 +108,10 @@ class Item extends BaseModel
     public function getRankAttribute()
     {
         return $this->ranks()->avg('rank');
+    }
+
+    public function offer()
+    {
+        return $this->hasOneThrough(Offer::class, OfferItem::class, 'item_id', 'id', 'id', 'offer_id');
     }
 }

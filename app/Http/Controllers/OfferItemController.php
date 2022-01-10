@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\OfferItem;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ItemResource;
 use App\Http\Resources\OfferItemResource;
+use App\Models\Item;
+use App\Models\Offer;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,9 +23,10 @@ class OfferItemController extends Basecontroller
     {
         parent::__construct($request);
     }
-    public function index(Request $request)
+    public function index(Request $request, Offer $offer)
     {
-        return OfferItemResource::collection(OfferItem::search($request)->sort($request)->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
+
+        return ItemResource::collection($offer->items()->search($request)->sort($request)->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
     }
     public function store(Request $request)
     {

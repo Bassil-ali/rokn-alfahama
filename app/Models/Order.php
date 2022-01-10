@@ -9,7 +9,8 @@ class Order extends BaseModel
 {
     use HasFactory;
     protected $guarded = [];
-    protected $with = ['user'];
+    protected $with = ['user', 'items'];
+    protected $appends = ['items_count'];
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -61,5 +62,15 @@ class Order extends BaseModel
     public function addresses()
     {
         return $this->belongsTo(Address::class);
+    }
+    public function scopeSearch($query, $request)
+    {
+        $query->when($request->status, function ($query, $status) {
+            $query->where('status', '=', $status);
+        });
+    }
+    public function getItemsCountAttribute()
+    {
+        return $this->items()->count();
     }
 }

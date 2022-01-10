@@ -14,6 +14,7 @@ class OfferItem extends Model
         return [
             'offer_id' => 'required|exists:offers,id',
             'items_ids' => 'required|array',
+            // 'property_id' => 'required|exists:properties,id',
 
         ];
     }
@@ -22,6 +23,7 @@ class OfferItem extends Model
         return [
             'offer_id' => 'required|exists:offers,id',
             'items_ids' => 'required|exists:items,id',
+            // 'property_id' => 'required|exists:items,id',
 
 
         ];

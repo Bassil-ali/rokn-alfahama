@@ -51,7 +51,6 @@ class Category extends BaseModel
     public function scopeSearch($query, $request)
     {
         $query->when($request->top, function ($query, $top) {
-            // dd($category_id);
             // $query->whererow("limit $top");
         });
     }
