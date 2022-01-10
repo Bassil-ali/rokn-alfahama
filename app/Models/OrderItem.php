@@ -34,15 +34,16 @@ class OrderItem extends BaseModel
             'is_discount_percentage' => 'sometimes|boolean',
             'item_name' => 'sometimes|string',
             'description' => 'nullable',
-            'item_id' => 'required|exists:items,id'
+            'item_id' => 'required|exists:items,id',
+            'offer_id' => 'sometimes|exists:offers,id'
         ];
     }
     public static function updateRules($user)
     {
         return [
             'order_id' => 'required|exists:orders,id',
-            'tax_id' => 'sometimes|exists:taxes,id',
-            'unit_id' => 'sometimes|exists:units,id',
+            'tax_id' => 'nullable|exists:taxes,id',
+            'unit_id' => 'nullable|exists:units,id',
             'free_quantity' => 'sometimes|numeric',
             'item_price' => 'sometimes|numeric',
             'item_quantity' => 'sometimes|numeric',
@@ -50,7 +51,8 @@ class OrderItem extends BaseModel
             'is_discount_percentage' => 'sometimes|boolean',
             'item_name' => 'sometimes|string',
             'description' => 'nullable',
-            'item_id' => 'required|exists:items,id'
+            'item_id' => 'required|exists:items,id',
+            'offer_id' => 'sometimes|exists:offers,id'
 
         ];
     }
