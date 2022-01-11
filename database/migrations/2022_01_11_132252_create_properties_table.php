@@ -18,8 +18,8 @@ class CreatePropertiesTable extends Migration
             $table->unsignedBigInteger('item_id')->nullable();
             $table->unsignedBigInteger('color_id')->nullable();
             $table->unsignedBigInteger('size_id')->nullable();
-            $table->numeric('price')->nullable();
-            $table->numeric('qty')->nullable();
+            $table->double('price')->nullable();
+            $table->double('qty')->nullable();
             $table->timestamps();
         });
     }
