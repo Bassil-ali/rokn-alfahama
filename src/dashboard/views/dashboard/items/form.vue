@@ -195,16 +195,45 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col cols="12">
-            <v-btn dark color="primary" block @click="save(item)">
-              <v-icon> mdi-check </v-icon>
-              {{ $t("save") }}
-            </v-btn>
-          </v-col>
+      </v-form>
+    </base-material-card>
+
+    <base-material-card
+      icon="mdi-clipboard-text"
+      title="add properties"
+      class="px-5 py-3"
+      v-if="has_proparty"
+    >
+      <v-form>
+        <v-row class="mt-5 mb-5">
+          <v-btn icon>
+            <v-icon color="green"> fas fa-plus </v-icon>
+          </v-btn>
+        </v-row>
+        <v-row v-for="property in properties">
+          <v-col cols="12" md="3"
+            ><v-text-field :label="$t('quantity')"></v-text-field
+          ></v-col>
+          <v-col cols="12" md="3"
+            ><v-text-field :label="$t('color')"></v-text-field
+          ></v-col>
+          <v-col cols="12" md="3"
+            ><v-text-field :label="$t('price')"></v-text-field
+          ></v-col>
+          <v-col cols="12" md="3"
+            ><v-text-field :label="$t('size')"></v-text-field
+          ></v-col>
         </v-row>
       </v-form>
     </base-material-card>
+    <v-row>
+      <v-col cols="12">
+        <v-btn dark color="primary" block @click="save(item)">
+          <v-icon> mdi-check </v-icon>
+          {{ $t("save") }}
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -220,6 +249,8 @@ export default {
   name: "ItemForm",
   data() {
     return {
+      properties: [{}],
+      has_proparty: true,
       item: {
         translations: [
           {

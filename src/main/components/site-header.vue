@@ -125,7 +125,7 @@
                       alt=""
                     /><span
                       >{{ $t("cart") }}
-                      <strong>{{ order_total }}ر.س</strong></span
+                      <strong>{{ order_total.toFixed(2) }}ر.س</strong></span
                     ><i>{{ counter }}</i></router-link
                   >
                 </div>

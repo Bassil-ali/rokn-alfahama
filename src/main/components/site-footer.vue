@@ -33,9 +33,12 @@
               <h2>{{ $t("") }}</h2>
               <ul class="menu">
                 <li>
-                  <i class="bi bi-telephone-fill"></i> {{ settings.mobile }}
+                  <i class="bi bi-telephone-fill"></i>
+                  {{ settings.mobile || 9999 }}
                 </li>
-                <li><i class="bi bi-phone"></i> {{ settings.phone }}</li>
+                <li>
+                  <i class="bi bi-phone"></i> {{ settings.phone || 99999 }}
+                </li>
                 <li>
                   <i class="bi bi-envelope"></i>
                   {{ settings.contect_email || "Runalfakhamah@gmail.com" }}

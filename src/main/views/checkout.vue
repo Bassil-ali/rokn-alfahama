@@ -8,9 +8,13 @@
           <div class="block">
             <h4>{{ $t("Order_information") }}</h4>
             <div class="orders">
-              <div class="order-item" v-for="item in items" :key="item.id">
+              <div
+                class="order-item"
+                v-for="item in order.items"
+                :key="item.id"
+              >
                 <div class="d-flex">
-                  <a @click="remove(item)"  class="del"
+                  <a @click="remove(item)" class="del"
                     ><img src="@/main/assets/images/del.svg" alt=""
                   /></a>
                   <figure>
@@ -20,7 +24,23 @@
                     <h2>{{ item.name }}</h2>
                     <div class="d-flex justify-content-between">
                       <div class="price">
-                        {{ item.item_price * item.item_quantity }} ر.س
+                        {{
+                          item.item_price * item.item_quantity -
+                          item.discount * item.item_quantity
+                        }}
+                        ر.س <br />
+                        <span
+                          v-if="item.discount > 0"
+                          style="
+                            float: left;
+                            color: #9f9f9f;
+                            text-decoration: line-through;
+                            font-weight: 500;
+                          "
+                        >
+                          {{ item.item_price * item.item_quantity }}
+                          ر.س
+                        </span>
                       </div>
                       <div class="quantity d-flex align-items-center">
                         <div id="quantity" class="d-flex align-items-center">
@@ -32,9 +52,10 @@
                             -
                           </button>
                           <input
-                            v-model="item.item_quantity"
                             type="number"
                             class="item-quantity"
+                            min="0"
+                            :value="item.item_quantity"
                           />
                           <button
                             @click="increment(item)"
@@ -63,46 +84,34 @@
                 <li>
                   {{ $t("number_of_products") }}
                   <span>{{
-                    items.reduce((c, n) => c + n.item_quantity, 0)
+                    order.items.reduce((c, n) => c + n.item_quantity, 0)
                   }}</span>
                 </li>
                 <li>
                   {{ $t("total_summation") }}
-                  <span
-                    >{{
-                      (item.total = items.reduce(
-                        (c, n) => c + n.item_price * n.item_quantity,
-                        0
-                      ))
-                    }}
+                  <span>
+                    {{ totals.total }}
                     ر.س</span
                   >
                 </li>
                 <li>
                   {{ $t("Discount") }}
-                  <span
-                    >{{
-                      (item.discount = items.reduce(
-                        (c, n) =>
-                          c +
-                          (n.item_price * n.item_quantity * (n.discount || 0)) /
-                            100,
-                        0
-                      ))
-                    }}
+                  <span>
+                    {{ totals.discount }}
                     ر.س</span
                   >
                 </li>
                 <li>
                   {{ $t("Delivery_price") }}
-                  <span>{{ item.shipment_price }} ر.س</span>
+                  <span v-if="totals.total_taxed > limit_shipment">
+                    0 ر.س
+                  </span>
+                  <span v-else> {{ shipment_price }} ر.س</span>
                 </li>
                 <li class="toot">
                   {{ $t("total_summation") }}
-                  <span
-                    >{{
-                      item.total - item.discount + item.shipment_price
-                    }}
+                  <span>
+                    {{ totals.total_taxed }}
                     ر.س</span
                   >
                 </li>
@@ -240,6 +249,11 @@ import { mapState } from "vuex";
 export default {
   mounted() {
     this.$store.dispatch("address/index");
+    // if (this.$attrs.id) {
+    //   this.$store.dispatch("order/show", { id: this.$attrs.id });
+    // } else {
+    //   this.$router.push("/");
+    // }
   },
   data() {
     return {
@@ -302,10 +316,45 @@ export default {
   },
   computed: {
     ...mapState({
-      items: (state) => state.cart.items,
+      order: (state) => state.cart.order,
       user: (state) => state.auth.user.user,
       addresses: (state) => state.address.all,
+      settings: (state) => state.setting.all,
     }),
+    totals() {
+      let allTotlas = {
+        total: 0,
+        discount: 0,
+        total_taxed: 0,
+      };
+      let all_items = this.order.items;
+
+      allTotlas.total = all_items.reduce(
+        (c, n) => c + n.item_price * n.item_quantity,
+        0
+      );
+      allTotlas.discount = all_items.reduce(
+        (c, n) => c + n.discount * n.item_quantity,
+        0
+      );
+      allTotlas.total_taxed = all_items.reduce(
+        (c, n) =>
+          c + n.item_price * n.item_quantity - n.discount * n.item_quantity,
+        0
+      );
+
+      return allTotlas;
+    },
+    limit_shipment() {
+      var price = this.settings.find(
+        (v) => v.key == "limit_price_for_shipment"
+      ).value;
+      return parseFloat(price);
+    },
+    shipment_price() {
+      var price = this.settings.find((v) => v.key == "shipment_amount").value;
+      return parseFloat(price);
+    },
   },
 };
 </script>

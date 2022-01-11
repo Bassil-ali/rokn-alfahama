@@ -3,7 +3,7 @@
     <div class="head">
       <h2>{{ $t("Shopping_cart") }}</h2>
     </div>
-    <div class="entry-content cart-empty" v-if="items.length == 0">
+    <div class="entry-content cart-empty" v-if="order.items.length == 0">
       <div class="entry-content">
         <div class="container">
           <div class="row justify-content-center">
@@ -41,7 +41,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in items" :key="item.id">
+            <tr v-for="item in order.items" :key="item.id">
               <td data-title="">
                 <figure><img :src="item.image" alt="" /></figure>
               </td>
@@ -93,13 +93,15 @@
                       {{ $t("total_summation") }}:
                       <strong>
                         {{
-                          items.reduce((c, n) => c + calcPriceAfterDis(n), 0)
+                          order.items
+                            .reduce((c, n) => c + calcPriceAfterDis(n), 0)
+                            .toFixed(2)
                         }}
                         ر.س</strong
                       >
                     </div>
                     <div class="button0">
-                      <router-link to="checkout">{{
+                      <router-link :to="`/checkout/${order.id}`">{{
                         $t("Complete_the_order")
                       }}</router-link>
                     </div>
@@ -121,12 +123,13 @@ export default {
   },
   computed: {
     ...mapState({
-      items: (state) => state.cart.order.items,
+      // order.items: (state) => state.cart.order.order.items,
+      order: (state) => state.cart.order,
     }),
   },
   watch: {
-    items(val) {
-      if (!val[0]) {
+    order(val) {
+      if (!val.items[0]) {
         this.$store.dispatch("cart/addOrderTotalPrice", 0);
       }
     },
