@@ -31,6 +31,7 @@ class OrderItem extends BaseModel
             'item_price' => 'required|numeric',
             'item_quantity' => 'required|numeric',
             'discount' => 'sometimes|numeric',
+            'image' => 'nullable|string',
             'is_discount_percentage' => 'sometimes|boolean',
             'item_name' => 'sometimes|string',
             'description' => 'nullable',
@@ -41,6 +42,7 @@ class OrderItem extends BaseModel
     public static function updateRules($user)
     {
         return [
+            'image' => 'nullable|string',
             'order_id' => 'required|exists:orders,id',
             'tax_id' => 'nullable|exists:taxes,id',
             'unit_id' => 'nullable|exists:units,id',

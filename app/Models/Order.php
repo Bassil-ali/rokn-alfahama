@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -48,7 +49,7 @@ class Order extends BaseModel
             'customer_name' => 'required_without:user_id',
             'customer_mobile' => 'required_without:user_id',
             'customer_email' => 'required_without:user_id',
-            'issue_date' => 'sometimes|timestamp',
+            'issue_date' => 'sometimes|date',
             'due_date' => 'sometimes|date',
             'total' => 'sometimes|numeric',
             'discount' => 'sometimes|numeric',
@@ -72,5 +73,25 @@ class Order extends BaseModel
     public function getItemsCountAttribute()
     {
         return $this->items()->count();
+    }
+    public function calcOrderItems($items)
+    {
+        $totlas = [
+            'total' => 0,
+            'discount' => 0,
+            'tax' => 0,
+            'taxed_total' => 0,
+        ];
+
+        for ($i = 0; $i < count($items); $i++) {
+            $totlas['total'] += ($items[$i]['item_price'] * $items[$i]['item_quantity']);
+            $totlas['discount'] +=  $items[$i]['discount'];
+            if ($items[$i]['tax_id'] >= 1) {
+                $tax = Tax::find($items[$i]['tax_id']);
+                $totlas['tax'] += ($tax->percentage / 100) * ($totlas['total'] * $totlas['discount']);
+            }
+            $totlas['taxed_total'] =   $totlas['total'] + $totlas['tax'] - $totlas['discount'];
+        }
+        return $totlas;
     }
 }
