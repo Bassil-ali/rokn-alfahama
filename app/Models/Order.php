@@ -66,8 +66,8 @@ class Order extends BaseModel
     }
     public function scopeSearch($query, $request)
     {
-        $query->when($request->status, function ($query, $status) {
-            $query->where('status', '=', $status);
+        $query->when(($request->status != null), function ($query) {
+            $query->where('status', '=', request('status'));
         });
     }
     public function getItemsCountAttribute()
@@ -81,15 +81,16 @@ class Order extends BaseModel
             'discount' => 0,
             'tax' => 0,
             'taxed_total' => 0,
+            'status' => 0,
         ];
 
         for ($i = 0; $i < count($items); $i++) {
             $totlas['total'] += ($items[$i]['item_price'] * $items[$i]['item_quantity']);
             $totlas['discount'] +=  $items[$i]['discount'];
-            if ($items[$i]['tax_id'] >= 1) {
-                $tax = Tax::find($items[$i]['tax_id']);
-                $totlas['tax'] += ($tax->percentage / 100) * ($totlas['total'] * $totlas['discount']);
-            }
+            // if ($items[$i]['tax_id'] >= 1) {
+            //     $tax = Tax::find($items[$i]['tax_id']);
+            //     $totlas['tax'] += ($tax->percentage / 100) * ($totlas['total'] * $totlas['discount']);
+            // }
             $totlas['taxed_total'] =   $totlas['total'] + $totlas['tax'] - $totlas['discount'];
         }
         return $totlas;

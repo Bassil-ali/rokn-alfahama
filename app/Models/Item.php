@@ -114,4 +114,8 @@ class Item extends BaseModel
     {
         return $this->hasOneThrough(Offer::class, OfferItem::class, 'item_id', 'id', 'id', 'offer_id');
     }
+    public function property()
+    {
+        return $this->hasMany(Property::class);
+    }
 }
