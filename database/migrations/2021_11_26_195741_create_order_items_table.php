@@ -19,6 +19,8 @@ class CreateOrderItemsTable extends Migration
             $table->unsignedBigInteger('item_id')->nullable();
             $table->unsignedBigInteger('tax_id')->nullable();
             $table->unsignedBigInteger('unit_id')->nullable();
+            $table->unsignedBigInteger('offer_id')->nullable();
+            $table->text('image')->nullable();
             // $table->integer('quantity')->default(0);
             $table->integer('free_quantity')->default(0);
             $table->double('item_price')->default(0);
