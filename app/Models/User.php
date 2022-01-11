@@ -112,7 +112,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         }
         return [
             'user_name' => 'required',
-            'mobile' => 'required|unique:pqsql.users,mobile',
+            'mobile' => 'required|unique:users,mobile',
 
         ];
     }

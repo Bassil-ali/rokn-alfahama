@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Pluralizer;
 use Illuminate\Support\Facades\Validator;
 
-class {{ class }} extends Controller
+class {{ class }} extends BaseController
 {
     public static function routeName(){
         return Str::snake("{{model}}");
