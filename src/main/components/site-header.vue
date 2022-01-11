@@ -123,7 +123,9 @@
                     ><img
                       src="@/main/assets/images/shopping-cart.svg"
                       alt=""
-                    /><span>{{ $t("cart") }} <strong>0.00$</strong></span
+                    /><span
+                      >{{ $t("cart") }}
+                      <strong>{{ order_total }}ر.س</strong></span
                     ><i>{{ counter }}</i></router-link
                   >
                 </div>
@@ -150,6 +152,7 @@ export default {
     ...mapState({
       user: (state) => state.auth.user,
       counter: (state) => state.cart.counter,
+      order_total: (state) => state.cart.order_total,
       locale: (state) => state.locales.locale,
     }),
   },

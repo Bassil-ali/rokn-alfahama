@@ -8,11 +8,16 @@ import vuetify from './plugins/vuetify';
 import './plugins/registrar';
 import App from './App.vue'
 import i18n from '../store/i18n/i18n'
+
 Vue.config.productionTip = false;
 import VuePhoneNumberInput from 'vue-phone-number-input';
 import 'vue-phone-number-input/dist/vue-phone-number-input.css';
 import mixins from './mixins/mixins';
 import sweatAleart from './plugins/sweet_alert';
+
+import VueFacebook from 'vue-facebook';
+
+Vue.use(VueFacebook)
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);
 Vue.prototype.jQuery = jQuery;
 Vue.use(VueMeta)

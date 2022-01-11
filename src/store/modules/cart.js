@@ -1,7 +1,8 @@
 const state = {
     items: [],
     order: { items: [] },
-    counter: 0
+    counter: 0,
+    order_total: 0,
 };
 const getters = {
     all: state => state.posts
@@ -13,8 +14,8 @@ const actions = {
         dispatch
     }, item) {
         if (state.order.items && state.order.id) {
-            let ex_item = state.order.items.find((i) => i.id == item.id);
-            if (ex_item == undefined) {
+            let ex_item = state.order.items.find((i) => i.item_id == item.id);
+            if (!ex_item) {
                 let item_data = {
                     item_id: item.id,
                     order_id: state.order.id,
@@ -22,10 +23,11 @@ const actions = {
                     name: item.name,
                     image: item.image,
                     item_price: item.selling_price,
-                    // offer_id: item.offer.id,
-                    // discount: item.offer ? (item.offer.percentge / 100) * item.selling_price : 0,
+                    offer_id: item.offer ? item.offer.id : undefined,
+                    discount: item.offer ? (item.offer.percentage / 100) * item.selling_price : 0,
                 }
                 commit('add_item', item_data)
+                commit('mut_set_order_total')
                 dispatch('sync', item_data)
             } else {
                 dispatch('incrementItem', ex_item)
@@ -44,6 +46,8 @@ const actions = {
     removeItem({ commit }, item) {
         this.$axios.delete(`/order/${state.order.id}/item/${item.item_id}`, item)
         commit('remove_item', item)
+        commit('mut_set_order_total')
+
     },
     incrementItem({ commit, state, dispatch }, item) {
         let item_s = state.order.items.find(i => i.id == item.id)
@@ -52,7 +56,7 @@ const actions = {
         this.$axios.put(`/order/${state.order.id}/item/${item_s.item_id}`, item_s).then(() => {
             // dispatch('load');
         })
-        // commit('increment_item', item)
+        commit('mut_set_order_total')
     },
     decrementItem({
         commit
@@ -64,7 +68,8 @@ const actions = {
         this.$axios.put(`/order/${state.order.id}/item/${item_s.item_id}`, item_s).then(() => {
             // dispatch('load');
         })
-        // commit('decrement_item', item)
+        commit('mut_set_order_total')
+
     },
     updateQuantity({
         commit
@@ -83,16 +88,30 @@ const actions = {
         }, 0)
         commit('set_counter', count)
         commit('set_draft_order', { ...response.data.data[0] });
+        commit('mut_set_order_total')
+
     },
     // async craeteOrder({ commit }) {
 
     //     const response = await this.$axios.post('/order', { status: 0 });
     //     commit('set_draft_order', response.data.data);
     // },
-    sync({ state, dispatch }, item_data) {
+    sync({ state, dispatch, commit }, item_data) {
         this.$axios.post(`/order/${state.order.id}/item`, item_data).then(() => {
-            dispatch('load');
+            dispatch('load').then(() => {
+                commit('mut_set_order_total')
+                console.log("im in the sync")
+                if (state.order.id) {
+                    console.log("im in the order dispatch")
+                    dispatch('order/store', state.order, { root: true })
+                }
+            });
         });
+
+
+    },
+    addOrderTotalPrice({ commit }, total) {
+        commit('mut_add_total_price', total)
 
     }
 }
@@ -118,7 +137,7 @@ const mutations = {
         state.counter += item.item_quantity;
     },
     remove_item: (state, item) => {
-        let index = state.items.findIndex(x => x.id == item.id);
+        let index = state.order.items.findIndex(x => x.id == item.id);
         if (item.item_quantity >= 1)
             state.counter -= item.item_quantity;
         if (index > -1)
@@ -132,6 +151,12 @@ const mutations = {
     },
     set_counter(state, count) {
         state.counter = count
+    },
+    mut_add_total_price(state, totalPrice) {
+        state.order_total = totalPrice
+    },
+    mut_set_order_total(state) {
+        state.order_total = state.order.items.reduce((c, n) => c + n.item_price * n.item_quantity - n.discount, 0)
     },
 
 }

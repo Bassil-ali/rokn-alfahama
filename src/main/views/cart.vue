@@ -75,7 +75,7 @@
                 </div>
               </td>
               <td>
-                {{ item.item_price * item.item_quantity }}
+                {{ item.item_price * item.item_quantity - item.discount }}
               </td>
               <td data-title="حذف">
                 <a @click.prevent="remove(item)" class="button"
@@ -93,10 +93,7 @@
                       {{ $t("total_summation") }}:
                       <strong>
                         {{
-                          items.reduce(
-                            (c, n) => c + n.item_price * n.item_quantity,
-                            0
-                          )
+                          items.reduce((c, n) => c + calcPriceAfterDis(n), 0)
                         }}
                         ر.س</strong
                       >
@@ -127,7 +124,13 @@ export default {
       items: (state) => state.cart.order.items,
     }),
   },
-  watch: {},
+  watch: {
+    items(val) {
+      if (!val[0]) {
+        this.$store.dispatch("cart/addOrderTotalPrice", 0);
+      }
+    },
+  },
   methods: {
     increment(item) {
       this.$store.dispatch("cart/incrementItem", item);
@@ -137,6 +140,9 @@ export default {
     },
     remove(item) {
       this.$store.dispatch("cart/removeItem", item);
+    },
+    calcPriceAfterDis(item) {
+      return item.item_price * item.item_quantity - item.discount;
     },
   },
 };

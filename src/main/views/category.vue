@@ -151,7 +151,7 @@
                     }}
                     عنصر متوفر</span
                   >
-                  <!-- <span v-else>{{ category_items.length }} عنصر متوفر </span> -->
+                  <span v-else>{{ category_items.length }} عنصر متوفر </span>
                 </div>
               </div>
               <div class="left-block">
