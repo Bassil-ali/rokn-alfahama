@@ -100,7 +100,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
             'password' => 'required|min:6',
         ];
     }
-    public static function updateRules($request)
+    public static function updateRules($request, $user)
 
     {
         if ($request['password']) {
@@ -112,7 +112,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         }
         return [
             'user_name' => 'required',
-            'mobile' => 'required|unique:users,mobile',
+            'mobile' => 'required|unique:users,mobile,' . $user->id,
 
         ];
     }

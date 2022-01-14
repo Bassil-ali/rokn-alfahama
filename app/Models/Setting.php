@@ -8,14 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends BaseModel
 {
     use HasFactory;
+    // protected $casts = [
+    //     'value'=>'encrypted:array'
+    // ];
     protected $guarded = [];
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
     public static function createRules($user)
     {
         return [
-            'settings'=>'required',
+            'settings' => 'required',
             // 'user_id'=>'sometimes|exists:users,id',
             // 'key'=>'required',
             // 'value'=>'nullable',
@@ -25,10 +29,7 @@ class Setting extends BaseModel
     public static function updateRules($user)
     {
         return [
-            'user_id'=>'sometimes|exists:users,id',
-            'key'=>'required',
-            'value'=>'nullable',
-            'description'=>'nullable'
+            'settings' => 'required',
         ];
     }
 }

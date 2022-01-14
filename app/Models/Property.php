@@ -29,7 +29,7 @@ class Property extends Model
         return [
             'item_id' => 'required',
             'color_id' => 'sometimes|exists:colors,id',
-            'size_id' => 'sometimes|exiests:sizes,id',
+            'size_id' => 'sometimes|exists:sizes,id',
             'price' => 'sometimes|numeric',
             'qty' => 'sometimes',
         ];
@@ -39,7 +39,7 @@ class Property extends Model
         return [
             'item_id' => 'required',
             'color_id' => 'sometimes|exists:colors,id',
-            'size_id' => 'sometimes|exiests:sizes,id',
+            'size_id' => 'sometimes|exists:sizes,id',
             'price' => 'sometimes|numeric',
             'qty' => 'sometimes',
         ];
