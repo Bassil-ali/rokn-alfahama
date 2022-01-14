@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -10,7 +11,8 @@ use Illuminate\Support\Str;
 class CategoryController extends BaseController
 {
 
-    public static function routeName(){
+    public static function routeName()
+    {
         return Str::snake("Category");
     }
     public function __construct(Request $request)
@@ -19,16 +21,17 @@ class CategoryController extends BaseController
     }
     public function index(Request $request)
     {
-        return CategoryResource::collection(Category::search($request)->sort($request)->paginate((request('per_page')??request('itemsPerPage'))??15));
+
+        return CategoryResource::collection(Category::search($request)->sort($request)->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
     }
     public function store(Request $request)
     {
-        if(!$this->user->is_permitted_to('store',Category::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        if (!$this->user->is_permitted_to('store', Category::class, $request))
+            return response()->json(['message' => 'not_permitted'], 422);
 
-        $validator = Validator::make($request->all(),Category::createRules($this->user));
-        if($validator->fails()){
-            return response()->json(['errors'=>$validator->errors()],422);
+        $validator = Validator::make($request->all(), Category::createRules($this->user));
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
         }
         $category = Category::create($validator->validated());
         if ($request->translations) {
@@ -37,31 +40,31 @@ class CategoryController extends BaseController
         }
         return new CategoryResource($category);
     }
-    public function show(Request $request,Category $category)
+    public function show(Request $request, Category $category)
     {
-        if(!$this->user->is_permitted_to('view',Category::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        if (!$this->user->is_permitted_to('view', Category::class, $request))
+            return response()->json(['message' => 'not_permitted'], 422);
         return new CategoryResource($category);
     }
     public function update(Request $request, Category $category)
     {
-        if(!$this->user->is_permitted_to('update',Category::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
-        $validator = Validator::make($request->all(),Category::updateRules($this->user));
-        if($validator->fails()){
-            return response()->json(['errors'=>$validator->errors()],422);
+        if (!$this->user->is_permitted_to('update', Category::class, $request))
+            return response()->json(['message' => 'not_permitted'], 422);
+        $validator = Validator::make($request->all(), Category::updateRules($this->user));
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
         }
         $category->update($validator->validated());
-          if ($request->translations) {
+        if ($request->translations) {
             foreach ($request->translations as $translation)
                 $category->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
         }
         return new CategoryResource($category);
     }
-    public function destroy(Request $request,Category $category)
+    public function destroy(Request $request, Category $category)
     {
-        if(!$this->user->is_permitted_to('delete',Category::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        if (!$this->user->is_permitted_to('delete', Category::class, $request))
+            return response()->json(['message' => 'not_permitted'], 422);
         $category->delete();
 
         return new CategoryResource($category);

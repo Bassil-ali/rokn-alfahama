@@ -12,7 +12,7 @@ class Category extends BaseModel
     use HasTranslations;
     public $translatable = ['name'];
     protected $with = ['items'];
-    protected $appends = ['translations', 'image', 'items_count'];
+    protected $appends = ['translations', 'image', 'items_count', 'children_count'];
     protected $guarded = [];
 
     public function items()
@@ -28,12 +28,15 @@ class Category extends BaseModel
     {
         return [
             'cover_image_id' => 'required',
+            'parent_id' => 'sometimes|exists:categories,id',
         ];
     }
     public static function updateRules($user)
     {
         return [
             'cover_image_id' => 'required',
+            'parent_id' => 'sometimes|exists:categories,id',
+
         ];
     }
     public function cover_image()
@@ -53,5 +56,17 @@ class Category extends BaseModel
         $query->when($request->top, function ($query, $top) {
             // $query->whererow("limit $top");
         });
+
+        $query->when($request->parent_id, function ($query) {
+            $query->whereNull('parent_id');
+        });
+    }
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+    public function getChildrenCountAttribute()
+    {
+        return $this->children()->count();
     }
 }
