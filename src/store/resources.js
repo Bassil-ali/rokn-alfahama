@@ -132,6 +132,11 @@ let resources = [
         discreption: 'color resource'
     },
     {
+        name: 'payment',
+        parent: '',
+        discreption: 'payment resource'
+    },
+    {
         name: 'user.address',
         parent: 'user',
         //form_route: '/coupon/form',

@@ -23,11 +23,7 @@
                   </a>
                 </li> -->
 
-                <li
-                  @click="getCiled(category, index)"
-                  :key="index"
-                  v-for="(category, index) in my_categories"
-                >
+                <li :key="index" v-for="(category, index) in categories">
                   <a
                     href="javascript:void(0)"
                     :id="`link${index}`"
@@ -37,37 +33,74 @@
                   >
                     <span class="title">
                       <figure>
-                        <img src="assets/images/cat01.svg" alt="" />
+                        <img :src="category.image" alt="" />
                       </figure>
                       {{ category.name }}
                     </span>
-                    <i class="bi bi-chevron-left"></i>
+                    <i
+                      v-if="category.children_count > 0"
+                      class="bi bi-chevron-left"
+                    ></i>
                   </a>
                   <ul
                     class="supmenu"
                     :ref="`supmenu${index}`"
                     :id="`supmenu${index}`"
                   >
-                    <!-- <li :key="w" v-for="w in category.children">
+                    <li
+                      v-if="w.children_count > 0"
+                      :key="w.children_count"
+                      v-for="(w, i) in category.children"
+                    >
                       <a
+                        
                         href="javascript:void(0)"
-                        :id="`link2${w}`"
-                        :ref="`link2${w}`"
+                        :id="`link${index}${i}`"
+                        :ref="`link${index}${i}`"
                         class="menusup"
-                        @click="showsupmenu(`link2${w}`, `supmenu2${w}`)"
-                        > <i class="bi bi-chevron-left"></i
+                        @click="
+                          showsupmenu(`link${index}${i}`, `supmenu${index}${i}`)
+                        "
+                      >
+                        <span class="title">
+                          <figure>
+                            <img :src="w.image" alt="" />
+                          </figure>
+                          {{ w.name }}
+                        </span>
+
+                        <i class="bi bi-chevron-left"></i
                       ></a>
                       <ul
+                      
                         class="supmenu"
-                        :ref="`supmenu2${w}`"
-                        :id="`supmenu2${w}`"
+                        :ref="`supmenu${index}${i}`"
+                        :id="`supmenu${index}${i}`"
                       >
-                        <li><a href="">داخلي قسم فرعى</a></li>
-                        
+                        <li  @click="selected_category = cc" v-for="cc in w.children">
+                          <a>
+                            <span class="title">
+                              <figure>
+                                <img :src="cc.image" alt="" />
+                              </figure>
+                              {{ cc.name }}
+                            </span>
+                          </a>
+                        </li>
                       </ul>
-                    </li> -->
-                    <li :key="index" v-for="(w, index) in category.children">
-                      <a href="">{{ index }}</a>
+                    </li>
+                    <li v-else>
+                      <a
+                        href="javascript:void(0)"
+                        class="d-flex justify-content-between"
+                      >
+                        <span class="title">
+                          <figure>
+                            <img :src="w.image" alt="" />
+                          </figure>
+                          {{ w.name }}
+                        </span>
+                      </a>
                     </li>
                   </ul>
                 </li>
@@ -238,9 +271,9 @@ export default {
       }
     },
     categories(val) {
-      if (val) {
-        this.my_categories = JSON.parse(JSON.stringify(val));
-      }
+      // if (val) {
+      //   this.my_categories = JSON.parse(JSON.stringify(val));
+      // }
     },
   },
   methods: {
@@ -251,14 +284,8 @@ export default {
       this.$el.querySelector(`#${e1}`).classList.toggle("active");
       this.$el.querySelector(`#${e2}`).classList.toggle("open");
     },
-    async getCiled(category, index) {
-      if (category.children_count > 0) {
-        await this.$store
-          .dispatch("category/index", { parent_id: category.id })
-          .then((data) => {
-            console.log(data);
-            this.my_categories[index].children = data;
-          });
+    filterIfNestedChiled(chiled) {
+      if (chiled.chiledren_count > 0) {
       }
     },
   },
