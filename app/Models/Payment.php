@@ -10,6 +10,7 @@ use net\authorize\api\contract\v1 as AnetAPI;
 class Payment extends BaseModel
 {
     use HasFactory;
+    protected $with = ['order'];
     protected $guarded = [];
     public function order()
     {
@@ -49,9 +50,8 @@ class Payment extends BaseModel
     {
         $myOrder = $this->order;
         $myAddress = Address::find($myOrder->address_id);
-        $amount = $myOrder->total;
-        /* Create a merchantAuthenticationType object with authentication details
-           retrieved from the constants file */
+        $amount = $myOrder->taxed_total;
+         
         $merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
         $merchantAuthentication->setName('6gRn57Qhb6Ts');
         $merchantAuthentication->setTransactionKey('4U7pb8A65KL6uTnK');
@@ -79,7 +79,7 @@ class Payment extends BaseModel
         $customerAddress->setFirstName($myOrder->customer_name ?? "Ahmad");
 
         $customerAddress->setAddress("$myAddress->widget  $myAddress->area  $myAddress->street " ?? "12 Main Street");
-        $customerAddress->setCity($myAddress->area );
+        $customerAddress->setCity($myAddress->area);
         // $customerAddress->setState("TX");
         // $customerAddress->setZip("44628");
         // $customerAddress->setCountry("USA");

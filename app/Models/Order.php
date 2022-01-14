@@ -10,7 +10,7 @@ class Order extends BaseModel
 {
     use HasFactory;
     protected $guarded = [];
-    protected $with = ['user', 'items'];
+    protected $with = ['user', 'items' , 'addresses'];
     protected $appends = ['items_count'];
     public function user()
     {
