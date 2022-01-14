@@ -4,7 +4,7 @@
     fluid
     tag="section"
   >
-    <v-row>
+    <!-- <v-row>
       <v-col
         cols="12"
         lg="4"
@@ -388,7 +388,7 @@
           </v-tabs-items>
         </base-material-card>
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 

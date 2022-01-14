@@ -6,11 +6,12 @@
       </div>
 
       <div class="head-offer">
-        <img :src="offer.image.url" alt="" />
+        <img v-if="offer" :src="offer.image.url" alt="" />
+        <img v-else src="@/main/assets/images/0001.jpg" alt="" />
         <!-- @/main/assets/images/0001.jpg -->
       </div>
 
-      <div class="product">
+      <div v-if="items" class="product">
         <div class="row">
           <div :key="index" v-for="(item, index) in items" class="col-md-3">
             <div class="item mb-3">
@@ -26,7 +27,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                   <p class="price">
                     {{ calcNewPrice(item.selling_price) }}
-                    ريال
+                    $
                   </p>
                   <p class="star">
                     <i class="bi bi-star-fill"></i>

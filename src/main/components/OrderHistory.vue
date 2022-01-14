@@ -25,7 +25,7 @@
             </td>
             <td data-title="الاسم ">مصحف اسلامي ذهبي من الطراز الفاخر</td>
             <td data-title="الكمية ">2</td>
-            <td data-title="السعر ">1300 ر.س</td>
+            <td data-title="السعر ">1300 $</td>
           </tr>
           <tr>
             <td>
@@ -38,7 +38,7 @@
             </td>
             <td data-title="الاسم ">مصحف اسلامي ذهبي من الطراز الفاخر</td>
             <td data-title="الكمية ">2</td>
-            <td data-title="السعر ">1300 ر.س</td>
+            <td data-title="السعر ">1300 $</td>
           </tr>
         </tbody>
       </table>

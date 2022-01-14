@@ -7,7 +7,7 @@
             <div class="box">
               <h2><i class="bi bi-list"></i>{{ $t("Categories") }}</h2>
               <ul class="category">
-                <li
+                <!-- <li
                   @click="selected_category = category"
                   :key="index"
                   v-for="(category, index) in categories"
@@ -21,62 +21,56 @@
                     </span>
                     <i class="bi bi-chevron-left"></i>
                   </a>
-                </li>
-                <!-- <li>
-                  <a class="d-flex justify-content-between">
-                    <span class="title">
-                      <figure>
-                        <img src="@/main/assets/images/cat03.svg" alt="" />
-                      </figure>
-                      بخور ومباخر عربية
-                    </span>
-                    <i class="bi bi-chevron-left"></i>
-                  </a>
-                </li>
-                <li>
-                  <a class="d-flex justify-content-between">
-                    <span class="title">
-                      <figure>
-                        <img src="@/main/assets/images/cat04.svg" alt="" />
-                      </figure>
-                      مستلزمات نسائية
-                    </span>
-                    <i class="bi bi-chevron-left"></i>
-                  </a>
-                </li>
-                <li>
-                  <a class="d-flex justify-content-between">
-                    <span class="title">
-                      <figure>
-                        <img src="@/main/assets/images/cat05.svg" alt="" />
-                      </figure>
-                      أزياء عربية للجنسين
-                    </span>
-                    <i class="bi bi-chevron-left"></i>
-                  </a>
-                </li>
-                <li>
-                  <a class="d-flex justify-content-between">
-                    <span class="title">
-                      <figure>
-                        <img src="@/main/assets/images/cat06.svg" alt="" />
-                      </figure>
-                      أحذية عربية وفضيات
-                    </span>
-                    <i class="bi bi-chevron-left"></i>
-                  </a>
-                </li>
-                <li>
-                  <a class="d-flex justify-content-between">
-                    <span class="title">
-                      <figure>
-                        <img src="@/main/assets/images/cat07.svg" alt="" />
-                      </figure>
-                      عسل
-                    </span>
-                    <i class="bi bi-chevron-left"></i>
-                  </a>
                 </li> -->
+
+                <li
+                  @click="getCiled(category, index)"
+                  :key="index"
+                  v-for="(category, index) in my_categories"
+                >
+                  <a
+                    href="javascript:void(0)"
+                    :id="`link${index}`"
+                    :ref="`link${index}`"
+                    @click="showsupmenu(`link${index}`, `supmenu${index}`)"
+                    class="d-flex justify-content-between"
+                  >
+                    <span class="title">
+                      <figure>
+                        <img src="assets/images/cat01.svg" alt="" />
+                      </figure>
+                      {{ category.name }}
+                    </span>
+                    <i class="bi bi-chevron-left"></i>
+                  </a>
+                  <ul
+                    class="supmenu"
+                    :ref="`supmenu${index}`"
+                    :id="`supmenu${index}`"
+                  >
+                    <!-- <li :key="w" v-for="w in category.children">
+                      <a
+                        href="javascript:void(0)"
+                        :id="`link2${w}`"
+                        :ref="`link2${w}`"
+                        class="menusup"
+                        @click="showsupmenu(`link2${w}`, `supmenu2${w}`)"
+                        > <i class="bi bi-chevron-left"></i
+                      ></a>
+                      <ul
+                        class="supmenu"
+                        :ref="`supmenu2${w}`"
+                        :id="`supmenu2${w}`"
+                      >
+                        <li><a href="">داخلي قسم فرعى</a></li>
+                        
+                      </ul>
+                    </li> -->
+                    <li :key="index" v-for="(w, index) in category.children">
+                      <a href="">{{ index }}</a>
+                    </li>
+                  </ul>
+                </li>
               </ul>
             </div>
             <div class="box">
@@ -156,11 +150,7 @@
               </div>
               <div class="left-block">
                 <div class="d-flex">
-                  <ul
-                    class="select-form"
-                    id="show1"
-                    onclick="show_ul('#show1')"
-                  >
+                  <ul class="select-form" id="show1" @click="show_ul('#show1')">
                     <li>50</li>
                     <ul>
                       <li><a href="">30</a></li>
@@ -169,7 +159,7 @@
                       <li><a href="">30</a></li>
                     </ul>
                   </ul>
-                  <ul class="select-form" id="show2" onclick="show_ul('show2')">
+                  <ul class="select-form" id="show2" @click="show_ul('show2')">
                     <li>الاكثر تصنيفاً</li>
                     <ul>
                       <li><a href="">الاحدث</a></li>
@@ -202,711 +192,6 @@
               >
                 <product :item="category_item" />
               </div>
-              <!-- <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/969737a0d391924f27ef42ddce770fe7.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/e2b4fd5b11b08afbef622253193402b7.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/5cbd19671e766acf3c6a76cf14cb4415.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price">300 ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/969737a0d391924f27ef42ddce770fe7.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/e2b4fd5b11b08afbef622253193402b7.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/5cbd19671e766acf3c6a76cf14cb4415.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price">300 ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/969737a0d391924f27ef42ddce770fe7.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/e2b4fd5b11b08afbef622253193402b7.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/5cbd19671e766acf3c6a76cf14cb4415.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price">300 ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/969737a0d391924f27ef42ddce770fe7.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="item mb-3">
-                  <figure>
-                    <a href=""
-                      ><img
-                        src="@/main/assets/images/e2b4fd5b11b08afbef622253193402b7.jpg"
-                        alt=""
-                    /></a>
-                  </figure>
-                  <div class="caption">
-                    <a href="" class="title"
-                      >مصحف اسلامي ذهبي من الطراز الفاخر</a
-                    >
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <p class="price"><span>300</span> ريال</p>
-                      <p class="star">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                      </p>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        mt-2
-                        justify-content-between
-                        align-items-center
-                      "
-                    >
-                      <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
-                        اضف إلى السلة</a
-                      >
-                      <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
-                      /></a>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -914,16 +199,22 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapState } from "vuex";
 export default {
   data() {
     return {
+      toggle: null,
+      myNavbar: null,
       selected_category: {},
+      my_categories: {},
     };
   },
   mounted() {
-    this.$store.dispatch("category/index");
+    this.toggle = document.getElementById("toggle");
+    this.myNavbar = document.getElementById("primary-menu");
+    this.$store.dispatch("category/index", { parent_id: -1 });
     this.$store.dispatch("item/index");
     // if (this.$route.query.type) {
     //   let type = this.$route.query.type;
@@ -942,7 +233,32 @@ export default {
   watch: {
     selected_category(val) {
       if (val) {
+        //  this.my_categories =  this.my_categories.filter()
         this.$store.dispatch("item/index", { category_id: val.id });
+      }
+    },
+    categories(val) {
+      if (val) {
+        this.my_categories = JSON.parse(JSON.stringify(val));
+      }
+    },
+  },
+  methods: {
+    showsupmenu(e11, e22) {
+      let e1 = this.$refs[e11][0].id;
+      let e2 = this.$refs[e22][0].id;
+
+      this.$el.querySelector(`#${e1}`).classList.toggle("active");
+      this.$el.querySelector(`#${e2}`).classList.toggle("open");
+    },
+    async getCiled(category, index) {
+      if (category.children_count > 0) {
+        await this.$store
+          .dispatch("category/index", { parent_id: category.id })
+          .then((data) => {
+            console.log(data);
+            this.my_categories[index].children = data;
+          });
       }
     },
   },

@@ -3,7 +3,7 @@
     <div class="head">
       <h2>{{ $t("Shopping_cart") }}</h2>
     </div>
-    <div class="entry-content cart-empty" v-if="order.items.length == 0">
+    <div class="entry-content cart-empty" v-if="order.items ? order.items.length == 0:false">
       <div class="entry-content">
         <div class="container">
           <div class="row justify-content-center">
@@ -97,7 +97,7 @@
                             .reduce((c, n) => c + calcPriceAfterDis(n), 0)
                             .toFixed(2)
                         }}
-                        ر.س</strong
+                        $</strong
                       >
                     </div>
                     <div class="button0">
@@ -129,7 +129,7 @@ export default {
   },
   watch: {
     order(val) {
-      if (!val.items[0]) {
+      if (!val.items) {
         this.$store.dispatch("cart/addOrderTotalPrice", 0);
       }
     },

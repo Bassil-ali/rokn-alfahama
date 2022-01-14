@@ -47,7 +47,7 @@
                           (one.offer.percentage / 100) * one.selling_price
                         : one.selling_price
                     }}</strong>
-                    <span>ريال سعودي</span>
+                    <span>$ سعودي</span>
                     <div
                       v-if="one.offer"
                       class="
@@ -184,7 +184,7 @@
                       <a href=""> {{ same_item.name }} </a>
                       <div class="d-flex justify-content-between">
                         <div class="price">
-                          <strong>{{ same_item.selling_price }}</strong> ر.س
+                          <strong>{{ same_item.selling_price }}</strong> $
                         </div>
                         <a
                           @click="addToCart(same_item)"

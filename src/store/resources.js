@@ -117,6 +117,21 @@ let resources = [
         discreption: 'offer resource'
     },
     {
+        name: 'color',
+        parent: '',
+        discreption: 'color resource'
+    },
+    {
+        name: 'size',
+        parent: '',
+        discreption: 'size resource'
+    },
+    {
+        name: 'property',
+        parent: '',
+        discreption: 'color resource'
+    },
+    {
         name: 'user.address',
         parent: 'user',
         //form_route: '/coupon/form',

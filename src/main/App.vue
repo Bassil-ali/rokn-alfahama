@@ -28,7 +28,6 @@ export default {
     // window.FB.getLoginStatus(function (response) {
     //   console.log(response);
     // });
-    this.$store.dispatch("setting/index");
   },
   updated() {},
   computed: {
@@ -106,6 +105,7 @@ export default {
     },
   },
   created() {
+    this.$store.dispatch("setting/index");
     var locale = localStorage.getItem("locale");
     if (!locale) localStorage.setItem("locale", "en");
   },

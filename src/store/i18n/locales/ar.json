@@ -392,5 +392,9 @@
   "order info": "معلومات الطلبات",
   "shipment amount": "سعر التوصيل",
   "shipment limit price": "الحد الادني لتفعيل رسوم التوصيل",
-  "add properties": "اضافة خاصئص"
+  "add properties": "اضافة خصائص",
+  "are you sure you want to delete": "هل انت متأكد من الحذف ",
+  "select color": "اختار لون ",
+  "arabic color name": "اسم اللون بالعربية",
+  "english color name": "اسم اللون بالانجليزية"
 }

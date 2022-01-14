@@ -41,7 +41,10 @@
               {{
                 offer ? calcNewPrice(item.selling_price) : item.selling_price
               }}
-              ريال
+              
+              $
+            
+            
             </p>
             <p class="star">
               <i
@@ -55,7 +58,7 @@
           </div>
 
           <div class="d-flex mt-2 justify-content-between align-items-center">
-            <a @click="addToCart(item)" class="addToCart button"
+            <a style="cursor:pointer" @click="addToCart(item)" class="addToCart button"
               ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" /> اضف
               إلى السلة</a
             >

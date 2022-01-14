@@ -43,7 +43,7 @@ const actions = {
         }
 
     },
-    removeItem({ commit , state }, item) {
+    removeItem({ commit, state }, item) {
         this.$axios.delete(`/order/${state.order.id}/item/${item.item_id}`, item).then(() => {
             if (state.order.id) {
                 dispatch('order/store', { ...state.order, silent: true }, { root: true })
@@ -65,7 +65,7 @@ const actions = {
         commit('mut_set_order_total')
     },
     decrementItem({
-        commit ,
+        commit,
         state
     }, item) {
         let item_s = state.order.items.find(i => i.id == item.id)
@@ -92,9 +92,10 @@ const actions = {
     },
     async load({ commit, rootState }) {
         const response = await this.$axios.get('/order', { params: { status: 0, user_id: rootState.auth.user.user.id } })
-        let count = response.data.data[0].items.reduce((c, n) => {
+
+        let count = response.data.data.length > 0 ? response.data.data[0].items.reduce((c, n) => {
             return c + n.item_quantity
-        }, 0)
+        }, 0) : 0
         commit('set_counter', count)
         commit('set_draft_order', { ...response.data.data[0] });
         commit('mut_set_order_total')
@@ -168,7 +169,7 @@ const mutations = {
         state.order_total = totalPrice
     },
     mut_set_order_total(state) {
-        state.order_total = state.order.items.reduce((c, n) => c + n.item_price * n.item_quantity - n.discount, 0)
+        state.order_total = state.order.items ? state.order.items.reduce((c, n) => c + n.item_price * n.item_quantity - n.discount, 0) : 0
     },
     mut_reset_cart_total(state) {
         stete.order = { items: [] }

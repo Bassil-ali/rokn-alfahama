@@ -28,7 +28,7 @@
                           item.item_price * item.item_quantity -
                           item.discount * item.item_quantity
                         }}
-                        ر.س <br />
+                        $ <br />
                         <span
                           v-if="item.discount > 0"
                           style="
@@ -39,7 +39,7 @@
                           "
                         >
                           {{ item.item_price * item.item_quantity }}
-                          ر.س
+                          $
                         </span>
                       </div>
                       <div class="quantity d-flex align-items-center">
@@ -84,35 +84,37 @@
                 <li>
                   {{ $t("number_of_products") }}
                   <span>{{
-                    order.items.reduce((c, n) => c + n.item_quantity, 0)
+                    order.items
+                      ? order.items.reduce((c, n) => c + n.item_quantity, 0)
+                      : 0
                   }}</span>
                 </li>
                 <li>
                   {{ $t("total_summation") }}
                   <span>
                     {{ totals.total }}
-                    ر.س</span
+                    $</span
                   >
                 </li>
                 <li>
                   {{ $t("Discount") }}
                   <span>
                     {{ totals.discount }}
-                    ر.س</span
+                    $</span
                   >
                 </li>
                 <li>
                   {{ $t("Delivery_price") }}
                   <span v-if="totals.total_taxed > limit_shipment">
-                    0 ر.س
+                    0 $
                   </span>
-                  <span v-else> {{ shipment_price }} ر.س</span>
+                  <span v-else> {{ shipment_price }} $</span>
                 </li>
                 <li class="toot">
                   {{ $t("total_summation") }}
                   <span>
                     {{ totals.total_taxed }}
-                    ر.س</span
+                    $</span
                   >
                 </li>
               </ul>
@@ -257,6 +259,7 @@ export default {
   },
   data() {
     return {
+      my_address: null,
       item: {
         shipment_price: 0,
         discount: 0,
@@ -281,24 +284,30 @@ export default {
       return date.toISOString().slice(0, 19).replace("T", " ");
     },
     async save() {
-      this.item.issue_date = this.getTime();
-      this.item.status = 1;
-      this.item.taxed_total = this.item.total;
-      let order_id = null;
-      let new_order = await this.$store
-        .dispatch("order/store", this.item)
+      let order_copy = JSON.parse(JSON.stringify(this.order));
+      delete order_copy.items;
+      console.log(order_copy);
+      order_copy.due_date = this.getTime();
+      order_copy.status = 1;
+      order_copy.taxed_total = this.totals.total_taxed;
+      order_copy.discount = this.totals.discount;
+      order_copy.total = this.totals.total;
+
+      await this.$store
+        .dispatch("order/store", order_copy)
         .then((data) => {
           return data;
+        })
+        .then(() => {
+          let domain = `${process.env.URL || window.location.protocol}//${
+            window.location.host
+          }`;
+          window.open(`${domain}/complete-order/${this.order.id}`);
         });
-      console.log(new_order);
-      order_id = new_order.id;
-      if (order_id) {
-        let domain = `${process.env.URL || window.location.protocol}//${
-          window.location.host
-        }`;
 
-        window.open(`${domain}/complete-order/${order_id}`);
-      }
+      // if (order_id) {
+
+      // }
     },
     addCoupon() {
       this.$store
@@ -308,7 +317,7 @@ export default {
         });
     },
     checkAddress(address) {
-      this.item.address_id = address.id;
+      this.my_address = address.id;
       this.addresses
         .filter((i) => i.id != address.id)
         .map((i) => (i.checked = false));
@@ -319,7 +328,7 @@ export default {
       order: (state) => state.cart.order,
       user: (state) => state.auth.user.user,
       addresses: (state) => state.address.all,
-      settings: (state) => state.setting.all,
+      settings: (state) => state.setting.all || [],
     }),
     totals() {
       let allTotlas = {
@@ -327,22 +336,23 @@ export default {
         discount: 0,
         total_taxed: 0,
       };
-      let all_items = this.order.items;
+      if (this.order.items) {
+        let all_items = this.order.items;
 
-      allTotlas.total = all_items.reduce(
-        (c, n) => c + n.item_price * n.item_quantity,
-        0
-      );
-      allTotlas.discount = all_items.reduce(
-        (c, n) => c + n.discount * n.item_quantity,
-        0
-      );
-      allTotlas.total_taxed = all_items.reduce(
-        (c, n) =>
-          c + n.item_price * n.item_quantity - n.discount * n.item_quantity,
-        0
-      );
-
+        allTotlas.total = all_items.reduce(
+          (c, n) => c + n.item_price * n.item_quantity,
+          0
+        );
+        allTotlas.discount = all_items.reduce(
+          (c, n) => c + n.discount * n.item_quantity,
+          0
+        );
+        allTotlas.total_taxed = all_items.reduce(
+          (c, n) =>
+            c + n.item_price * n.item_quantity - n.discount * n.item_quantity,
+          0
+        );
+      }
       return allTotlas;
     },
     limit_shipment() {

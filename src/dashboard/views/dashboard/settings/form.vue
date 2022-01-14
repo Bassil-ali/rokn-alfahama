@@ -280,6 +280,43 @@
     </base-material-card>
     <base-material-card
       icon="mdi-clipboard-text"
+      title="social media posts"
+      class="px-5 py-3"
+    >
+      <v-form>
+        <v-row>
+          <v-col cols="12" md="3">
+            <v-text-field
+              v-model="item.facebook_post"
+              :label="$t('facebook post link')"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="3">
+            <v-text-field
+              type="text"
+              v-model="item.twitter_tweet"
+              :label="$t('twitter tweet id')"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" md="3">
+            <v-text-field
+              v-model="item.instagram_post"
+              :label="$t('instagram post link')"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <!-- <v-row>
+          <v-col cols="12">
+            <v-btn dark color="primary" block @click="save(item)">
+              <v-icon> mdi-check </v-icon>
+              {{ $t("save") }}
+            </v-btn>
+          </v-col>
+        </v-row> -->
+      </v-form>
+    </base-material-card>
+    <base-material-card
+      icon="mdi-clipboard-text"
       :title="$t('order info')"
       class="px-5 py-3"
     >
@@ -365,7 +402,7 @@ export default {
           item.who_us[0].image_url = new_image.url;
         }
       }
-
+      item.twitter_tweet = item.twitter_tweet + "#";
       this.$store.dispatch("setting/store", { settings: { ...item } });
     },
     get_url(image) {

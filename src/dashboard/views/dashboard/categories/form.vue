@@ -47,7 +47,6 @@
               width="300"
             >
             </v-img>
-            <v-img v-if="item.image" :src="item.image" width="300"></v-img>
           </v-col>
         </v-row>
         <v-row>
@@ -89,12 +88,12 @@ export default {
           {
             field: "name",
             value: "",
-            locale: "en",
+            locale: "ar",
           },
           {
             field: "name",
             value: "",
-            locale: "ar",
+            locale: "en",
           },
         ],
       },
@@ -177,6 +176,7 @@ export default {
     one(val) {
       if (val) {
         this.item = JSON.parse(JSON.stringify(val));
+        this.cover_image = this.item.cover_image;
       }
     },
   },
