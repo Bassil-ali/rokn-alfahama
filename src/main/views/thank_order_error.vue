@@ -39,7 +39,7 @@
                                             <div class="caption">
                                                 <h2>مصحف اسلامي ذهبي من الطراز الفاخر</h2>
                                                 <div class="d-flex justify-content-between">
-                                                    <div class="price">1300 ر.س</div>
+                                                    <div class="price">1300 $</div>
                                                     <div class="quantity">
                                                          {{$t('quantity')}}  : <strong>3</strong>
                                                     </div>
@@ -54,7 +54,7 @@
                                             <div class="caption">
                                                 <h2>مصحف اسلامي ذهبي من الطراز الفاخر</h2>
                                                 <div class="d-flex justify-content-between">
-                                                    <div class="price">1300 ر.س</div>
+                                                    <div class="price">1300 $</div>
                                                     <div class="quantity">
                                                          {{$t('quantity')}}  : <strong>3</strong>
                                                     </div>
@@ -66,10 +66,10 @@
                                 <div class="footer">
                                    <ul>
                                         <li>{{$t('number_of_products')}} <span>2</span></li>
-                                        <li>{{$t('Total')}}} <span>1300 ر.س</span></li>
-                                        <li>{{$t('quantity')}}} <span>100 ر.س</span></li>
-                                        <li>{{$t('Discount')}}}  <span>35 ر.س</span></li>
-                                        <li class="toot"> {{$t('total_summation')}}} <span>1250 ر.س</span></li>
+                                        <li>{{$t('Total')}}} <span>1300 $</span></li>
+                                        <li>{{$t('quantity')}}} <span>100 $</span></li>
+                                        <li>{{$t('Discount')}}}  <span>35 $</span></li>
+                                        <li class="toot"> {{$t('total_summation')}}} <span>1250 $</span></li>
                                     </ul>
                                 </div>
                                 <div class="footer">

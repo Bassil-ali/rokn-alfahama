@@ -1,30 +1,59 @@
 <template>
-  <v-data-table
-    :headers="translateHeaders(headers.concat('actions'))"
-    :items="data"
-    :options.sync="options"
-    :page.sync="options.page"
-    item-key="id"
-    :items-per-page="meta.per_page ? Number(meta.per_page) : -1"
-    class="elevation-1"
-    :sort-by.sync="options.sortBy"
-    :sort-desc.sync="options.sortDesc"
-    multi-sort
-    v-bind="$attrs"
-    v-on="$listeners"
-  >
-    <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"
-      ><slot :name="slot" v-bind="scope"
-    /></template>
-    <template v-slot:item.actions="{ item }">
-      <v-btn icon @click="remove(module, item)">
-        <v-icon> fas fa-times</v-icon>
-      </v-btn>
-      <v-btn icon @click="navigate_to_form(item)">
-        <v-icon> fas fa-edit</v-icon>
-      </v-btn>
-    </template>
-  </v-data-table>
+  <div>
+    <v-dialog width="fit-content" v-model="dialog">
+      <v-card width="500"
+        ><v-card-title>
+          {{ $t("are you sure you want to delete") }} ?
+        </v-card-title>
+        <v-card-actions class="justify-center">
+          <v-btn
+            @click="
+              remove(module, globalItem);
+              dialog = false;
+            "
+            class="warning"
+          >
+            {{ $t("yes") }}
+          </v-btn>
+          <v-btn @click="dialog = false" class="primary">
+            {{ $t("no") }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-data-table
+      :headers="translateHeaders(headers.concat('actions'))"
+      :items="data"
+      :options.sync="options"
+      :page.sync="options.page"
+      item-key="id"
+      :items-per-page="meta.per_page ? Number(meta.per_page) : -1"
+      class="elevation-1"
+      :sort-by.sync="options.sortBy"
+      :sort-desc.sync="options.sortDesc"
+      multi-sort
+      v-bind="$attrs"
+      v-on="$listeners"
+    >
+      <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"
+        ><slot :name="slot" v-bind="scope"
+      /></template>
+      <template v-slot:item.actions="{ item }">
+        <v-btn
+          icon
+          @click="
+            dialog = true;
+            globalItem = item;
+          "
+        >
+          <v-icon> fas fa-times</v-icon>
+        </v-btn>
+        <v-btn icon @click="navigate_to_form(item)">
+          <v-icon> fas fa-edit</v-icon>
+        </v-btn>
+      </template>
+    </v-data-table>
+  </div>
 </template>
 <script>
 import { mapState } from "vuex";
@@ -36,6 +65,8 @@ export default {
   },
   data() {
     return {
+      globalItem: {},
+      dialog: false,
       options: {
         sortBy: [],
         sortDesc: [],

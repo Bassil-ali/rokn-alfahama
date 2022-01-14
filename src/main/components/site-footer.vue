@@ -33,9 +33,12 @@
               <h2>{{ $t("") }}</h2>
               <ul class="menu">
                 <li>
-                  <i class="bi bi-telephone-fill"></i> {{ settings.mobile }}
+                  <i class="bi bi-telephone-fill"></i>
+                  {{ settings.mobile || 9999 }}
                 </li>
-                <li><i class="bi bi-phone"></i> {{ settings.phone }}</li>
+                <li>
+                  <i class="bi bi-phone"></i> {{ settings.phone || 99999 }}
+                </li>
                 <li>
                   <i class="bi bi-envelope"></i>
                   {{ settings.contect_email || "Runalfakhamah@gmail.com" }}
@@ -84,10 +87,8 @@
             <div class="item-footer">
               <h2>{{ $t("Categories") }}</h2>
               <ul class="menu">
-                <li v-for="categorie in categories">
-                  <a :href="`/main/category?type=${categorie.name}`">{{
-                    categorie.name
-                  }}</a>
+                <li v-for="categorie in all_categories">
+                  <a :href="`/main/category`">{{ categorie.name }}</a>
                 </li>
                 <!-- <li><a href="">زيوت عصرية فاخرة</a></li>
                 <li><a href="">بخور ومباخر عربية</a></li>
@@ -141,7 +142,7 @@ export default {
   computed: {
     ...mapState({
       settings: (state) => state.settings || [],
-      categories: (state) => state.category.all || [],
+      all_categories: (state) => state.category.all || [],
       locale: (state) => state.locales.locale || [],
     }),
   },

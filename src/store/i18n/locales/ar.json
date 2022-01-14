@@ -388,5 +388,13 @@
   "offer start date": "تاريخ بداية العرض",
   "offer end date": "تاريخ نهاية العرض",
   "offerts": "العروض",
-  "items in the offer": "المنتجات التي تشمل العرض "
+  "items in the offer": "المنتجات التي تشمل العرض ",
+  "order info": "معلومات الطلبات",
+  "shipment amount": "سعر التوصيل",
+  "shipment limit price": "الحد الادني لتفعيل رسوم التوصيل",
+  "add properties": "اضافة خصائص",
+  "are you sure you want to delete": "هل انت متأكد من الحذف ",
+  "select color": "اختار لون ",
+  "arabic color name": "اسم اللون بالعربية",
+  "english color name": "اسم اللون بالانجليزية"
 }

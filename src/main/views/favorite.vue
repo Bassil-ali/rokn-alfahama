@@ -15,7 +15,7 @@
               <div class="caption">
                 <a href="" class="title">{{ item.name }}</a>
                 <div class="d-flex align-items-center justify-content-between">
-                  <p class="price">{{ item.selling_price }} ريال</p>
+                  <p class="price">{{ item.selling_price }} $</p>
                   <p class="star">
                     <i
                       v-for="i in 5"

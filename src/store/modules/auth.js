@@ -11,7 +11,7 @@ const actions = {
         commit
     }, data) {
         this.state.overlay = true;
-       return this.$axios.post('/auth/login', data).then((response) => {
+        return this.$axios.post('/auth/login', data).then((response) => {
             commit('setUser', response.data);
             this.$axios.defaults.headers.common['Authorization'] = "Bearer " + response.data.access_token;
             this.state.overlay = false;
@@ -24,7 +24,7 @@ const actions = {
             localStorage.user_data = JSON.stringify({
                 user
             });
-           return 200 ;
+            return 200;
         }).catch(err => {
 
             this.state.overlay = false;
@@ -97,10 +97,11 @@ const actions = {
         }
     },
     unload({
-        commit
+        commit, dispatch
     }) {
         commit('removeUser');
         localStorage.removeItem('user_data');
+        dispatch('cart/reSetCartTotal', null, { root: true })
     }
 }
 const mutations = {

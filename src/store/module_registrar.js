@@ -66,6 +66,7 @@ export default {
 
                         const response = await this.$axios.put(`/${resource.name}/${id}`, data);
                         commit('setOne', response.data.data);
+                        if (data.silent) return;
                         dispatch('setSuccessMsg', 'updated_successfully', {
                             root: true
                         })
@@ -117,6 +118,7 @@ export default {
                     try {
                         const response = await this.$axios.post(`${resource.parent ? '/' + resource.parent + '/' + parent_id : ''}/${resource.name}`, post_data).then((data) => {
                             if (resource.no_success_msg) return data;
+                            if (post_data.silent) return data;
                             dispatch('setSuccessMsg', 'added_successfully', {
                                 root: true
                             })

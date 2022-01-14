@@ -25,15 +25,15 @@ export default {
     this.$vuetify.rtl = this.$store.state.rtl;
     this.$vuetify.locale = this.locale;
     this.$i18n.locale = this.locale;
-
     // window.FB.getLoginStatus(function (response) {
     //   console.log(response);
     // });
-    this.$store.dispatch("setting/index");
   },
   updated() {},
   computed: {
     ...mapState({
+      user: (state) => state.auth.user,
+
       // redirect: (state) => state.auth.redirect,
       locale: (state) => state.locales.locale,
       rtl: (state) => state.rtl,
@@ -98,11 +98,16 @@ export default {
           });
       }
     },
+    user(val) {
+      if (val) {
+        this.$store.dispatch("cart/load");
+      }
+    },
   },
   created() {
+    this.$store.dispatch("setting/index");
     var locale = localStorage.getItem("locale");
     if (!locale) localStorage.setItem("locale", "en");
-    this.$store.dispatch("cart/load");
   },
 };
 </script>

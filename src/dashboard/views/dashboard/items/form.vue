@@ -195,16 +195,113 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col cols="12">
-            <v-btn dark color="primary" block @click="save(item)">
-              <v-icon> mdi-check </v-icon>
-              {{ $t("save") }}
-            </v-btn>
+      </v-form>
+    </base-material-card>
+
+    <base-material-card
+      icon="mdi-clipboard-text"
+      title="add properties"
+      class="px-5 py-3"
+      v-if="has_proparty"
+    >
+      <v-form>
+        <v-row class="mt-5 mb-5">
+          <v-btn @click="addProperty()" icon>
+            <v-icon color="green"> fas fa-plus </v-icon>
+          </v-btn>
+        </v-row>
+        <v-row :key="index" v-for="(property, index) in properties">
+          <v-dialog width="fit-content" v-model="addColorDilaog">
+            <v-card>
+              <v-card-title>
+                {{ $t("add new color") }}
+              </v-card-title>
+              <v-card-text>
+                <v-row>
+                  <v-col>
+                    <v-row>
+                      <v-col cols="6">
+                        <v-text-field
+                          v-model="color.translations[0].value"
+                          :label="$t('arabic color name')"
+                        >
+                          <template v-slot:prepend-inner>
+                            <v-btn :color="side_color" exact depressed small>
+                            </v-btn>
+                          </template>
+                        </v-text-field>
+                      </v-col>
+                      <v-col cols="6">
+                        <v-text-field
+                          :label="$t('english color name')"
+                          v-model="color.translations[1].value"
+                        >
+                        </v-text-field>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <v-col>
+                    <v-color-picker
+                      v-model="side_color"
+                      hide-inputs
+                      dot-size="25"
+                      swatches-max-height="200"
+                    ></v-color-picker>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+              <v-card-actions class="justify-center">
+                <v-row justify="center" no-gutters dense>
+                  <v-btn @click="saveColor()" class="primary">
+                    {{ $t("save") }}
+                  </v-btn>
+                </v-row>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-col cols="12" md="3"
+            ><v-text-field :label="$t('quantity')"></v-text-field
+          ></v-col>
+
+          <v-col cols="12" md="3">
+            <v-autocomplete dense :label="$t('color')">
+              <template v-slot:append>
+                <v-btn @click="addColorDilaog = true" icon>
+                  <v-icon> fas fa-plus </v-icon>
+                </v-btn>
+              </template>
+            </v-autocomplete>
           </v-col>
+
+          <v-col cols="12" md="2"
+            ><v-text-field
+              v-model="item.price"
+              :label="$t('price')"
+            ></v-text-field
+          ></v-col>
+          <v-col cols="12" md="2"
+            ><v-autocomplete
+              :items="sizes"
+              item.price
+              :label="$t('size')"
+            ></v-autocomplete
+          ></v-col>
+          <v-col cols="12" md="2"
+            ><v-btn @click="removeProperty(index)" icon>
+              <v-icon> fac fa-times </v-icon>
+            </v-btn></v-col
+          >
         </v-row>
       </v-form>
     </base-material-card>
+    <v-row>
+      <v-col cols="12">
+        <v-btn dark color="primary" block @click="save(item)">
+          <v-icon> mdi-check </v-icon>
+          {{ $t("save") }}
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -220,6 +317,13 @@ export default {
   name: "ItemForm",
   data() {
     return {
+      addColorDilaog: false,
+      sizes: ["xl", "lg"],
+      side_color: "",
+
+      properties: [{}],
+      globalIndex: 0,
+      has_proparty: true,
       item: {
         translations: [
           {
@@ -252,6 +356,12 @@ export default {
             value: "",
             locale: "en",
           },
+        ],
+      },
+      color: {
+        translations: [
+          { field: "name", value: "", locale: "ar" },
+          { field: "name", value: "", locale: "en" },
         ],
       },
       radio: null,
@@ -320,26 +430,15 @@ export default {
     this.$store.dispatch("tax/index");
     if (this.$route.params.id) {
       this.$store.dispatch("item/show", { id: this.$route.params.id });
-      // .then((res) => {
-      //   // this.cover_image = res.gallery.cover_image;
-      //   // this.item.categories = res.category_ids;
-      //   // this.item.tags = res.tag_ids;
-      //   // this.images = res.gallery.media;
-      // });
     }
   },
   methods: {
-    // clearCategories() {
-    //   this.item.item_type == 1 ? (this.item.categories = null) : "";
-    // },
-    // AddNew_Item() {
-    //   this.NewTags.push(this.NewTags);
-    // },
-    // runDialog() {
-    //   this.dialog = !this.dialog;
-    // },
-    // ...mapActions("item", ["store"]),
-
+    addProperty() {
+      this.properties.push({});
+    },
+    removeProperty(index) {
+      this.properties.splice(index, 1);
+    },
     get_url(image) {
       return typeof image.url != "string"
         ? URL.createObjectURL(image.url)
@@ -402,6 +501,15 @@ export default {
         });
       }
       this.images.splice(index, 1);
+    },
+    saveColor() {
+      this.color.hex_code = this.side_color;
+
+ 
+
+      this.$store.dispatch("color/store", this.color).then(() => {
+        this.side_color = "";
+      });
     },
   },
 

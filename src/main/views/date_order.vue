@@ -43,7 +43,7 @@
                                             <td data-title="رقم الطلب ">1234</td>
                                             <td data-title="تاريخ الطلب ">10.01.2023</td>
                                             <td data-title="الحالة ">مدفوع</td>
-                                            <td data-title="السعر الإجمالي ">1300 ر.س</td>
+                                            <td data-title="السعر الإجمالي ">1300 $</td>
                                             <td><a href="" class="button">{{$t('details')}}</a></td>
                                         </tr>
                                         <tr>
@@ -51,7 +51,7 @@
                                             <td data-title="رقم الطلب ">1234</td>
                                             <td data-title="تاريخ الطلب ">10.01.2023</td>
                                             <td data-title="الحالة ">مدفوع</td>
-                                            <td data-title="السعر الإجمالي ">1300 ر.س</td>
+                                            <td data-title="السعر الإجمالي ">1300 $</td>
                                             <td><a href="" class="button">تفاصيل</a></td>
                                         </tr>
                                         <tr>
@@ -59,7 +59,7 @@
                                             <td data-title="رقم الطلب ">1234</td>
                                             <td data-title="تاريخ الطلب ">10.01.2023</td>
                                             <td data-title="الحالة ">مدفوع</td>
-                                            <td data-title="السعر الإجمالي ">1300 ر.س</td>
+                                            <td data-title="السعر الإجمالي ">1300 $</td>
                                             <td><a href="" class="button">تفاصيل</a></td>
                                         </tr>
                                     </tbody>
