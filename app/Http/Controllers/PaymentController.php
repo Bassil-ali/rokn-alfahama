@@ -99,8 +99,5 @@ class PaymentController extends BaseController
     // if (!defined('DONT_RUN_SAMPLES')) {
     //       createAnAcceptPaymentTransaction("2.23");
     // }
-    public function test()
-    {
-        dd("test");
-    }
+
 }
