@@ -402,7 +402,7 @@ export default {
           item.who_us[0].image_url = new_image.url;
         }
       }
-      item.twitter_tweet = item.twitter_tweet + "#";
+
       this.$store.dispatch("setting/store", { settings: { ...item } });
     },
     get_url(image) {

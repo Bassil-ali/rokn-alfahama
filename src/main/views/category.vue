@@ -23,7 +23,7 @@
                   </a>
                 </li> -->
 
-                <li :key="index" v-for="(category, index) in categories">
+                <li @click="category.children_count > 0 ? '':selected_category = category" :key="index" v-for="(category, index) in categories">
                   <a
                     href="javascript:void(0)"
                     :id="`link${index}`"
@@ -53,7 +53,6 @@
                       v-for="(w, i) in category.children"
                     >
                       <a
-                        
                         href="javascript:void(0)"
                         :id="`link${index}${i}`"
                         :ref="`link${index}${i}`"
@@ -72,13 +71,16 @@
                         <i class="bi bi-chevron-left"></i
                       ></a>
                       <ul
-                      
                         class="supmenu"
                         :ref="`supmenu${index}${i}`"
                         :id="`supmenu${index}${i}`"
                       >
-                        <li  @click="selected_category = cc" v-for="cc in w.children">
-                          <a>
+                        <li
+                          
+                          v-for="cc,index in w.children"
+                          :key="index"
+                        >
+                          <a @click="selected_category = cc">
                             <span class="title">
                               <figure>
                                 <img :src="cc.image" alt="" />
@@ -89,7 +91,7 @@
                         </li>
                       </ul>
                     </li>
-                    <li v-else>
+                    <li @click="selected_category = w" v-else>
                       <a
                         href="javascript:void(0)"
                         class="d-flex justify-content-between"

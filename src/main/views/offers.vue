@@ -5,10 +5,11 @@
         <h2>{{ $t("Latest_Offers") }}</h2>
       </div>
 
-      <div class="head-offer">
-        <img v-if="offer" :src="offer.image.url" alt="" />
-        <img v-else src="@/main/assets/images/0001.jpg" alt="" />
-        <!-- @/main/assets/images/0001.jpg -->
+      <div v-if="offer.image" class="head-offer">
+        <img :src="offer.image.url" alt="" />
+      </div>
+      <div v-else class="head-offer">
+        <img src="@/main/assets/images/0001.jpg" alt="" />
       </div>
 
       <div v-if="items" class="product">
@@ -56,16 +57,31 @@
                 <div
                   class="d-flex mt-2 justify-content-between align-items-center"
                 >
-                  <a @click="$root.addToCartTest(item)" class="addToCart button"
+                  <a
+                    style="cursor: pointer"
+                    @click="addToCart(item)"
+                    class="addToCart button"
                     ><img
                       src="@/main/assets/images/shopping-cart-2.svg"
                       alt=""
                     />
-                    اضف إلى السلة</a
-                  >
-                  <a href="" class="addToFavorite button"
-                    ><img src="@/main/assets/images/hearts.svg" alt=""
-                  /></a>
+                    {{ $t("add_to_cart") }}
+                  </a>
+                 <a
+              href="#"
+              @click.prevent="
+                like(item);
+                liking = !liking;
+              "
+              class="addToFavorite button"
+            >
+              <img
+                v-if="liking"
+                src="@/main/assets/images/hearts-fill.svg"
+                alt=""
+              />
+              <img v-else src="@/main/assets/images/hearts.svg" alt="" />
+            </a>
                 </div>
               </div>
             </div>

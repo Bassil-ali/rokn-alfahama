@@ -119,6 +119,7 @@
           <h2>{{ $t("the_most_wanted") }}</h2>
         </div>
         <carousel
+          v-if="test"
           :nav="false"
           :responsive="{
             0: { items: 1, nav: false },
@@ -165,33 +166,43 @@
               <figure class="full">
                 <!-- src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FAhmed.Rafie65%2Fposts%2F4564443757005434&show_text=true&width=500" -->
                 <!-- src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FAlmostashar.ahmad%2Fposts%2F1506469573029133&show_text=true&width=500" -->
-                <iframe
-                  :src="settings.find((v) => v.key == 'facebook_post').value"
-                  width="100%"
-                  height="100%"
-                  style="border: none; overflow: hidden"
-                  scrolling="no"
-                  frameborder="0"
-                  allowfullscreen="true"
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                ></iframe>
+                <div
+                  class="fb-page"
+                  data-href="https://www.facebook.com/facebookapp"
+                  data-hide-cover="false"
+                  data-show-facepile="true"
+                ></div>
               </figure>
             </div>
             <div class="col-md-4">
               <figure>
                 <!-- w.slice(0 ,w.length-1 ) -->
-                <Tweet
+                <div
+                  class="twitter-page"
+                  data-href="https://twitter.com/amazing_physics"
+                  data-width="340"
+                  data-hide-cover="false"
+                  data-show-facepile="true"
+                ></div>
+                <!-- <Tweet
                   :id="tweet.slice(0, tweet.length - 1)"
                   :options="{ theme: 'dark' }"
-                />
+                /> -->
               </figure>
             </div>
             <div class="col-md-4">
               <figure>
-                <InstagramEmbed
+                <div
+                  class="instagram-page"
+                  data-href="https://www.instagram.com/omr94/"
+                  data-width="340"
+                  data-hide-cover="false"
+                  data-show-facepile="true"
+                ></div>
+                <!-- <InstagramEmbed
                   url="https://www.instagram.com/p/CYrGw71sHrb/?utm_source=ig_embed&amp;utm_campaign=loading"
                   :max-width="500"
-                />
+                /> -->
               </figure>
               <!-- <div class="row">
                 <div class="col-md-6">
@@ -243,12 +254,13 @@ export default {
     },
   },
   mounted() {
-    setTimeout(() => {
-      this.test = true;
-    }, 2800);
     this.$store.dispatch("category/index");
     this.$store.dispatch("item/index");
+    setTimeout(() => {
+      this.test = true;
+    }, 3800);
   },
+  
 };
 </script>
 <style scoped>

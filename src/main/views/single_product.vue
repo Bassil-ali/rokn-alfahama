@@ -1,7 +1,7 @@
 <template>
   <div class="entry-content single-product">
     <div class="container">
-      <nav aria-label="breadcrumb">
+      <!-- <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <a href="#"><i class="bi bi-house-door"></i></a>
@@ -12,34 +12,71 @@
             عطر مسك سلك
           </li>
         </ol>
-      </nav>
+      </nav> -->
       <div class="row">
         <div class="col-md-9 right">
           <div class="caption-product">
             <div class="row">
-              <div class="col-md-5">
+              <!-- <div class="col-md-5">
                 <img
                   style="max-height: 100%; max-width: 100%"
                   :src="one.image"
                   alt=""
                 />
+              </div> -->
+              <div class="col-md-5">
+                <carousel
+                  :nav="false"
+                  :dots="false"
+                  id="sync1"
+                  :items="1"
+                  dir="ltr"
+                >
+                  <div class="item">
+                    <figure>
+                      <img
+                        :src="selected_img ? selected_img : one.image"
+                        alt=""
+                      />
+                    </figure>
+                  </div>
+                </carousel>
+                <br />
+                <carousel
+                  :items="5"
+                  :nav="false"
+                  :dots="false"
+                  id="sync2"
+                  dir="ltr"
+                >
+                  <div
+                    :key="index"
+                    v-for="(image, index) in one.media"
+                    class="item"
+                  >
+                    <figure>
+                      <img @click="selected_img = image.url" :src="image.url" />
+                    </figure>
+                  </div>
+                  <div class="item">
+                    <figure>
+                      <img
+                        v-if="selected_img"
+                        @click="selected_img = one.image"
+                        :src="one.image"
+                      />
+                    </figure>
+                  </div>
+                </carousel>
               </div>
               <div class="col-md-7">
                 <div class="desc">
                   <h2>
-                    {{
-                      one.translations
-                        .filter((v) => v.locale == locale)
-                        .find((v) => v.field == "name").value
-                    }}
+                    {{ one.name }}
+                    <!-- .filter((v) => v.locale == locale)
+                        .find((v) => v.field == "name").value -->
                   </h2>
-                  <p>
-                    {{
-                      one.translations
-                        .filter((v) => v.locale == locale)
-                        .find((v) => v.field == "brief").value
-                    }}
-                  </p>
+                  <p v-html="one.brief"></p>
                   <div class="price">
                     <strong>{{
                       one.offer
@@ -47,7 +84,7 @@
                           (one.offer.percentage / 100) * one.selling_price
                         : one.selling_price
                     }}</strong>
-                    <span>$ سعودي</span>
+                    <span>$ </span>
                     <div
                       v-if="one.offer"
                       class="
@@ -69,13 +106,13 @@
                     </div>
                   </div>
 
-                  <!-- <div class="quantity d-flex align-items-center">
+                  <div class="quantity d-flex align-items-center">
                     <span>{{ $t("quantity") }}</span>
                     <div id="quantity" class="d-flex align-items-center">
                       <button
                         class="btn-subtract"
-                        @click="decrement(one)"
                         type="button"
+                        @click="decrement(one)"
                       >
                         -
                       </button>
@@ -83,17 +120,17 @@
                         type="number"
                         class="item-quantity"
                         min="0"
-                        value="1"
+                        :value="this.item_quantity"
                       />
                       <button
                         class="btn-add"
-                        @click="increment(one)"
                         type="button"
+                        @click="increment(one)"
                       >
                         +
                       </button>
                     </div>
-                  </div> -->
+                  </div>
                   <div
                     class="
                       buttons
@@ -115,7 +152,8 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-12">
+
+              <!-- <div class="col-md-12">
                 <carousel
                   :nav="false"
                   :autoplaySpeed="true"
@@ -132,7 +170,7 @@
                     :src="image.url"
                   />
                 </carousel>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -220,7 +258,7 @@
                   {{ $t("Product_Description") }}
                 </button>
               </li>
-              <!-- <li class="nav-item" role="presentation">
+              <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
                   id="profile-tab"
@@ -234,7 +272,7 @@
                   {{ $t("Properties") }}
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
+              <!-- <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
                   id="contact-tab"
@@ -266,17 +304,30 @@
                   ></div>
                 </div>
               </div>
-              <!-- <div
+              <div
                 class="tab-pane fade"
                 id="profile"
                 role="tabpanel"
                 aria-labelledby="profile-tab"
               >
                 <div class="content">
-                  <p>خصائص</p>
+                  <!-- <div style="border: grey solid 1px" class="row">
+                    <div class="col-md-3">
+                      owhsad
+                    </div>
+                    <div class="col-md-3">
+                      owhsad
+                    </div>
+                    <div class="col-md-3">
+                      owhsad
+                    </div>
+                    <div class="col-md-3">
+                      owhsad
+                    </div>
+                  </div> -->
                 </div>
               </div>
-              <div
+              <!-- <div
                 class="tab-pane fade"
                 id="contact"
                 role="tabpanel"
@@ -301,32 +352,46 @@ export default {
     carousel,
   },
   data() {
-    return {};
+    return {
+      one: {},
+      selected_img: null,
+      item_quantity: 1,
+    };
   },
   mounted() {
     if (this.$route.params.id) {
       this.$store.dispatch("item/show", { id: this.$route.params.id });
+      this.$store.dispatch("property/index", {
+        item_id: this.$route.params.id,
+      });
     } else {
       this.$router.push("/category");
     }
   },
   computed: {
     ...mapState({
-      one: (state) => state.item.one,
+      one_item: (state) => state.item.one,
       locale: (state) => state.locales.locale,
       same_items: (state) => state.item.all || [],
+      order: (state) => state.cart.order,
+      all_properties: (state) => state.property.all,
     }),
   },
   methods: {
     addToCart(item) {
+      item.item_quantity =
+        item.item_quantity > 0
+          ? item.item_quantity + this.item_quantity
+          : this.item_quantity;
+
       this.$store.dispatch("cart/addItem", item);
     },
-    like(item) {
+    like(one) {
       this.$store.dispatch("item_reaction/store", {
         item_id: item.id,
       });
     },
-    rank(item, rank) {
+    rank(one, rank) {
       this.$store
         .dispatch("item_rank/store", {
           item_id: item.id,
@@ -337,15 +402,27 @@ export default {
         });
     },
     increment(item) {
-      this.$store.dispatch("cart/incrementItem", item);
+      this.item_quantity++;
+      // item.item_quantity = this.item_quantity;
+      // this.$store.dispatch("cart/incrementItem", item);
     },
     decrement(item) {
-      this.$store.dispatch("cart/decrementItem", item);
+      this.item_quantity == 1 ? "" : this.item_quantity--;
+      // item.item_quantity = this.item_quantity;
+      // this.$store.dispatch("cart/decrementItem", item);
     },
   },
   watch: {
-    one(val) {
+    one_item(val) {
       if (val) {
+        if (this.order.items.find((v) => v.item_id == val.id)) {
+          let one = this.order.items.find((v) => v.item_id == val.id);
+          this.one = { ...val, ...one };
+          console.log("yeeeeeeeeeeeeeeeeeeeeeee");
+        } else {
+          console.log("noooooooooooooooooooooooooo");
+          this.one = val;
+        }
         this.$store.dispatch("item/index", { category_id: val.category_id });
       }
     },

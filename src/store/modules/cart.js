@@ -43,7 +43,7 @@ const actions = {
         }
 
     },
-    removeItem({ commit, state }, item) {
+    removeItem({ commit, state, dispatch }, item) {
         this.$axios.delete(`/order/${state.order.id}/item/${item.item_id}`, item).then(() => {
             if (state.order.id) {
                 dispatch('order/store', { ...state.order, silent: true }, { root: true })
@@ -54,6 +54,7 @@ const actions = {
 
     },
     incrementItem({ commit, state, dispatch }, item) {
+
         let item_s = state.order.items.find(i => i.id == item.id)
         item_s.item_quantity++;
         state.counter++;
