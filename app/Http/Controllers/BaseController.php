@@ -18,8 +18,8 @@ class BaseController extends Controller
     public function __construct(Request $request)
     {
         $this->user = auth()->user();
-        if ($this->user)
-            $request->merge(['user_id' => $this->user->id]);
+        // if ($this->user )
+        //     $request->merge(['user_id' => $this->user->id]);
     }
     public static function routeName()
     {

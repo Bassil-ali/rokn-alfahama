@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Color extends Model
+class Color extends BaseModel
 {
+    use HasTranslations;
     public $translatable = ['name'];
     protected $appends = ['translations'];
     protected $guarded = [];
