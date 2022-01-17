@@ -105,7 +105,7 @@
         <v-row>
           <v-col cols="12">
             <v-textarea
-              v-model="item.translations[2].value"
+              v-model="item.translations[4].value"
               outlined
               :label="$t('Item_brief_ar')"
               dense
@@ -116,7 +116,7 @@
         <v-row>
           <v-col cols="12">
             <v-textarea
-              v-model="item.translations[3].value"
+              v-model="item.translations[5].value"
               outlined
               :label="$t('Item_brief_en')"
               dense
@@ -133,7 +133,7 @@
             <pre></pre>
             <ckeditor
               :editor="editor"
-              v-model="item.translations[4].value"
+              v-model="item.translations[2].value"
               :config="editorConfig"
             ></ckeditor>
           </v-col>
@@ -144,7 +144,7 @@
             <pre></pre>
             <ckeditor
               :editor="editor"
-              v-model="item.translations[5].value"
+              v-model="item.translations[3].value"
               :config="editorConfig"
             ></ckeditor>
           </v-col> </v-row
@@ -260,32 +260,79 @@
             </v-card>
           </v-dialog>
           <v-col cols="12" md="3"
-            ><v-text-field :label="$t('quantity')"></v-text-field
+            ><v-text-field
+              v-model="property.qty"
+              :label="$t('quantity')"
+            ></v-text-field
           ></v-col>
 
           <v-col cols="12" md="3">
-            <v-autocomplete dense :label="$t('color')">
+            <v-autocomplete
+              v-model="property.color_id"
+              :items="colors"
+              item-value="id"
+              item-text="name"
+              dense
+              :label="$t('color')"
+            >
               <template v-slot:append>
                 <v-btn @click="addColorDilaog = true" icon>
-                  <v-icon> fas fa-plus </v-icon>
+                  <v-icon small> fas fa-plus </v-icon>
                 </v-btn>
+              </template>
+              <template v-slot:item="{ item }">
+                <div :style="`background-color: ${item.hex_code};width:100%`">
+                  {{ item.name }}
+                </div>
               </template>
             </v-autocomplete>
           </v-col>
 
           <v-col cols="12" md="2"
             ><v-text-field
-              v-model="item.price"
+              v-model="property.price"
               :label="$t('price')"
+              dense
             ></v-text-field
           ></v-col>
-          <v-col cols="12" md="2"
-            ><v-autocomplete
+          <v-col cols="12" md="2">
+            <v-dialog width="fit-content" v-model="addSizeDilaog">
+              <v-card>
+                <v-card-title>
+                  {{ $t("add new size") }}
+                </v-card-title>
+                <v-card-text>
+                  <v-row>
+                    <v-col>
+                      <v-text-field v-model="size.name" :label="$t('name')">
+                      </v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+                <v-card-actions class="justify-center">
+                  <v-row justify="center" no-gutters dense>
+                    <v-btn @click="saveSize()" class="primary">
+                      {{ $t("save") }}
+                    </v-btn>
+                  </v-row>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+            <v-autocomplete
+              v-model="property.size_id"
               :items="sizes"
-              item.price
+              item-value="id"
+              dense
+              item-text="name"
               :label="$t('size')"
-            ></v-autocomplete
-          ></v-col>
+            >
+              <template v-slot:append>
+                <v-btn @click="addSizeDilaog = true" icon>
+                  <v-icon small> fas fa-plus </v-icon>
+                </v-btn>
+              </template>
+            </v-autocomplete></v-col
+          >
           <v-col cols="12" md="2"
             ><v-btn @click="removeProperty(index)" icon>
               <v-icon> fac fa-times </v-icon>
@@ -318,7 +365,9 @@ export default {
   data() {
     return {
       addColorDilaog: false,
-      sizes: ["xl", "lg"],
+      addSizeDilaog: false,
+
+      size: {},
       side_color: "",
 
       properties: [{}],
@@ -336,23 +385,24 @@ export default {
             value: "",
             locale: "en",
           },
+
           {
-            field: "brief",
+            field: "description",
             value: "",
             locale: "ar",
           },
           {
-            field: "brief",
+            field: "description",
             value: "",
             locale: "en",
           },
           {
-            field: "description",
+            field: "brief",
             value: "",
             locale: "ar",
           },
           {
-            field: "description",
+            field: "brief",
             value: "",
             locale: "en",
           },
@@ -428,8 +478,13 @@ export default {
     this.$store.dispatch("category/index");
     this.$store.dispatch("unit/index");
     this.$store.dispatch("tax/index");
+    this.$store.dispatch("color/index");
+    this.$store.dispatch("size/index");
     if (this.$route.params.id) {
       this.$store.dispatch("item/show", { id: this.$route.params.id });
+      this.$store.dispatch("property/index", {
+        item_id: this.$route.params.id,
+      });
     }
   },
   methods: {
@@ -476,6 +531,13 @@ export default {
             }
           });
         }
+        if (this.properties.length > 0) {
+          this.properties.map((property) => {
+            property.item_id = item.id;
+          });
+          console.log(this.properties);
+          this.$store.dispatch("property/store", this.properties);
+        }
         await this.$store.dispatch("item/store", item);
       } else {
         let new_item = await this.$store.dispatch("item/store", item);
@@ -489,6 +551,13 @@ export default {
               });
             }
           });
+        }
+        if (this.properties.length > 0) {
+          this.properties.map((property) => {
+            property.item_id = new_item.id;
+          });
+
+          this.$store.dispatch("property/store", this.properties);
         }
       }
     },
@@ -505,11 +574,12 @@ export default {
     saveColor() {
       this.color.hex_code = this.side_color;
 
- 
-
       this.$store.dispatch("color/store", this.color).then(() => {
         this.side_color = "";
       });
+    },
+    saveSize() {
+      this.$store.dispatch("size/store", this.size);
     },
   },
 
@@ -519,6 +589,9 @@ export default {
       units: (state) => state.unit.all,
       taxes: (state) => state.tax.all,
       one: (state) => state.item.one,
+      colors: (state) => state.color.all,
+      sizes: (state) => state.size.all,
+      all_properties: (state) => state.property.all,
     }),
   },
   watch: {
@@ -527,6 +600,11 @@ export default {
         this.item = JSON.parse(JSON.stringify(val));
         this.images = this.item.media;
         this.cover_image = this.item.cover_image;
+      }
+    },
+    all_properties(val) {
+      if (val) {
+        this.properties = JSON.parse(JSON.stringify(val));
       }
     },
   },

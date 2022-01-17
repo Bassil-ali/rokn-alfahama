@@ -146,22 +146,12 @@ export default {
           file: this.cover_image.url,
           is_file: true,
         });
+      } else {
+        item.cover_image_id = this.cover_image.id;
       }
-
-      item.cover_image_id = cover_image.id;
-
+      
       let item_data = await this.$store.dispatch("category/store", item);
       console.log("ahmad hassouna");
-    },
-
-    remove_image(image, index) {
-      if (image.id) {
-        this.$store.dispatch("gallery_media/delete", {
-          gallery_id: image.gallery_id,
-          id: image.id,
-        });
-      }
-      this.images.splice(index, 1);
     },
   },
 

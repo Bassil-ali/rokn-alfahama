@@ -112,24 +112,24 @@ let list = [{
     },
     ]
 },
-{
-    title: 'currencies',
-    icon: 'fas fa-coins',
-    to: '/currencies',
-    children: [{
-        title: 'view',
-        icon: 'fas fa-eye',
-        to: '',
-        group: 'currencies'
-    },
-    {
-        title: 'create',
-        icon: 'fas fa-plus',
-        to: 'form',
-        group: 'currencies'
-    },
-    ]
-},
+// {
+//     title: 'currencies',
+//     icon: 'fas fa-coins',
+//     to: '/currencies',
+//     children: [{
+//         title: 'view',
+//         icon: 'fas fa-eye',
+//         to: '',
+//         group: 'currencies'
+//     },
+//     {
+//         title: 'create',
+//         icon: 'fas fa-plus',
+//         to: 'form',
+//         group: 'currencies'
+//     },
+//     ]
+// },
 {
     title: 'coupons',
     icon: 'fas fa-percentage',

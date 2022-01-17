@@ -41,10 +41,8 @@
               {{
                 offer ? calcNewPrice(item.selling_price) : item.selling_price
               }}
-              
+
               $
-            
-            
             </p>
             <p class="star">
               <i
@@ -58,10 +56,13 @@
           </div>
 
           <div class="d-flex mt-2 justify-content-between align-items-center">
-            <a style="cursor:pointer" @click="addToCart(item)" class="addToCart button"
-              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" /> اضف
-              إلى السلة</a
-            >
+            <a
+              style="cursor: pointer"
+              @click="addToCart(item)"
+              class="addToCart button"
+              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" />
+              {{ $t("add_to_cart") }}
+            </a>
             <a
               href="#"
               @click.prevent="

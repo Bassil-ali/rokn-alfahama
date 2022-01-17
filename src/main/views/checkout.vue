@@ -303,6 +303,7 @@ export default {
             window.location.host
           }`;
           window.open(`${domain}/complete-order/${this.order.id}`);
+          window.location.reload()
         });
 
       // if (order_id) {
