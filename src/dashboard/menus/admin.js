@@ -219,7 +219,20 @@ let list = [{
         group: 'payments'
     },
     ]
-}
+},
+{
+        title: 'contact',
+        icon: 'fas fa-money-check-alt',
+        to: '/contact',
+        children: [{
+            title: 'view',
+            icon: 'fas fa-eye',
+            to: '',
+            group: 'contact'
+        },
+        
+        ]
+    }
 
 ];
 export default list;
