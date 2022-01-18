@@ -13,6 +13,7 @@
                 <h2>{{ $t("contact") }}</h2>
                 <div class="mb-3">
                   <input
+                    v-model="item.name"
                     type="text"
                     class="form-control"
                     :placeholder="$t('name')"
@@ -20,6 +21,7 @@
                 </div>
                 <div class="mb-3">
                   <input
+                    v-model="item.email"
                     type="email"
                     class="form-control"
                     :placeholder="$t('email')"
@@ -27,6 +29,7 @@
                 </div>
                 <div class="mb-3">
                   <input
+                    v-model="item.subject"
                     type="text"
                     class="form-control"
                     :placeholder="$t('subject')"
@@ -34,8 +37,7 @@
                 </div>
                 <div class="mb-3">
                   <textarea
-                    name=""
-                    id=""
+                    v-model="item.message"
                     cols="30"
                     rows="10"
                     class="form-control"
@@ -69,13 +71,16 @@
               <div class="socail">
                 <span>{{ $t("follow_us_on") }}</span>
                 <div class="links">
-                  <a :href="settings.instgram" target="__blank"
-                    ><i class="fab fa-instagram"></i
-                  ></a>
-
-                  <a :href="settings.facebook" target="__blank"
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
+                   
+                    <a :href="settings.instgram" target="__blank"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                  
+                  
+                    <a :href="settings.facebook" target="__blank"
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+                  
                 </div>
               </div>
             </div>
@@ -88,11 +93,22 @@
 <script>
 import { mapState } from "vuex";
 export default {
+   data() {
+    return {
+      item: {},
+    };
+  },
   computed: {
     ...mapState({
       settings: (state) => state.settings,
       locale: (state) => state.locales.locale,
     }),
+  },
+
+  methods: {
+    save(item) {
+      this.$store.dispatch("contact/store", item);
+    },
   },
 };
 </script>

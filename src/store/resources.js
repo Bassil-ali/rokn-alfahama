@@ -142,6 +142,11 @@ let resources = [
         discreption: 'dashboard resource'
     },
     {
+        name: 'contact',
+        parent: 'user',
+        discreption: 'contact resource'
+    },
+    {
         name: 'user.address',
         parent: 'user',
         //form_route: '/coupon/form',
