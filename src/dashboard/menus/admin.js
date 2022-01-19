@@ -158,12 +158,12 @@ let list = [{
         to: '',
         group: 'users'
     },
-    {
-        title: 'create',
-        icon: 'fas fa-plus',
-        to: 'form',
-        group: 'users'
-    },
+    // {
+    //     title: 'create',
+    //     icon: 'fas fa-plus',
+    //     to: 'form',
+    //     group: 'users'
+    // },
     ]
 },
 // {

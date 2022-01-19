@@ -21,13 +21,13 @@
       <v-list-item>
         <v-list-item-avatar class="align-self-center" color="white" contain>
           <v-img
-            src="https://demos.creative-tim.com/vuetify-material-dashboard/favicon.ico"
+            src="@/main/assets/images/logo.png"
             max-height="30"
           />
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title class="display-1" v-text="profile.title" />
+          <v-list-item-title class="display-2" v-text="user.user.user_name" style="" />
         </v-list-item-content>
       </v-list-item>
     </v-list>

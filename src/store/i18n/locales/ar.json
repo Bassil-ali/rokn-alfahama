@@ -396,5 +396,6 @@
   "are you sure you want to delete": "هل انت متأكد من الحذف ",
   "select color": "اختار لون ",
   "arabic color name": "اسم اللون بالعربية",
-  "english color name": "اسم اللون بالانجليزية"
+  "english color name": "اسم اللون بالانجليزية",
+  "contact_table": "جدول رسائل التواصل"
 }

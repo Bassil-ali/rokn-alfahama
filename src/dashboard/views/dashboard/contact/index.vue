@@ -4,7 +4,7 @@
 
     <base-material-card
       icon="fas fa-clipboard"
-      title="coupons_table"
+      title="contact_table"
       class="px-5 py-3"
     >
       
