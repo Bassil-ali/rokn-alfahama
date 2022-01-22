@@ -16,6 +16,7 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->double('amount');
             $table->dateTime('date');
             $table->unsignedBigInteger('currency_id')->nullable();

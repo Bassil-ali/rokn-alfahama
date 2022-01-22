@@ -80,7 +80,7 @@ class PaymentController extends BaseController
     {
         $myOrder = Order::find($myOrderId);
 
-        $validator = Validator::make(['order_id' => $myOrderId, "amount" => $myOrder->total, "date" => Carbon::now(), "status" => 0], Payment::createRules($this->user));
+        $validator = Validator::make(['order_id' => $myOrderId, "amount" => $myOrder->taxed_total, "date" => Carbon::now(), "status" => 0, 'user_id' => $myOrder->user_id], Payment::createRules($this->user));
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }

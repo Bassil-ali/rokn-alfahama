@@ -35,8 +35,8 @@ class PropertyController extends BaseController
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        foreach ($validator->validated() as  $value) {   
-            $property = Property::create($value );
+        foreach ($validator->validated() as  $value) {
+            $property = Property::updateOrCreate($value);
         }
         if ($request->translations) {
             foreach ($request->translations as $translation)

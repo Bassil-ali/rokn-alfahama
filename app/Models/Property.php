@@ -9,6 +9,7 @@ class Property extends BaseModel
 {
 
     protected $guarded = [];
+    protected $with = ['color', 'size'];
     use HasFactory;
 
     public function item()
@@ -17,18 +18,18 @@ class Property extends BaseModel
     }
     public function color()
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(Color::class);
     }
     public function size()
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(Size::class);
     }
 
     public static function createRules($user)
     {
         return [
 
-            '*.item_id' => 'sometimes',
+            '*.item_id' => 'required',
             '*.color_id' => 'sometimes|exists:colors,id',
             '*.size_id' => 'sometimes|exists:sizes,id',
             '*.price' => 'sometimes|numeric',
@@ -38,7 +39,7 @@ class Property extends BaseModel
     public static function updateRules($user)
     {
         return [
-            '*.item_id' => 'sometimes',
+            '*.item_id' => 'required',
             '*.color_id' => 'sometimes|exists:colors,id',
             '*.size_id' => 'sometimes|exists:sizes,id',
             '*.price' => 'sometimes|numeric',

@@ -53,7 +53,7 @@ class Address extends BaseModel
     public function scopeSearch($query, $request)
     {
         $query->when($request->user_id, function ($query, $user_id) {
-            $query->where('user_id', '=', $user_id);
+            $query->where('user_id',  $user_id);
         });
     }
 }

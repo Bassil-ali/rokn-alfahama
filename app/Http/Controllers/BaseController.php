@@ -18,6 +18,7 @@ class BaseController extends Controller
     public function __construct(Request $request)
     {
         $this->user = auth()->user();
+        // return response()->json(['message' => 'Unauthorized'], 401);
         // if ($this->user )
         //     $request->merge(['user_id' => $this->user->id]);
     }
