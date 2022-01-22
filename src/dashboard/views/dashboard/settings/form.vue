@@ -295,7 +295,7 @@
             <v-text-field
               type="text"
               v-model="item.twitter_tweet"
-              :label="$t('twitter tweet id')"
+              :label="$t('twitter tweet ')"
             ></v-text-field>
           </v-col>
           <v-col cols="12" md="3">
@@ -402,7 +402,12 @@ export default {
           item.who_us[0].image_url = new_image.url;
         }
       }
-
+      if (item.twitter_tweet) {
+        item.twitter_tweet =
+          item.twitter_tweet.slice(-1) == "#"
+            ? item.twitter_tweet
+            : item.twitter_tweet + "#";
+      }
       this.$store.dispatch("setting/store", { settings: { ...item } });
     },
     get_url(image) {

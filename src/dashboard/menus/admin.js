@@ -149,6 +149,24 @@ let list = [{
     ]
 },
 {
+    title: 'shipping',
+    icon: 'fas fa-percentage',
+    to: '/shipping',
+    children: [{
+        title: 'view',
+        icon: 'fas fa-eye',
+        to: '',
+        group: 'shipping'
+    },
+    {
+        title: 'create',
+        icon: 'fas fa-plus',
+        to: 'form',
+        group: 'shipping'
+    },
+    ]
+},
+{
     title: 'users',
     icon: 'fas fa-users',
     to: '/users',

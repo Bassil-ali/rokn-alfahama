@@ -152,7 +152,7 @@ export default {
     ...mapState({
       user: (state) => state.auth.user,
       counter: (state) => state.cart.counter,
-      order_total: (state) => state.cart.order_total,
+      order_total: (state) => state.cart.order_total || 0,
       locale: (state) => state.locales.locale,
     }),
   },

@@ -6,11 +6,22 @@
           <div class="siadbar">
             <div class="box">
               <h2><i class="bi bi-list"></i>{{ $t("Categories") }}</h2>
-    <!-- <ul  class="category">
-
-              <nested-menu :categories="categories"></nested-menu>
-    </ul> -->
-             
+              <!-- <ul class="category">
+                <nested-menu :categories="categories"></nested-menu>
+              </ul> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div
+            @click.self ="test"
+            style="border: green solid 1px; background-color: green"
+          >
+            parent
+            <div
+              style="border: red solid 1px; width: 50%; background-color: red"
+            >
+              child
             </div>
           </div>
         </div>
@@ -49,6 +60,11 @@ export default {
     },
   },
   methods: {
+    test(event) {
+      console.log("AAAA7AAA");
+      console.log(event);
+      console.log("AAAA7AAA");
+    },
     showsupmenu(e11, e22) {
       console.log("NOT nested");
       console.log(this.$refs);

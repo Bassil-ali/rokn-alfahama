@@ -67,21 +67,21 @@
                     />
                     {{ $t("add_to_cart") }}
                   </a>
-                 <a
-              href="#"
-              @click.prevent="
-                like(item);
-                liking = !liking;
-              "
-              class="addToFavorite button"
-            >
-              <img
-                v-if="liking"
-                src="@/main/assets/images/hearts-fill.svg"
-                alt=""
-              />
-              <img v-else src="@/main/assets/images/hearts.svg" alt="" />
-            </a>
+                  <a
+                    href="#"
+                    @click.prevent="
+                      like(item);
+                      liking = !liking;
+                    "
+                    class="addToFavorite button"
+                  >
+                    <img
+                      v-if="liking"
+                      src="@/main/assets/images/hearts-fill.svg"
+                      alt=""
+                    />
+                    <img v-else src="@/main/assets/images/hearts.svg" alt="" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -120,7 +120,11 @@ export default {
       return price - discount;
     },
     addToCart(item) {
-      this.$store.dispatch("cart/addItem", item);
+      if (this.$root.user_obj) {
+        this.$store.dispatch("cart/addItem", item);
+      } else {
+        this.$router.push("/login");
+      }
     },
     like(item) {
       this.$store.dispatch("item_reaction/store", {

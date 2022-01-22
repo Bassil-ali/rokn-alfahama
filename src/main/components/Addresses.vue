@@ -64,7 +64,7 @@
 import { mapState } from "vuex";
 export default {
   mounted() {
-    this.$store.dispatch("address/index");
+    this.$store.dispatch("address/index" , {user_id:this.$root.user.id});
   },
   computed: {
     ...mapState({

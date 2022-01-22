@@ -33,14 +33,14 @@
                 font-weight: 500;
               "
             >
-              <span>{{ item.selling_price }} </span> </span
+              <span>
+                {{ calcItemPrice(item) }}
+              </span> </span
             >{{ item.name }}
           </a>
           <div class="d-flex align-items-center justify-content-between">
             <p class="price">
-              {{
-                offer ? calcNewPrice(item.selling_price) : item.selling_price
-              }}
+              {{ offer ? calcItemAfterDiscount(item) : calcItemPrice(item) }}
 
               $
             </p>
@@ -92,12 +92,22 @@ export default {
   },
 
   methods: {
-    calcNewPrice(price) {
-      let discount = (this.offer.percentage / 100) * price;
-      return price - discount;
+    calcItemAfterDiscount(item) {
+      let discount = (this.offer.percentage / 100) * item.selling_price;
+      let item_dicounted = item.selling_price - discount;
+      let tax = item.tax ? item.tax.percentage : 0;
+      return parseFloat(item_dicounted * (tax / 100 + 1)).toFixed(2);
+    },
+    calcItemPrice(item) {
+      let tax = item.tax ? item.tax.percentage : 0;
+      return parseFloat(item.selling_price * (tax / 100 + 1)).toFixed(2);
     },
     addToCart(item) {
-      this.$store.dispatch("cart/addItem", item);
+      if (this.$root.user_obj) {
+        this.$store.dispatch("cart/addItem", item);
+      } else {
+        this.$router.push("/login");
+      }
     },
     like(item) {
       this.$store.dispatch("item_reaction/store", {

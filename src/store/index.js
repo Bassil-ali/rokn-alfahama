@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import router from '../main/router/index'
 import Vuex from 'vuex'
 import modules from './modules';
 import axios from '../plugins/axios';
@@ -97,6 +98,10 @@ axios.interceptors.response.use(
     setTimeout(() => {
       store.state.get_alert = false;
     }, 2000)
+    if (response.status == 401) {
+      router.push('/login')
+      store.dispatch("auth/unload")
+    };
     if ((response.status == 200 || response.status == 201) && response.config.method == 'post' || response.config.method == 'options') {
       store.state.post_alert = true;
       setTimeout(() => {

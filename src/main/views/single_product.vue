@@ -78,12 +78,14 @@
                   </h2>
                   <p v-html="one.brief"></p>
                   <div class="price">
-                    <strong>{{
-                      one.offer
-                        ? one.selling_price -
-                          (one.offer.percentage / 100) * one.selling_price
-                        : one.selling_price
-                    }}</strong>
+
+                    <strong>
+                      {{
+                        one.offer
+                          ? calcItemAfterDiscount(one)
+                          : calcItemPrice(one)
+                      }}</strong
+                    >
                     <span>$ </span>
                     <div
                       v-if="one.offer"
@@ -101,7 +103,7 @@
                           font-weight: 500;
                         "
                       >
-                        <span>{{ one.selling_price }} </span>
+                        <span>{{ calcItemPrice(one) }} </span>
                       </div>
                     </div>
                   </div>
@@ -129,6 +131,58 @@
                       >
                         +
                       </button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                      <div class="row">
+                        <div style="position: relative" class="col-md-6">
+                          <button
+                            @click="selected_size = null"
+                            style="position: absolute; left: 0; top: 48px"
+                          >
+                            x
+                          </button>
+                          <div class="mb-3">
+                            <label for="" class="form-label">الحجم</label>
+                            <select v-model="selected_size" class="form-select">
+                              <option value="" disabled selected>اختر</option>
+                              <option
+                                v-for="(name, index) in sizes"
+                                :key="index"
+                                :value="name"
+                              >
+                                {{ name }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div style="position: relative" class="col-md-6">
+                          <button
+                            @click="selected_color = null"
+                            style="position: absolute; left: 0; top: 48px"
+                          >
+                            x
+                          </button>
+                          <div class="mb-3">
+                            <label for="" class="form-label">اللون</label>
+                            <select
+                              v-model="selected_color"
+                              class="form-select"
+                            >
+                              <option disabled selected>اختر</option>
+                              <option
+                                v-for="(name, index) in colors"
+                                :key="index"
+                                :value="name"
+                              >
+                                {{ name }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -188,7 +242,14 @@
                 <img src="@/main/assets/images/shipped.svg" alt="" />
               </figure>
               <h3>{{ $t("free_delivery") }}</h3>
-              <p>{{ $t("Free_delivery_if") }}</p>
+              <p>
+                {{ $t("Free_delivery_if") }}
+                {{
+                  settings.find((v) => v.key == "limit_price_for_shipment")
+                    .value || 0
+                }}
+                $
+              </p>
             </div>
             <div class="item mb-3 text-center">
               <figure>
@@ -207,12 +268,12 @@
             <div class="box">
               <h2>{{ $t("Similar_Products") }}</h2>
               <div class="product-list">
-                <div class="item">
-                  <div
-                    :key="index"
-                    v-for="(same_item, index) in same_items"
-                    class="d-flex"
-                  >
+                <div
+                  :key="index"
+                  v-for="(same_item, index) in same_items"
+                  class="item"
+                >
+                  <div class="d-flex">
                     <a href="">
                       <figure>
                         <img :src="same_item.image" alt="" />
@@ -222,7 +283,7 @@
                       <a href=""> {{ same_item.name }} </a>
                       <div class="d-flex justify-content-between">
                         <div class="price">
-                          <strong>{{ same_item.selling_price }}</strong> $
+                          <strong>{{ calcItemPrice(same_item) }}</strong> $
                         </div>
                         <a
                           @click="addToCart(same_item)"
@@ -258,7 +319,7 @@
                   {{ $t("Product_Description") }}
                 </button>
               </li>
-              <li class="nav-item" role="presentation">
+              <!-- <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
                   id="profile-tab"
@@ -271,7 +332,7 @@
                 >
                   {{ $t("Properties") }}
                 </button>
-              </li>
+              </li> -->
               <!-- <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
@@ -354,6 +415,12 @@ export default {
   data() {
     return {
       one: {},
+      colors: [],
+      sizes: [],
+      properties: [],
+      selected_color: null,
+      selected_price: null,
+      selected_size: null,
       selected_img: null,
       item_quantity: 1,
     };
@@ -368,6 +435,7 @@ export default {
       this.$router.push("/category");
     }
   },
+
   computed: {
     ...mapState({
       one_item: (state) => state.item.one,
@@ -375,16 +443,48 @@ export default {
       same_items: (state) => state.item.all || [],
       order: (state) => state.cart.order,
       all_properties: (state) => state.property.all,
+      settings: (state) => state.setting.all || [],
     }),
   },
   methods: {
+    coloersNames(properties) {
+      let arr = properties.map((a) => a.color.name);
+      return [...new Set(arr)];
+    },
+    sizesNames(properties) {
+      let arr = properties.map((a) => a.size.name);
+      return [...new Set(arr)];
+    },
+    calcItemAfterDiscount(item) {
+      let discount = (this.one.offer.percentage / 100) * item.selling_price;
+      let item_dicounted = item.selling_price - discount;
+      let tax = item.tax ? item.tax.percentage : 0;
+      return parseFloat(item_dicounted * (tax / 100 + 1)).toFixed(2);
+    },
+    calcItemPrice(item) {
+      let tax = item.tax ? item.tax.percentage : 0;
+      return parseFloat(item.selling_price * (tax / 100 + 1)).toFixed(2);
+    },
     addToCart(item) {
       item.item_quantity =
         item.item_quantity > 0
           ? item.item_quantity + this.item_quantity
           : this.item_quantity;
-
-      this.$store.dispatch("cart/addItem", item);
+      if (this.selected_size && this.selected_color) {
+        let test = this.properties.find(
+          (v) =>
+            v.size.name == this.selected_size &&
+            v.color.name == this.selected_color
+        );
+        item.selling_price = test.price;
+        item.property_id = test.id;
+      } else {
+        item.property_id ? (item.property_id = null) : "";
+      }
+      console.log(item.selling_price);
+      console.log(item.property_id);
+      console.log(item);
+      // this.$store.dispatch("cart/addItem", item);
     },
     like(one) {
       this.$store.dispatch("item_reaction/store", {
@@ -413,19 +513,67 @@ export default {
     },
   },
   watch: {
+    one(val) {
+      this.one = val;
+    },
     one_item(val) {
       if (val) {
         if (this.order.items.find((v) => v.item_id == val.id)) {
           let one = this.order.items.find((v) => v.item_id == val.id);
           this.one = { ...val, ...one };
-          console.log("yeeeeeeeeeeeeeeeeeeeeeee");
         } else {
-          console.log("noooooooooooooooooooooooooo");
           this.one = val;
         }
         this.$store.dispatch("item/index", { category_id: val.category_id });
       }
     },
+    selected_price(val) {
+      if (val) {
+        this.one.selling_price = val;
+      } else {
+        this.one.selling_price = this.one_item.selling_price;
+      }
+    },
+
+    all_properties(val) {
+      this.properties = JSON.parse(JSON.stringify(val));
+    },
+    properties: {
+      handler(val) {
+        this.colors = this.coloersNames(val);
+        this.sizes = this.sizesNames(val);
+      },
+      deep: true,
+    },
+    selected_color(val) {
+      if (val) {
+        this.properties = this.all_properties.filter(
+          (property) => property.color.name == val
+        );
+      } else {
+        this.properties = this.all_properties;
+      }
+    },
+    selected_size(val) {
+      if (val) {
+        this.properties = this.all_properties.filter(
+          (property) => property.size.name == val
+        );
+      } else {
+        this.properties = this.all_properties;
+      }
+    },
+  },
+  updated() {
+    if (this.selected_size && this.selected_color) {
+      this.selected_price = this.properties.find(
+        (v) =>
+          v.size.name == this.selected_size &&
+          v.color.name == this.selected_color
+      ).price;
+    } else {
+      this.selected_price = null;
+    }
   },
 };
 </script>

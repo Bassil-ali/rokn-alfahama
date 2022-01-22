@@ -130,11 +130,13 @@ export default {
   },
   methods: {
     save(item) {
+      item.user_id = this.user.id;
       this.$store.dispatch("address/store", item);
     },
   },
   computed: {
     ...mapState({
+      user: (state) => state.auth.user.user,
       one: (state) => state.address.one,
     }),
   },

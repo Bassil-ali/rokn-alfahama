@@ -197,7 +197,46 @@
         </v-row>
       </v-form>
     </base-material-card>
+    <base-material-card
+      icon="mdi-clipboard-text"
+      title="add shipment"
+      class="px-5 py-3"
+    >
+      <v-form>
+        <v-row class="mt-5 mb-5">
+          <v-btn @click="addShipment()" icon>
+            <v-icon color="green"> fas fa-plus </v-icon>
+          </v-btn>
+        </v-row>
+        <v-row :key="index" v-for="(shipment, index) in shipments">
+          <v-col cols="12" md="2"
+            ><v-text-field
+              v-model="shipment.price"
+              :label="$t('price')"
+              dense
+            ></v-text-field
+          ></v-col>
+          <v-col cols="12" md="2">
+            <v-autocomplete
+              v-model="shipment.shipping_id"
+              :items="shippings"
+              item-value="id"
+              dense
+              item-text="name"
+              :label="$t('shipping type')"
+            >
+            </v-autocomplete
+          ></v-col>
+          <v-col cols="12" md="2"
+            ><v-btn @click="removeShipment(index, shipment)" icon>
+              <v-icon> fac fa-times </v-icon>
+            </v-btn></v-col
+          >
+        </v-row>
+      </v-form>
+    </base-material-card>
 
+    <!-- no -->
     <base-material-card
       icon="mdi-clipboard-text"
       title="add properties"
@@ -334,7 +373,7 @@
             </v-autocomplete></v-col
           >
           <v-col cols="12" md="2"
-            ><v-btn @click="removeProperty(index)" icon>
+            ><v-btn @click="removeProperty(index, property)" icon>
               <v-icon> fac fa-times </v-icon>
             </v-btn></v-col
           >
@@ -370,7 +409,8 @@ export default {
       size: {},
       side_color: "",
 
-      properties: [{}],
+      properties: [],
+      shipments: [],
       globalIndex: 0,
       has_proparty: true,
       item: {
@@ -480,6 +520,8 @@ export default {
     this.$store.dispatch("tax/index");
     this.$store.dispatch("color/index");
     this.$store.dispatch("size/index");
+    this.$store.dispatch("shipping/index");
+    this.$store.dispatch("shippinga/index");
     if (this.$route.params.id) {
       this.$store.dispatch("item/show", { id: this.$route.params.id });
       this.$store.dispatch("property/index", {
@@ -491,8 +533,16 @@ export default {
     addProperty() {
       this.properties.push({});
     },
-    removeProperty(index) {
+    addShipment() {
+      this.shipments.push({});
+    },
+    removeProperty(index, item) {
       this.properties.splice(index, 1);
+      this.$store.dispatch("property/delete", item);
+    },
+    removeShipment(index, item) {
+      this.properties.splice(index, 1);
+      this.$store.dispatch("shipping/delete", item);
     },
     get_url(image) {
       return typeof image.url != "string"
@@ -538,6 +588,13 @@ export default {
           console.log(this.properties);
           this.$store.dispatch("property/store", this.properties);
         }
+        if (this.shipments.length > 0) {
+          this.shipments.map((shipment) => {
+            shipment.item_id = item.id;
+          });
+
+          this.$store.dispatch("shippinga/store", this.shipments);
+        }
         await this.$store.dispatch("item/store", item);
       } else {
         let new_item = await this.$store.dispatch("item/store", item);
@@ -559,6 +616,14 @@ export default {
 
           this.$store.dispatch("property/store", this.properties);
         }
+        if (this.shipments.length > 0) {
+          this.shipments.map((shipment) => {
+            shipment.item_id = new_item.id;
+          });
+
+          this.$store.dispatch("shippinga/store", this.shipments);
+        }
+        this.$router.push("/items");
       }
     },
 
@@ -592,6 +657,8 @@ export default {
       colors: (state) => state.color.all,
       sizes: (state) => state.size.all,
       all_properties: (state) => state.property.all,
+      shippings: (state) => state.shipping.all,
+      shippinga: (state) => state.shippinga.all,
     }),
   },
   watch: {
@@ -607,6 +674,9 @@ export default {
         this.properties = JSON.parse(JSON.stringify(val));
       }
     },
+    shippinga(val){
+      this.shipments = val
+    }
   },
 };
 </script>

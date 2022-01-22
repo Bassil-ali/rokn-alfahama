@@ -105,9 +105,9 @@ export default {
       this.$store.dispatch("category/show", { id: this.$route.params.id });
     }
     this.$store.dispatch("category/index");
-    if (this.$props.item.id) {
+    if (this.$attrs.id) {
       this.$store
-        .dispatch("item/show", { id: this.$props.item.id })
+        .dispatch("item/show", { id: this.$attrs.id })
         .then((res) => {
           this.cover_image = res.gallery.cover_image;
           this.item.categories = res.category_ids;

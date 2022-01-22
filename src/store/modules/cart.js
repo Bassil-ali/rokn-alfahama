@@ -10,9 +10,11 @@ const getters = {
 const actions = {
     async addItem({
         commit,
+        rootState,
         state,
         dispatch
     }, item) {
+        if (!rootState.auth.user.user.id) return;
         if (state.order.items && state.order.id) {
             let ex_item = state.order.items.find((i) => i.item_id == item.id);
             if (!ex_item) {
@@ -21,6 +23,8 @@ const actions = {
                     order_id: state.order.id,
                     item_quantity: item.item_quantity || 1,
                     name: item.name,
+                    tax_id: item.tax ? item.tax.id : null,
+                    tax_percentage: item.tax ? item.tax.percentage : null,
                     image: item.image,
                     item_price: item.selling_price,
                     offer_id: item.offer ? item.offer.id : undefined,
@@ -33,7 +37,7 @@ const actions = {
                 dispatch('incrementItem', ex_item)
             }
         } else {
-            dispatch("order/store", { total: 0, discount: 0, taxed_total: 0, status: 0, issue_date: new Date().toISOString().slice(0, 19).replace("T", " ") }, { root: true }).then(() => {
+            dispatch("order/store", { user_id: rootState.auth.user.user.id, total: 0, discount: 0, taxed_total: 0, status: 0, issue_date: new Date().toISOString().slice(0, 19).replace("T", " ") }, { root: true }).then(() => {
                 dispatch("load").then(() => {
                     dispatch("addItem", item)
                 })
@@ -170,10 +174,16 @@ const mutations = {
         state.order_total = totalPrice
     },
     mut_set_order_total(state) {
-        state.order_total = state.order.items ? state.order.items.reduce((c, n) => c + n.item_price * n.item_quantity - n.discount, 0) : 0
+        state.order_total = state.order.items ? state.order.items.reduce((c, n) => {
+            let price = n.item_price * n.item_quantity;
+            let tax = n.tax_percentage / 100
+            let discount = n.discount * n.item_quantity;
+            return c + ((price - discount) * (1 + tax))
+
+        }, 0) : 0
     },
     mut_reset_cart_total(state) {
-        stete.order = { items: [] }
+        state.order = { items: [] }
         state.order_total = 0
     },
 

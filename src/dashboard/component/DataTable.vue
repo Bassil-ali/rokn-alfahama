@@ -22,8 +22,8 @@
       </v-card>
     </v-dialog>
     <v-data-table
-      :headers="translateHeaders(headers.concat('actions'))"
-      :items="data"
+      :headers="translateHeaders((headers || []).concat('actions'))"
+      :items="data || []"
       :options.sync="options"
       :page.sync="options.page"
       item-key="id"
@@ -53,6 +53,12 @@
         </v-btn>
       </template>
     </v-data-table>
+    <v-pagination
+      v-model="options.page"
+      :length="meta.last_page"
+      circle
+      color="primary"
+    ></v-pagination>
   </div>
 </template>
 <script>
@@ -110,6 +116,27 @@ export default {
     },
     navigate_to_form(item) {
       this.$router.push(`${this.form_route}/${item.id}`);
+    },
+  },
+  watch: {
+    options: {
+      handler(val) {
+        this.$store.dispatch(`${this.module}/index`, {
+          ...val,
+          ...this.params,
+        });
+      },
+      deep: true,
+    },
+    params: {
+      handler(val) {
+        this.$store.dispatch(`${this.module}/index`, {
+          ...val,
+          ...this.options,
+        });
+      },
+      deep: true,
+      immediate: true,
     },
   },
 };

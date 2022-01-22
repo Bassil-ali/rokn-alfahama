@@ -63,7 +63,9 @@
             <p>
               {{ $t("new_customer_message") }}
             </p>
-            <a href="" class="button">{{ $t("Create_account") }}</a>
+            <a href="/main/register" class="button">{{
+              $t("Create_account")
+            }}</a>
           </div>
         </div>
       </div>

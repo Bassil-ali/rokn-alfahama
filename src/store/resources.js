@@ -142,6 +142,16 @@ let resources = [
         discreption: 'dashboard resource'
     },
     {
+        name: 'shipping',
+        parent: '',
+        discreption: 'dashboard resource'
+    },
+    {
+        name: 'shippinga',
+        parent: '',
+        discreption: 'dashboard resource'
+    },
+    {
         name: 'user.address',
         parent: 'user',
         //form_route: '/coupon/form',

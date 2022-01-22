@@ -59,7 +59,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("payment/index");
+    this.$store.dispatch("payment/index", { user_id: this.$root.user.id });
   },
   computed: {
     ...mapState({

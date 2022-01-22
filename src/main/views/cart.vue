@@ -3,7 +3,10 @@
     <div class="head">
       <h2>{{ $t("Shopping_cart") }}</h2>
     </div>
-    <div class="entry-content cart-empty" v-if="order.items ? order.items.length == 0:false">
+    <div
+      class="entry-content cart-empty"
+      v-if="order.items ? order.items.length == 0 : false"
+    >
       <div class="entry-content">
         <div class="container">
           <div class="row justify-content-center">
@@ -75,7 +78,7 @@
                 </div>
               </td>
               <td>
-                {{ item.item_price * item.item_quantity - item.discount }}
+                {{ calcTotal(item) }}
               </td>
               <td data-title="حذف">
                 <a @click.prevent="remove(item)" class="button"
@@ -92,11 +95,7 @@
                     <div class="totel me-3">
                       {{ $t("total_summation") }}:
                       <strong>
-                        {{
-                          order.items
-                            .reduce((c, n) => c + calcPriceAfterDis(n), 0)
-                            .toFixed(2)
-                        }}
+                        {{ order.items.reduce((c, n) => c + calcTotal(n), 0) }}
                         $</strong
                       >
                     </div>
@@ -121,6 +120,7 @@ export default {
   data() {
     return {};
   },
+
   computed: {
     ...mapState({
       // order.items: (state) => state.cart.order.order.items,
@@ -146,6 +146,13 @@ export default {
     },
     calcPriceAfterDis(item) {
       return item.item_price * item.item_quantity - item.discount;
+    },
+    calcTotal(item) {
+      let discount = item.discount * item.item_quantity;
+      let item_dicounted = item.item_price * item.item_quantity - discount;
+      let tax = item.tax_percentage || 0;
+      let total = item_dicounted * (tax / 100 + 1);
+      return parseFloat(total).toFixed(2);
     },
   },
 };

@@ -24,10 +24,7 @@
                     <h2>{{ item.name }}</h2>
                     <div class="d-flex justify-content-between">
                       <div class="price">
-                        {{
-                          item.item_price * item.item_quantity -
-                          item.discount * item.item_quantity
-                        }}
+                        {{ item.item_price - item.discount }}
                         $ <br />
                         <span
                           v-if="item.discount > 0"
@@ -38,7 +35,7 @@
                             font-weight: 500;
                           "
                         >
-                          {{ item.item_price * item.item_quantity }}
+                          {{ item.item_price }}
                           $
                         </span>
                       </div>
@@ -105,15 +102,13 @@
                 </li>
                 <li>
                   {{ $t("Delivery_price") }}
-                  <span v-if="totals.total_taxed > limit_shipment">
-                    0 $
-                  </span>
+                  <span v-if="totals.total_taxed > limit_shipment"> 0 $ </span>
                   <span v-else> {{ shipment_price }} $</span>
                 </li>
                 <li class="toot">
                   {{ $t("total_summation") }}
                   <span>
-                    {{ totals.total_taxed }}
+                    {{ totals.total_taxed.toFixed(2) }}
                     $</span
                   >
                 </li>
@@ -179,10 +174,10 @@
                       >
                     </div>
                     <div class="pay-box form">
-                      <h6>{{ $t("Choose_payment_method") }}</h6>
+                      <h6>اختار طريقة الشحن</h6>
                       <form @submit.prevent="save">
                         <div class="d-flex">
-                          <div class="form-check form-check-inline">
+                          <!-- <div class="form-check form-check-inline">
                             <input
                               class="form-check-input"
                               type="radio"
@@ -209,8 +204,11 @@
                               >مستر كود وفيزا
                               <img src="@/main/assets/images/visa.jpg" alt=""
                             /></label>
-                          </div>
-                          <div class="form-check form-check-inline">
+                          </div> -->
+                          <div
+                            v-for="shipment in shipments"
+                            class="form-check form-check-inline"
+                          >
                             <input
                               class="form-check-input"
                               type="radio"
@@ -218,8 +216,8 @@
                               id="inlineRadio3"
                               value="option3"
                             />
-                            <label class="form-check-label" for="inlineRadio3"
-                              >كاش
+                            <label class="form-check-label" for="inlineRadio3">
+                              {{ shipment.name }}
                               <img src="@/main/assets/images/wallet.jpg" alt=""
                             /></label>
                           </div>
@@ -251,6 +249,7 @@ import { mapState } from "vuex";
 export default {
   mounted() {
     this.$store.dispatch("address/index");
+    this.$store.dispatch("shipping/index");
     // if (this.$attrs.id) {
     //   this.$store.dispatch("order/show", { id: this.$attrs.id });
     // } else {
@@ -303,7 +302,7 @@ export default {
             window.location.host
           }`;
           window.open(`${domain}/complete-order/${this.order.id}`);
-          window.location.reload()
+          window.location.reload();
         });
 
       // if (order_id) {
@@ -330,6 +329,7 @@ export default {
       user: (state) => state.auth.user.user,
       addresses: (state) => state.address.all,
       settings: (state) => state.setting.all || [],
+      shipments: (state) => state.shipping.all || [],
     }),
     totals() {
       let allTotlas = {
@@ -350,7 +350,9 @@ export default {
         );
         allTotlas.total_taxed = all_items.reduce(
           (c, n) =>
-            c + n.item_price * n.item_quantity - n.discount * n.item_quantity,
+            c +
+            (n.item_price * n.item_quantity - n.discount * n.item_quantity) *
+              (n.tax_percentage / 100 + 1),
           0
         );
       }

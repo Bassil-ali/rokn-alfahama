@@ -130,7 +130,7 @@ export default {
                             return data;
                         });
 
-                        commit('setOne', response.data);
+                        // commit('setOne', response.data);
                         return response.data.data;
                     } catch (ex) {
                         console.log(ex);

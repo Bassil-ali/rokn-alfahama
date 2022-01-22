@@ -87,7 +87,7 @@
             <div class="item-footer">
               <h2>{{ $t("Categories") }}</h2>
               <ul class="menu">
-                <li v-for="categorie in all_categories">
+                <li v-for="categorie in categories">
                   <a :href="`/main/category`">{{ categorie.name }}</a>
                 </li>
                 <!-- <li><a href="">زيوت عصرية فاخرة</a></li>
@@ -134,17 +134,32 @@
 <script>
 import { mapState } from "vuex";
 export default {
+  data() {
+    return {
+      categories: [],
+      all_categories: [],
+    };
+  },
   mounted() {
-    // if (this.categories.length <= 0) {
-    //   this.$store.dispatch("category/index", { top: 5 });
-    // }
+    if (this.categories.length <= 0) {
+      this.$store.dispatch("category/index").then((data) => {
+        this.all_categories = data;
+      });
+    }
   },
   computed: {
     ...mapState({
       settings: (state) => state.settings || [],
-      all_categories: (state) => state.category.all || [],
+      // all_categories: (state) => state.category.all || [],
       locale: (state) => state.locales.locale || [],
     }),
+  },
+  watch: {
+    all_categories(val) {
+      if (val) {
+        this.categories = val.filter((v) => v.parent_id == null).slice(0, 5);
+      }
+    },
   },
 };
 </script>
