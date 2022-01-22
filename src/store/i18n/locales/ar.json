@@ -400,5 +400,6 @@
   "unit.name": "اسم الوحدة",
   "selling_price": "سعر البيع",
   "tax.name": " الضريبة",
-  "created_at": "تاريخ الانشاء "
+  "created_at": "تاريخ الانشاء ",
+  "contact_table": "جدول رسائل التواصل"
 }
