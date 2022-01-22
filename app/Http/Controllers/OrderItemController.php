@@ -24,11 +24,13 @@ class OrderItemController extends BaseController
     }
     public function index(Request $request, Order $order)
     {
+        
         $childRelationName = $this->childRelationName;
         return OrderItemResource::collection($order->$childRelationName()->search($request)->sort($request)->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
     }
     public function store(Request $request, Order $order)
     {
+        
         if (!$this->user->is_permitted_to('store', OrderItem::class, $request))
             return response()->json(['message' => 'not_permitted'], 422);
 
