@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class OfferItemController extends Basecontroller
+class OfferItemController extends BaseController
 {
 
     public static function routeName()
