@@ -25,4 +25,18 @@ class ShippingItem extends BaseModel
             '*.price' => 'sometimes',
         ];
     }
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+    public function shipping()
+    {
+        return $this->belongsTo(shipping::class);
+    }
+    public function scopeSearch($query, $request)
+    {
+        $query->when($request->ids, function ($query, $ids) {
+            $query->where('item_id', $ids);
+        });
+    }
 }

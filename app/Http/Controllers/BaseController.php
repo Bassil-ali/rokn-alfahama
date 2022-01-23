@@ -17,6 +17,7 @@ class BaseController extends Controller
     public $user;
     public function __construct(Request $request)
     {
+        $this->middleware('auth:api', ['except' => ['index', 'show']]);
         $this->user = auth()->user();
         // return response()->json(['message' => 'Unauthorized'], 401);
         // if ($this->user )

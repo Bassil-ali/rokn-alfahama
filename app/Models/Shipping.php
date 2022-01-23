@@ -22,12 +22,4 @@ class Shipping extends BaseModel
             'name' => 'required',
         ];
     }
-    public function item()
-    {
-        return $this->belongsTo(Item::class);
-    }
-    public function shipping()
-    {
-        return $this->belongsTo(shipping::class);
-    }
 }
