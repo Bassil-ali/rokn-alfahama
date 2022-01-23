@@ -149,10 +149,8 @@ let resources = [
     {
         name: 'shippinga',
         parent: '',
-        discreption: 'dashboard resource',
-        name: 'contact',
-        parent: 'user',
-        discreption: 'contact resource'
+        discreption: 'shippinga resource',
+
     },
     {
         name: 'user.address',

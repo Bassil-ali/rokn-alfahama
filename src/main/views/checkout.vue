@@ -102,13 +102,28 @@
                 </li>
                 <li>
                   {{ $t("Delivery_price") }}
-                  <span v-if="totals.total_taxed > limit_shipment"> 0 $ </span>
-                  <span v-else> {{ shipment_price }} $</span>
+                  <span
+                    v-if="totals.total_taxed > limit_shipment"
+                    style="
+                      float: left;
+                      color: #9f9f9f;
+                      text-decoration: line-through;
+                      font-weight: 500;
+                    "
+                  >
+                    {{ total_shipment }}
+                    $
+                  </span>
+                  <span v-else> {{ total_shipment }} $</span>
                 </li>
                 <li class="toot">
                   {{ $t("total_summation") }}
-                  <span>
+                  <span v-if="totals.total_taxed > limit_shipment">
                     {{ totals.total_taxed.toFixed(2) }}
+                    $</span
+                  >
+                  <span v-else>
+                    {{ (totals.total_taxed + total_shipment).toFixed(2) }}
                     $</span
                   >
                 </li>
@@ -206,7 +221,8 @@
                             /></label>
                           </div> -->
                           <div
-                            v-for="shipment in shipments"
+                            :key="index"
+                            v-for="(shipment, index) in shipments"
                             class="form-check form-check-inline"
                           >
                             <input
@@ -214,7 +230,8 @@
                               type="radio"
                               name="inlineRadioOptions"
                               id="inlineRadio3"
-                              value="option3"
+                              v-model="selected_shipment"
+                              :value="shipment.id"
                             />
                             <label class="form-check-label" for="inlineRadio3">
                               {{ shipment.name }}
@@ -223,7 +240,7 @@
                           </div>
                         </div>
 
-                        <button class="button">
+                        <button :disabled="!validated" class="button">
                           {{ $t("Complete_the_order") }}
                         </button>
                       </form>
@@ -248,6 +265,7 @@
 import { mapState } from "vuex";
 export default {
   mounted() {
+    if (!this.$attrs.id) return this.$router.push("/");
     this.$store.dispatch("address/index");
     this.$store.dispatch("shipping/index");
     // if (this.$attrs.id) {
@@ -258,7 +276,11 @@ export default {
   },
   data() {
     return {
+      selected_shipment: null,
+      valid_selected_shipment: false,
+      total_shipment: 0,
       my_address: null,
+      ids: [],
       item: {
         shipment_price: 0,
         discount: 0,
@@ -291,7 +313,9 @@ export default {
       order_copy.taxed_total = this.totals.total_taxed;
       order_copy.discount = this.totals.discount;
       order_copy.total = this.totals.total;
-
+      if (this.totals.total_taxed < this.limit_shipment) {
+        order_copy.taxed_total + this.total_shipment;
+      }
       await this.$store
         .dispatch("order/store", order_copy)
         .then((data) => {
@@ -330,7 +354,18 @@ export default {
       addresses: (state) => state.address.all,
       settings: (state) => state.setting.all || [],
       shipments: (state) => state.shipping.all || [],
+      shippingas: (state) => state.shippinga.all || [],
     }),
+    validated() {
+      if (
+        this.my_address &&
+        this.selected_shipment &&
+        this.valid_selected_shipment
+      ) {
+        return true;
+      }
+      return false;
+    },
     totals() {
       let allTotlas = {
         total: 0,
@@ -367,6 +402,29 @@ export default {
     shipment_price() {
       var price = this.settings.find((v) => v.key == "shipment_amount").value;
       return parseFloat(price);
+    },
+  },
+  watch: {
+    order(val) {
+      if (val) {
+        this.ids = val.items.map((v) => v.item_id);
+      }
+    },
+    selected_shipment(val) {
+      if (val && this.ids) {
+        this.$store.dispatch("shippinga/index", { ids: this.ids });
+      }
+    },
+    shippingas(val) {
+      if (val.length > 0) {
+        if (val.length != this.order.items.length) {
+          this.valid_selected_shipment = false;
+          alert("cant choose this shipment method");
+        } else {
+          this.valid_selected_shipment = true;
+          this.total_shipment = val.reduce((c, n) => c + n.price, 0);
+        }
+      }
     },
   },
 };

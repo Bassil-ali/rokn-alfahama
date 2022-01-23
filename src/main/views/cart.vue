@@ -5,7 +5,7 @@
     </div>
     <div
       class="entry-content cart-empty"
-      v-if="order.items ? order.items.length == 0 : false"
+      v-if="order.items ? order.items.length == 0 : true"
     >
       <div class="entry-content">
         <div class="container">
