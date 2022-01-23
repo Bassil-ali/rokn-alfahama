@@ -21,6 +21,7 @@ class DashboardController extends BaseController
     public function __construct(Request $request)
     {
         parent::__construct($request);
+        $this->middleware('is-admin');
     }
     /**
      * Display a listing of the resource.
