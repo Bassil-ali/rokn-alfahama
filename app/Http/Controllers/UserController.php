@@ -18,7 +18,8 @@ class UserController extends BaseController
     }
     public function __construct(Request $request)
     {
-        parent::__construct($request);
+        // parent::__construct($request);
+        $this->middleware('auth:api', ['except' => ['index', 'show', 'store' , 'update']]);
     }
     public function index(Request $request)
     {
@@ -52,7 +53,7 @@ class UserController extends BaseController
         if (!$this->user->is_permitted_to('update', User::class, $request))
             return response()->json(['message' => 'not_permitted'], 422);
 
-        $validator = Validator::make($request->all(), User::updateRules($request ,$this->user));
+        $validator = Validator::make($request->all(), User::updateRules($request, $this->user));
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }

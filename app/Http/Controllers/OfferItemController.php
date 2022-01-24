@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class OfferItemController extends Basecontroller
+class OfferItemController extends BaseController
 {
 
     public static function routeName()
@@ -25,7 +25,7 @@ class OfferItemController extends Basecontroller
     }
     public function index(Request $request, Offer $offer)
     {
-
+        
         return ItemResource::collection($offer->items()->search($request)->sort($request)->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
     }
     public function store(Request $request)

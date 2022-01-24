@@ -12,7 +12,7 @@ class Offer extends BaseModel
     protected $guarded = [];
     use HasTranslations;
     protected $appends = ['translations'];
-    protected $with = ['image'];
+    protected $with = ['image'  ];
     protected $casts = [
         'end_date' => 'date:Y-m-d',
         'start_date' => 'date:Y-m-d'
