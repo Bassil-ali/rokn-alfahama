@@ -1,10 +1,10 @@
 <template>
   <v-container id="regular-tables" fluid tag="section">
-    <base-v-component heading="items" />
+    <base-v-component heading="offers" />
 
     <base-material-card
       icon="fas fa-clipboard"
-      title="items_table"
+      title="offers table"
       class="px-5 py-3"
     >
       <v-btn icon fab large dark color="red" to="/items/form">

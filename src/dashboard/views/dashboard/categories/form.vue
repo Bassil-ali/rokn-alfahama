@@ -106,14 +106,12 @@ export default {
     }
     this.$store.dispatch("category/index");
     if (this.$attrs.id) {
-      this.$store
-        .dispatch("item/show", { id: this.$attrs.id })
-        .then((res) => {
-          this.cover_image = res.gallery.cover_image;
-          this.item.categories = res.category_ids;
-          this.item.tags = res.tag_ids;
-          this.images = res.gallery.media;
-        });
+      this.$store.dispatch("item/show", { id: this.$attrs.id }).then((res) => {
+        this.cover_image = res.gallery.cover_image;
+        this.item.categories = res.category_ids;
+        this.item.tags = res.tag_ids;
+        this.images = res.gallery.media;
+      });
     }
   },
   methods: {
@@ -146,12 +144,12 @@ export default {
           file: this.cover_image.url,
           is_file: true,
         });
+        item.cover_image_id = cover_image.id;
       } else {
         item.cover_image_id = this.cover_image.id;
       }
-      
+
       let item_data = await this.$store.dispatch("category/store", item);
-      console.log("ahmad hassouna");
     },
   },
 

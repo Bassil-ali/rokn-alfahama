@@ -1,10 +1,10 @@
 <template>
   <v-container id="regular-tables" fluid tag="section">
-    <base-v-component :heading="$t('items_form')" />
+    <base-v-component :heading="$t('offer form')" />
 
     <base-material-card
       icon="mdi-clipboard-text"
-      title="Item Form"
+      title="offer form"
       class="px-5 py-3"
     >
       <v-form @submit.prevent="save(item)">
@@ -138,12 +138,16 @@ export default {
 
     if (this.$route.params.id) {
       this.$store.dispatch("offer/show", { id: this.$route.params.id });
+      this.$store.dispatch("offer_item/index", {
+        offer_id: this.$route.params.id,
+      });
     }
   },
   computed: {
     ...mapState({
       items: (state) => state.item.all,
       one: (state) => state.offer.one,
+      offer_items: (state) => state["offer_item"].all,
     }),
   },
   methods: {
@@ -181,8 +185,12 @@ export default {
     one(val) {
       if (val) {
         this.item = JSON.parse(JSON.stringify(val));
-        this.offer_items_ids = this.item.items.map((v) => v.id);
         this.cover_image = this.item.image;
+      }
+    },
+    offer_items(val) {
+      if (val) {
+        this.offer_items_ids = val.map((v) => v.id);
       }
     },
   },
