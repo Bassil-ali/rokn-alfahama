@@ -30,7 +30,7 @@
           </div>
           <div class="col-md-3">
             <div class="item-footer">
-              <h2>{{ $t("") }}</h2>
+              <h2>{{ $t("Connect_with_us") }}</h2>
               <ul class="menu">
                 <li>
                   <i class="bi bi-telephone-fill"></i>
@@ -104,7 +104,9 @@
     </div>
     <div class="buttom">
       <div class="container">
-        <p class="m-0 text-center">© 2021 {{ $t("rokn_reserved") }}</p>
+        <p class="m-0 text-center">
+          © {{ new Date().getFullYear() }} {{ $t("rokn_reserved") }}
+        </p>
       </div>
     </div>
   </footer>

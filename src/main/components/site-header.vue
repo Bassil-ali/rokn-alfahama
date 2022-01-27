@@ -31,8 +31,12 @@
             </ul>
           </div>
           <div class="search-menu">
-            <form action="">
-              <input type="text" :placeholder="$t('search_pro')" />
+            <form @submit.prevent="searchInItems(search_title)">
+              <input
+                v-model="search_title"
+                type="text"
+                :placeholder="$t('search_pro')"
+              />
               <button type="submit"><i class="bi bi-search"></i></button>
             </form>
             <ul id="primary-menu">
@@ -113,7 +117,7 @@
                       src="@/main/assets/images/001-heart.svg"
                       alt=""
                     /><span>{{ $t("Favorite") }}</span
-                    ><i>{{ user ? user.reaction_count : 0 }}</i></router-link
+                    ><i>{{ fav_items_count }}</i></router-link
                   >
                 </div>
               </div>
@@ -143,6 +147,7 @@ export default {
   data() {
     return {
       toggleMenu: false,
+      search_title: "",
     };
   },
   mounted() {
@@ -154,9 +159,27 @@ export default {
       counter: (state) => state.cart.counter,
       order_total: (state) => state.cart.order_total || 0,
       locale: (state) => state.locales.locale,
+      items: (state) => state.item.all || [],
     }),
+    fav_items_count() {
+      if (this.items[0]) {
+        return this.items.filter((v) => v.liked).length;
+      } else {
+        return 0;
+      }
+    },
   },
   methods: {
+    searchInItems(title) {
+      if (this.$route.name == "category") {
+        this.$store.dispatch("item/index", { search: title });
+      } else {
+        this.$router.push({
+          name: "category",
+          query: { search: title },
+        });
+      }
+    },
     logout() {
       this.$store.dispatch("auth/unload");
       // localStorage.clear();

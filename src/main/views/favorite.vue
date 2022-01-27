@@ -2,7 +2,7 @@
   <div class="entry-content offer">
     <div class="container">
       <div class="head">
-        <h2>{{$t('Favorite')}}</h2>
+        <h2>{{ $t("Favorite") }}</h2>
       </div>
 
       <div class="product">
@@ -36,7 +36,7 @@
                       src="@/main/assets/images/shopping-cart-2.svg"
                       alt=""
                     />
-                    {{$t('add_to_cart')}}</a
+                    {{ $t("add_to_cart") }}</a
                   >
                   <a
                     href=""
@@ -71,14 +71,22 @@ export default {
       this.$store.dispatch("cart/addItem", item);
     },
     like(item) {
-      this.$store.dispatch("item_reaction/store", {
-        item_id: item.id,
-      });
+      this.$store
+        .dispatch("item_reaction/store", {
+          item_id: item.id,
+          user_id: this.$root.user.id,
+        })
+        .then(() => {
+          this.$store.dispatch("item/index", {
+            liked: true,
+          });
+        });
     },
     rank(item, rank) {
       this.$store
         .dispatch("item_rank/store", {
           item_id: item.id,
+          user_id: this.$root.user.id,
           rank,
         })
         .then((data) => {

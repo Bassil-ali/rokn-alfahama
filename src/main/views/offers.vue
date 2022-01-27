@@ -31,11 +31,13 @@
                     $
                   </p>
                   <p class="star">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
+                    <i
+                      style="cursor: pointer"
+                      v-for="i in 5"
+                      :key="i"
+                      @click="rank(item, i)"
+                      :class="`bi bi-star${item.rank <= i ? '-fill' : ''}`"
+                    ></i>
                   </p>
                 </div>
                 <div
@@ -47,7 +49,7 @@
                   "
                 >
                   <div class="price-old">
-                    <span>{{ item.selling_price }} </span>
+                    <span>{{ (item.selling_price).toFixed(2) }} </span>
                   </div>
                   <div class="discount">
                     <strong>{{ $t("Discount") }}</strong>
@@ -71,12 +73,12 @@
                     href="#"
                     @click.prevent="
                       like(item);
-                      liking = !liking;
+                      item.liked = !item.liked;
                     "
                     class="addToFavorite button"
                   >
                     <img
-                      v-if="liking"
+                      v-if="item.liked"
                       src="@/main/assets/images/hearts-fill.svg"
                       alt=""
                     />
@@ -97,6 +99,7 @@ export default {
   data() {
     return {
       offer: {},
+      liking: false,
     };
   },
   mounted() {
@@ -129,12 +132,14 @@ export default {
     like(item) {
       this.$store.dispatch("item_reaction/store", {
         item_id: item.id,
+        user_id: this.$root.user.id,
       });
     },
     rank(item, rank) {
       this.$store
         .dispatch("item_rank/store", {
           item_id: item.id,
+
           rank,
         })
         .then((data) => {

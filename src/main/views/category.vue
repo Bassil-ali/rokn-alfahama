@@ -23,7 +23,15 @@
                   </a>
                 </li> -->
 
-                <li @click="category.children_count > 0 ? '':selected_category = category" :key="index" v-for="(category, index) in categories">
+                <li
+                  @click="
+                    category.children_count > 0
+                      ? ''
+                      : (selected_category = category)
+                  "
+                  :key="index"
+                  v-for="(category, index) in categories"
+                >
                   <a
                     href="javascript:void(0)"
                     :id="`link${index}`"
@@ -75,11 +83,7 @@
                         :ref="`supmenu${index}${i}`"
                         :id="`supmenu${index}${i}`"
                       >
-                        <li
-                          
-                          v-for="cc,index in w.children"
-                          :key="index"
-                        >
+                        <li v-for="(cc, index) in w.children" :key="index">
                           <a @click="selected_category = cc">
                             <span class="title">
                               <figure>
@@ -112,27 +116,29 @@
               <h2>{{ $t("filter") }}</h2>
               <div>
                 <div class="min-max-slider" data-legendnum="2">
-                  <span class="model">{{ $t("the_average") }}</span>
-                  <label for="min">{{ $t("Minimum_price") }}</label>
-                  <input
-                    id="min"
-                    class="min"
-                    name="min"
-                    type="range"
-                    step="1"
-                    min="0"
-                    max="3000"
-                  />
-                  <label for="max"> {{ $t("Maximum_price") }}</label>
-                  <input
-                    id="max"
-                    class="max"
-                    name="max"
-                    type="range"
-                    step="1"
-                    min="0"
-                    max="3000"
-                  />
+                  <div class="row">
+                    <div class="col-6">
+                      {{ value_2[0] }}$ - {{ value_2[1] }}$
+                    </div>
+                    <div class="col-2">
+                      <button @click="slider_search()">
+                        <i class="bi bi-search"></i>
+                      </button>
+                    </div>
+                    <div class="col-4">
+                      <span class="model">{{ $t("the_average") }}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <VueSlider
+                      v-model="value_2"
+                      :railStyle="{ backgroundColor: '#c99820' }"
+                      :processStyle="{ backgroundColor: '#c99820' }"
+                      :dotStyle="{ borderColor: '#c99820' }"
+                      tooltip="none"
+                      :max="3000"
+                    ></VueSlider>
+                  </div>
                 </div>
               </div>
             </div>
@@ -180,28 +186,53 @@
                     }}
                     عنصر متوفر</span
                   >
-                  <span v-else>{{ category_items.length }} عنصر متوفر </span>
+                  <span v-else
+                    >{{
+                      category_items[0] ? category_items[0].all_items_count : 0
+                    }}
+                    عنصر متوفر
+                  </span>
                 </div>
               </div>
               <div class="left-block">
                 <div class="d-flex">
-                  <ul class="select-form" id="show1" @click="show_ul('#show1')">
-                    <li>50</li>
-                    <ul>
-                      <li><a href="">30</a></li>
-                      <li><a href="">30</a></li>
-                      <li><a href="">30</a></li>
-                      <li><a href="">30</a></li>
+                  <ul
+                    class="select-form"
+                    ref="show1"
+                    id="show1"
+                    @click="show_ul('show1')"
+                  >
+                    <li>{{ $t("count") }}</li>
+                    <ul style="z-index: 9999">
+                      <li><a @click.prevent="per_page = 30">30</a></li>
+                      <li><a @click.prevent="per_page = 20">20</a></li>
+                      <li><a @click.prevent="per_page = 15">15</a></li>
+                      <li><a @click.prevent="per_page = 10">10</a></li>
                     </ul>
                   </ul>
-                  <ul class="select-form" id="show2" @click="show_ul('show2')">
+                  <ul
+                    class="select-form"
+                    ref="show2"
+                    id="show2"
+                    @click="show_ul('show2')"
+                  >
                     <li>الاكثر تصنيفاً</li>
-                    <ul>
-                      <li><a href="">الاحدث</a></li>
-                      <li><a href="">الاحدث</a></li>
-                      <li><a href="">الاحدث</a></li>
-                      <li><a href="">الاحدث</a></li>
-                      <li><a href="">الاحدث</a></li>
+                    <ul style="z-index: 9999">
+                      <li>
+                        <a @click.prevent="sort_filter(lowest_price)"
+                          >الاقل سعر</a
+                        >
+                      </li>
+                      <li>
+                        <a @click.prevent="sort_filter(highest_price)"
+                          >الاعلي سعر</a
+                        >
+                      </li>
+                      <li>
+                        <a @click.prevent="sort_filter(most_liked)"
+                          >الاكثر اعجابا</a
+                        >
+                      </li>
                     </ul>
                   </ul>
                   <div class="option-show">
@@ -218,6 +249,7 @@
               </div>
             </div>
           </div>
+
           <div class="product">
             <div class="row">
               <div
@@ -237,9 +269,20 @@
 
 <script>
 import { mapState } from "vuex";
+import VueSlider from "vue-slider-component";
+import "vue-slider-component/theme/antd.css";
 export default {
+  components: {
+    VueSlider,
+  },
   data() {
     return {
+      per_page: null,
+      value_2: [0, 3000],
+      lowest_price: { lowest_price: true },
+      highest_price: { highest_price: true },
+      most_liked: { most_liked: true },
+      testtype: null,
       toggle: null,
       myNavbar: null,
       selected_category: {},
@@ -250,7 +293,11 @@ export default {
     this.toggle = document.getElementById("toggle");
     this.myNavbar = document.getElementById("primary-menu");
     this.$store.dispatch("category/index", { parent_id: -1 });
-    this.$store.dispatch("item/index");
+    if (this.$route.query.search) {
+      this.$store.dispatch("item/index", { search: this.$route.query.search });
+    } else {
+      this.$store.dispatch("item/index");
+    }
     // if (this.$route.query.type) {
     //   let type = this.$route.query.type;
     //   if (this.categories.length >= 1) {
@@ -261,11 +308,17 @@ export default {
   computed: {
     ...mapState({
       categories: (state) => state.category.all,
-      category_items: (state) => state.item.all,
+      category_items: (state) => state.item.all || [],
       locale: (state) => state.locales.locale,
     }),
+    search() {
+      return this.$route.query.search;
+    },
   },
   watch: {
+    per_page(val) {
+      this.$store.dispatch("item/index", { per_page: val });
+    },
     selected_category(val) {
       if (val) {
         //  this.my_categories =  this.my_categories.filter()
@@ -279,6 +332,16 @@ export default {
     },
   },
   methods: {
+    sort_filter(type) {
+      this.$store.dispatch("item/index", type);
+    },
+    slider_search() {
+      this.$store.dispatch("item/index", { slider: this.value_2 });
+    },
+    show_ul(elm) {
+      var elm = document.getElementById(elm);
+      elm.classList.toggle("active");
+    },
     showsupmenu(e11, e22) {
       let e1 = this.$refs[e11][0].id;
       let e2 = this.$refs[e22][0].id;
@@ -293,4 +356,12 @@ export default {
   },
 };
 </script>
+<style scoped>
+.vue-slider-process {
+  background-color: yellow !important;
+}
+.vue-slider-process:hover {
+  background-color: red !important;
+}
+</style>
  

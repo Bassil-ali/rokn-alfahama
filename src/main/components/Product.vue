@@ -112,12 +112,14 @@ export default {
     like(item) {
       this.$store.dispatch("item_reaction/store", {
         item_id: item.id,
+        user_id: this.$root.user.id,
       });
     },
     rank(item, rank) {
       this.$store
         .dispatch("item_rank/store", {
           item_id: item.id,
+          user_id: this.$root.user.id,
           rank,
         })
         .then((data) => {
