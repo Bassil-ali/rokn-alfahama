@@ -139,11 +139,14 @@ let resources = [
     {
         name: 'dashboard',
         parent: '',
+      
         discreption: 'dashboard resource'
     },
     {
         name: 'shipping',
         parent: '',
+        headers: ['id', 'name'],
+        form_route: '/shipping/form',
         discreption: 'dashboard resource'
     },
     {

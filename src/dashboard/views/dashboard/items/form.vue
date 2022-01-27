@@ -203,11 +203,11 @@
       class="px-5 py-3"
     >
       <v-form>
-        <v-row class="mt-5 mb-5">
+        <!-- <v-row class="mt-5 mb-5">
           <v-btn @click="addShipment()" icon>
             <v-icon color="green"> fas fa-plus </v-icon>
           </v-btn>
-        </v-row>
+        </v-row> -->
         <v-row :key="index" v-for="(shipment, index) in shipments">
           <v-col cols="12" md="2"
             ><v-text-field
@@ -227,11 +227,11 @@
             >
             </v-autocomplete
           ></v-col>
-          <v-col cols="12" md="2"
+          <!-- <v-col cols="12" md="2"
             ><v-btn @click="removeShipment(index, shipment)" icon>
               <v-icon> fac fa-times </v-icon>
             </v-btn></v-col
-          >
+          > -->
         </v-row>
       </v-form>
     </base-material-card>
@@ -410,7 +410,7 @@ export default {
       side_color: "",
 
       properties: [],
-      shipments: [],
+      shipments: [{}],
       globalIndex: 0,
       has_proparty: true,
       item: {
@@ -588,7 +588,7 @@ export default {
           console.log(this.properties);
           this.$store.dispatch("property/store", this.properties);
         }
-        if (this.shipments.length > 0) {
+        if (this.shipments[0].name) {
           this.shipments.map((shipment) => {
             shipment.item_id = item.id;
           });
@@ -616,7 +616,7 @@ export default {
 
           this.$store.dispatch("property/store", this.properties);
         }
-        if (this.shipments.length > 0) {
+        if (this.shipments[0].name  ) {
           this.shipments.map((shipment) => {
             shipment.item_id = new_item.id;
           });
