@@ -36,7 +36,8 @@ class ShippingItem extends BaseModel
     public function scopeSearch($query, $request)
     {
         $query->when($request->ids, function ($query, $ids) {
-            $query->where('item_id', $ids);
+      
+            $query->whereIn('item_id', $ids);
         });
     }
 }

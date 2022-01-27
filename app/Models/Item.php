@@ -12,7 +12,7 @@ class Item extends BaseModel
     protected $guarded = [];
     use HasTranslations;
     public $translatable = ['name', 'description', 'brief'];
-    protected $appends = ['translations', 'image', 'liked', 'rank'];
+    protected $appends = ['translations', 'image', 'liked', 'rank', 'all_items_count'];
     protected $with = ['tax', 'unit', 'media', 'offer']; //, 'offer'
     public function unit()
     {
@@ -90,6 +90,28 @@ class Item extends BaseModel
                 $query->whereRaw("items.id in (select item_id from reactions where user_id=$user_id)");
             }
         });
+        $query->when($request->search, function ($query, $search) {
+            $local = app()->getLocale();
+            $query->where('name->' . "$local", 'like', "%{$search}%");
+        });
+        $query->when($request->slider, function ($query, $slider) {
+            $query->whereBetween('selling_price', $slider);
+        });
+    }
+    public function scopeSort($query, $request)
+    {
+        $query->when($request->lowest_price, function ($query) {
+            $query->orderBy('selling_price', 'asc');
+        });
+        $query->when($request->highest_price, function ($query) {
+            $query->orderBy('selling_price', 'desc');
+        });
+
+        $query->when($request->most_liked, function ($query) {
+            $query->whereRaw('items.id in (select item_id from reactions)')
+            ->orderBy('id');
+            ;
+        });
     }
     public function reactions()
     {
@@ -108,6 +130,10 @@ class Item extends BaseModel
     public function getRankAttribute()
     {
         return $this->ranks()->avg('rank');
+    }
+    public function getAllItemsCountAttribute()
+    {
+        return Item::count();
     }
 
     public function offer()

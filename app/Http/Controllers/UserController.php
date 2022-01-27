@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 class UserController extends BaseController
 {
 
+    public $user = null;
     public static function routeName()
     {
         return Str::snake("User");
@@ -19,7 +20,8 @@ class UserController extends BaseController
     public function __construct(Request $request)
     {
         // parent::__construct($request);
-        $this->middleware('auth:api', ['except' => ['index', 'show', 'store' , 'update']]);
+        $this->user = auth()->user();
+        $this->middleware('auth:api', ['except' => ['index', 'show', 'store', 'update']]);
     }
     public function index(Request $request)
     {
