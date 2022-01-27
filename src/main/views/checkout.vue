@@ -189,10 +189,11 @@
                       >
                     </div>
                     <div class="pay-box form">
-                      <h6>اختار طريقة الشحن</h6>
+<!--                       
+                      <h6>اختار طريقة الشحن</h6> -->
                       <form @submit.prevent="save">
-                        <div class="d-flex">
-                          <!-- <div class="form-check form-check-inline">
+                        <!-- <div class="d-flex">
+                          <div class="form-check form-check-inline">
                             <input
                               class="form-check-input"
                               type="radio"
@@ -219,7 +220,7 @@
                               >مستر كود وفيزا
                               <img src="@/main/assets/images/visa.jpg" alt=""
                             /></label>
-                          </div> -->
+                          </div> 
                           <div
                             :key="index"
                             v-for="(shipment, index) in shipments"
@@ -238,7 +239,7 @@
                               <img src="@/main/assets/images/wallet.jpg" alt=""
                             /></label>
                           </div>
-                        </div>
+                        </div> -->
 
                         <button :disabled="!validated" class="button">
                           {{ $t("Complete_the_order") }}
@@ -267,7 +268,7 @@ export default {
   mounted() {
     if (!this.$attrs.id) return this.$router.push("/");
     this.$store.dispatch("address/index");
-    this.$store.dispatch("shipping/index");
+    // this.$store.dispatch("shipping/index");
     // if (this.$attrs.id) {
     //   this.$store.dispatch("order/show", { id: this.$attrs.id });
     // } else {
@@ -353,14 +354,12 @@ export default {
       user: (state) => state.auth.user.user,
       addresses: (state) => state.address.all,
       settings: (state) => state.setting.all || [],
-      shipments: (state) => state.shipping.all || [],
+      // shipments: (state) => state.shipping.all || [],
       shippingas: (state) => state.shippinga.all || [],
     }),
     validated() {
       if (
-        this.my_address &&
-        this.selected_shipment &&
-        this.valid_selected_shipment
+        this.my_address 
       ) {
         return true;
       }
@@ -408,22 +407,26 @@ export default {
     order(val) {
       if (val) {
         this.ids = val.items.map((v) => v.item_id);
-      }
-    },
-    selected_shipment(val) {
-      if (val && this.ids) {
         this.$store.dispatch("shippinga/index", { ids: this.ids });
       }
     },
+    // selected_shipment(val) {
+    //   if (val && this.ids) {
+    //     this.$store.dispatch("shippinga/index", { ids: this.ids });
+    //   }
+    // },
     shippingas(val) {
-      if (val.length > 0) {
-        if (val.length != this.order.items.length) {
-          this.valid_selected_shipment = false;
-          alert("cant choose this shipment method");
-        } else {
-          this.valid_selected_shipment = true;
-          this.total_shipment = val.reduce((c, n) => c + n.price, 0);
-        }
+      // if (val.length > 0) {
+      //   if (val.length != this.order.items.length) {
+      //     this.valid_selected_shipment = false;
+      //     alert("cant choose this shipment method");
+      //   } else {
+      //     this.valid_selected_shipment = true;
+      //     this.total_shipment = val.reduce((c, n) => c + n.price, 0);
+      //   }
+      // }
+      if (val) {
+        this.total_shipment = val.reduce((c, n) => c + n.price, 0);
       }
     },
   },
