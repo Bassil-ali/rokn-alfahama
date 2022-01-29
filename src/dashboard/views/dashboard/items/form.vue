@@ -203,11 +203,11 @@
       class="px-5 py-3"
     >
       <v-form>
-        <!-- <v-row class="mt-5 mb-5">
+        <v-row class="mt-5 mb-5">
           <v-btn @click="addShipment()" icon>
             <v-icon color="green"> fas fa-plus </v-icon>
           </v-btn>
-        </v-row> -->
+        </v-row>
         <v-row :key="index" v-for="(shipment, index) in shipments">
           <v-col cols="12" md="2"
             ><v-text-field
@@ -515,9 +515,9 @@ export default {
   },
   mounted() {
     // this.$store.dispatch("type/index");
-    this.$store.dispatch("category/index");
-    this.$store.dispatch("unit/index");
-    this.$store.dispatch("tax/index");
+    this.$store.dispatch("category/index" , {per_page:-1});
+    this.$store.dispatch("unit/index", {per_page:-1});
+    this.$store.dispatch("tax/index", {per_page:-1});
     this.$store.dispatch("color/index");
     this.$store.dispatch("size/index");
     this.$store.dispatch("shipping/index");
@@ -534,6 +534,7 @@ export default {
       this.properties.push({});
     },
     addShipment() {
+      if (this.shipments[0]) return;
       this.shipments.push({});
     },
     removeProperty(index, item) {
@@ -570,6 +571,7 @@ export default {
 
       item.cover_image_id = cover_image_id;
       if (item.id) {
+        console.log("start update ");
         if (this.images.length > 0) {
           this.images.map((image) => {
             if (typeof image.url != "string") {
@@ -588,14 +590,17 @@ export default {
           console.log(this.properties);
           this.$store.dispatch("property/store", this.properties);
         }
-        if (this.shipments[0].name) {
+        if (this.shipments[0]) {
           this.shipments.map((shipment) => {
             shipment.item_id = item.id;
           });
 
           this.$store.dispatch("shippinga/store", this.shipments);
         }
-        await this.$store.dispatch("item/store", item);
+        await this.$store.dispatch("item/store", item).then(() => {
+          this.$router.push("/items");
+        });
+        console.log("end update ");
       } else {
         let new_item = await this.$store.dispatch("item/store", item);
         if (this.images.length > 0) {
@@ -616,7 +621,7 @@ export default {
 
           this.$store.dispatch("property/store", this.properties);
         }
-        if (this.shipments[0].name  ) {
+        if (this.shipments[0].name) {
           this.shipments.map((shipment) => {
             shipment.item_id = new_item.id;
           });
@@ -674,9 +679,9 @@ export default {
         this.properties = JSON.parse(JSON.stringify(val));
       }
     },
-    shippinga(val){
-      this.shipments = val
-    }
+    shippinga(val) {
+      this.shipments = val;
+    },
   },
 };
 </script>

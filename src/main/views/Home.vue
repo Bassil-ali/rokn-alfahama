@@ -536,7 +536,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("category/index");
+    this.$store.dispatch("category/index", { null_parent_id: true });
     this.$store.dispatch("item/index");
     setTimeout(() => {
       this.test = true;

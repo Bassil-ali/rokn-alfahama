@@ -95,7 +95,11 @@
                     <div class="totel me-3">
                       {{ $t("total_summation") }}:
                       <strong>
-                        {{ order.items.reduce((c, n) => c + calcTotal(n), 0) }}
+                        {{
+                          order.items
+                            .reduce((c, n) => c + calcTotal(n, true), 0)
+                            .toFixed(2)
+                        }}
                         $</strong
                       >
                     </div>
@@ -147,11 +151,14 @@ export default {
     calcPriceAfterDis(item) {
       return item.item_price * item.item_quantity - item.discount;
     },
-    calcTotal(item) {
+    calcTotal(item, all) {
       let discount = item.discount * item.item_quantity;
       let item_dicounted = item.item_price * item.item_quantity - discount;
       let tax = item.tax_percentage || 0;
       let total = item_dicounted * (tax / 100 + 1);
+      if (all) {
+        return total;
+      }
       return parseFloat(total).toFixed(2);
     },
   },

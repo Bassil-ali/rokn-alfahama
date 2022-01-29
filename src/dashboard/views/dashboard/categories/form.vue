@@ -104,7 +104,7 @@ export default {
     if (this.$route.params.id) {
       this.$store.dispatch("category/show", { id: this.$route.params.id });
     }
-    this.$store.dispatch("category/index");
+    this.$store.dispatch("category/index", { per_page: -1 });
     if (this.$attrs.id) {
       this.$store.dispatch("item/show", { id: this.$attrs.id }).then((res) => {
         this.cover_image = res.gallery.cover_image;

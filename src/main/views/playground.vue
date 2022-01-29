@@ -42,7 +42,7 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("category/index", { parent_id: -1 });
+    this.$store.dispatch("category/index", { null_parent_id: true });
   },
   computed: {
     ...mapState({

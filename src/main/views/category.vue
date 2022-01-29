@@ -292,7 +292,7 @@ export default {
   mounted() {
     this.toggle = document.getElementById("toggle");
     this.myNavbar = document.getElementById("primary-menu");
-    this.$store.dispatch("category/index", { parent_id: -1 });
+    this.$store.dispatch("category/index", { null_parent_id:true });
     if (this.$route.query.search) {
       this.$store.dispatch("item/index", { search: this.$route.query.search });
     } else {

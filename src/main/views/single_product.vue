@@ -78,7 +78,6 @@
                   </h2>
                   <p v-html="one.brief"></p>
                   <div class="price">
-
                     <strong>
                       {{
                         one.offer
@@ -134,7 +133,7 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-7">
+                    <div v-if="sizes[0]" class="col-md-7">
                       <div class="row">
                         <div style="position: relative" class="col-md-6">
                           <button
@@ -481,10 +480,8 @@ export default {
       } else {
         item.property_id ? (item.property_id = null) : "";
       }
-      console.log(item.selling_price);
-      console.log(item.property_id);
-      console.log(item);
-      // this.$store.dispatch("cart/addItem", item);
+
+      this.$store.dispatch("cart/addItem", item);
     },
     like(one) {
       this.$store.dispatch("item_reaction/store", {

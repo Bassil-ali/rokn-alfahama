@@ -139,14 +139,15 @@ export default {
   data() {
     return {
       categories: [],
-      all_categories: [],
     };
   },
   mounted() {
     if (this.categories.length <= 0) {
-      this.$store.dispatch("category/index").then((data) => {
-        this.all_categories = data;
-      });
+      this.$store
+        .dispatch("category/index", { null_parent_id: true })
+        .then((data) => {
+          this.categories = data;
+        });
     }
   },
   computed: {
@@ -155,13 +156,6 @@ export default {
       // all_categories: (state) => state.category.all || [],
       locale: (state) => state.locales.locale || [],
     }),
-  },
-  watch: {
-    all_categories(val) {
-      if (val) {
-        this.categories = val.filter((v) => v.parent_id == null).slice(0, 5);
-      }
-    },
   },
 };
 </script>
