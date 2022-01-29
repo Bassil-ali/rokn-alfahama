@@ -17,7 +17,7 @@ class CreateOfferItemsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('offer_id');
             $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('property_id');
+            $table->unsignedBigInteger('property_id')->nullable();
             $table->timestamps();
         });
     }

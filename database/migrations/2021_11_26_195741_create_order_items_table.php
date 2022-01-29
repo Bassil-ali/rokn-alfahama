@@ -26,7 +26,7 @@ class CreateOrderItemsTable extends Migration
             $table->integer('free_quantity')->default(0);
             $table->double('item_price')->default(0);
             $table->double('item_quantity')->default(0);
-            $table->double('tax_percentage')->default(0);
+            $table->double('tax_percentage')->default(0)->nullable();
             $table->double('discount')->default(0);
             $table->boolean('is_discount_percentage')->default(true);
             $table->string('item_name')->nullable();

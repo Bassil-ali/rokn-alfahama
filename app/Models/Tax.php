@@ -9,9 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tax extends BaseModel
 {
     use HasFactory;
-    use HasTranslations;
-    public $translatable= ['name'];
-    protected $appends =['translations'];
+
+
     protected $guarded = [];
     public static function createRules($user)
     {
