@@ -57,7 +57,7 @@ class Category extends BaseModel
             // $query->whererow("limit $top");
         });
 
-        $query->when($request->parent_id, function ($query) {
+        $query->when($request->null_parent_id, function ($query) {
             $query->whereNull('parent_id');
         });
     }
