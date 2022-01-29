@@ -154,8 +154,9 @@ export default {
     calcTotal(item, all) {
       let discount = item.discount * item.item_quantity;
       let item_dicounted = item.item_price * item.item_quantity - discount;
-      let tax = item.tax_percentage || 0;
-      let total = item_dicounted * (tax / 100 + 1);
+      // let tax = item.tax_percentage || 0;
+      let total = item_dicounted ;
+      // let total = item_dicounted * (tax / 100 + 1);
       if (all) {
         return total;
       }

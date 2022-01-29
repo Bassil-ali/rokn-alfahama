@@ -71,7 +71,8 @@ const actions = {
     },
     decrementItem({
         commit,
-        state
+        state , 
+        dispatch
     }, item) {
         let item_s = state.order.items.find(i => i.id == item.id)
         if (item.item_quantity == 1) return;
@@ -176,9 +177,10 @@ const mutations = {
     mut_set_order_total(state) {
         state.order_total = state.order.items ? state.order.items.reduce((c, n) => {
             let price = n.item_price * n.item_quantity;
-            let tax = n.tax_percentage / 100
+            // let tax = n.tax_percentage / 100
             let discount = n.discount * n.item_quantity;
-            return c + ((price - discount) * (1 + tax))
+            return c + (price - discount) 
+            // return c + ((price - discount) * (1 + tax))
 
         }, 0) : 0
     },

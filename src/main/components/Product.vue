@@ -95,12 +95,14 @@ export default {
     calcItemAfterDiscount(item) {
       let discount = (this.offer.percentage / 100) * item.selling_price;
       let item_dicounted = item.selling_price - discount;
-      let tax = item.tax ? item.tax.percentage : 0;
-      return parseFloat(item_dicounted * (tax / 100 + 1)).toFixed(2);
+      // let tax = item.tax ? item.tax.percentage : 0;
+      return parseFloat(item_dicounted).toFixed(2);
+      // return parseFloat(item_dicounted * (tax / 100 + 1)).toFixed(2);
     },
     calcItemPrice(item) {
-      let tax = item.tax ? item.tax.percentage : 0;
-      return parseFloat(item.selling_price * (tax / 100 + 1)).toFixed(2);
+      // let tax = item.tax ? item.tax.percentage : 0;
+      return parseFloat(item.selling_price ).toFixed(2);
+      // return parseFloat(item.selling_price * (tax / 100 + 1)).toFixed(2);
     },
     addToCart(item) {
       if (this.$root.user_obj) {

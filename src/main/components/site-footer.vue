@@ -87,7 +87,7 @@
             <div class="item-footer">
               <h2>{{ $t("Categories") }}</h2>
               <ul class="menu">
-                <li v-for="categorie in categories">
+                <li v-for="categorie in categories.slice(0,5)">
                   <a :href="`/main/category`">{{ categorie.name }}</a>
                 </li>
                 <!-- <li><a href="">زيوت عصرية فاخرة</a></li>

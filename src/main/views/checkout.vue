@@ -116,6 +116,11 @@
                   </span>
                   <span v-else> {{ total_shipment }} $</span>
                 </li>
+                <li>
+                  {{ $t("tax total") }}
+
+                  <span> + {{ total_taxes }} $</span>
+                </li>
                 <li class="toot">
                   {{ $t("total_summation") }}
                   <span v-if="totals.total_taxed > limit_shipment">
@@ -189,7 +194,7 @@
                       >
                     </div>
                     <div class="pay-box form">
-<!--                       
+                      <!--                       
                       <h6>اختار طريقة الشحن</h6> -->
                       <form @submit.prevent="save">
                         <!-- <div class="d-flex">
@@ -358,9 +363,7 @@ export default {
       shippingas: (state) => state.shippinga.all || [],
     }),
     validated() {
-      if (
-        this.my_address 
-      ) {
+      if (this.my_address) {
         return true;
       }
       return false;
@@ -382,13 +385,13 @@ export default {
           (c, n) => c + n.discount * n.item_quantity,
           0
         );
-        allTotlas.total_taxed = all_items.reduce(
-          (c, n) =>
-            c +
-            (n.item_price * n.item_quantity - n.discount * n.item_quantity) *
-              (n.tax_percentage / 100 + 1),
-          0
-        );
+        allTotlas.total_taxed = all_items.reduce((c, n) => {
+          let price = n.item_price * n.item_quantity - n.discount * n.item_quantity;
+          let taxe = price * (n.tax_percentage / 100);
+          return (
+            c + (n.item_price * n.item_quantity - n.discount * n.item_quantity) + taxe
+          );
+        }, 0);
       }
       return allTotlas;
     },
@@ -401,6 +404,17 @@ export default {
     shipment_price() {
       var price = this.settings.find((v) => v.key == "shipment_amount").value;
       return parseFloat(price);
+    },
+    total_taxes() {
+      if (this.order.items) {
+        let all_items = this.order.items;
+        return all_items.reduce((c, n) => {
+          let price =
+            n.item_price * n.item_quantity - n.discount * n.item_quantity;
+          let taxes = price * (n.tax_percentage / 100);
+          return c + taxes;
+        }, 0);
+      }
     },
   },
   watch: {
