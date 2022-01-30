@@ -1,6 +1,6 @@
 <template>
   <v-container id="regular-tables" fluid tag="section">
-    <base-v-component :heading="$t('categories_form')" />
+    <base-v-component :heading="$t('shipping')" />
 
     <base-material-card
       icon="mdi-clipboard-text"

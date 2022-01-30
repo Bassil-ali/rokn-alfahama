@@ -119,7 +119,7 @@
                 <li>
                   {{ $t("tax total") }}
 
-                  <span> + {{ total_taxes }} $</span>
+                  <span> + {{ parseFloat(total_taxes).toFixed(2) }} $</span>
                 </li>
                 <li class="toot">
                   {{ $t("total_summation") }}
@@ -332,7 +332,7 @@ export default {
             window.location.host
           }`;
           window.open(`${domain}/complete-order/${this.order.id}`);
-          window.location.reload();
+          this.$router.push('/cart')
         });
 
       // if (order_id) {
@@ -363,10 +363,11 @@ export default {
       shippingas: (state) => state.shippinga.all || [],
     }),
     validated() {
-      if (this.my_address) {
+      if (this.my_address && this.totals.total_taxed > 0) {
         return true;
+      } else {
+        return false;
       }
-      return false;
     },
     totals() {
       let allTotlas = {
@@ -386,10 +387,13 @@ export default {
           0
         );
         allTotlas.total_taxed = all_items.reduce((c, n) => {
-          let price = n.item_price * n.item_quantity - n.discount * n.item_quantity;
+          let price =
+            n.item_price * n.item_quantity - n.discount * n.item_quantity;
           let taxe = price * (n.tax_percentage / 100);
           return (
-            c + (n.item_price * n.item_quantity - n.discount * n.item_quantity) + taxe
+            c +
+            (n.item_price * n.item_quantity - n.discount * n.item_quantity) +
+            taxe
           );
         }, 0);
       }

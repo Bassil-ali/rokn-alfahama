@@ -71,7 +71,7 @@ const actions = {
     },
     decrementItem({
         commit,
-        state , 
+        state,
         dispatch
     }, item) {
         let item_s = state.order.items.find(i => i.id == item.id)
@@ -100,7 +100,7 @@ const actions = {
         const response = await this.$axios.get('/order', { params: { status: 0, user_id: rootState.auth.user.user.id } })
 
         let count = response.data.data.length > 0 ? response.data.data[0].items.reduce((c, n) => {
-            return c + n.item_quantity
+            return c + parseInt(n.item_quantity)
         }, 0) : 0
         commit('set_counter', count)
         commit('set_draft_order', { ...response.data.data[0] });
@@ -179,7 +179,7 @@ const mutations = {
             let price = n.item_price * n.item_quantity;
             // let tax = n.tax_percentage / 100
             let discount = n.discount * n.item_quantity;
-            return c + (price - discount) 
+            return c + (price - discount)
             // return c + ((price - discount) * (1 + tax))
 
         }, 0) : 0

@@ -178,7 +178,7 @@
                 <div class="d-flex align-items-center">
                   <h2>{{ selected_category.name || $t("latest items") }}</h2>
 
-                  <span v-if="!selected_category">
+                  <span v-if="Object.keys(selected_category).length != 0">
                     {{
                       selected_category.items_count > 0
                         ? selected_category.items_count
@@ -292,11 +292,11 @@ export default {
   mounted() {
     this.toggle = document.getElementById("toggle");
     this.myNavbar = document.getElementById("primary-menu");
-    this.$store.dispatch("category/index", { null_parent_id:true });
+    this.$store.dispatch("category/index", { null_parent_id: true });
     if (this.$route.query.search) {
       this.$store.dispatch("item/index", { search: this.$route.query.search });
     } else {
-      this.$store.dispatch("item/index");
+      this.$store.dispatch("item/index", { per_page: -1 });
     }
     // if (this.$route.query.type) {
     //   let type = this.$route.query.type;
