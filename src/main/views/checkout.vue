@@ -82,7 +82,10 @@
                   {{ $t("number_of_products") }}
                   <span>{{
                     order.items
-                      ? order.items.reduce((c, n) => c + n.item_quantity, 0)
+                      ? order.items.reduce(
+                          (c, n) => c + parseInt(n.item_quantity),
+                          0
+                        )
                       : 0
                   }}</span>
                 </li>
@@ -332,7 +335,7 @@ export default {
             window.location.host
           }`;
           window.open(`${domain}/complete-order/${this.order.id}`);
-          this.$router.push('/cart')
+          this.$router.push("/cart");
         });
 
       // if (order_id) {

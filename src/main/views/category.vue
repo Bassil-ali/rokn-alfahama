@@ -322,7 +322,7 @@ export default {
     selected_category(val) {
       if (val) {
         //  this.my_categories =  this.my_categories.filter()
-        this.$store.dispatch("item/index", { category_id: val.id });
+        this.$store.dispatch("item/index", { category_id: val.id , per_page:-1});
       }
     },
     categories(val) {
