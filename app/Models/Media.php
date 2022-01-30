@@ -25,7 +25,7 @@ class Media extends BaseModel
     {
         return [
             'name' => 'nullable',
-            'file' => 'required|file|size:1024|mimes:jpg,png'
+            'file' => 'required|file|mimes:jpg,png'
 
         ];
     }

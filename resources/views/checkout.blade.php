@@ -77,8 +77,8 @@
                     <input type="hidden" name="dataValue" id="dataValue" />
                     <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
                     <button type="button" class="AcceptUI button"
-                        data-billingAddressOptions='{"show":true, "required":false}' data-apiLoginID="6gRn57Qhb6Ts"
-                        data-clientKey="4RP8BUF6nhjXaVY825qVy8rJh3p3SFNgwap5J2V746V9Tr4xmbWvtdRy7PhaMh2L"
+                        data-billingAddressOptions='{"show":true, "required":false}' data-apiLoginID="9SFx6RK9vVP"
+                        data-clientKey="4aL2v37rfPe6uveEt5mZKy9cYSeJ8Q5MKy32ZutvX4NUVyxdXebZKwQg269642rr"
                         data-acceptUIFormBtnTxt="Submit" data-acceptUIFormHeaderTxt="Card Information"
                         data-responseHandler="responseHandler">
                         {{ __('add') }}

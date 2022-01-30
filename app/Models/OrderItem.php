@@ -9,6 +9,8 @@ class OrderItem extends BaseModel
 {
     use HasFactory;
     protected $guarded = [];
+    // protected $appends = ['taxed_value'];
+
     public function order()
     {
         return $this->belongsTo(Order::class);
@@ -60,4 +62,11 @@ class OrderItem extends BaseModel
 
         ];
     }
+    // public function getTaxedValueAttribute()
+    // {
+    //     $price = $this->item_price;
+    //     $tax = $this->tax_percentage ?? 0;
+    //     $final =  $price - $this->discount;
+    //     return  $final * $tax / 100 *  $this->item_quantity;
+    // }
 }
