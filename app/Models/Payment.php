@@ -53,8 +53,8 @@ class Payment extends BaseModel
         $amount = $myOrder->taxed_total;
          
         $merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
-        $merchantAuthentication->setName('6gRn57Qhb6Ts');
-        $merchantAuthentication->setTransactionKey('4U7pb8A65KL6uTnK');
+        $merchantAuthentication->setName('9SFx6RK9vVP');
+        $merchantAuthentication->setTransactionKey('7J47Dda43zKp534s');
 
         // Set the transaction's refId
         $refId = 'ref' . time();
