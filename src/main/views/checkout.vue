@@ -106,7 +106,7 @@
                 <li>
                   {{ $t("Delivery_price") }}
                   <span
-                    v-if="totals.total_taxed > limit_shipment"
+                    v-if="totals.total > limit_shipment"
                     style="
                       float: left;
                       color: #9f9f9f;

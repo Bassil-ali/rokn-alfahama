@@ -515,15 +515,18 @@ export default {
   },
   mounted() {
     // this.$store.dispatch("type/index");
-    this.$store.dispatch("category/index" , {per_page:-1});
-    this.$store.dispatch("unit/index", {per_page:-1});
-    this.$store.dispatch("tax/index", {per_page:-1});
+    this.$store.dispatch("category/index");
+    this.$store.dispatch("unit/index");
+    this.$store.dispatch("tax/index");
     this.$store.dispatch("color/index");
     this.$store.dispatch("size/index");
     this.$store.dispatch("shipping/index");
-    this.$store.dispatch("shippinga/index");
+
     if (this.$route.params.id) {
       this.$store.dispatch("item/show", { id: this.$route.params.id });
+      this.$store.dispatch("shippinga/index", {
+         ids: this.$route.params.id,
+      });
       this.$store.dispatch("property/index", {
         item_id: this.$route.params.id,
       });
