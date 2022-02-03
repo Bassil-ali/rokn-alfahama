@@ -46,8 +46,11 @@ class ShippingItemController extends BaseController
             return response()->json(['message' => 'not_permitted'], 422);
         return new ShippingItemResource($shippingItem);
     }
-    public function update(Request $request, ShippingItem $shippingItem)
+    public function update(Request $request,  $shippingItem_id)
     {
+        
+        $shippingItem = ShippingItem::find($shippingItem_id);
+       
         if (!$this->user->is_permitted_to('update', ShippingItem::class, $request))
             return response()->json(['message' => 'not_permitted'], 422);
         $validator = Validator::make($request->all(), ShippingItem::updateRules($this->user));
@@ -55,10 +58,7 @@ class ShippingItemController extends BaseController
             return response()->json(['errors' => $validator->errors()], 422);
         }
         $shippingItem->update($validator->validated());
-        if ($request->translations) {
-            foreach ($request->translations as $translation)
-                $shippingItem->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
-        }
+ 
         return new ShippingItemResource($shippingItem);
     }
     public function destroy(Request $request, ShippingItem $shippingItem)

@@ -56,7 +56,10 @@ class Category extends BaseModel
         $query->when($request->top, function ($query, $top) {
             // $query->whererow("limit $top");
         });
-
+        $query->when($request->search, function ($query, $search) {
+            $local = app()->getLocale();
+            $query->where('name->' . "$local", 'like', "%{$search}%");
+        });
         $query->when($request->null_parent_id, function ($query) {
             $query->whereNull('parent_id');
         });
