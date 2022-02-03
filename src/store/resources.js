@@ -139,7 +139,7 @@ let resources = [
     {
         name: 'dashboard',
         parent: '',
-      
+
         discreption: 'dashboard resource'
     },
     {
@@ -153,6 +153,14 @@ let resources = [
         name: 'shippinga',
         parent: '',
         discreption: 'shippinga resource',
+
+    },
+    {
+        name: 'contact',
+        parent: '',
+        form_route: '/contact/show',
+        headers: ['id', 'name' ,'message' , 'subject' , 'created_at' ],
+        discreption: 'contact us resource',
 
     },
     {

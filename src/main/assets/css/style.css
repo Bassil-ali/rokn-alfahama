@@ -1322,7 +1322,7 @@ input[type=number] {
     left: 20px;
     bottom: 0;
     background-repeat: no-repeat;
-    z-index: 12;
+    /* z-index: 12; */
     display: block;
 }
 

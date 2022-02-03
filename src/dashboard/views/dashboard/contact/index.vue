@@ -7,7 +7,6 @@
       title="contact_table"
       class="px-5 py-3"
     >
-      
       <data-table module="contact" :params="{}" />
     </base-material-card>
 
@@ -16,7 +15,6 @@
 </template>
 <script>
 export default {
-  mounted() {
-  },
+  mounted() {},
 };
 </script>

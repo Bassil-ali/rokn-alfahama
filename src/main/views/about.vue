@@ -10,15 +10,26 @@
             <div class="col-md-6">
               <div class="content">
                 <p>
-                  {{ locale == 'ar' ? settings.who_us[0].content_ar:settings.who_us[0].content_en }}
-                
+                  {{
+                    locale == "ar"
+                      ? settings.who_us[0].content_ar
+                      : settings.who_us[0].content_en
+                  }}
                 </p>
               </div>
             </div>
             <div class="col-md-6">
               <figure class="main-img">
-                <img v-if="settings.who_us[0].image_url" :src="settings.who_us[0].image_url" alt="" />
-                <img v-else src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg" alt="" />
+                <img
+                  v-if="settings.who_us[0].image_url"
+                  :src="settings.who_us[0].image_url"
+                  alt=""
+                />
+                <img
+                  v-else
+                  src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                  alt=""
+                />
               </figure>
             </div>
           </div>
@@ -29,17 +40,23 @@
           <div class="row">
             <div class="col-md-5">
               <figure>
-                <img v-if="settings.who_us[1].image_url" :src="settings.who_us[1].image_url" alt=""/>
+                <img
+                  v-if="settings.who_us[1].image_url"
+                  :src="settings.who_us[1].image_url"
+                  alt=""
+                />
                 <img v-else src="@/main/assets/images/Image-21.jpg" alt="" />
               </figure>
             </div>
             <div class="col-md-7">
               <div class="content">
                 <ul>
-                  <li style="line-height:2em">
-                     {{ locale == 'ar' ? settings.who_us[1].content_ar:settings.who_us[1].content_en }}
-                  
-                
+                  <li style="line-height: 2em">
+                    {{
+                      locale == "ar"
+                        ? settings.who_us[1].content_ar
+                        : settings.who_us[1].content_en
+                    }}
                   </li>
                 </ul>
               </div>
@@ -55,6 +72,11 @@
             <p>{{ $t("Shop_with_ease_by_categories") }}</p>
           </div>
           <div class="row">
+            <div class="col" v-for="category in categories" :key="category.id">
+              <category :item="category" />
+            </div>
+          </div>
+          <!-- <div class="row">
             <div class="col">
               <div class="item">
                 <a href="">
@@ -125,7 +147,7 @@
                 </a>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -134,10 +156,14 @@
 <script>
 import { mapState } from "vuex";
 export default {
+  mounted() {
+    this.$store.dispatch("category/index", { null_parent_id: true });
+  },
   computed: {
     ...mapState({
       settings: (state) => state.settings,
       locale: (state) => state.locales.locale,
+      categories: (state) => state.category.all,
     }),
   },
 };

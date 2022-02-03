@@ -231,7 +231,8 @@
             ><v-btn @click="removeShipment(index, shipment)" icon>
               <v-icon> fac fa-times </v-icon>
             </v-btn></v-col
-          > -->
+          > 
+           -->
         </v-row>
       </v-form>
     </base-material-card>
@@ -515,17 +516,17 @@ export default {
   },
   mounted() {
     // this.$store.dispatch("type/index");
-    this.$store.dispatch("category/index" , {per_page:-1});
-    this.$store.dispatch("unit/index" , {per_page:-1});
-    this.$store.dispatch("tax/index" , {per_page:-1});
-    this.$store.dispatch("color/index");
-    this.$store.dispatch("size/index");
+    this.$store.dispatch("category/index", { per_page: -1 });
+    this.$store.dispatch("unit/index", { per_page: -1 });
+    this.$store.dispatch("tax/index", { per_page: -1 });
+    this.$store.dispatch("color/index", { per_page: -1 });
+    this.$store.dispatch("size/index", { per_page: -1 });
     this.$store.dispatch("shipping/index");
 
     if (this.$route.params.id) {
       this.$store.dispatch("item/show", { id: this.$route.params.id });
       this.$store.dispatch("shippinga/index", {
-         ids:[ this.$route.params.id],
+        ids: [this.$route.params.id],
       });
       this.$store.dispatch("property/index", {
         item_id: this.$route.params.id,
@@ -544,10 +545,10 @@ export default {
       this.properties.splice(index, 1);
       this.$store.dispatch("property/delete", item);
     },
-    removeShipment(index, item) {
-      this.properties.splice(index, 1);
-      this.$store.dispatch("shipping/delete", item);
-    },
+    // removeShipment(index, item) {
+    //   this.properties.splice(index, 1);
+    //   this.$store.dispatch("shipping/delete", item);
+    // },
     get_url(image) {
       return typeof image.url != "string"
         ? URL.createObjectURL(image.url)
@@ -595,10 +596,13 @@ export default {
         }
         if (this.shipments[0]) {
           this.shipments.map((shipment) => {
-            shipment.item_id = item.id;
+            if (shipment.item_id) {
+              this.$store.dispatch("shippinga/update", shipment);
+            } else {
+              shipment.item_id = item.id;
+              this.$store.dispatch("shippinga/store", this.shipments);
+            }
           });
-
-          this.$store.dispatch("shippinga/store", this.shipments);
         }
         await this.$store.dispatch("item/store", item).then(() => {
           this.$router.push("/items");
@@ -626,10 +630,13 @@ export default {
         }
         if (this.shipments[0].name) {
           this.shipments.map((shipment) => {
-            shipment.item_id = new_item.id;
+            if (shipment.item_id) {
+              this.$store.dispatch("shippinga/update", shipment);
+            } else {
+              shipment.item_id = new_item.id;
+              this.$store.dispatch("shippinga/store", this.shipments);
+            }
           });
-
-          this.$store.dispatch("shippinga/store", this.shipments);
         }
         this.$router.push("/items");
       }

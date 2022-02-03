@@ -28,7 +28,7 @@ export default {
     },
     computed: {
         ...mapState({
-            user: (state) => state.auth.user.user,
+            user: (state) => state.auth.user?.user || null,
             user_obj: (state) => state.auth.user,
         })
     }

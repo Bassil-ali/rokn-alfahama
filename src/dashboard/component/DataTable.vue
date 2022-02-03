@@ -21,6 +21,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
     <v-data-table
       :headers="translateHeaders((headers || []).concat('actions'))"
       :items="data || []"
@@ -35,6 +36,25 @@
       v-bind="$attrs"
       v-on="$listeners"
     >
+      <template v-slot:top>
+        <v-row v-if="$route.name == 'categories' || $route.name == 'items'">
+          <v-col cols="3">
+            <v-text-field
+              @keyup.enter="searching"
+              outlined
+              dense
+              v-model="search"
+              label="search..."
+            >
+              <template v-slot:prepend-inner
+                ><v-btn @click="searching" icon>
+                  <v-icon> fas fa-search </v-icon>
+                </v-btn>
+              </template>
+            </v-text-field>
+          </v-col>
+        </v-row>
+      </template>
       <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"
         ><slot :name="slot" v-bind="scope"
       /></template>
@@ -72,6 +92,7 @@ export default {
   data() {
     return {
       globalItem: {},
+      search: "",
       dialog: false,
       options: {
         sortBy: [],
@@ -103,6 +124,9 @@ export default {
     }),
   },
   methods: {
+    searching() {
+      this.$store.dispatch(`${this.module}/index`, { search: this.search });
+    },
     translateHeaders(headers) {
       return headers.map((i) => {
         return {

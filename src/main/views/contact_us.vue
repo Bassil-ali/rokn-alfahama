@@ -8,7 +8,7 @@
         <div class="row align-items-center">
           <div class="col-md-6">
             <div class="content text-center">
-              <form action="">
+              <form @submit.prevent="save(item)">
                 <h4>{{ $t("do_you_have_question") }}</h4>
                 <h2>{{ $t("contact") }}</h2>
                 <div class="mb-3">
@@ -71,16 +71,13 @@
               <div class="socail">
                 <span>{{ $t("follow_us_on") }}</span>
                 <div class="links">
-                   
-                    <a :href="settings.instgram" target="__blank"
-                      ><i class="fab fa-instagram"></i
-                    ></a>
-                  
-                  
-                    <a :href="settings.facebook" target="__blank"
-                      ><i class="fab fa-facebook-f"></i
-                    ></a>
-                  
+                  <a :href="settings.instgram" target="__blank"
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+
+                  <a :href="settings.facebook" target="__blank"
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
                 </div>
               </div>
             </div>
@@ -93,7 +90,7 @@
 <script>
 import { mapState } from "vuex";
 export default {
-   data() {
+  data() {
     return {
       item: {},
     };
@@ -107,7 +104,9 @@ export default {
 
   methods: {
     save(item) {
+      this.$root.user ? (item.user_id = this.$root.user.id) : "";
       this.$store.dispatch("contact/store", item);
+      this.item = {};
     },
   },
 };

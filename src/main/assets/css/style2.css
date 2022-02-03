@@ -1299,7 +1299,7 @@ input[type=number] {
     top: 50%;
     transform: translateY(-50%);
     background-repeat: no-repeat;
-    z-index: 12;
+    /* z-index: 12; */
     display: block;
     filter: brightness(0)invert(1);
 }
@@ -1314,7 +1314,7 @@ input[type=number] {
     left: 20px;
     bottom: 0;
     background-repeat: no-repeat;
-    z-index: 12;
+    /* z-index: 12; */
     display: block;
 }
 

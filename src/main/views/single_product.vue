@@ -463,7 +463,7 @@ export default {
     },
     calcItemPrice(item) {
       // let tax = item.tax ? item.tax.percentage : 0;
-      return parseFloat(item.selling_price ).toFixed(2);
+      return parseFloat(item.selling_price).toFixed(2);
       // return parseFloat(item.selling_price * (tax / 100 + 1)).toFixed(2);
     },
     addToCart(item) {
@@ -482,8 +482,12 @@ export default {
       } else {
         item.property_id ? (item.property_id = null) : "";
       }
-
-      this.$store.dispatch("cart/addItem", item);
+      if (this.$root.user_obj) {
+        this.$store.dispatch("cart/addItem", item);
+      } else {
+        this.$router.push("/login");
+      }
+      // this.$store.dispatch("cart/addItem", item);
     },
     like(one) {
       this.$store.dispatch("item_reaction/store", {
