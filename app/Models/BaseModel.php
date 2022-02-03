@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class BaseModel extends Model
 {
     use HasFactory;
-    public function scopeSearch($query,$request){}
-    public function scopeSort($query,$request){}
+    public function scopeSearch($query, $request)
+    {
+    }
+    public function scopeSort($query, $request)
+    {
+    }
 }

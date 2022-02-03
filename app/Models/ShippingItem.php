@@ -20,9 +20,9 @@ class ShippingItem extends BaseModel
     public static function updateRules($user)
     {
         return [
-            '*.item_id' => 'sometimes',
-            '*.shipping_id' => 'sometimes',
-            '*.price' => 'sometimes',
+            'item_id' => 'sometimes',
+            'shipping_id' => 'sometimes',
+            'price' => 'sometimes',
         ];
     }
     public function item()
@@ -36,7 +36,6 @@ class ShippingItem extends BaseModel
     public function scopeSearch($query, $request)
     {
         $query->when($request->ids, function ($query, $ids) {
-      
             $query->whereIn('item_id', $ids);
         });
     }

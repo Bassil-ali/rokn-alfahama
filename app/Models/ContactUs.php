@@ -10,26 +10,29 @@ class ContactUs extends BaseModel
     use HasFactory;
     protected $guarded = [];
     protected $with = ['user'];
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d h:i:s'
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-        public static function createRules($user)
+    public static function createRules($user)
     {
         return [
-            'user_id' => 'required|exists:users,id',
+            'user_id' => 'sometimes|exists:users,id',
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'subject' => 'required',
             'message' => 'required',
-           
+
         ];
     }
     public static function updateRules($user)
     {
         return [
-           'user_id' => 'required|exists:users,id',
+            'user_id' => 'sometimes|exists:users,id',
             'name' => 'required',
             'email' => 'required|unique:users,email',
             'subject' => 'required',
