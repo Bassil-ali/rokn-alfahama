@@ -148,7 +148,7 @@
     <div class="section-05">
       <div class="container">
         <div class="head">
-          <h2>تابعونا على حسابتنا على السوشيال ميديا</h2>
+          <h2>{{$('contact_us_social')}}</h2>
           <ul>
             <li>
               <a
