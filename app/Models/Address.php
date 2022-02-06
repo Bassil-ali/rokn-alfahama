@@ -19,7 +19,7 @@ class Address extends BaseModel
     public static function createRules($user)
     {
         return [
-            'user_id' => 'required|exists:users,id',
+            'user_id' => 'nullable',
             'title_name' => 'nullable',
             'area' => 'nullable',
             'widget' => 'nullable',
@@ -36,7 +36,7 @@ class Address extends BaseModel
     public static function updateRules($user)
     {
         return [
-            'user_id' => 'required|exists:users,id',
+            'user_id' => 'nullable',
             'title_name' => 'nullable',
             'area' => 'nullable',
             'widget' => 'nullable',

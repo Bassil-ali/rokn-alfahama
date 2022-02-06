@@ -20,6 +20,7 @@ class Payment extends BaseModel
     {
         return [
             'order_id' => 'sometimes|exists:orders,id',
+            'user_id' => 'nullable',
             'amount' => 'required|numeric',
             'date' => 'required|date',
             'currency_id' => 'sometimes|exists:currencies,id',
@@ -35,6 +36,7 @@ class Payment extends BaseModel
     {
         return [
             'order_id' => 'sometimes|exists:orders,id',
+            'user_id' => 'nullable',
             'amount' => 'sometimes|numeric',
             'date' => 'sometimes|timestamp',
             'currency_id' => 'sometimes|exists:currencies,id',
@@ -53,7 +55,7 @@ class Payment extends BaseModel
         $amount = $myOrder->taxed_total;
          
         $merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
-        $merchantAuthentication->setName('9SFx6RK9vVP');
+        $merchantAuthentication->setName('9SFx6RK9vVp');
         $merchantAuthentication->setTransactionKey('7J47Dda43zKp534s');
 
         // Set the transaction's refId
@@ -88,7 +90,7 @@ class Payment extends BaseModel
         $customerData = new AnetAPI\CustomerDataType();
         $customerData->setType("individual");
         $customerData->setId($myOrder->id);
-        $customerData->setEmail($myOrder->user->email);
+        $customerData->setEmail($myOrder->user->email ?? $myOrder->customer_email );
 
         // Add values for transaction settings
         // $duplicateWindowSetting = new AnetAPI\SettingType();

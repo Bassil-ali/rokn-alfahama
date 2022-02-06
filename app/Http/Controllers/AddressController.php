@@ -15,7 +15,7 @@ class AddressController extends BaseController
     }
     public function __construct(Request $request)
     {
-        parent::__construct($request);
+        // parent::__construct($request);
     }
     public function index(Request $request)
     {
@@ -23,8 +23,8 @@ class AddressController extends BaseController
     }
     public function store(Request $request)
     {
-        if(!$this->user->is_permitted_to('store',Address::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('store',Address::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
 
         $validator = Validator::make($request->all(),Address::createRules($this->user));
         if($validator->fails()){
@@ -39,14 +39,14 @@ class AddressController extends BaseController
     }
     public function show(Request $request,Address $address)
     {
-        if(!$this->user->is_permitted_to('view',Address::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('view',Address::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
         return new AddressResource($address);
     }
     public function update(Request $request, Address $address)
     {
-        if(!$this->user->is_permitted_to('update',Address::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('update',Address::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
         $validator = Validator::make($request->all(),Address::updateRules($this->user));
         if($validator->fails()){
             return response()->json(['errors'=>$validator->errors()],422);
@@ -60,8 +60,8 @@ class AddressController extends BaseController
     }
     public function destroy(Request $request,Address $address)
     {
-        if(!$this->user->is_permitted_to('delete',Address::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('delete',Address::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
         $address->delete();
 
         return new AddressResource($address);

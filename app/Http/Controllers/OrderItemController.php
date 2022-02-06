@@ -19,7 +19,7 @@ class OrderItemController extends BaseController
     public $childRelationName;
     public function __construct(Request $request)
     {
-        parent::__construct($request);
+        // parent::__construct($request);
         $this->childRelationName = 'items';
     }
     public function index(Request $request, Order $order)
@@ -31,8 +31,8 @@ class OrderItemController extends BaseController
     public function store(Request $request, Order $order)
     {
         
-        if (!$this->user->is_permitted_to('store', OrderItem::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('store', OrderItem::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
 
         $validator = Validator::make($request->all(), OrderItem::createRules($this->user));
         if ($validator->fails()) {
@@ -49,8 +49,8 @@ class OrderItemController extends BaseController
     }
     public function show(Request $request, Order $order, OrderItem $orderItem)
     {
-        if (!$this->user->is_permitted_to('view', OrderItem::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('view', OrderItem::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
         return new OrderItemResource($orderItem);
     }
     public function update(Request $request, $orderId, $itemId)
@@ -58,8 +58,8 @@ class OrderItemController extends BaseController
 
         $orderItem = OrderItem::where('order_id', '=', $orderId)->where('item_id', '=', $itemId)->first();
 
-        if (!$this->user->is_permitted_to('update', OrderItem::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('update', OrderItem::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
 
         $validator = Validator::make($request->all(), OrderItem::updateRules($this->user));
         if ($validator->fails()) {
@@ -77,8 +77,8 @@ class OrderItemController extends BaseController
     public function destroy(Request $request, $orderId, $itemId)
     {
         $orderItem = OrderItem::where('order_id', '=', $orderId)->where('item_id', '=', $itemId)->first();
-        if (!$this->user->is_permitted_to('delete', OrderItem::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('delete', OrderItem::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
         $orderItem->delete();
         return new OrderItemResource($orderItem);
     }
