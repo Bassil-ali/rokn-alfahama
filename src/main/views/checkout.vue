@@ -117,6 +117,7 @@
                     {{ total_shipment }}
                     $
                   </span>
+
                   <span v-else> {{ total_shipment }} $</span>
                 </li>
                 <li>
@@ -146,10 +147,15 @@
               <div class="col-md-11">
                 <div class="content">
                   <p>
-                    {{ $t("register_as") }} : <strong>{{ user.name }}</strong>
+                    {{ $t("register_as") }} :
+                    <strong v-if="$root.user">{{ $root.user.name }}</strong>
                   </p>
+
                   <div class="box">
-                    <div class="entry-content-myaccount address">
+                    <div
+                      v-if="$root.user"
+                      class="entry-content-myaccount address"
+                    >
                       <h2>{{ $t("my_addresses") }}</h2>
                       <div class="items">
                         <div
@@ -196,6 +202,182 @@
                         >{{ $t("add_site_new") }}</a
                       >
                     </div>
+                    <div v-else class="entry-content-myaccount address">
+                      <h2>تفاصيل اتمام عملية الشراء - كضيف</h2>
+                      <form @submit.prevent="saveAddress(address)" class="form">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="mb-3">
+                              <label> {{ $t("name") }} <span>*</span></label>
+                              <input
+                                type="text"
+                                v-model="gust_order.customer_name"
+                                class="form-control"
+                                :placeholder="$t('name')"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="mb-3">
+                              <label>
+                                {{ $t("phone number") }} <span>*</span></label
+                              >
+                              <input
+                                type="number"
+                                v-model="gust_order.customer_mobile"
+                                class="form-control"
+                                :placeholder="$t('add phone')"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="mb-3">
+                              <label>{{ $t("email") }} <span>*</span></label>
+                              <input
+                                type="email"
+                                v-model="gust_order.customer_email"
+                                class="form-control"
+                                :placeholder="$t('add email')"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label>{{ $t("site") }} <span>*</span></label>
+                              <input
+                                v-model="address.area"
+                                type="text"
+                                class="form-control"
+                                :placeholder="$t('site')"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label>{{ $t("widget") }} <span>*</span></label>
+                              <input
+                                v-model="address.widget"
+                                type="text"
+                                class="form-control"
+                                :placeholder="$t('widget')"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label>{{ $t("street") }} <span>*</span></label>
+                              <input
+                                type="text"
+                                class="form-control"
+                                v-model="address.street"
+                                :placeholder="$t('street')"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label>{{ $t("Avenue") }}</label>
+                              <input
+                                type="text"
+                                v-model="address.avenue"
+                                class="form-control"
+                                :placeholder="$t('Avenue')"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label
+                                >{{ $t("house_number") }}<span>*</span></label
+                              >
+                              <input
+                                type="text"
+                                v-model="address.house_number"
+                                class="form-control"
+                                :placeholder="$t('house_number')"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label>{{ $t("Floor_No") }}</label>
+                              <input
+                                type="text"
+                                v-model="address.floor_no"
+                                class="form-control"
+                                :placeholder="$t('Floor_No')"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label>{{ $t("Apartment_number") }}</label>
+                              <input
+                                type="text"
+                                v-model="address.apartment_number"
+                                class="form-control"
+                                :placeholder="$t('Apartment_number')"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="mb-3">
+                            <label>{{ $t("Notes") }}</label>
+                            <textarea
+                              type="text"
+                              class="form-control"
+                              v-model="address.notes"
+                              :placeholder="$t('Notes')"
+                            >
+                            </textarea>
+                          </div>
+                        </div>
+                        <button type="submit" class="button">
+                          {{ $t("add_site") }}
+                        </button>
+                      </form>
+
+                      <div
+                        :key="index"
+                        v-for="(address, index) in localeAddresses"
+                        class="d-flex"
+                      >
+                         
+                        <input
+                          class="form-check-input"
+                          id="flexCheckDefault"
+                          type="radio"
+                          @input="() => (selectedLocalAddress = address)"
+                          name="fav_language"
+                        />
+                         
+                        <label for="css">
+                          <ul>
+                            <li>
+                              {{ address.area }} - {{ address.widget }} -
+                              {{ address.street }} - {{ address.avenue }} -
+                              {{ address.house_number }} -
+                              {{ address.floor_no }} -
+                              {{ address.apartment_number }}
+                              <a @click="removeLocalAddress(index)"
+                                ><i class="fas fa-times"></i
+                              ></a>
+                            </li>
+                            <li>
+                              {{ address.notes }}
+                            </li>
+                          </ul></label
+                        ><br />
+                      </div>
+                    </div>
+
                     <div class="pay-box form">
                       <!--                       
                       <h6>اختار طريقة الشحن</h6> -->
@@ -264,7 +446,10 @@
       </div>
       <div class="row justify-content-center infoo">
         <div class="col-md-10 text-center">
-          <p>{{ $t("pyment_safe") }}</p>
+          <p>
+            الدفع لدينا آمان . يتم إرسال معلوماتك الشخصية ومعلومات الدفع الخاصة
+            بك بشكل امن لانقوم بتخزين أي معلومات بطاقة دفع على منصتنا
+          </p>
         </div>
       </div>
     </div>
@@ -274,8 +459,17 @@
 import { mapState } from "vuex";
 export default {
   mounted() {
-    if (!this.$attrs.id) return this.$router.push("/");
-    this.$store.dispatch("address/index");
+    if (this.$root.user) {
+      this.$store.dispatch("address/index", { user_id: this.$root.user.id });
+    } else {
+      if (localStorage.getItem("address")) {
+        this.localeAddresses = JSON.parse(localStorage.getItem("address"));
+      }
+    }
+    this.ids = this.order.items.map((v) => v.item_id);
+    if (this.ids.length > 0) {
+      this.$store.dispatch("shippinga/index", { ids: this.ids });
+    }
     // this.$store.dispatch("shipping/index");
     // if (this.$attrs.id) {
     //   this.$store.dispatch("order/show", { id: this.$attrs.id });
@@ -285,6 +479,11 @@ export default {
   },
   data() {
     return {
+      selectedLocalAddress: null,
+      localeAddresses: [],
+      add: null,
+      address: {},
+      gust_order: {},
       selected_shipment: null,
       valid_selected_shipment: false,
       total_shipment: 0,
@@ -302,7 +501,13 @@ export default {
     remove(item) {
       this.$store.dispatch("cart/removeItem", item);
     },
-
+    checkedLocale(index) {
+      console.log(index);
+      this.localeAddresses.map((v, i) => {
+        console.log(i);
+        return i == index ? (v.checked = true) : (v.checked = false);
+      });
+    },
     increment(item) {
       this.$store.dispatch("cart/incrementItem", item);
     },
@@ -314,33 +519,84 @@ export default {
       return date.toISOString().slice(0, 19).replace("T", " ");
     },
     async save() {
-      let order_copy = JSON.parse(JSON.stringify(this.order));
-      delete order_copy.items;
-      console.log(order_copy);
-      order_copy.due_date = this.getTime();
-      order_copy.status = 1;
-      order_copy.taxed_total = this.totals.total_taxed;
-      order_copy.discount = this.totals.discount;
-      order_copy.total = this.totals.total;
-      if (this.totals.total_taxed < this.limit_shipment) {
-        order_copy.taxed_total + this.total_shipment;
-      }
-      await this.$store
-        .dispatch("order/store", order_copy)
-        .then((data) => {
-          return data;
-        })
-        .then(() => {
-          let domain = `${process.env.URL || window.location.protocol}//${
-            window.location.host
-          }`;
-          window.open(`${domain}/complete-order/${this.order.id}`);
-          this.$router.push("/cart");
-        });
+      if (this.$root.user) {
+        let order_copy = JSON.parse(JSON.stringify(this.order));
+        delete order_copy.items;
+        console.log(order_copy);
+        order_copy.due_date = this.getTime();
+        order_copy.status = 1;
+        order_copy.taxed_total = this.totals.total_taxed;
+        order_copy.discount = this.totals.discount;
+        order_copy.total = this.totals.total;
+        if (this.totals.total_taxed < this.limit_shipment) {
+          order_copy.taxed_total + this.total_shipment;
+        }
 
+        await this.$store
+          .dispatch("order/store", order_copy)
+          .then((data) => {
+            return data;
+          })
+          .then(() => {
+            let domain = `${process.env.URL || window.location.protocol}//${
+              window.location.host
+            }`;
+            window.open(`${domain}/complete-order/${this.order.id}`);
+            this.$router.push("/cart");
+          });
+      } else {
+        let order = { ...this.gust_order };
+        order.due_date = this.getTime();
+        order.issue_date = this.getTime();
+        order.status = 1;
+        order.taxed_total = this.totals.total_taxed;
+        order.discount = this.totals.discount;
+        order.total = this.totals.total;
+        if (this.totals.total_taxed < this.limit_shipment) {
+          order.taxed_total + this.total_shipment;
+        }
+        this.$store
+          .dispatch("address/store", this.selectedLocalAddress)
+          .then((address) => {
+            order.address_id = address.id;
+            this.$store.dispatch("order/store", order).then((new_order) => {
+              this.order.items.map((item) => {
+                this.$store
+                  .dispatch("order_item/store", {
+                    ...item,
+                    order_id: new_order.id,
+                  })
+                  .then(() => {
+                    let domain = `${
+                      process.env.URL || window.location.protocol
+                    }//${window.location.host}`;
+                    window.open(`http://127.0.0.1/complete-order/${new_order.id}`);
+                    this.$router.push("/cart");
+                  });
+              });
+            });
+          });
+      }
       // if (order_id) {
 
       // }
+    },
+    removeLocalAddress(index) {
+      let addresses = JSON.parse(localStorage.getItem("address"));
+      addresses.splice(index, 1);
+      localStorage.setItem("address", JSON.stringify(addresses));
+      this.localeAddresses = JSON.parse(localStorage.getItem("address"));
+    },
+    saveAddress(item) {
+      if (Object.keys(item).length < 3) return;
+      if (localStorage.getItem("address")) {
+        let addresses = JSON.parse(localStorage.getItem("address"));
+        addresses.push(item);
+        localStorage.setItem("address", JSON.stringify(addresses));
+      } else {
+        localStorage.setItem("address", JSON.stringify([item]));
+      }
+      this.localeAddresses = JSON.parse(localStorage.getItem("address"));
     },
     addCoupon() {
       this.$store
@@ -359,17 +615,29 @@ export default {
   computed: {
     ...mapState({
       order: (state) => state.cart.order,
-      user: (state) => state.auth.user.user,
+
       addresses: (state) => state.address.all,
       settings: (state) => state.setting.all || [],
       // shipments: (state) => state.shipping.all || [],
       shippingas: (state) => state.shippinga.all || [],
     }),
+
     validated() {
-      if (this.my_address && this.totals.total_taxed > 0) {
-        return true;
+      if (this.$root.user) {
+        if (this.my_address && this.totals.total_taxed > 0) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
-        return false;
+        if (
+          Object.keys(this.gust_order).length > 2 &&
+          this.selectedLocalAddress
+        ) {
+          return true;
+        } else {
+          return false;
+        }
       }
     },
     totals() {
@@ -405,11 +673,11 @@ export default {
     limit_shipment() {
       var price = this.settings.find(
         (v) => v.key == "limit_price_for_shipment"
-      ).value;
+      )?.value;
       return parseFloat(price);
     },
     shipment_price() {
-      var price = this.settings.find((v) => v.key == "shipment_amount").value;
+      var price = this.settings.find((v) => v.key == "shipment_amount")?.value;
       return parseFloat(price);
     },
     total_taxes() {
@@ -425,11 +693,16 @@ export default {
     },
   },
   watch: {
-    order(val) {
-      if (val) {
-        this.ids = val.items.map((v) => v.item_id);
-        this.$store.dispatch("shippinga/index", { ids: this.ids });
-      }
+    order: {
+      handler(val) {
+        if (val) {
+          this.ids = val.items.map((v) => v.item_id);
+          if (this.ids.length > 0) {
+            this.$store.dispatch("shippinga/index", { ids: this.ids });
+          }
+        }
+      },
+      deep: true,
     },
     // selected_shipment(val) {
     //   if (val && this.ids) {

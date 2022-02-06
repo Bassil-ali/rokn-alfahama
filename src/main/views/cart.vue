@@ -49,7 +49,7 @@
                 <figure><img :src="item.image" alt="" /></figure>
               </td>
               <td>
-                {{ item.item_name }}
+                {{ item.item_name || item.name }}
               </td>
               <td data-title="الكمية">
                 <div class="quantity d-flex align-items-center">
@@ -104,7 +104,7 @@
                       >
                     </div>
                     <div class="button0">
-                      <router-link :to="`/checkout/${order.id}`">{{
+                      <router-link :to="`/checkout`">{{
                         $t("Complete_the_order")
                       }}</router-link>
                     </div>
@@ -128,7 +128,7 @@ export default {
   computed: {
     ...mapState({
       // order.items: (state) => state.cart.order.order.items,
-      order: (state) => state.cart.order,
+      order: (state) => state.cart.order || {},
     }),
   },
   watch: {
@@ -155,7 +155,7 @@ export default {
       let discount = item.discount * item.item_quantity;
       let item_dicounted = item.item_price * item.item_quantity - discount;
       // let tax = item.tax_percentage || 0;
-      let total = item_dicounted ;
+      let total = item_dicounted;
       // let total = item_dicounted * (tax / 100 + 1);
       if (all) {
         return total;

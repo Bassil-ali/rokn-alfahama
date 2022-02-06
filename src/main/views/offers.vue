@@ -125,12 +125,8 @@ export default {
       let discount = (this.offer.percentage / 100) * price;
       return price - discount;
     },
-    addToCart(item) {
-      if (this.$root.user_obj) {
+    addToCart(item) {  
         this.$store.dispatch("cart/addItem", item);
-      } else {
-        this.$router.push("/login");
-      }
     },
     like(item) {
       this.$store.dispatch("item_reaction/store", {

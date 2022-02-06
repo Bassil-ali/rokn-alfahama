@@ -101,15 +101,11 @@ export default {
     },
     calcItemPrice(item) {
       // let tax = item.tax ? item.tax.percentage : 0;
-      return parseFloat(item.selling_price ).toFixed(2);
+      return parseFloat(item.selling_price).toFixed(2);
       // return parseFloat(item.selling_price * (tax / 100 + 1)).toFixed(2);
     },
     addToCart(item) {
-      if (this.$root.user_obj) {
-        this.$store.dispatch("cart/addItem", item);
-      } else {
-        this.$router.push("/login");
-      }
+      this.$store.dispatch("cart/addItem", item);
     },
     like(item) {
       this.$store.dispatch("item_reaction/store", {

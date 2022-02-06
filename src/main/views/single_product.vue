@@ -484,8 +484,6 @@ export default {
       }
       if (this.$root.user_obj) {
         this.$store.dispatch("cart/addItem", item);
-      } else {
-        this.$router.push("/login");
       }
       // this.$store.dispatch("cart/addItem", item);
     },

@@ -31,5 +31,12 @@ export default {
             user: (state) => state.auth.user?.user || null,
             user_obj: (state) => state.auth.user,
         })
+    },
+    mounted() {
+
+        if (!this.$root.user) {
+            this.$store.dispatch("cart/loadLocal");
+        }
     }
+
 }
