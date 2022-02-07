@@ -9,6 +9,6 @@ class EmaillController extends BaseController
 {
     public function sendEmail(Request $request)
     {
-        dd($request);
+        // dd($request);
     }
 }

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PaymentResource;
+use App\Mail\WelcomeMail;
 use App\Models\Address;
 use App\Models\Order;
 use App\Models\Payment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use net\authorize\api\controller as AnetController;
@@ -81,7 +83,9 @@ class PaymentController extends BaseController
         $myOrder = Order::find($myOrderId);
 
         $validator = Validator::make([
-            'order_id' => $myOrderId, "amount" => $myOrder->taxed_total, "date" => Carbon::now(), "status" => 0,
+            'order_id' => $myOrderId,
+            "amount" => $myOrder->taxed_total,
+            "date" => Carbon::now(), "status" => 0,
             'user_id' => $myOrder->user_id
         ], Payment::createRules($this->user));
         if ($validator->fails()) {
@@ -89,20 +93,14 @@ class PaymentController extends BaseController
         }
 
         $payment = Payment::create($validator->validated());
-        $confirmation = $payment->confirm();
-        if ($confirmation['status'] == 200) {
-            $payment->update(["status" => 1]);
-            return redirect("http://localhost:8090/main/seccessful-payment/$myOrderId");
-            // return view('completed-payment', ["status" => $confirmation['status'], "description" => "payment completed successfully"]);
+
+        $confirmation = $payment->confirmAndSendMail();
+        if ($confirmation === true) {
+            return redirect("/main/seccessful-payment/$myOrderId");
+        } else if ($confirmation === false) {
+            return redirect("/main/error-payment/$myOrderId");
         } else {
-            return redirect("http://localhost:8090/main/error-payment/$myOrderId");
-            // return view('completed-payment', ["status" => $confirmation['status'], "description" => $confirmation['messages']]);
+            return redirect("/main/error-payment/$myOrderId?" . $confirmation['messages']);
         }
-        // return new PaymentResource($payment);
     }
-
-    // if (!defined('DONT_RUN_SAMPLES')) {
-    //       createAnAcceptPaymentTransaction("2.23");
-    // }
-
 }

@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->dateTime('issue_date');
             $table->date('due_date')->nullable();
             $table->double('total')->default(0);
+            $table->double('total_shipping')->default(0);
             $table->double('discount')->default(0);
             $table->double('tax')->default(0);
             $table->double('taxed_total')->default(0);
