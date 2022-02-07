@@ -203,7 +203,7 @@
                       >
                     </div>
                     <div v-else class="entry-content-myaccount address">
-                      <h2>تفاصيل اتمام عملية الشراء - كضيف</h2>
+                      <h2>{{$('complete_order_quest')}}</h2>
                       <form @submit.prevent="saveAddress(address)" class="form">
                         <div class="row">
                           <div class="col-md-12">
@@ -220,13 +220,13 @@
                           <div class="col-md-12">
                             <div class="mb-3">
                               <label>
-                                {{ $t("phone number") }} <span>*</span></label
+                                {{ $t("phone_number") }} <span>*</span></label
                               >
                               <input
                                 type="number"
                                 v-model="gust_order.customer_mobile"
                                 class="form-control"
-                                :placeholder="$t('add phone')"
+                                :placeholder="$t('phone_number')"
                               />
                             </div>
                           </div>
@@ -237,7 +237,7 @@
                                 type="email"
                                 v-model="gust_order.customer_email"
                                 class="form-control"
-                                :placeholder="$t('add email')"
+                                :placeholder="$t('email')"
                               />
                             </div>
                           </div>
@@ -447,8 +447,7 @@
       <div class="row justify-content-center infoo">
         <div class="col-md-10 text-center">
           <p>
-            الدفع لدينا آمان . يتم إرسال معلوماتك الشخصية ومعلومات الدفع الخاصة
-            بك بشكل امن لانقوم بتخزين أي معلومات بطاقة دفع على منصتنا
+           {{$t('security_text')}}
           </p>
         </div>
       </div>

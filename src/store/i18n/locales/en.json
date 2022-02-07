@@ -379,6 +379,27 @@
   "firts_paragraph_en": "firts paragraph en",
   "account_not": "no account ?",
   "contact_table":"contact message table",
-  "contact_us_social":"Follow us on our social media account"
+  "contact_us_social":"Follow us on our social media account",
+  "complete_order_quest":"Checkout details - as a guest",
+  "security_text":"Our payment is safe. Your personal information and private payment information are sent We do not store any payment card information on our platform",
+  "count":"Count",
+  "must_classification":"Most Rated",
+  "lowest_price":"lowest price",
+  "the_highest_price" : "the highest price",
+    "most_liked":"most liked",
+    "Available_item":"Available item",
+    "number_of_categories":"number of categories",
+    "number_of _items":"number of items",
+    "tax_rate":"tax rate",
+    "users_number":"users number",
+    "number_of_orders":"number of orders",
+    "Payment_amount":"Payment amount",
+      "tray_agian":"tray agian"
+
+  
+
+  
+
+
 
 }

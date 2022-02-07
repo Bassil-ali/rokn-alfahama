@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="entry-content checkout">
-      <h2>إتمام عملية الشراء</h2>
+      <h2>{{$t('Checkout')}}</h2>
 
       <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,11 +13,11 @@
                     <figure>
                       <img src="@/main/assets/images/false.svg" alt="" />
                     </figure>
-                    <h5>نعتذر منك</h5>
-                    <p>لم تتم عملية الطلب بنجاح</p>
-                    <p>لا تقلق قم بالمحاولة مرة أخرى</p>
+                    <h5>{{$t('We_apologize')}}</h5>
+                    <p>{{$t('not_complete')}}</p>
+                    <p>{{$t('try')}}</p>
                   </div>
-                  <h4>معلومات التواصل</h4>
+                  <h4>{{$t('Contact_info')}}</h4>
                   <ul>
                     <li>
                       <i class="far fa-user-circle"></i
@@ -30,7 +30,7 @@
                       }}
                     </li>
                   </ul>
-                  <h4>معلومات التواصل</h4>
+                  <h4>{{$t('Contact_info')}}</h4>
                   <ul>
                     <li>
                       <i class="fas fa-map-marker-alt"></i>
@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-6 p-0">
               <div class="block left">
-                <h4>معلومات الطلب</h4>
+                <h4>{{$t('Contact_info')}}</h4>
                 <div class="orders">
                   <div
                     :key="index"
@@ -68,7 +68,7 @@
                         <div class="d-flex justify-content-between">
                           <div class="price">{{ item.item_price }} $</div>
                           <div class="quantity">
-                            العدد : <strong>{{ item.item_quantity }}</strong>
+                            {{$t('count')}} : <strong>{{ item.item_quantity }}</strong>
                           </div>
                         </div>
                       </div>
@@ -78,8 +78,8 @@
                 <div class="footer">
                   <ul>
                     <li>
-                      عدد المنتجات
-                      <span>{{
+                      {{$t('number_of_products')}}
+                                            <span>{{
                         items
                           ? items.reduce(
                               (c, n) => c + parseInt(n.item_quantity),
@@ -143,8 +143,8 @@
         </div>
       </div>
       <div class="mt-5 mb-5 text-center">
-        <a :href="retry()" class="button fill me-3"> إعادة المحاولة </a>
-        <a href="/" class="button fill no"> خروج </a>
+        <a :href="retry()" class="button fill me-3"> {{$t('')}}} </a>
+        <a href="/" class="button fill no"> {{$t('exit')}}} </a>
       </div>
     </div>
   </div>
