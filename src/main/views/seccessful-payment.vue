@@ -160,7 +160,7 @@ export default {
   },
   mounted() {
     if (this.$route.params.id) {
-      localStorage.removeItem('order');
+      localStorage.removeItem("order");
       this.$store.dispatch("order/show", { id: this.$route.params.id });
       this.$store.dispatch("settings/index");
       this.$store.dispatch("order_item/index", {
@@ -237,6 +237,12 @@ export default {
     shippingas(val) {
       if (val) {
         this.total_shipment = val.reduce((c, n) => c + n.price, 0);
+      }
+    },
+    items(val) {
+      this.ids = val.map((v) => v.item_id);
+      if (this.ids.length > 0) {
+        this.$store.dispatch("shippinga/index", { ids: this.ids });
       }
     },
   },

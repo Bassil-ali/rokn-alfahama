@@ -529,7 +529,8 @@ export default {
         order_copy.discount = this.totals.discount;
         order_copy.total = this.totals.total;
         if (this.totals.total_taxed < this.limit_shipment) {
-          order_copy.taxed_total + this.total_shipment;
+          order_copy.taxed_total += this.total_shipment;
+          order_copy.total_shipping = this.total_shipment;
         }
 
         await this.$store
@@ -553,8 +554,10 @@ export default {
         order.discount = this.totals.discount;
         order.total = this.totals.total;
         if (this.totals.total_taxed < this.limit_shipment) {
-          order.taxed_total + this.total_shipment;
+          order.taxed_total += this.total_shipment;
+          order.total_shipping = this.total_shipment;
         }
+        localStorage.removeItem("order");
         this.$store
           .dispatch("address/store", this.selectedLocalAddress)
           .then((address) => {
@@ -570,8 +573,9 @@ export default {
                     let domain = `${
                       process.env.URL || window.location.protocol
                     }//${window.location.host}`;
-                    window.open(`http://127.0.0.1/complete-order/${new_order.id}`);
+                    window.open(`${domain}/complete-order/${new_order.id}`);
                     this.$router.push("/cart");
+                    location.reload();
                   });
               });
             });

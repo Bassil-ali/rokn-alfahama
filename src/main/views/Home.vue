@@ -148,7 +148,7 @@
     <div class="section-05">
       <div class="container">
         <div class="head">
-          <h2>{{$('contact_us_social')}}</h2>
+          <h2>{{$t('contact_us_social')}}</h2>
           <ul>
             <li>
               <a

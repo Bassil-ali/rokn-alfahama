@@ -4,5 +4,6 @@ export default axios.create({
     baseURL,
     headers:{
         'Content-Type':'application/json',
+        'locale': localStorage.getItem('locale') || 'en'
     }
 });
