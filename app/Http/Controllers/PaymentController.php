@@ -24,7 +24,7 @@ class PaymentController extends BaseController
     }
     public function __construct(Request $request)
     {
-        parent::__construct($request);
+        // parent::__construct($request);
     }
     public function index(Request $request)
     {
@@ -32,8 +32,8 @@ class PaymentController extends BaseController
     }
     public function store(Request $request)
     {
-        if (!$this->user->is_permitted_to('store', Payment::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('store', Payment::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
 
         $validator = Validator::make($request->all(), Payment::createRules($this->user));
         if ($validator->fails()) {
@@ -80,7 +80,10 @@ class PaymentController extends BaseController
     {
         $myOrder = Order::find($myOrderId);
 
-        $validator = Validator::make(['order_id' => $myOrderId, "amount" => $myOrder->taxed_total, "date" => Carbon::now(), "status" => 0, 'user_id' => $myOrder->user_id], Payment::createRules($this->user));
+        $validator = Validator::make([
+            'order_id' => $myOrderId, "amount" => $myOrder->taxed_total, "date" => Carbon::now(), "status" => 0,
+            'user_id' => $myOrder->user_id
+        ], Payment::createRules($this->user));
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
@@ -89,9 +92,11 @@ class PaymentController extends BaseController
         $confirmation = $payment->confirm();
         if ($confirmation['status'] == 200) {
             $payment->update(["status" => 1]);
-            return view('completed-payment', ["status" => $confirmation['status'], "description" => "payment completed successfully"]);
+            return redirect("http://localhost:8090/main/seccessful-payment/$myOrderId");
+            // return view('completed-payment', ["status" => $confirmation['status'], "description" => "payment completed successfully"]);
         } else {
-            return view('completed-payment', ["status" => $confirmation['status'], "description" => $confirmation['messages']]);
+            return redirect("http://localhost:8090/main/error-payment/$myOrderId");
+            // return view('completed-payment', ["status" => $confirmation['status'], "description" => $confirmation['messages']]);
         }
         // return new PaymentResource($payment);
     }

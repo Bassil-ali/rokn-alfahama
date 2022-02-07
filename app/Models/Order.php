@@ -10,7 +10,7 @@ class Order extends BaseModel
 {
     use HasFactory;
     protected $guarded = [];
-    protected $with = ['user', 'items' , 'addresses'];
+    protected $with = ['user', 'items', 'addresses'];
     protected $appends = ['items_count'];
     public function user()
     {
@@ -66,8 +66,11 @@ class Order extends BaseModel
     }
     public function scopeSearch($query, $request)
     {
-        $query->when(($request->status != null), function ($query) {
-            $query->where('status', '=', request('status'));
+        $query->when(($request->status != null && $request->user_id), function ($query) {
+            $query->where('status', '=', request('status'))->where('user_id', '=', request('user_id'));
+        });
+        $query->when(($request->status != null && $request->id), function ($query) {
+            $query->where('status', '=', request('status'))->where('id', '=', request('id'));
         });
     }
     public function getItemsCountAttribute()

@@ -66,8 +66,10 @@
 </head>
 
 <body>
-    <script type="text/javascript" src="https://jstest.authorize.net/v3/AcceptUI.js" charset="utf-8">
+    <script type="text/javascript" src="https://js.authorize.net/v3/AcceptUI.js" charset="utf-8">
     </script>
+    {{-- <script type="text/javascript" src="https://jstest.authorize.net/v3/AcceptUI.js" charset="utf-8">
+    </script> --}}
     <div class="center-screen">
         <div class="inner-center">
             <h2> {{ __('add your payment infotmation') }} </h2>
@@ -77,7 +79,7 @@
                     <input type="hidden" name="dataValue" id="dataValue" />
                     <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
                     <button type="button" class="AcceptUI button"
-                        data-billingAddressOptions='{"show":true, "required":false}' data-apiLoginID="9SFx6RK9vVP"
+                        data-billingAddressOptions='{"show":true, "required":false}' data-apiLoginID="9SFx6RK9vVp"
                         data-clientKey="4aL2v37rfPe6uveEt5mZKy9cYSeJ8Q5MKy32ZutvX4NUVyxdXebZKwQg269642rr"
                         data-acceptUIFormBtnTxt="Submit" data-acceptUIFormHeaderTxt="Card Information"
                         data-responseHandler="responseHandler">
@@ -92,9 +94,8 @@
             if (response.messages.resultCode === "Error") {
                 var i = 0;
                 while (i < response.messages.message.length) {
-                    console.log("ana ahmad");
                     console.log(response.messages);
-                    console.log(
+                  alert(
                         response.messages.message[i].code + ": " +
                         response.messages.message[i].text
                     );
