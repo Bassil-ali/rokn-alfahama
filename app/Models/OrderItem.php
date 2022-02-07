@@ -62,11 +62,11 @@ class OrderItem extends BaseModel
 
         ];
     }
-    // public function getTaxedValueAttribute()
-    // {
-    //     $price = $this->item_price;
-    //     $tax = $this->tax_percentage ?? 0;
-    //     $final =  $price - $this->discount;
-    //     return  $final * $tax / 100 *  $this->item_quantity;
-    // }
+    public function getTaxedValueAttribute()
+    {
+        $price = $this->item_price;
+        $tax = $this->tax_percentage ?? 0;
+        $final =  $price - $this->discount;
+        return  $final * (1 + $tax / 100) *  $this->item_quantity;
+    }
 }

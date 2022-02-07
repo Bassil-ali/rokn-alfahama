@@ -34,6 +34,7 @@ class Order extends BaseModel
             'issue_date' => 'required|date',
             'due_date' => 'sometimes|date',
             'total' => 'required|numeric',
+            'total_shipping' => 'nullable|numeric',
             'discount' => 'required|numeric',
             'tax' => 'sometimes|numeric',
             'taxed_total' => 'required|numeric',
@@ -52,6 +53,7 @@ class Order extends BaseModel
             'issue_date' => 'sometimes|date',
             'due_date' => 'sometimes|date',
             'total' => 'sometimes|numeric',
+            'total_shipping' => 'nullable|numeric',
             'discount' => 'sometimes|numeric',
             'tax' => 'sometimes|numeric',
             'taxed_total' => 'sometimes|numeric',
@@ -97,5 +99,18 @@ class Order extends BaseModel
             $totlas['taxed_total'] =   $totlas['total'] + $totlas['tax'] - $totlas['discount'];
         }
         return $totlas;
+    }
+    public function getTotalTaxesAttribute()
+    {
+
+        $all_items = $this->items->all();
+
+        $total = array_reduce($all_items, function ($c, $n) {
+            $price =  $n->item_price * $n->item_quantity - $n->discount * $n->item_quantity;
+            $taxes = $price * ($n->tax_percentage / 100);
+            return  $c + $taxes;
+        }, 0);
+
+        return  $total;
     }
 }

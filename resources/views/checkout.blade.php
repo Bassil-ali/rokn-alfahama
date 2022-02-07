@@ -79,8 +79,8 @@
                     <input type="hidden" name="dataValue" id="dataValue" />
                     <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
                     <button type="button" class="AcceptUI button"
-                        data-billingAddressOptions='{"show":true, "required":false}' data-apiLoginID="9SFx6RK9vVp"
-                        data-clientKey="4aL2v37rfPe6uveEt5mZKy9cYSeJ8Q5MKy32ZutvX4NUVyxdXebZKwQg269642rr"
+                        data-billingAddressOptions='{"show":true, "required":false}' data-apiLoginID="9SFx6RK9vVb"
+                        data-clientKey="6qn8LhgVL7mzX9ft7UmQ4jB9xxwKbAuJbRy5c959ech73LKp3HpXS56vAXK4d36r"
                         data-acceptUIFormBtnTxt="Submit" data-acceptUIFormHeaderTxt="Card Information"
                         data-responseHandler="responseHandler">
                         {{ __('add') }}
@@ -95,7 +95,11 @@
                 var i = 0;
                 while (i < response.messages.message.length) {
                     console.log(response.messages);
-                  alert(
+                    alert(
+                        response.messages.message[i].code + ": " +
+                        response.messages.message[i].text
+                    );
+                    console.log(
                         response.messages.message[i].code + ": " +
                         response.messages.message[i].text
                     );

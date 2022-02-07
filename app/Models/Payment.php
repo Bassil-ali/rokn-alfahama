@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use App\Mail\ErrorPaymentMail;
+use App\Mail\SuccessPaymentMail;
+use App\Mail\WelcomeMail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 use net\authorize\api\controller as AnetController;
 use net\authorize\api\contract\v1 as AnetAPI;
 
@@ -48,15 +52,15 @@ class Payment extends BaseModel
             'status' => 'sometimes|in:0,1,255'
         ];
     }
-    public function confirm()
+    public function confirmAndSendMail()
     {
         $myOrder = $this->order;
         $myAddress = Address::find($myOrder->address_id);
         $amount = $myOrder->taxed_total;
-         
+
         $merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
-        $merchantAuthentication->setName('9SFx6RK9vVp');
-        $merchantAuthentication->setTransactionKey('7J47Dda43zKp534s');
+        $merchantAuthentication->setName('9SFx6RK9vVb');
+        $merchantAuthentication->setTransactionKey('82dTf9M4t7MHW3bL');
 
         // Set the transaction's refId
         $refId = 'ref' . time();
@@ -78,7 +82,7 @@ class Payment extends BaseModel
 
         // Set the customer's Bill To address
         $customerAddress = new AnetAPI\CustomerAddressType();
-        $customerAddress->setFirstName($myOrder->customer_name ?? "Ahmad");
+        $customerAddress->setFirstName($myOrder->customer_name ?? $myOrder->user->name);
 
         $customerAddress->setAddress("$myAddress->widget  $myAddress->area  $myAddress->street " ?? "12 Main Street");
         $customerAddress->setCity($myAddress->area);
@@ -90,7 +94,7 @@ class Payment extends BaseModel
         $customerData = new AnetAPI\CustomerDataType();
         $customerData->setType("individual");
         $customerData->setId($myOrder->id);
-        $customerData->setEmail($myOrder->user->email ?? $myOrder->customer_email );
+        $customerData->setEmail($myOrder->user->email ?? $myOrder->customer_email);
 
         // Add values for transaction settings
         // $duplicateWindowSetting = new AnetAPI\SettingType();
@@ -137,43 +141,21 @@ class Payment extends BaseModel
                 // and parse it to display the results of authorizing the card
                 $tresponse = $response->getTransactionResponse();
                 if ($tresponse != null && $tresponse->getMessages() != null) {
-                    return ["status" => 200, "messages" => [
-                        "Transaction ID" => $tresponse->getTransId(),
-                        "Response Code" => $tresponse->getResponseCode(),
-                        "Message Code" => $tresponse->getMessages()[0]->getCode(),
-                        "Auth Code" => $tresponse->getAuthCode(),
-                        " Description" => $tresponse->getMessages()[0]->getDescription()
-                    ]];
-                    // echo " Successfully created transaction with Transaction ID: " . $tresponse->getTransId() . "\n";
-                    // echo " Transaction Response Code: " . $tresponse->getResponseCode() . "\n";
-                    // echo " Message Code: " . $tresponse->getMessages()[0]->getCode() . "\n";
-                    // echo " Auth Code: " . $tresponse->getAuthCode() . "\n";
-                    // echo " Description: " . $tresponse->getMessages()[0]->getDescription() . "\n";
+
+                    $this->update(["status" => 1]);
+                    Mail::to($myOrder->customer_email ??  $myOrder->user->email)->send(new SuccessPaymentMail($this));
+                    return true;
                 } else {
-                    return ["status" => 500, "Transaction Failed \n"];
-                    if ($tresponse->getErrors() != null) {
-                        echo " Error Code  : " . $tresponse->getErrors()[0]->getErrorCode() . "\n";
-                        echo " Error Message : " . $tresponse->getErrors()[0]->getErrorText() . "\n";
-                    }
+                    Mail::to($myOrder->customer_email ??  $myOrder->user->email)->send(new ErrorPaymentMail($this));
+                    return false;
                 }
                 // Or, print errors if the API request wasn't successful
             } else {
+                Mail::to($myOrder->customer_email ??  $myOrder->user->email)->send(new ErrorPaymentMail($this));
                 return ["status" => 500, "messages" => "Transaction Failed "];
-                // $tresponse = $response->getTransactionResponse();
-                // if ($tresponse != null && $tresponse->getErrors() != null) {
-                //     echo " Error Code  : " . $tresponse->getErrors()[0]->getErrorCode() . "\n";
-                //     echo " Error Message : " . $tresponse->getErrors()[0]->getErrorText() . "\n";
-                // } else {
-                //     echo " Error Code  : " . $response->getMessages()->getMessage()[0]->getCode() . "\n";
-                //     echo " Error Message : " . $response->getMessages()->getMessage()[0]->getText() . "\n";
-                // }
             }
         } else {
             return ["status" => 404, "messages" => "No response returned "];
         }
-
-        // if ($response->message == '') {
-        // }
-        // return $response;
     }
 }

@@ -20,6 +20,10 @@ Route::get('/complete-order/{id?}', function () {
     return view('checkout');
 });
 
+Route::get('/testmail', function () {
+    return view('testmail');
+});
+
 Route::post('/complete-payment/{id?}',[PaymentController::class,
  'createAnAcceptPaymentTransaction']
 );
