@@ -8,28 +8,7 @@
               ><img src="@/main/assets/images/logo.png" alt=""
             /></a>
           </div>
-          <div v-if="toggleMenu" id="mobile-menu">
-            <ul>
-              <li>
-                <a href="/main">{{ $t("home") }}</a>
-              </li>
-              <li>
-                <a href="/main/category">{{ $t("category") }}</a>
-              </li>
-              <li>
-                <a href="/main/offers">{{ $t("Offers") }}</a>
-              </li>
-              <li>
-                <a href="/main/about">{{ $t("about") }}</a>
-              </li>
-              <li>
-                <a href="/main/contact-us">{{ $t("contact") }}</a>
-              </li>
-              <li>
-                <a href="/main/questions">{{ $t("common_questions") }}</a>
-              </li>
-            </ul>
-          </div>
+
           <div class="search-menu">
             <form @submit.prevent="searchInItems(search_title)">
               <input
@@ -61,7 +40,7 @@
                 }}</router-link>
               </li>
             </ul>
-            <div @click="toggleMenu = !toggleMenu" id="toggle"></div>
+            <div @click="togglling" id="toggle"></div>
           </div>
           <div class="user-area">
             <div class="user-login-reg" v-if="!user">
@@ -148,9 +127,12 @@ export default {
     return {
       toggleMenu: false,
       search_title: "",
+      toggle: "",
+      myNavbar: "",
     };
   },
   mounted() {
+    this.$el.addEventListener("click", this.onClick);
     this.$store.dispatch("order/index");
   },
   computed: {
@@ -170,6 +152,16 @@ export default {
     },
   },
   methods: {
+    togglling() {
+      this.$el.querySelector(`#toggle`).classList.toggle("active");
+      this.$el.querySelector(`#primary-menu`).classList.toggle("active");
+    },
+    onClick(e) {
+      if (e.target.id !== "toggle" && e.target.id !== "primary-menu") {
+         this.$el.querySelector(`#toggle`).classList.remove("active");
+        this.$el.querySelector(`#primary-menu`).classList.remove("active");
+      }
+    },
     searchInItems(title) {
       if (this.$route.name == "category") {
         this.$store.dispatch("item/index", { search: title });
@@ -193,6 +185,9 @@ export default {
     locale(val) {
       localStorage.setItem("locale", val);
     },
+  },
+  beforeDestroy() {
+    this.$el.removeEventListener("click", this.onClick);
   },
 };
 </script>

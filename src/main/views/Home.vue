@@ -72,12 +72,8 @@
         <carousel
           v-if="test"
           :nav="false"
-          :responsive="{
-            0: { items: 1, nav: false },
-            600: { items: 2, nav: false },
-          }"
           :margin="5"
-          :items="3"
+          :items="display"
           :dots="false"
           dir="ltr"
           :autoplay="true"
@@ -128,12 +124,8 @@
         <carousel
           v-if="test"
           :nav="false"
-          :responsive="{
-            0: { items: 1, nav: false },
-            600: { items: 2, nav: false },
-          }"
           :margin="5"
-          :items="3"
+          :items="display"
           :dots="false"
           dir="ltr"
           :autoplay="true"
@@ -148,7 +140,7 @@
     <div class="section-05">
       <div class="container">
         <div class="head">
-          <h2>{{$t('contact_us_social')}}</h2>
+          <h2>{{ $t("contact_us_social") }}</h2>
           <ul>
             <li>
               <a
@@ -531,6 +523,13 @@ export default {
       recent_items: (state) => state.item.all,
       categories: (state) => state.category.all,
     }),
+    display() {
+      if (window.innerWidth > 800) {
+        return 3;
+      } else {
+        return 1;
+      }
+    },
     tweet() {
       return this.settings.find((v) => v.key == "twitter_tweet").value || 0;
     },
@@ -541,6 +540,7 @@ export default {
     setTimeout(() => {
       this.test = true;
     }, 3800);
+    this.onResize;
   },
 };
 </script>
