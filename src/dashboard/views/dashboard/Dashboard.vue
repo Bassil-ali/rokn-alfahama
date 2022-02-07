@@ -12,7 +12,7 @@
                 <v-card>
                   <v-card-subtitle
                     ><v-row class="justify-center">
-                      عدد التصنيفات</v-row
+                      {{$t('number_of_categories')}}</v-row
                     ></v-card-subtitle
                   >
                   <v-card-text>
@@ -28,7 +28,7 @@
                 <v-card>
                   <v-card-subtitle
                     ><v-row class="justify-center">
-                      عدد الاصناف</v-row
+                      {{$t('number_of_items')}}</v-row
                     ></v-card-subtitle
                   >
                   <v-card-text>
@@ -44,7 +44,7 @@
                 <v-card>
                   <v-card-subtitle
                     ><v-row class="justify-center">
-                      نسبة الضريبة</v-row
+                      {{$t('tax_rate')}}</v-row
                     ></v-card-subtitle
                   >
                   <v-card-text>
@@ -60,7 +60,7 @@
                 <v-card>
                   <v-card-subtitle
                     ><v-row class="justify-center">
-                      عدد المستخدمين</v-row
+                      {{$t('users_number')}}</v-row
                     ></v-card-subtitle
                   >
                   <v-card-text>
@@ -76,7 +76,7 @@
                 <v-card>
                   <v-card-subtitle
                     ><v-row class="justify-center">
-                      عدد الطلبات</v-row
+                      {{$t('number_of_orders')}}</v-row
                     ></v-card-subtitle
                   >
                   <v-card-text>
@@ -92,7 +92,7 @@
                 <v-card>
                   <v-card-subtitle
                     ><v-row class="justify-center">
-                      مبلغ الدفعات</v-row
+                      {{$t('Payment_amount')}}</v-row
                     ></v-card-subtitle
                   >
                   <v-card-text>

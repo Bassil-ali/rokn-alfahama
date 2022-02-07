@@ -184,13 +184,13 @@
                         ? selected_category.items_count
                         : 0
                     }}
-                    عنصر متوفر</span
+                    {{$t('Available_item')}}</span
                   >
                   <span v-else
                     >{{
                       category_items[0] ? category_items[0].all_items_count : 0
                     }}
-                    عنصر متوفر
+                {{$t('Available_item')}}
                   </span>
                 </div>
               </div>
@@ -216,21 +216,21 @@
                     id="show2"
                     @click="show_ul('show2')"
                   >
-                    <li>الاكثر تصنيفاً</li>
+                    <li>{{$t('must_classification')}}</li>
                     <ul style="z-index: 9999">
                       <li>
                         <a @click.prevent="sort_filter(lowest_price)"
-                          >الاقل سعر</a
+                          >{{$t('lowest_price')}}</a
                         >
                       </li>
                       <li>
                         <a @click.prevent="sort_filter(highest_price)"
-                          >الاعلي سعر</a
+                          >{{$t('the_highest_price')}}</a
                         >
                       </li>
                       <li>
                         <a @click.prevent="sort_filter(most_liked)"
-                          >الاكثر اعجابا</a
+                          >{{$t('most_liked')}}</a
                         >
                       </li>
                     </ul>
