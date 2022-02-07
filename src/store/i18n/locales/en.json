@@ -393,7 +393,10 @@
     "tax_rate":"tax rate",
     "users_number":"users number",
     "number_of_orders":"number of orders",
-    "Payment_amount":"Payment amount"
+    "Payment_amount":"Payment amount",
+      "tray_agian":"tray agian"
+
+  
 
   
 

@@ -309,7 +309,7 @@
   "Similar_Products": "منتجات متشابهة",
   "Product_Description": "وصف المنتج",
   "Properties": "الخصائص",
-  "Congratulation": "تهانينا لك",
+  "Congratulation": "تهانينا ",
   "order_done": "لقد تم الطلب بنجاح",
   "order_number": "رقم الطلب",
   "Contact_info": "معلومات التواصل",
@@ -423,5 +423,6 @@
   "tax_rate":"نسبة الضريبة",
   "users_number":"عدد المستخدمين",
   "number_of_orders":"عدد الطلبات",
-  "Payment_amount":"مبلغ الدفعات"
+  "Payment_amount":"مبلغ الدفعات",
+  "tray_agian":"إعادة المحاولة"
 }
