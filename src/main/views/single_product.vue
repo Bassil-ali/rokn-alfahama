@@ -482,9 +482,9 @@ export default {
       } else {
         item.property_id ? (item.property_id = null) : "";
       }
-      if (this.$root.user_obj) {
+       
         this.$store.dispatch("cart/addItem", item);
-      }
+       
       // this.$store.dispatch("cart/addItem", item);
     },
     like(one) {

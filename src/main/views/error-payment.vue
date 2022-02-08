@@ -143,8 +143,8 @@
         </div>
       </div>
       <div class="mt-5 mb-5 text-center">
-        <a :href="retry()" class="button fill me-3"> {{$t('')}}} </a>
-        <a href="/" class="button fill no"> {{$t('exit')}}} </a>
+        <a :href="retry()" class="button fill me-3"> {{$t('try again')}} </a>
+        <a href="/main" class="button fill no"> {{$t('exit')}} </a>
       </div>
     </div>
   </div>

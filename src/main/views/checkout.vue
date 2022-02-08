@@ -203,7 +203,7 @@
                       >
                     </div>
                     <div v-else class="entry-content-myaccount address">
-                      <h2>{{$('complete_order_quest')}}</h2>
+                      <h2>{{ $t("complete_order_quest") }}</h2>
                       <form @submit.prevent="saveAddress(address)" class="form">
                         <div class="row">
                           <div class="col-md-12">
@@ -366,7 +366,9 @@
                               {{ address.house_number }} -
                               {{ address.floor_no }} -
                               {{ address.apartment_number }}
-                              <a @click="removeLocalAddress(index)"
+                              <a
+                                style="cursor: pointer"
+                                @click="removeLocalAddress(index)"
                                 ><i class="fas fa-times"></i
                               ></a>
                             </li>
@@ -447,7 +449,7 @@
       <div class="row justify-content-center infoo">
         <div class="col-md-10 text-center">
           <p>
-           {{$t('security_text')}}
+            {{ $t("security_text") }}
           </p>
         </div>
       </div>
@@ -591,7 +593,7 @@ export default {
       this.localeAddresses = JSON.parse(localStorage.getItem("address"));
     },
     saveAddress(item) {
-      if (Object.keys(item).length < 3) return;
+      if (!(item.area && item.widget && item.street)) return;
       if (localStorage.getItem("address")) {
         let addresses = JSON.parse(localStorage.getItem("address"));
         addresses.push(item);
