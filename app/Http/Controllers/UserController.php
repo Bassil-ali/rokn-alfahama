@@ -52,8 +52,8 @@ class UserController extends BaseController
     public function update(Request $request, User $user)
     {
 
-        if (!$this->user->is_permitted_to('update', User::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('update', User::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
 
         $validator = Validator::make($request->all(), User::updateRules($request, $this->user));
         if ($validator->fails()) {
