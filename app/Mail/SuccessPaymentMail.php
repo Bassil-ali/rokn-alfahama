@@ -32,6 +32,6 @@ class SuccessPaymentMail extends Mailable
     {
 
         $order = Order::find($this->payment->order_id);
-        return $this->view('emails.success-payment', ['payment' => $this->payment, 'order' => $order]);
+        return $this->view('Emails.success-payment', ['payment' => $this->payment, 'order' => $order]);
     }
 }

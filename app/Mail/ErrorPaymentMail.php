@@ -31,6 +31,6 @@ class ErrorPaymentMail extends Mailable
     public function build()
     {
         $order = Order::find($this->payment->order_id);
-        return $this->view('emails.error-payment', ['payment' => $this->payment, 'order' => $order]);
+        return $this->view('Emails.error-payment', ['payment' => $this->payment, 'order' => $order]);
     }
 }
