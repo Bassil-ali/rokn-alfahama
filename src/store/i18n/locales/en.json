@@ -386,16 +386,16 @@
   "must_classification":"Most Rated",
   "lowest_price":"lowest price",
   "the_highest_price" : "the highest price",
-    "most_liked":"most liked",
-    "Available_item":"Available item",
-    "number_of_categories":"number of categories",
-    "number_of _items":"number of items",
-    "tax_rate":"tax rate",
-    "users_number":"users number",
-    "number_of_orders":"number of orders",
-    "Payment_amount":"Payment amount",
-      "tray_agian":"tray agian",
-      "tax_total":"tax total"
+  "most_liked":"most liked",
+  "Available_item":"Available item",
+  "number_of_categories":"number of categories",
+  "number_of _items":"number of items",
+  "tax_rate":"tax rate",
+  "users_number":"users number",
+  "number_of_orders":"number of orders",
+  "Payment_amount":"Payment amount",
+  "tray_agian":"tray agian",
+  "tax_total":"total tax"
 
   
 
