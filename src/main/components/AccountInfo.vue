@@ -69,11 +69,18 @@ export default {
   computed: {
     ...mapState({
       user: (state) => state.auth.user.user,
+      userUpdate: (state) => state.auth.user,
     }),
   },
   methods: {
     update() {
-      this.$store.dispatch("user/update", this.user);
+      let user = this.userUpdate;
+      this.$store.dispatch("user/update", this.user).then(
+        
+            localStorage.user_data = JSON.stringify({
+                user
+       })
+      );
     },
   },
 };
