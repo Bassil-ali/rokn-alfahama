@@ -121,7 +121,7 @@
                   <span v-else> {{ total_shipment }} $</span>
                 </li>
                 <li>
-                  {{ $t("tax total") }}
+                  {{ $t("tax_total") }}
 
                   <span> + {{ parseFloat(total_taxes).toFixed(2) }} $</span>
                 </li>
