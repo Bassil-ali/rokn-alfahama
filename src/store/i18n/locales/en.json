@@ -394,7 +394,8 @@
     "users_number":"users number",
     "number_of_orders":"number of orders",
     "Payment_amount":"Payment amount",
-      "tray_agian":"tray agian"
+      "tray_agian":"tray agian",
+      "tax_total":"tax total"
 
   
 

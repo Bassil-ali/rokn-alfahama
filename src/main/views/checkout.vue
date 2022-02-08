@@ -121,7 +121,7 @@
                   <span v-else> {{ total_shipment }} $</span>
                 </li>
                 <li>
-                  {{ $t("tax total") }}
+                  {{ $t("tax_total") }}
 
                   <span> + {{ parseFloat(total_taxes).toFixed(2) }} $</span>
                 </li>
@@ -203,7 +203,7 @@
                       >
                     </div>
                     <div v-else class="entry-content-myaccount address">
-                      <h2>{{$('complete_order_quest')}}</h2>
+                      <h2>{{$t('complete_order_quest')}}</h2>
                       <form @submit.prevent="saveAddress(address)" class="form">
                         <div class="row">
                           <div class="col-md-12">

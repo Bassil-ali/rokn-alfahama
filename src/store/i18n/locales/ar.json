@@ -424,5 +424,6 @@
   "users_number":"عدد المستخدمين",
   "number_of_orders":"عدد الطلبات",
   "Payment_amount":"مبلغ الدفعات",
-  "tray_agian":"إعادة المحاولة"
+  "tray_agian":"إعادة المحاولة",
+  "tax_total":"أجمالي الضريبة"
 }
