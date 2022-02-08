@@ -132,7 +132,8 @@
                     $</span
                   >
                   <span v-else>
-                    {{ (totals.total_taxed + total_shipment).toFixed(2) }}
+            
+                    {{ parseFloat(totals.total_taxed + total_shipment).toFixed(2) }}
                     $</span
                   >
                 </li>
