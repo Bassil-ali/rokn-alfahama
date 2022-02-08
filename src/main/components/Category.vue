@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <a :href="`/main/category`">
+    <a :href="`/main/category/${item.id}`">
       <figure>
         <img :src="item.image" alt="" />
       </figure>

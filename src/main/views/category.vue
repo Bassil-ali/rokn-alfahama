@@ -184,13 +184,13 @@
                         ? selected_category.items_count
                         : 0
                     }}
-                    {{$t('Available_item')}}</span
+                    {{ $t("Available_item") }}</span
                   >
                   <span v-else
                     >{{
                       category_items[0] ? category_items[0].all_items_count : 0
                     }}
-                {{$t('Available_item')}}
+                    {{ $t("Available_item") }}
                   </span>
                 </div>
               </div>
@@ -216,22 +216,22 @@
                     id="show2"
                     @click="show_ul('show2')"
                   >
-                    <li>{{$t('must_classification')}}</li>
+                    <li>{{ $t("must_classification") }}</li>
                     <ul style="z-index: 9999">
                       <li>
-                        <a @click.prevent="sort_filter(lowest_price)"
-                          >{{$t('lowest_price')}}</a
-                        >
+                        <a @click.prevent="sort_filter(lowest_price)">{{
+                          $t("lowest_price")
+                        }}</a>
                       </li>
                       <li>
-                        <a @click.prevent="sort_filter(highest_price)"
-                          >{{$t('the_highest_price')}}</a
-                        >
+                        <a @click.prevent="sort_filter(highest_price)">{{
+                          $t("the_highest_price")
+                        }}</a>
                       </li>
                       <li>
-                        <a @click.prevent="sort_filter(most_liked)"
-                          >{{$t('most_liked')}}</a
-                        >
+                        <a @click.prevent="sort_filter(most_liked)">{{
+                          $t("most_liked")
+                        }}</a>
                       </li>
                     </ul>
                   </ul>
@@ -294,9 +294,19 @@ export default {
     this.myNavbar = document.getElementById("primary-menu");
     this.$store.dispatch("category/index", { null_parent_id: true });
     if (this.$route.query.search) {
-      this.$store.dispatch("item/index", { search: this.$route.query.search });
+      this.$store.dispatch("item/index", {
+        per_page: -1,
+        search: this.$route.query.search,
+      });
     } else {
       this.$store.dispatch("item/index", { per_page: -1 });
+    }
+    if (this.$attrs.id) {
+      this.$store
+        .dispatch("category/show", { id: this.$attrs.id })
+        .then((category) => {
+          this.selected_category = category;
+        });
     }
     // if (this.$route.query.type) {
     //   let type = this.$route.query.type;
@@ -336,10 +346,13 @@ export default {
   },
   methods: {
     sort_filter(type) {
-      this.$store.dispatch("item/index", type);
+      this.$store.dispatch("item/index", { per_page: -1, type });
     },
     slider_search() {
-      this.$store.dispatch("item/index", { slider: this.value_2 });
+      this.$store.dispatch("item/index", {
+        per_page: -1,
+        slider: this.value_2,
+      });
     },
     show_ul(elm) {
       var elm = document.getElementById(elm);
