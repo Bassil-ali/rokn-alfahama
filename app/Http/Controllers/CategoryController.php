@@ -42,8 +42,8 @@ class CategoryController extends BaseController
     }
     public function show(Request $request, Category $category)
     {
-        if (!$this->user->is_permitted_to('view', Category::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('view', Category::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
         return new CategoryResource($category);
     }
     public function update(Request $request, Category $category)
