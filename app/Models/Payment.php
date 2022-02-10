@@ -84,8 +84,8 @@ class Payment extends BaseModel
         $customerAddress = new AnetAPI\CustomerAddressType();
         $customerAddress->setFirstName($myOrder->customer_name ?? $myOrder->user->name);
 
-        $customerAddress->setAddress("$myAddress ? $myAddress->widget  $myAddress->area  $myAddress->street : '12 Main Street'");
-        $customerAddress->setCity($myAddress->area);
+        $customerAddress->setAddress("$myAddress ? $myAddress->country_region  $myAddress->city  $myAddress->street_address : '12 Main Street'");
+        $customerAddress->setCity($myAddress->city);
         // $customerAddress->setState("TX");
         // $customerAddress->setZip("44628");
         // $customerAddress->setCountry("USA");

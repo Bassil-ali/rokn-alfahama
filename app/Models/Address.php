@@ -19,35 +19,32 @@ class Address extends BaseModel
     public static function createRules($user)
     {
         return [
-            'user_id' => 'nullable',
-            'title_name' => 'nullable',
-            'area' => 'nullable',
-            'widget' => 'nullable',
-            'street' => 'nullable',
-            'avenue' => 'nullable',
-            'house_number' => 'nullable',
-            'floor_no' => 'nullable',
-            'apartment_number' => 'nullable',
-            'floor_no' => 'nullable',
-            'apartment_number' => 'nullable',
-            'notes' => 'nullable'
+            'user_id' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'street_address' => 'required',
+            'apt_suit_building' => 'nullable',
+            'zip_code' => 'required',
+            'city' => 'required',
+            'country_region' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required|numeric',
+           
         ];
     }
     public static function updateRules($user)
     {
         return [
-            'user_id' => 'nullable',
-            'title_name' => 'nullable',
-            'area' => 'nullable',
-            'widget' => 'nullable',
-            'street' => 'nullable',
-            'avenue' => 'nullable',
-            'house_number' => 'nullable',
-            'floor_no' => 'nullable',
-            'apartment_number' => 'nullable',
-            'floor_no' => 'nullable',
-            'apartment_number' => 'nullable',
-            'notes' => 'nullable'
+            'user_id' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'street_address' => 'required',
+            'apt_suit_building' => 'nullable',
+            'zip_code' => 'required',
+            'city' => 'required',
+            'country_region' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required|numeric',
         ];
     }
     public function scopeSearch($query, $request)
