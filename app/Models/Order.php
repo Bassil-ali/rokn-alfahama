@@ -27,8 +27,9 @@ class Order extends BaseModel
     public static function createRules($user)
     {
         return [
-            'user_id' => 'required_without:customer_name,customer_mobile,customer_email|exists:users,id',
-            'customer_name' => 'required_without:user_id',
+            'user_id' => 'required_without:customer_last_name,customer_first_name,customer_mobile,customer_email|exists:users,id',
+            'customer_first_name' => 'required_without:user_id',
+            'customer_last_name' => 'required_without:user_id',
             'customer_mobile' => 'required_without:user_id',
             'customer_email' => 'required_without:user_id',
             'issue_date' => 'required|date',

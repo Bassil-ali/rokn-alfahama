@@ -19,32 +19,26 @@ class Address extends BaseModel
     public static function createRules($user)
     {
         return [
-            'user_id' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'user_id' => 'nullable',
             'street_address' => 'required',
             'apt_suit_building' => 'nullable',
             'zip_code' => 'required',
             'city' => 'required',
             'country_region' => 'required',
-            'email' => 'required|email',
-            'phone_number' => 'required|numeric',
+ 
            
         ];
     }
     public static function updateRules($user)
     {
         return [
-            'user_id' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'user_id' => 'nullable',
             'street_address' => 'required',
             'apt_suit_building' => 'nullable',
             'zip_code' => 'required',
             'city' => 'required',
             'country_region' => 'required',
-            'email' => 'required|email',
-            'phone_number' => 'required|numeric',
+ 
         ];
     }
     public function scopeSearch($query, $request)

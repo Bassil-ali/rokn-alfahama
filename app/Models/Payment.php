@@ -82,21 +82,20 @@ class Payment extends BaseModel
 
         // Set the customer's Bill To address
         $customerAddress = new AnetAPI\CustomerAddressType();
-        $customerAddress->setFirstName($myOrder->customer_name ?? $myOrder->user->name);
+        $customerAddress->setFirstName($myOrder->customer_fisrt_name ?? $myOrder->user->name);
+        $customerAddress->setLastName($myOrder->customer_last_name ?? $myOrder->user->name);
 
-        $address = $myAddress!=null ? "$myAddress ? $myAddress->country_region  $myAddress->city  $myAddress->street_address" : '12 Main Street';
+        $address = $myAddress != null ? "$myAddress ? $myAddress->country_region   , $myAddress->city  ,  $myAddress->street_address" : '12 Main Street';
         $customerAddress->setAddress($address);
         $customerAddress->setCity($myAddress->city);
-
-        // $customerAddress->setState("TX");
-        // $customerAddress->setZip("44628");
-        // $customerAddress->setCountry("USA");
+        $customerAddress->setZip("$myAddress->zip_code");
+        $customerAddress->setCountry("$myAddress->country_region");
 
         // Set the customer's identifying information
         $customerData = new AnetAPI\CustomerDataType();
         $customerData->setType("individual");
         $customerData->setId($myOrder->id);
-        $customerData->setEmail($myOrder->user->email ?? $myOrder->customer_email);
+        $customerData->setEmail($myOrder->customer_email ?? $myOrder->user->email );
 
         // Add values for transaction settings
         // $duplicateWindowSetting = new AnetAPI\SettingType();
@@ -105,13 +104,13 @@ class Payment extends BaseModel
 
         // Add some merchant defined fields. These fields won't be stored with the transaction,
         // but will be echoed back in the response.
-        $merchantDefinedField1 = new AnetAPI\UserFieldType();
-        $merchantDefinedField1->setName("customerLoyaltyNum");
-        $merchantDefinedField1->setValue("1128836273");
+        // $merchantDefinedField1 = new AnetAPI\UserFieldType();
+        // $merchantDefinedField1->setName("customerLoyaltyNum");
+        // $merchantDefinedField1->setValue("1128836273");
 
-        $merchantDefinedField2 = new AnetAPI\UserFieldType();
-        $merchantDefinedField2->setName("favoriteColor");
-        $merchantDefinedField2->setValue("blue");
+        // $merchantDefinedField2 = new AnetAPI\UserFieldType();
+        // $merchantDefinedField2->setName("favoriteColor");
+        // $merchantDefinedField2->setValue("blue");
 
         // Create a TransactionRequestType object and add the previous objects to it
         $transactionRequestType = new AnetAPI\TransactionRequestType();
