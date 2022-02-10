@@ -165,15 +165,17 @@ const actions = {
 
     },
     calcLocal({ commit, state }) {
-        state.order_total = state.order.items ? state.order.items.reduce((c, n) => {
-            let price = n.item_price * n.item_quantity;
-            let discount = n.discount * n.item_quantity;
-            return c + (price - discount)
-        }, 0) : 0
-        let count = state.order.items ? state.order.items.reduce((c, n) => {
-            return c + parseInt(n.item_quantity)
-        }, 0) : 0
-        commit('set_counter', count)
+        if (state.order) {
+            state.order_total = state.order.items ? state.order.items.reduce((c, n) => {
+                let price = n.item_price * n.item_quantity;
+                let discount = n.discount * n.item_quantity;
+                return c + (price - discount)
+            }, 0) : 0
+            let count = state.order.items ? state.order.items.reduce((c, n) => {
+                return c + parseInt(n.item_quantity)
+            }, 0) : 0
+            commit('set_counter', count)
+        }
     },
     async load({ commit, rootState }) {
         const response = await this.$axios.get('/order', { params: { status: 0, user_id: rootState.auth.user.user.id } })

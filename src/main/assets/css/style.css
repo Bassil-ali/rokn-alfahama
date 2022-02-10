@@ -2661,14 +2661,9 @@ a.button.fill.no {
         border: 0;
     }
 
-    .entry-content.category>.container>.row>.col-md-3 {
-        order: 2;
-    }
+ 
 
-    .entry-content.category>.container>.row>.col-md-9 {
-        order: 1;
-    }
-
+ 
     .entry-content.category>.container>.row>.col-md-9>.head-block>.d-flex {
         display: block !important;
     }
