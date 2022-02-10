@@ -2747,7 +2747,5 @@ a.button.fill.no {
         display: none;
     }
 
-    .entry-content.category>.container>.row>.col-md-3 {
-        order: 2;
-    }
+ 
 }
