@@ -430,5 +430,6 @@
   "street_address":"عنوان الشارع",
   "city":"المدينة",
   "country_region":"منطقة /البلد",
-  "optional":"أختياري"
+  "optional":"أختياري",
+  "choose an address":"قم بإختيار عنوان"
 }

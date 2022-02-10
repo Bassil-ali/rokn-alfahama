@@ -46,10 +46,16 @@
           <tbody>
             <tr v-for="item in order.items" :key="item.id">
               <td data-title="">
-                <figure><img :src="item.image" alt="" /></figure>
+                <a :href="`/main/single-product/${item.item_id}`">
+                  <figure>
+                    <img :src="item.image" alt="" />
+                  </figure>
+                </a>
               </td>
               <td>
-                {{ item.item_name || item.name }}
+                <a :href="`/main/single-product/${item.item_id}`">
+                  {{ item.item_name || item.name }}</a
+                >
               </td>
               <td data-title="الكمية">
                 <div class="quantity d-flex align-items-center">

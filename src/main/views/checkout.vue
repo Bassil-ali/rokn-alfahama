@@ -148,9 +148,9 @@
             <div class="row justify-content-center">
               <div class="col-md-11">
                 <div class="content">
-                  <p>
+                  <p v-if="$root.user">
                     {{ $t("register_as") }} :
-                    <strong v-if="$root.user">{{ $root.user.name }}</strong>
+                    <strong>{{ $root.user.name }}</strong>
                   </p>
 
                   <div class="box">
@@ -219,22 +219,51 @@
                               <input
                                 type="text"
                                 required
-                                v-model="item.first_name"
+                                v-model="gust_order.customer_first_name"
                                 class="form-control"
                                 :placeholder="$t('first_name')"
                               />
                             </div>
-                            <div class="mb-3">
+                            <div>
                               <label
                                 >{{ $t("last_name") }} <span>*</span></label
                               >
                               <input
                                 type="text"
                                 required
-                                v-model="item.last_name"
+                                v-model="gust_order.customer_last_name"
                                 class="form-control"
                                 :placeholder="$t('last_name')"
                               />
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div>
+                                <label>{{ $t("email") }} <span>*</span></label>
+                                <input
+                                  type="text"
+                                  required
+                                  v-model="gust_order.customer_email"
+                                  class="form-control"
+                                  :placeholder="$t('email')"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="mb-3">
+                                <label
+                                  >{{ $t("phone_number") }}
+                                  <span>*</span></label
+                                >
+                                <input
+                                  type="text"
+                                  required
+                                  v-model="gust_order.customer_mobile"
+                                  class="form-control"
+                                  :placeholder="$t('phone_number')"
+                                />
+                              </div>
                             </div>
                           </div>
                           <div class="mb-3">
@@ -244,7 +273,7 @@
                             <input
                               type="text"
                               required
-                              v-model="item.street_address"
+                              v-model="address.street_address"
                               class="form-control"
                               :placeholder="$t('street_address')"
                             />
@@ -258,7 +287,7 @@
                             >
                             <input
                               type="text"
-                              v-model="item.apt_suit_building"
+                              v-model="address.apt_suit_building"
                               class="form-control"
                               placeholder="apt suit building"
                             />
@@ -270,7 +299,7 @@
                               <input
                                 type="text"
                                 required
-                                v-model="item.zip_code"
+                                v-model="address.zip_code"
                                 class="form-control"
                                 placeholder="Zip Code"
                               />
@@ -282,7 +311,7 @@
                               <input
                                 type="text"
                                 required
-                                v-model="item.city"
+                                v-model="address.city"
                                 class="form-control"
                                 :placeholder="$t('city')"
                               />
@@ -298,7 +327,7 @@
                               <input
                                 type="text"
                                 required
-                                v-model="item.country_region"
+                                v-model="address.country_region"
                                 class="form-control"
                                 :placeholder="$t('country_region')"
                               />
@@ -306,39 +335,15 @@
                           </div>
                         </div>
 
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="mb-6">
-                              <label>{{ $t("email") }} <span>*</span></label>
-                              <input
-                                type="text"
-                                required
-                                v-model="item.email"
-                                class="form-control"
-                                :placeholder="$t('email')"
-                              />
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="mb-6">
-                              <label>{{ $t("phone_number") }}</label>
-                              <input
-                                type="text"
-                                required
-                                v-model="item.phone_number"
-                                class="form-control"
-                                :placeholder="$t('phone_number')"
-                              />
-                            </div>
-                          </div>
-                        </div>
                         <br />
 
                         <button type="submit" class="button">
                           {{ $t("add_site") }}
                         </button>
                       </form>
-
+                      <div style="text-align: center" v-if="localeAddresses[0]">
+                        <h4>{{$t('choose an address')}}</h4>
+                      </div>
                       <div
                         :key="index"
                         v-for="(address, index) in localeAddresses"
@@ -353,6 +358,7 @@
                           name="fav_language"
                         />
                          
+
                         <label for="css">
                           <ul>
                             <li>
@@ -545,6 +551,20 @@ export default {
             this.$router.push("/cart");
           });
       } else {
+        if (
+          !(
+            this.gust_order.customer_email &&
+            this.gust_order.customer_last_name &&
+            this.gust_order.customer_first_name &&
+            this.gust_order.customer_mobile
+          )
+        ) {
+          alert("complete the fields ");
+          return;
+        } else if (!this.selectedLocalAddress) {
+          alert("choose an address");
+        }
+
         let order = { ...this.gust_order };
         order.due_date = this.getTime();
         order.issue_date = this.getTime();
@@ -591,7 +611,6 @@ export default {
       this.localeAddresses = JSON.parse(localStorage.getItem("address"));
     },
     saveAddress(item) {
-      if (!(item.city && item.country_region && item.street_address)) return;
       if (localStorage.getItem("address")) {
         let addresses = JSON.parse(localStorage.getItem("address"));
         addresses.push(item);
@@ -618,7 +637,6 @@ export default {
   computed: {
     ...mapState({
       order: (state) => state.cart.order,
-
       addresses: (state) => state.address.all,
       settings: (state) => state.setting.all || [],
       // shipments: (state) => state.shipping.all || [],
