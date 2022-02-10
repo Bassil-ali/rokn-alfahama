@@ -395,7 +395,11 @@
   "number_of_orders":"number of orders",
   "Payment_amount":"Payment amount",
   "tray_agian":"tray agian",
-  "tax_total":"total tax"
+  "tax_total":"total tax",
+  "street_address":"street address",
+  "city":"city",
+  "country_region":"country/region",
+  "optional":"Optional"
 
   
 

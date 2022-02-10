@@ -6,110 +6,116 @@
         <div class="row">
           <div class="col-md-12">
             <div class="mb-3">
-              <label>{{ $t("address_name") }} <span>*</span></label>
+              <label>{{ $t("first_name") }} <span>*</span></label>
               <input
                 type="text"
-                v-model="item.title_name"
+                required
+                v-model="item.first_name"
                 class="form-control"
-                :placeholder="$t('address_name')"
+                :placeholder="$t('first_name')"
+              />
+            </div>
+            <div class="mb-3">
+              <label>{{ $t("last_name") }} <span>*</span></label>
+              <input
+                type="text"
+                required
+                v-model="item.last_name"
+                class="form-control"
+                :placeholder="$t('last_name')"
+              />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label>{{ $t("street_address") }} <span>*</span></label>
+            <input
+              type="text"
+              required
+              v-model="item.street_address"
+              class="form-control"
+              :placeholder="$t('street_address')"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label
+              >Apt, Suit, Building ({{ $t("optional") }})<span>*</span></label
+            >
+            <input
+              type="text"
+              v-model="item.apt_suit_building"
+              class="form-control"
+              placeholder="apt suit building"
+            />
+          </div>
+
+          <div class="col-md-6">
+            <div class="mb-3">
+              <label>Zip Code <span>*</span></label>
+              <input
+                type="text"
+                required
+                v-model="item.zip_code"
+                class="form-control"
+                placeholder="Zip Code"
               />
             </div>
           </div>
           <div class="col-md-6">
             <div class="mb-3">
-              <label>{{ $t("site") }} <span>*</span></label>
+              <label>{{ $t("city") }} <span>*</span></label>
               <input
                 type="text"
-                v-model="item.area"
+                required
+                v-model="item.city"
                 class="form-control"
-                :placeholder="$t('site')"
+                :placeholder="$t('city')"
               />
             </div>
           </div>
+
           <div class="col-md-6">
             <div class="mb-3">
-              <label>{{ $t("widget") }} <span>*</span></label>
+              <label>{{ $t("country_region") }} <span>*</span></label>
               <input
                 type="text"
-                v-model="item.widget"
+                required
+                v-model="item.country_region"
                 class="form-control"
-                :placeholder="$t('widget')"
+                :placeholder="$t('country_region')"
               />
             </div>
           </div>
         </div>
+
         <div class="row">
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label>{{ $t("street") }} <span>*</span></label>
+          <div class="col-md-12">
+            <div class="mb-6">
+              <label>{{ $t("email") }} <span>*</span></label>
               <input
                 type="text"
-                v-model="item.street"
+                required
+                v-model="item.email"
                 class="form-control"
-                :placeholder="$t('street')"
+                :placeholder="$t('email')"
               />
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label>{{ $t("Avenue") }}</label>
+          <div class="col-md-12">
+            <div class="mb-6">
+              <label>{{ $t("phone_number") }}</label>
               <input
                 type="text"
-                v-model="item.avenue"
+                required
+                v-model="item.phone_number"
                 class="form-control"
-                :placeholder="$t('Avenue')"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label>{{ $t("house_number") }} <span>*</span></label>
-              <input
-                type="text"
-                v-model="item.house_number"
-                class="form-control"
-                :placeholder="$t('house_number')"
-              />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label>{{ $t("Floor_No") }}</label>
-              <input
-                type="text"
-                v-model="item.floor_no"
-                class="form-control"
-                :placeholder="$t('Floor_No')"
+                :placeholder="$t('phone_number')"
               />
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label>{{ $t("Apartment_number") }}</label>
-              <input
-                type="text"
-                v-model="item.apartment_number"
-                class="form-control"
-                :placeholder="$t('Apartment_number')"
-              />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="mb-3">
-              <label>{{ $t("Notes") }}</label>
-              <input
-                type="text"
-                v-model="item.notes"
-                class="form-control"
-                :placeholder="$t('Notes')"
-              />
-            </div>
-          </div>
-        </div>
+        <br>
+
         <button type="submit" class="button">{{ $t("add_site") }}</button>
       </form>
     </div>

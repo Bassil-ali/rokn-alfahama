@@ -132,8 +132,9 @@
                     $</span
                   >
                   <span v-else>
-            
-                    {{ parseFloat(totals.total_taxed + total_shipment).toFixed(2) }}
+                    {{
+                      parseFloat(totals.total_taxed + total_shipment).toFixed(2)
+                    }}
                     $</span
                   >
                 </li>
@@ -183,15 +184,18 @@
                             <div>
                               <ul>
                                 <li>
-                                  {{ address.area }} - {{ address.widget }} -
-                                  {{ address.street }} - {{ address.avenue }} -
-                                  {{ address.house_number }} -
-                                  {{ address.floor_no }} -
-                                  {{ address.apartment_number }}
+                                  {{ address.first_name }} -
+                                  {{ address.last_name }} -
+                                  {{ address.street_address }} -
+                                  {{ address.apt_suit_building }} -
+                                  {{ address.zip_code }} - {{ address.city }} -
+                                  {{ address.country_region }} -
+                                  {{ address.email }} -
+                                  {{ address.phone_number }}
                                 </li>
-                                <li>
+                                <!-- <li>
                                   {{ address.notes }}
-                                </li>
+                                </li> -->
                               </ul>
                             </div>
                           </div>
@@ -209,137 +213,127 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="mb-3">
-                              <label> {{ $t("name") }} <span>*</span></label>
-                              <input
-                                type="text"
-                                v-model="gust_order.customer_name"
-                                class="form-control"
-                                :placeholder="$t('name')"
-                              />
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="mb-3">
-                              <label>
-                                {{ $t("phone_number") }} <span>*</span></label
+                              <label
+                                >{{ $t("first_name") }} <span>*</span></label
                               >
                               <input
-                                type="number"
-                                v-model="gust_order.customer_mobile"
+                                type="text"
+                                required
+                                v-model="item.first_name"
                                 class="form-control"
-                                :placeholder="$t('phone_number')"
+                                :placeholder="$t('first_name')"
+                              />
+                            </div>
+                            <div class="mb-3">
+                              <label
+                                >{{ $t("last_name") }} <span>*</span></label
+                              >
+                              <input
+                                type="text"
+                                required
+                                v-model="item.last_name"
+                                class="form-control"
+                                :placeholder="$t('last_name')"
                               />
                             </div>
                           </div>
-                          <div class="col-md-12">
+                          <div class="mb-3">
+                            <label
+                              >{{ $t("street_address") }} <span>*</span></label
+                            >
+                            <input
+                              type="text"
+                              required
+                              v-model="item.street_address"
+                              class="form-control"
+                              :placeholder="$t('street_address')"
+                            />
+                          </div>
+
+                          <div class="mb-3">
+                            <label
+                              >Apt, Suit, Building ({{ $t("optional") }})<span
+                                >*</span
+                              ></label
+                            >
+                            <input
+                              type="text"
+                              v-model="item.apt_suit_building"
+                              class="form-control"
+                              placeholder="apt suit building"
+                            />
+                          </div>
+
+                          <div class="col-md-6">
                             <div class="mb-3">
+                              <label>Zip Code <span>*</span></label>
+                              <input
+                                type="text"
+                                required
+                                v-model="item.zip_code"
+                                class="form-control"
+                                placeholder="Zip Code"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label>{{ $t("city") }} <span>*</span></label>
+                              <input
+                                type="text"
+                                required
+                                v-model="item.city"
+                                class="form-control"
+                                :placeholder="$t('city')"
+                              />
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <label
+                                >{{ $t("country_region") }}
+                                <span>*</span></label
+                              >
+                              <input
+                                type="text"
+                                required
+                                v-model="item.country_region"
+                                class="form-control"
+                                :placeholder="$t('country_region')"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="mb-6">
                               <label>{{ $t("email") }} <span>*</span></label>
                               <input
-                                type="email"
-                                v-model="gust_order.customer_email"
+                                type="text"
+                                required
+                                v-model="item.email"
                                 class="form-control"
                                 :placeholder="$t('email')"
                               />
                             </div>
                           </div>
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label>{{ $t("site") }} <span>*</span></label>
+                          <div class="col-md-12">
+                            <div class="mb-6">
+                              <label>{{ $t("phone_number") }}</label>
                               <input
-                                v-model="address.area"
                                 type="text"
+                                required
+                                v-model="item.phone_number"
                                 class="form-control"
-                                :placeholder="$t('site')"
-                              />
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label>{{ $t("widget") }} <span>*</span></label>
-                              <input
-                                v-model="address.widget"
-                                type="text"
-                                class="form-control"
-                                :placeholder="$t('widget')"
+                                :placeholder="$t('phone_number')"
                               />
                             </div>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label>{{ $t("street") }} <span>*</span></label>
-                              <input
-                                type="text"
-                                class="form-control"
-                                v-model="address.street"
-                                :placeholder="$t('street')"
-                              />
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label>{{ $t("Avenue") }}</label>
-                              <input
-                                type="text"
-                                v-model="address.avenue"
-                                class="form-control"
-                                :placeholder="$t('Avenue')"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label
-                                >{{ $t("house_number") }}<span>*</span></label
-                              >
-                              <input
-                                type="text"
-                                v-model="address.house_number"
-                                class="form-control"
-                                :placeholder="$t('house_number')"
-                              />
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label>{{ $t("Floor_No") }}</label>
-                              <input
-                                type="text"
-                                v-model="address.floor_no"
-                                class="form-control"
-                                :placeholder="$t('Floor_No')"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="mb-3">
-                              <label>{{ $t("Apartment_number") }}</label>
-                              <input
-                                type="text"
-                                v-model="address.apartment_number"
-                                class="form-control"
-                                :placeholder="$t('Apartment_number')"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="mb-3">
-                            <label>{{ $t("Notes") }}</label>
-                            <textarea
-                              type="text"
-                              class="form-control"
-                              v-model="address.notes"
-                              :placeholder="$t('Notes')"
-                            >
-                            </textarea>
-                          </div>
-                        </div>
+                        <br />
+
                         <button type="submit" class="button">
                           {{ $t("add_site") }}
                         </button>
@@ -362,20 +356,23 @@
                         <label for="css">
                           <ul>
                             <li>
-                              {{ address.area }} - {{ address.widget }} -
-                              {{ address.street }} - {{ address.avenue }} -
-                              {{ address.house_number }} -
-                              {{ address.floor_no }} -
-                              {{ address.apartment_number }}
+                              {{ address.first_name }} -
+                              {{ address.last_name }} -
+                              {{ address.street_address }} -
+                              {{ address.apt_suit_building }} -
+                              {{ address.zip_code }} - {{ address.city }} -
+                              {{ address.country_region }} -
+                              {{ address.email }} -
+                              {{ address.phone_number }}
                               <a
                                 style="cursor: pointer"
                                 @click="removeLocalAddress(index)"
                                 ><i class="fas fa-times"></i
                               ></a>
                             </li>
-                            <li>
+                            <!-- <li>
                               {{ address.notes }}
-                            </li>
+                            </li> -->
                           </ul></label
                         ><br />
                       </div>
@@ -594,7 +591,7 @@ export default {
       this.localeAddresses = JSON.parse(localStorage.getItem("address"));
     },
     saveAddress(item) {
-      if (!(item.area && item.widget && item.street)) return;
+      if (!(item.city && item.country_region && item.street_address)) return;
       if (localStorage.getItem("address")) {
         let addresses = JSON.parse(localStorage.getItem("address"));
         addresses.push(item);

@@ -426,5 +426,9 @@
   "Payment_amount":"مبلغ الدفعات",
   "try again":"إعادة المحاولة",
   "tray_agian":"إعادة المحاولة",
-  "tax_total":"أجمالي الضريبة"
+  "tax_total":"أجمالي الضريبة",
+  "street_address":"عنوان الشارع",
+  "city":"المدينة",
+  "country_region":"منطقة /البلد",
+  "optional":"أختياري"
 }
