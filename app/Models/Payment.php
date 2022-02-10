@@ -87,30 +87,17 @@ class Payment extends BaseModel
 
         $address = $myAddress != null ? "$myAddress ? $myAddress->country_region   , $myAddress->city  ,  $myAddress->street_address" : '12 Main Street';
         $customerAddress->setAddress($address);
-        $customerAddress->setCity($myAddress->city);
-        $customerAddress->setZip("$myAddress->zip_code");
-        $customerAddress->setCountry("$myAddress->country_region");
+        $customerAddress->setCity("$myAddress ? $myAddress->city:''");
+        $customerAddress->setZip("$myAddress ?  $myAddress->zip_code:''");
+        $customerAddress->setCountry("$myAddress ?  $myAddress->country_region:''");
 
         // Set the customer's identifying information
         $customerData = new AnetAPI\CustomerDataType();
         $customerData->setType("individual");
         $customerData->setId($myOrder->id);
-        $customerData->setEmail($myOrder->customer_email ?? $myOrder->user->email );
+        $customerData->setEmail($myOrder->customer_email ?? $myOrder->user->email);
 
-        // Add values for transaction settings
-        // $duplicateWindowSetting = new AnetAPI\SettingType();
-        // $duplicateWindowSetting->setSettingName("duplicateWindow");
-        // $duplicateWindowSetting->setSettingValue("60");
 
-        // Add some merchant defined fields. These fields won't be stored with the transaction,
-        // but will be echoed back in the response.
-        // $merchantDefinedField1 = new AnetAPI\UserFieldType();
-        // $merchantDefinedField1->setName("customerLoyaltyNum");
-        // $merchantDefinedField1->setValue("1128836273");
-
-        // $merchantDefinedField2 = new AnetAPI\UserFieldType();
-        // $merchantDefinedField2->setName("favoriteColor");
-        // $merchantDefinedField2->setValue("blue");
 
         // Create a TransactionRequestType object and add the previous objects to it
         $transactionRequestType = new AnetAPI\TransactionRequestType();
@@ -120,9 +107,7 @@ class Payment extends BaseModel
         $transactionRequestType->setPayment($paymentOne);
         $transactionRequestType->setBillTo($customerAddress);
         $transactionRequestType->setCustomer($customerData);
-        // $transactionRequestType->addToTransactionSettings($duplicateWindowSetting);
-        // $transactionRequestType->addToUserFields($merchantDefinedField1);
-        // $transactionRequestType->addToUserFields($merchantDefinedField2);
+
 
         // Assemble the complete transaction request
         $request = new AnetAPI\CreateTransactionRequest();
