@@ -60,7 +60,7 @@ class Payment extends BaseModel
 
         $merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
         $merchantAuthentication->setName('9SFx6RK9vVb');
-        $merchantAuthentication->setTransactionKey('82dTf9M4t7MHW3bL');
+        $merchantAuthentication->setTransactionKey('5g82f8e93K6HruCX');
 
         // Set the transaction's refId
         $refId = 'ref' . time();
@@ -84,8 +84,10 @@ class Payment extends BaseModel
         $customerAddress = new AnetAPI\CustomerAddressType();
         $customerAddress->setFirstName($myOrder->customer_name ?? $myOrder->user->name);
 
-        $customerAddress->setAddress("$myAddress ? $myAddress->country_region  $myAddress->city  $myAddress->street_address : '12 Main Street'");
+        $address = $myAddress!=null ? "$myAddress ? $myAddress->country_region  $myAddress->city  $myAddress->street_address" : '12 Main Street';
+        $customerAddress->setAddress($address);
         $customerAddress->setCity($myAddress->city);
+
         // $customerAddress->setState("TX");
         // $customerAddress->setZip("44628");
         // $customerAddress->setCountry("USA");
