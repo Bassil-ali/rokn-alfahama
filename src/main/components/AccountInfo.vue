@@ -22,6 +22,7 @@
               <span class="input-group-text"><i class="fas fa-user"></i></span>
               <input
                 type="text"
+                required
                 class="form-control"
                 :placeholder="$t('enter_username')"
                 v-model="user.user_name"
@@ -37,6 +38,7 @@
               ></span>
               <input
                 type="text"
+                required
                 class="form-control"
                 :placeholder="$t('mobile_no')"
                 v-model="user.mobile"

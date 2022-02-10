@@ -5,27 +5,7 @@
       <form @submit.prevent="save(item)">
         <div class="row">
           <div class="col-md-12">
-            <div class="mb-3">
-              <label>{{ $t("first_name") }} <span>*</span></label>
-              <input
-                type="text"
-                required
-                v-model="item.first_name"
-                class="form-control"
-                :placeholder="$t('first_name')"
-              />
-            </div>
-            <div class="mb-3">
-              <label>{{ $t("last_name") }} <span>*</span></label>
-              <input
-                type="text"
-                required
-                v-model="item.last_name"
-                class="form-control"
-                :placeholder="$t('last_name')"
-              />
-            </div>
-          </div>
+           
           <div class="mb-3">
             <label>{{ $t("street_address") }} <span>*</span></label>
             <input
@@ -48,7 +28,7 @@
               placeholder="apt suit building"
             />
           </div>
-
+          </div>
           <div class="col-md-6">
             <div class="mb-3">
               <label>Zip Code <span>*</span></label>
@@ -87,35 +67,7 @@
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="mb-6">
-              <label>{{ $t("email") }} <span>*</span></label>
-              <input
-                type="text"
-                required
-                v-model="item.email"
-                class="form-control"
-                :placeholder="$t('email')"
-              />
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="mb-6">
-              <label>{{ $t("phone_number") }}</label>
-              <input
-                type="text"
-                required
-                v-model="item.phone_number"
-                class="form-control"
-                :placeholder="$t('phone_number')"
-              />
-            </div>
-          </div>
-        </div>
         <br>
-
         <button type="submit" class="button">{{ $t("add_site") }}</button>
       </form>
     </div>

@@ -235,7 +235,7 @@
   "Floor_No_Add": "Floor No",
   "Apartment_number_add": "Apartment number",
   "Notes_add_add": "Notes",
-  "add_site": "add site",
+  "add_site": "Add Address",
   "add_site_new": "Add New Site",
   "Your_cart_is_empty": "Your cart is empty",
   "go_to_option": "You can go to the option to continue shopping and add your favorite products",
@@ -399,7 +399,9 @@
   "street_address":"street address",
   "city":"city",
   "country_region":"country/region",
-  "optional":"Optional"
+  "optional":"Optional",
+  "added_successfully":"Added Successfully",
+  "updated_successfully":"Updated Successfully"
 
   
 

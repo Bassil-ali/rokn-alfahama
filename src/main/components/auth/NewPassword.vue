@@ -7,8 +7,8 @@
       </v-card-title>
         <v-card-text>
         <v-form class="mx-auto col-11" ref="form"  >
-            <v-text-field v-model="user.passwrod" outlined rounded dense :label="email.label" prepend-inner-icon="mdi-lock" type="password"></v-text-field>
-            <v-text-field v-model="user.password" outlined rounded dense :label="email.label" prepend-inner-icon="mdi-lock" type="password"></v-text-field>
+            <v-text-field v-model="user.passwrod" required outlined rounded dense :label="email.label" prepend-inner-icon="mdi-lock" type="password" ></v-text-field>
+            <v-text-field v-model="user.password" outlined rounded dense :label="email.label" prepend-inner-icon="mdi-lock" type="password" ></v-text-field>
             <v-btn block color="red" @click="reset_password(user)">
                 Change Password
             </v-btn>

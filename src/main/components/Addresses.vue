@@ -18,7 +18,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <strong
                   ><i class="fas fa-map-marker-alt"></i>
-                  {{ address.first_name }}
+                  {{ user.user_name }}
                 </strong>
                 <div class="option">
                   <!-- :href="`/main/my-account/my_addresses/${address.id}`" -->
@@ -39,11 +39,11 @@
               </div>
               <ul>
                 <li>
-                  {{ address.first_name }} - {{ address.last_name }} -
+                  {{ user.name }} - {{ user.user_name }} -
                   {{ address.street_address }} - {{ address.apt_suit_building }} -
                   {{ address.zip_code }} - {{ address.city }} -
-                  {{ address.country_region }} - {{ address.email }} -
-                  {{ address.phone_number }}
+                  {{ address.country_region }} - {{ user.email }} -
+                  {{ user.mobile }}
                 </li>
                 <!-- <li>
                   {{ address.notes }}
@@ -70,6 +70,7 @@ export default {
   computed: {
     ...mapState({
       addresses: (state) => state.address.all,
+      user: (state) => state.auth.user.user,
     }),
   },
   methods: {

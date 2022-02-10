@@ -184,14 +184,13 @@
                             <div>
                               <ul>
                                 <li>
-                                  {{ address.first_name }} -
-                                  {{ address.last_name }} -
+                                  {{ user.name }} - {{ user.user_name }} -
                                   {{ address.street_address }} -
                                   {{ address.apt_suit_building }} -
                                   {{ address.zip_code }} - {{ address.city }} -
                                   {{ address.country_region }} -
-                                  {{ address.email }} -
-                                  {{ address.phone_number }}
+                                  {{ user.email }} -
+                                  {{ user.mobile }}
                                 </li>
                                 <!-- <li>
                                   {{ address.notes }}
@@ -342,7 +341,7 @@
                         </button>
                       </form>
                       <div style="text-align: center" v-if="localeAddresses[0]">
-                        <h4>{{$t('choose an address')}}</h4>
+                        <h4>{{ $t("choose an address") }}</h4>
                       </div>
                       <div
                         :key="index"
@@ -362,14 +361,12 @@
                         <label for="css">
                           <ul>
                             <li>
-                              {{ address.first_name }} -
-                              {{ address.last_name }} -
+                              {{ user.name }} - {{ user.user_name }} -
                               {{ address.street_address }} -
                               {{ address.apt_suit_building }} -
                               {{ address.zip_code }} - {{ address.city }} -
-                              {{ address.country_region }} -
-                              {{ address.email }} -
-                              {{ address.phone_number }}
+                              {{ address.country_region }} - {{ user.email }} -
+                              {{ user.mobile }}
                               <a
                                 style="cursor: pointer"
                                 @click="removeLocalAddress(index)"
@@ -637,6 +634,7 @@ export default {
   computed: {
     ...mapState({
       order: (state) => state.cart.order,
+      user: (state) => state.auth.user.user,
       addresses: (state) => state.address.all,
       settings: (state) => state.setting.all || [],
       // shipments: (state) => state.shipping.all || [],
