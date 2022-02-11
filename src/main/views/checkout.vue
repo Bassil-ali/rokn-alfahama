@@ -114,7 +114,7 @@
                       font-weight: 500;
                     "
                   >
-                    {{ total_shipment }}
+                    {{ total_shipment.toFixed(2) }}
                     $
                   </span>
 
@@ -197,7 +197,7 @@
                                   {{ address.street_address }} -
                                   {{ address.apt_suit_building }} -
                                   {{ address.zip_code }} - {{ address.city }} -
-                                  {{ address.country_region }} 
+                                  {{ address.country_region }}
                                 </li>
                               </ul>
                             </div>
@@ -387,8 +387,6 @@
                       <!--                       
                       <h6>اختار طريقة الشحن</h6> -->
                       <form @submit.prevent="save">
-                         
-
                         <button :disabled="!validated" class="button">
                           {{ $t("Complete_the_order") }}
                         </button>
@@ -485,6 +483,7 @@ export default {
         order_copy.taxed_total = this.totals.total_taxed;
         order_copy.discount = this.totals.discount;
         order_copy.total = this.totals.total;
+        order_copy.address_id = this.my_address;
         if (this.totals.total_taxed < this.limit_shipment) {
           order_copy.taxed_total += this.total_shipment;
           order_copy.total_shipping = this.total_shipment;
@@ -694,8 +693,7 @@ export default {
       //   }
       // }
       if (val) {
-        var total = val.reduce((c, n) => c + n.price, 0);
-        this.total_shipment = parseFloat(total).toFixed(2);
+        this.total_shipment = val.reduce((c, n) => c + parseFloat(n.price), 0);
       }
     },
   },
