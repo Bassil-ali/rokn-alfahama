@@ -39,7 +39,7 @@ class OrderItem extends BaseModel
             'item_name' => 'sometimes|string',
             'description' => 'nullable',
             'item_id' => 'required|exists:items,id',
-            'offer_id' => 'sometimes|exists:offers,id'
+            'offer_id' => 'nullable|exists:offers,id'
         ];
     }
     public static function updateRules($user)
@@ -58,7 +58,7 @@ class OrderItem extends BaseModel
             'item_name' => 'sometimes|string',
             'description' => 'nullable',
             'item_id' => 'required|exists:items,id',
-            'offer_id' => 'sometimes|exists:offers,id'
+            'offer_id' => 'nullable|exists:offers,id'
 
         ];
     }
