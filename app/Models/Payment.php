@@ -118,7 +118,7 @@ class Payment extends BaseModel
 
         // Create the controller and get the response
         $controller = new AnetController\CreateTransactionController($request);
-        $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::SANDBOX);
+        $response = $controller->executeWithApiResponse(\net\authorize\api\constants\ANetEnvironment::PRODUCTION);
 
 
         if ($response != null) {
