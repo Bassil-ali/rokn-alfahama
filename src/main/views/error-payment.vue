@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="entry-content checkout">
-      <h2>{{$t('Checkout')}}</h2>
+      <h2>{{ $t("Checkout") }}</h2>
 
       <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,11 +13,11 @@
                     <figure>
                       <img src="@/main/assets/images/false.svg" alt="" />
                     </figure>
-                    <h5>{{$t('We_apologize')}}</h5>
-                    <p>{{$t('not_complete')}}</p>
-                    <p>{{$t('try')}}</p>
+                    <h5>{{ $t("We_apologize") }}</h5>
+                    <p>{{ $t("not_complete") }}</p>
+                    <p>{{ $t("try") }}</p>
                   </div>
-                  <h4>{{$t('Contact_info')}}</h4>
+                  <h4>{{ $t("Contact_info") }}</h4>
                   <ul>
                     <li>
                       <i class="far fa-user-circle"></i
@@ -30,18 +30,14 @@
                       }}
                     </li>
                   </ul>
-                  <h4>{{$t('Contact_info')}}</h4>
+                  <h4>{{ $t("Contact_info") }}</h4>
                   <ul>
                     <li>
                       <i class="fas fa-map-marker-alt"></i>
 
-                      {{ address.area }} - {{ address.widget }} -
-                      {{ address.street }} - {{ address.avenue }} -
-                      {{ address.house_number }} - {{ address.floor_no }} -
-                      {{ address.apartment_number }}
-                    </li>
-                    <li>
-                      {{ address.notes }}
+                      {{ address.country_region }} - {{ address.city }} -
+                      {{ address.street_address }} - {{ address.zip_code }} -
+                      {{ address.apt_suit_building }}
                     </li>
                   </ul>
                 </div>
@@ -49,7 +45,7 @@
             </div>
             <div class="col-md-6 p-0">
               <div class="block left">
-                <h4>{{$t('Contact_info')}}</h4>
+                <h4>{{ $t("Contact_info") }}</h4>
                 <div class="orders">
                   <div
                     :key="index"
@@ -68,7 +64,8 @@
                         <div class="d-flex justify-content-between">
                           <div class="price">{{ item.item_price }} $</div>
                           <div class="quantity">
-                            {{$t('count')}} : <strong>{{ item.item_quantity }}</strong>
+                            {{ $t("count") }} :
+                            <strong>{{ item.item_quantity }}</strong>
                           </div>
                         </div>
                       </div>
@@ -78,8 +75,8 @@
                 <div class="footer">
                   <ul>
                     <li>
-                      {{$t('number_of_products')}}
-                                            <span>{{
+                      {{ $t("number_of_products") }}
+                      <span>{{
                         items
                           ? items.reduce(
                               (c, n) => c + parseInt(n.item_quantity),
@@ -143,8 +140,8 @@
         </div>
       </div>
       <div class="mt-5 mb-5 text-center">
-        <a :href="retry()" class="button fill me-3"> {{$t('try again')}} </a>
-        <a href="/main" class="button fill no"> {{$t('exit')}} </a>
+        <a :href="retry()" class="button fill me-3"> {{ $t("try again") }} </a>
+        <a href="/main" class="button fill no"> {{ $t("exit") }} </a>
       </div>
     </div>
   </div>
@@ -234,9 +231,17 @@ export default {
         this.$store.dispatch("address/show", { id: val.address_id });
       }
     },
+    items(val) {
+      if (val) {
+        this.ids = val.map((v) => v.item_id);
+        if (this.ids.length > 0) {
+          this.$store.dispatch("shippinga/index", { ids: this.ids });
+        }
+      }
+    },
     shippingas(val) {
       if (val) {
-        this.total_shipment = val.reduce((c, n) => c + n.price, 0);
+        this.total_shipment = val.reduce((c, n) => c + parseFloat(n.price), 0);
       }
     },
   },

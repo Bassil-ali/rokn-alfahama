@@ -38,10 +38,12 @@ const actions = {
             }
         } else {
             if (rootState.auth.user?.user.id) {
-                dispatch("order/store", { user_id: rootState.auth.user.user.id, total: 0, discount: 0, taxed_total: 0, status: 0, issue_date: new Date().toISOString().slice(0, 19).replace("T", " ") }, { root: true }).then(() => {
-                    dispatch("load").then(() => {
-                        dispatch("addItem", item)
-                    })
+                dispatch("order/store", { user_id: rootState.auth.user.user.id, total: 0, discount: 0, taxed_total: 0, status: 0, issue_date: new Date().toISOString().slice(0, 19).replace("T", " ") }, { root: true }).then((order) => {
+                    if (order.id) {
+                        dispatch("load").then(() => {
+                            dispatch("addItem", item)
+                        })
+                    }
                 })
             } else {
                 let item_data = {
