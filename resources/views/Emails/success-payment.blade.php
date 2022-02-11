@@ -184,7 +184,7 @@
                                             </p>
 
                                             <p>
-                                                {{ _('Thank you for your payment in our site , your payment id is') }}
+                                                {{ __('Thank you for your payment in our site , your payment id is') }}
                                                 <span style="font-weight: 700;">#{{ $payment->id }} </span>
                                                 {{ __('with price') }}
                                                 <span style="font-weight: 700;">{{ $payment->amount }}$</span>
