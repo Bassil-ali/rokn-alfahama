@@ -181,7 +181,7 @@
                                                 {{ __('error notification') }}
                                             </div>
                                             <p style="font-weight: 700;">
-                                                {{ __('Hello') }} {{ $order->customer_name ?? $order->user->name }},
+                                                {{ __('Hello') }} {{ $order->customer_first_name ?? $order->user->name }},
                                             </p>
 
                                             <p>

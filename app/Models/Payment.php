@@ -55,9 +55,10 @@ class Payment extends BaseModel
     public function confirmAndSendMail()
     {
         $myOrder = $this->order;
+     
         $myAddress = Address::find($myOrder->address_id);
         $amount = $myOrder->taxed_total;
-
+       
         $merchantAuthentication = new AnetAPI\MerchantAuthenticationType();
         $merchantAuthentication->setName('9SFx6RK9vVb');
         $merchantAuthentication->setTransactionKey('5g82f8e93K6HruCX');
@@ -82,7 +83,7 @@ class Payment extends BaseModel
 
         // Set the customer's Bill To address
         $customerAddress = new AnetAPI\CustomerAddressType();
-        $customerAddress->setFirstName($myOrder->customer_fisrt_name ?? $myOrder->user->name);
+        $customerAddress->setFirstName($myOrder->customer_first_name ?? $myOrder->user->name);
         $customerAddress->setLastName($myOrder->customer_last_name ?? $myOrder->user->name);
 
         $address = $myAddress != null ? "$myAddress ? $myAddress->country_region   , $myAddress->city  ,  $myAddress->street_address" : '12 Main Street';

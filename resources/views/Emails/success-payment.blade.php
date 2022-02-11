@@ -180,7 +180,7 @@
                                                 style="margin: 0; margin-bottom: 15px; font-size: 25px; text-align: center; font-weight: 700; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                                                 {{ __('receipt') }} </p>
                                             <p style="font-weight: 700;">
-                                                {{ __('Hello') }} {{ $order->customer_name ?? $order->user->name }},
+                                                {{ __('Hello') }} {{ $order->customer_first_name ?? $order->user->name }},
                                             </p>
 
                                             <p>
@@ -201,7 +201,7 @@
                                                             </li>
                                                             <li>
                                                                 {{ __('beneficiary') }} :
-                                                                {{ $order->customer_name ?? $order->user->name }}
+                                                                {{ $order->customer_first_name ?? $order->user->name }}
                                                             </li>
                                                             <li>
                                                                 {{ __('amount') }} : {{ $payment->amount }}$
