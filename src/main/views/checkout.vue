@@ -148,10 +148,20 @@
             <div class="row justify-content-center">
               <div class="col-md-11">
                 <div class="content">
-                  <p v-if="$root.user">
-                    {{ $t("register_as") }} :
-                    <strong>{{ $root.user.name }}</strong>
-                  </p>
+                  <div style="display: flex; justify-content: space-around">
+                    <p v-if="$root.user">
+                      {{ $t("register_as") }} :
+                      <strong>{{ $root.user.name }}</strong>
+                    </p>
+                    <p v-if="$root.user">
+                      {{ $t("your email") }} :
+                      <strong>{{ $root.user.email }}</strong>
+                    </p>
+                    <p v-if="$root.user">
+                      {{ $t("your phone number") }} :
+                      <strong>{{ $root.user.mobile }}</strong>
+                    </p>
+                  </div>
 
                   <div class="box">
                     <div
@@ -184,17 +194,11 @@
                             <div>
                               <ul>
                                 <li>
-                                  {{ user.name }} - {{ user.user_name }} -
                                   {{ address.street_address }} -
                                   {{ address.apt_suit_building }} -
                                   {{ address.zip_code }} - {{ address.city }} -
-                                  {{ address.country_region }} -
-                                  {{ user.email }} -
-                                  {{ user.mobile }}
+                                  {{ address.country_region }} 
                                 </li>
-                                <!-- <li>
-                                  {{ address.notes }}
-                                </li> -->
                               </ul>
                             </div>
                           </div>
@@ -241,7 +245,7 @@
                               <div>
                                 <label>{{ $t("email") }} <span>*</span></label>
                                 <input
-                                  type="text"
+                                  type="email"
                                   required
                                   v-model="gust_order.customer_email"
                                   class="form-control"
@@ -256,7 +260,7 @@
                                   <span>*</span></label
                                 >
                                 <input
-                                  type="text"
+                                  type="number"
                                   required
                                   v-model="gust_order.customer_mobile"
                                   class="form-control"
@@ -361,12 +365,10 @@
                         <label for="css">
                           <ul>
                             <li>
-                              {{ user.name }} - {{ user.user_name }} -
                               {{ address.street_address }} -
                               {{ address.apt_suit_building }} -
                               {{ address.zip_code }} - {{ address.city }} -
-                              {{ address.country_region }} - {{ user.email }} -
-                              {{ user.mobile }}
+                              {{ address.country_region }}
                               <a
                                 style="cursor: pointer"
                                 @click="removeLocalAddress(index)"
@@ -385,54 +387,7 @@
                       <!--                       
                       <h6>اختار طريقة الشحن</h6> -->
                       <form @submit.prevent="save">
-                        <!-- <div class="d-flex">
-                          <div class="form-check form-check-inline">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="inlineRadioOptions"
-                              id="inlineRadio1"
-                              value="option1"
-                            />
-                            <label class="form-check-label" for="inlineRadio1"
-                              >كي نت
-                              <img
-                                src="@/main/assets/images/magento2-knet-payment-gateway.jpg"
-                                alt=""
-                            /></label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="inlineRadioOptions"
-                              id="inlineRadio2"
-                              value="option2"
-                            />
-                            <label class="form-check-label" for="inlineRadio2"
-                              >مستر كود وفيزا
-                              <img src="@/main/assets/images/visa.jpg" alt=""
-                            /></label>
-                          </div> 
-                          <div
-                            :key="index"
-                            v-for="(shipment, index) in shipments"
-                            class="form-check form-check-inline"
-                          >
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="inlineRadioOptions"
-                              id="inlineRadio3"
-                              v-model="selected_shipment"
-                              :value="shipment.id"
-                            />
-                            <label class="form-check-label" for="inlineRadio3">
-                              {{ shipment.name }}
-                              <img src="@/main/assets/images/wallet.jpg" alt=""
-                            /></label>
-                          </div>
-                        </div> -->
+                         
 
                         <button :disabled="!validated" class="button">
                           {{ $t("Complete_the_order") }}
@@ -546,6 +501,7 @@ export default {
             }`;
             window.open(`${domain}/complete-order/${this.order.id}`);
             this.$router.push("/cart");
+            location.reload();
           });
       } else {
         if (
@@ -634,7 +590,6 @@ export default {
   computed: {
     ...mapState({
       order: (state) => state.cart.order,
-      user: (state) => state.auth.user.user,
       addresses: (state) => state.address.all,
       settings: (state) => state.setting.all || [],
       // shipments: (state) => state.shipping.all || [],
@@ -739,7 +694,8 @@ export default {
       //   }
       // }
       if (val) {
-        this.total_shipment = val.reduce((c, n) => c + n.price, 0);
+        var total = val.reduce((c, n) => c + n.price, 0);
+        this.total_shipment = parseFloat(total).toFixed(2);
       }
     },
   },
