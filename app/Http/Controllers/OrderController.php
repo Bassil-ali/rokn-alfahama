@@ -35,7 +35,7 @@ class OrderController extends BaseController
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-
+        
         $order = Order::create($validator->validated());
         if ($request->translations) {
             foreach ($request->translations as $translation)
@@ -59,6 +59,7 @@ class OrderController extends BaseController
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
+     
         if ($request['items']) {
             $newOrder = $order->calcOrderItems($request['items']);
             $order->update($newOrder);
