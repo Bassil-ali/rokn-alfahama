@@ -118,7 +118,7 @@
                     $
                   </span>
 
-                  <span v-else> {{ total_shipment }} $</span>
+                  <span v-else> {{ total_shipment.toFixed(2) }} $</span>
                 </li>
                 <li>
                   {{ $t("tax_total") }}
@@ -477,7 +477,7 @@ export default {
       if (this.$root.user) {
         let order_copy = JSON.parse(JSON.stringify(this.order));
         delete order_copy.items;
-        console.log(order_copy);
+
         order_copy.due_date = this.getTime();
         order_copy.status = 1;
         order_copy.taxed_total = this.totals.total_taxed;
@@ -489,19 +489,14 @@ export default {
           order_copy.total_shipping = this.total_shipment;
         }
 
-        await this.$store
-          .dispatch("order/store", order_copy)
-          .then((data) => {
-            return data;
-          })
-          .then(() => {
-            let domain = `${process.env.URL || window.location.protocol}//${
-              window.location.host
-            }`;
-            window.open(`${domain}/complete-order/${this.order.id}`);
-            this.$router.push("/cart");
-            location.reload();
-          });
+        await this.$store.dispatch("order/store", order_copy).then(() => {
+          let domain = `${process.env.URL || window.location.protocol}//${
+            window.location.host
+          }`;
+          window.open(`${domain}/complete-order/${this.order.id}`);
+          this.$router.push("/cart");
+          location.reload();
+        });
       } else {
         if (
           !(
@@ -529,27 +524,29 @@ export default {
           order.total_shipping = this.total_shipment;
         }
         localStorage.removeItem("order");
-        this.$store
+        await this.$store
           .dispatch("address/store", this.selectedLocalAddress)
           .then((address) => {
-            order.address_id = address.id;
-            this.$store.dispatch("order/store", order).then((new_order) => {
-              this.order.items.map((item) => {
-                this.$store
-                  .dispatch("order_item/store", {
-                    ...item,
-                    order_id: new_order.id,
-                  })
-                  .then(() => {
-                    let domain = `${
-                      process.env.URL || window.location.protocol
-                    }//${window.location.host}`;
-                    window.open(`${domain}/complete-order/${new_order.id}`);
-                    this.$router.push("/cart");
-                    location.reload();
-                  });
+            if (address) {
+              order.address_id = address.id;
+              this.$store.dispatch("order/store", order).then((new_order) => {
+                this.order.items.map((item) => {
+                  this.$store
+                    .dispatch("order_item/store", {
+                      ...item,
+                      order_id: new_order.id,
+                    })
+                    .then(() => {
+                      let domain = `${
+                        process.env.URL || window.location.protocol
+                      }//${window.location.host}`;
+                      window.open(`${domain}/complete-order/${new_order.id}`);
+                      this.$router.push("/cart");
+                      location.reload();
+                    });
+                });
               });
-            });
+            }
           });
       }
       // if (order_id) {
