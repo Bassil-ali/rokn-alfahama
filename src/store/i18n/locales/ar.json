@@ -433,5 +433,7 @@
   "optional":"أختياري",
   "your phone number":"الهاتف الخاص بك",
   "your email":"بريدك الإلكتروني",
-  "choose an address":"قم بإختيار عنوان"
+  "choose an address":"قم بإختيار عنوان",
+  "error":"خطأ",
+  "email_error":"ادخل ايميل صحيح"
 }
