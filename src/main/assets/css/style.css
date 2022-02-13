@@ -2139,7 +2139,7 @@ header.checkout {
     justify-content: space-between;
     padding: 1rem;
     margin-top: 5rem;
-    flex-direction: row-reverse;
+   
 }
 
 .entry-content.checkout .block form.copon input[type="text"] {

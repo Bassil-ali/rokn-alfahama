@@ -259,3 +259,10 @@ ul {
 		}
 	}
 }
+.entry-content.checkout .block form.copon {
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+	margin-top: 5rem;
+	flex-direction: row-reverse;
+}
