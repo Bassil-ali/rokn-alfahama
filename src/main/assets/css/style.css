@@ -165,7 +165,7 @@ header .logo-container>.d-flex>.search-menu {
 }
 
 header .logo-container>.d-flex>.user-area {
-    width: 20%;
+    width: 23%;
     flex: 0 0 auto;
 }
 
@@ -398,14 +398,14 @@ header .logo-container>.d-flex>.user-area>.option-user .item-cart a>span>strong 
 
 .product .item figure a {
     display: block;
-    height: 160px;
+    height: 200px;
     overflow: hidden;
 }
 
 .product .item figure a img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: scale-down;
 }
 
 .section-02.product {
@@ -930,7 +930,7 @@ span.value.upper::before {
 #sync2 .item figure img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: scale-down;
 }
 
 #sync2 .item figure {
@@ -2139,7 +2139,6 @@ header.checkout {
     justify-content: space-between;
     padding: 1rem;
     margin-top: 5rem;
-   
 }
 
 .entry-content.checkout .block form.copon input[type="text"] {
@@ -2463,10 +2462,11 @@ a.button.fill.no {
     .option-user.d-flex {
         width: 100%;
         margin-right: .75rem;
+        justify-content: flex-end;
     }
 
     .option-user.d-flex .item-cart {
-        width: 50%;
+        width: 35%;
         flex: 0 0 auto;
     }
 
@@ -2662,9 +2662,6 @@ a.button.fill.no {
         border: 0;
     }
 
- 
-
- 
     .entry-content.category>.container>.row>.col-md-9>.head-block>.d-flex {
         display: block !important;
     }
@@ -2747,5 +2744,11 @@ a.button.fill.no {
         display: none;
     }
 
- 
+    header .logo-container>.d-flex>.user-area>.user-login-reg>ul>li>a {
+        font-size: .819rem;
+    }
+
+    .section-02 .row {
+        display: block !important;
+    }
 }

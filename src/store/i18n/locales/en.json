@@ -404,7 +404,8 @@
   "updated_successfully":"Updated Successfully",
   "email_error":"invalid email",
   "size":"size",
-  "select":"select"
+  "select":"select",
+   "number_of_items":"number of items"
 
 
   
