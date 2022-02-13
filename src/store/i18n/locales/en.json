@@ -402,7 +402,9 @@
   "optional":"Optional",
   "added_successfully":"Added Successfully",
   "updated_successfully":"Updated Successfully",
-  "email_error":"invalid email"
+  "email_error":"invalid email",
+  "size":"size",
+  "select":"select"
 
 
   

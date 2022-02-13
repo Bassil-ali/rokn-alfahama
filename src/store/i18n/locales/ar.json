@@ -435,5 +435,7 @@
   "your email":"بريدك الإلكتروني",
   "choose an address":"قم بإختيار عنوان",
   "error":"خطأ",
-  "email_error":"ادخل ايميل صحيح"
+  "email_error":"ادخل ايميل صحيح",
+  "size":"الحجم",
+  "select":"أختر"
 }

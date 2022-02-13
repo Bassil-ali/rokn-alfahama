@@ -143,9 +143,9 @@
                             x
                           </button>
                           <div class="mb-3">
-                            <label for="" class="form-label">الحجم</label>
+                            <label for="" class="form-label">{{$t('size')}}</label>
                             <select v-model="selected_size" class="form-select">
-                              <option value="" disabled selected>اختر</option>
+                              <option value="" disabled selected>{{$t('select')}}</option>
                               <option
                                 v-for="(name, index) in sizes"
                                 :key="index"
@@ -519,13 +519,14 @@ export default {
     },
     one_item(val) {
       if (val) {
-        if (this.order.items.find((v) => v.item_id == val.id)) {
-          let one = this.order.items.find((v) => v.item_id == val.id);
-          this.one = { ...val, ...one };
-        } else {
-          this.one = val;
-        }
-        this.$store.dispatch("item/index", { category_id: val.category_id });
+        this.one = val;
+        // if (this.order.items.find((v) => v.item_id == val.id)) {
+        //   let one = this.order.items.find((v) => v.item_id == val.id);
+        //   this.one = { ...val, ...one };
+        // } else {
+        //   this.one = val;
+        // }
+        // this.$store.dispatch("item/index", { category_id: val.category_id });
       }
     },
     selected_price(val) {
