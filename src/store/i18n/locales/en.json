@@ -405,7 +405,8 @@
   "email_error":"invalid email",
   "size":"size",
   "select":"select",
-   "number_of_items":"number of items"
+   "number_of_items":"number of items",
+   "color":"color"
 
 
   

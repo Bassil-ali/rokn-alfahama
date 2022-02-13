@@ -165,12 +165,12 @@
                             x
                           </button>
                           <div class="mb-3">
-                            <label for="" class="form-label">اللون</label>
+                            <label for="" class="form-label">{{$t('color')}}</label>
                             <select
                               v-model="selected_color"
                               class="form-select"
                             >
-                              <option disabled selected>اختر</option>
+                              <option disabled selected>{{$t('select')}}</option>
                               <option
                                 v-for="(name, index) in colors"
                                 :key="index"
@@ -487,9 +487,10 @@ export default {
        
       // this.$store.dispatch("cart/addItem", item);
     },
-    like(one) {
+    like(item) {
       this.$store.dispatch("item_reaction/store", {
-        item_id: item.id,
+         item_id: item.id,
+        user_id: this.$root.user.id,
       });
     },
     rank(one, rank) {
