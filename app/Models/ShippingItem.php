@@ -14,7 +14,7 @@ class ShippingItem extends BaseModel
         return [
             '*.item_id' => 'required',
             '*.shipping_id' => 'required',
-            '*.price' => 'required||regex:/^\d+(\.\d{1,2})?$/',
+            '*.price' => 'required',
         ];
     }
     public static function updateRules($user)
