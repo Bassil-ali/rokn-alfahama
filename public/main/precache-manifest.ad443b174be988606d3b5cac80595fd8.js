@@ -12,7 +12,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/css/chunk-481d830a-chunk.css"
   },
   {
-    "revision": "9525ca5e813252f21a67",
+    "revision": "08045d62749f5e227cc5",
     "url": "/main/css/chunk-common-chunk.css"
   },
   {
@@ -36,44 +36,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/css/dashboard.css"
   },
   {
-    "revision": "815873e235e3f37aa5ca",
+    "revision": "7f01d4d5e0b69ec5593e",
     "url": "/main/css/index.css"
   },
   {
-    "revision": "cdacb40e6d3e1e3a5735b6a3c3403513",
+    "revision": "5c38083d40a7b31f0e31d12abaa75b9c",
     "url": "/main/dashboard.html"
-  },
-  {
-    "revision": "6750752c0a6b08565976227cd8bad24a",
-    "url": "/main/fonts/DINNextLTArabic-Light.6750752c.woff"
-  },
-  {
-    "revision": "a1019b6ebbeb8918d62f38cb652910dc",
-    "url": "/main/fonts/DINNextLTArabic-Light.a1019b6e.woff2"
-  },
-  {
-    "revision": "4384e8b1f626a925d4b1b34879f4e9a7",
-    "url": "/main/fonts/DINNextLTArabic-Medium.4384e8b1.woff2"
-  },
-  {
-    "revision": "7dc3542af6f06975ae4d9963c66c33b5",
-    "url": "/main/fonts/DINNextLTArabic-Medium.7dc3542a.woff"
-  },
-  {
-    "revision": "3dfacbefae4998a6747a896bd17349b1",
-    "url": "/main/fonts/DINNextLTArabic-Regular.3dfacbef.woff"
-  },
-  {
-    "revision": "64e982d0718dbcefdd3383ec6a438d2f",
-    "url": "/main/fonts/DINNextLTArabic-Regular.64e982d0.woff2"
-  },
-  {
-    "revision": "0bfc243407d6fcfda582970f4a25eef6",
-    "url": "/main/fonts/DINNextLTW23-Bold2.0bfc2434.woff"
-  },
-  {
-    "revision": "4b7f514029710e6c7d3e87e5aab34d1d",
-    "url": "/main/fonts/DINNextLTW23-Bold2.4b7f5140.woff2"
   },
   {
     "revision": "bad01a8965b8562e2e7447fe04723acd",
@@ -200,14 +168,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/img/006-close-envelope.71398413.svg"
   },
   {
-    "revision": "68d281c3673bf534fdc355875a2e5b6b",
-    "url": "/main/img/404-bottom.68d281c3.svg"
-  },
-  {
-    "revision": "0da3bb447f551373dda663b39d59d309",
-    "url": "/main/img/404-top.0da3bb44.svg"
-  },
-  {
     "revision": "ec930bc5db1dbe97879c53560bfd1fc0",
     "url": "/main/img/54c5989ec7bc8b192c60f9e9a0dae937.ec930bc5.jpg"
   },
@@ -224,10 +184,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/img/Send-gift-bro.7ab5adb7.png"
   },
   {
-    "revision": "e8899ee79926791088ea89b0d5236d82",
-    "url": "/main/img/Union-43.e8899ee7.png"
-  },
-  {
     "revision": "2b21e3560049792351f17332d2d08ca1",
     "url": "/main/img/address.2b21e356.svg"
   },
@@ -240,20 +196,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/img/banner02.0387f985.jpg"
   },
   {
-    "revision": "48d2e2cb10522e25f53270f4acfecc2a",
-    "url": "/main/img/bg-footer.48d2e2cb.jpg"
-  },
-  {
-    "revision": "5e1dd7eaa9f41dbe6085eb49c05a8c90",
-    "url": "/main/img/ce9ef2dfec7fc7b38213892c7d788a78.5e1dd7ea.jpg"
-  },
-  {
     "revision": "0da13833688e583219867e6d4c1de668",
     "url": "/main/img/col.0da13833.svg"
-  },
-  {
-    "revision": "c2b69af0db1fe697051202297fdc5cb0",
-    "url": "/main/img/contact.c2b69af0.svg"
   },
   {
     "revision": "df2bf958efe1ed4e25ba02996c6b413e",
@@ -380,7 +324,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/img/user.0608d5e2.svg"
   },
   {
-    "revision": "41c2434be7530bfe4d4561a1b82fc0be",
+    "revision": "72165ba88880dce2f2a8c0354b7f248f",
     "url": "/main/index.html"
   },
   {
@@ -393,7 +337,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/js/chunk-481d830a.1ad.0f145a45cf10fe8b1c0b.min.js"
   },
   {
-    "url": "/main/js/chunk-common.904.9525ca5e813252f21a67.min.js"
+    "url": "/main/js/chunk-common.ecb.08045d62749f5e227cc5.min.js"
   },
   {
     "url": "/main/js/chunk-d31cb614.58d.5aaeff120a008d13dd31.min.js"
@@ -411,7 +355,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/js/dashboard.104.ca96791c8d4e74cf127b.min.js"
   },
   {
-    "url": "/main/js/index.f5f.815873e235e3f37aa5ca.min.js"
+    "url": "/main/js/index.f5f.7f01d4d5e0b69ec5593e.min.js"
   },
   {
     "revision": "4b14c64efaf846819b9a229b4193c8b7",
