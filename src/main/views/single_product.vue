@@ -434,7 +434,6 @@ export default {
       this.$router.push("/category");
     }
   },
-
   computed: {
     ...mapState({
       one_item: (state) => state.item.one,
@@ -537,7 +536,6 @@ export default {
         this.one.selling_price = this.one_item.selling_price;
       }
     },
-
     all_properties(val) {
       this.properties = JSON.parse(JSON.stringify(val));
     },
