@@ -246,7 +246,6 @@
                                 <label>{{ $t("email") }} <span>*</span></label>
                                 <input
                                   type="email"
-                                  required
                                   v-model="gust_order.customer_email"
                                   class="form-control"
                                   :placeholder="$t('email')"
@@ -561,15 +560,34 @@ export default {
       this.localeAddresses = JSON.parse(localStorage.getItem("address"));
     },
     saveAddress(item) {
-      if (localStorage.getItem("address")) {
-        let addresses = JSON.parse(localStorage.getItem("address"));
-        addresses.push(item);
-        localStorage.setItem("address", JSON.stringify(addresses));
+      console.log(this.gust_order.customer_email);
+      const validateEmail = (email) => {
+        return email.match(
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+      };
+      const email = this.gust_order.customer_email;
+
+      if (validateEmail(email ?? "invalid")) {
+        if (localStorage.getItem("address")) {
+          let addresses = JSON.parse(localStorage.getItem("address"));
+          addresses.push(item);
+          localStorage.setItem("address", JSON.stringify(addresses));
+        } else {
+          localStorage.setItem("address", JSON.stringify([item]));
+        }
+        this.localeAddresses = JSON.parse(localStorage.getItem("address"));
       } else {
-        localStorage.setItem("address", JSON.stringify([item]));
+        this.$swal.fire({
+          title: this.$t('error'),
+          text: this.$t('email_error'),
+          icon: "error",
+          confirmButtonText: "تم",
+          confirmButtonColor: "#41b882",
+        });
       }
-      this.localeAddresses = JSON.parse(localStorage.getItem("address"));
     },
+
     addCoupon() {
       this.$store
         .dispatch("coupon/show", { id: this.item.coupon })

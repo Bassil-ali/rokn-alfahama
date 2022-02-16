@@ -628,7 +628,7 @@ export default {
 
           this.$store.dispatch("property/store", this.properties);
         }
-        if (this.shipments[0].name) {
+        if (this.shipments[0]) {
           this.shipments.map((shipment) => {
             if (shipment.item_id) {
               this.$store.dispatch("shippinga/update", shipment);

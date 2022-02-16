@@ -26,13 +26,14 @@
               </div> -->
 
               <div class="col-md-5">
-                <div>
+                <figure style="height: 300px" v-if="windowWidth > 600">
                   <pic-zoom
                     :url="selected_img ? selected_img : one.image"
                     :scale="3"
                   ></pic-zoom>
-                </div>
-                <!-- <carousel
+                </figure>
+                <carousel
+                  v-else
                   :nav="false"
                   :dots="false"
                   id="sync1"
@@ -47,7 +48,7 @@
                       />
                     </figure>
                   </div>
-                </carousel> -->
+                </carousel>
                 <br />
                 <carousel
                   :items="5"
@@ -150,9 +151,13 @@
                             x
                           </button>
                           <div class="mb-3">
-                            <label for="" class="form-label">الحجم</label>
+                            <label for="" class="form-label">{{
+                              $t("size")
+                            }}</label>
                             <select v-model="selected_size" class="form-select">
-                              <option value="" disabled selected>اختر</option>
+                              <option value="" disabled selected>
+                                {{ $t("select") }}
+                              </option>
                               <option
                                 v-for="(name, index) in sizes"
                                 :key="index"
@@ -172,12 +177,16 @@
                             x
                           </button>
                           <div class="mb-3">
-                            <label for="" class="form-label">اللون</label>
+                            <label for="" class="form-label">{{
+                              $t("color")
+                            }}</label>
                             <select
                               v-model="selected_color"
                               class="form-select"
                             >
-                              <option disabled selected>اختر</option>
+                              <option disabled selected>
+                                {{ $t("select") }}
+                              </option>
                               <option
                                 v-for="(name, index) in colors"
                                 :key="index"
@@ -431,9 +440,14 @@ export default {
       selected_size: null,
       selected_img: null,
       item_quantity: 1,
+      windowWidth: window.innerHeight,
+      success: false,
     };
   },
   mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
     if (this.$route.params.id) {
       this.$store.dispatch("item/show", { id: this.$route.params.id });
       this.$store.dispatch("property/index", {
@@ -443,7 +457,6 @@ export default {
       this.$router.push("/category");
     }
   },
-
   computed: {
     ...mapState({
       one_item: (state) => state.item.one,
@@ -496,9 +509,10 @@ export default {
 
       // this.$store.dispatch("cart/addItem", item);
     },
-    like(one) {
+    like(item) {
       this.$store.dispatch("item_reaction/store", {
         item_id: item.id,
+        user_id: this.$root.user.id,
       });
     },
     rank(one, rank) {
@@ -528,13 +542,14 @@ export default {
     },
     one_item(val) {
       if (val) {
-        if (this.order.items.find((v) => v.item_id == val.id)) {
-          let one = this.order.items.find((v) => v.item_id == val.id);
-          this.one = { ...val, ...one };
-        } else {
-          this.one = val;
-        }
-        this.$store.dispatch("item/index", { category_id: val.category_id });
+        this.one = val;
+        // if (this.order.items.find((v) => v.item_id == val.id)) {
+        //   let one = this.order.items.find((v) => v.item_id == val.id);
+        //   this.one = { ...val, ...one };
+        // } else {
+        //   this.one = val;
+        // }
+        // this.$store.dispatch("item/index", { category_id: val.category_id });
       }
     },
     selected_price(val) {
@@ -544,7 +559,6 @@ export default {
         this.one.selling_price = this.one_item.selling_price;
       }
     },
-
     all_properties(val) {
       this.properties = JSON.parse(JSON.stringify(val));
     },
@@ -587,10 +601,10 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style  >
 .mouse-cover-canvas {
   left: 404px !important ;
-  width: 500px !important ;
-  height: 500px !important ;
+  width: 400px !important ;
+  height: 350px !important ;
 }
 </style>
