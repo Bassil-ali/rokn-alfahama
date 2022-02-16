@@ -1,23 +1,25 @@
 header {
 	.logo-container {
-		& > .d-flex {
-			& > .search-menu {
+		&>.d-flex {
+			&>.search-menu {
 				form {
-					& > input {
+					&>input {
 						border-top-left-radius: 50px;
 						border-bottom-left-radius: 50px;
 						border-top-right-radius: 0;
 						border-bottom-right-radius: 0;
 						border-right: 0;
 					}
-					& > button {
+
+					&>button {
 						border-top-right-radius: 50px;
 						border-bottom-right-radius: 50px;
 						border-top-left-radius: 0;
 						border-bottom-left-radius: 0;
 					}
 				}
-				& > #primary-menu {
+
+				&>#primary-menu {
 					li {
 						&:not(:last-child) {
 							margin-left: 0;
@@ -26,10 +28,11 @@ header {
 					}
 				}
 			}
-			& > .user-area {
-				& > .user-login-reg {
-					& > ul {
-						& > li {
+
+			&>.user-area {
+				&>.user-login-reg {
+					&>ul {
+						&>li {
 							&:not(:last-child) {
 								border-left: 0;
 								border-right: 1px solid #ccc;
@@ -37,12 +40,14 @@ header {
 						}
 					}
 				}
-				& > .option-user {
+
+				&>.option-user {
 					.item-cart {
 						a {
 							margin-left: 0;
 							margin-right: .8612rem;
-							& > i {
+
+							&>i {
 								left: -7px;
 								right: initial;
 							}
@@ -53,16 +58,18 @@ header {
 		}
 	}
 }
+
 .intro {
 	.item {
-		& > .right {
-			& > .caption {
+		&>.right {
+			&>.caption {
 				margin-right: 0;
 				margin-left: 1.5rem;
 			}
 		}
 	}
 }
+
 .head {
 	ul {
 		li {
@@ -75,6 +82,7 @@ header {
 		}
 	}
 }
+
 footer {
 	.top {
 		.item-footer {
@@ -84,6 +92,7 @@ footer {
 					margin-right: 0;
 				}
 			}
+
 			ul {
 				&.menu {
 					li {
@@ -99,10 +108,11 @@ footer {
 		}
 	}
 }
+
 .entry-content {
 	&.page-404 {
 		.contact-information {
-			& > span {
+			&>span {
 				&:nth-child(1) {
 					margin-left: 0;
 					margin-right: 3rem;
@@ -110,16 +120,18 @@ footer {
 			}
 		}
 	}
+
 	&.checkout {
-		& > h2 {
+		&>h2 {
 			&:before {
 				margin-left: 0;
 				margin-right: .5rem;
 			}
 		}
+
 		.block {
-			& > .orders {
-				& > .order-item {
+			&>.orders {
+				&>.order-item {
 					figure {
 						margin-right: .5em;
 						margin-left: 0;
@@ -129,6 +141,7 @@ footer {
 		}
 	}
 }
+
 .about {
 	.Asection-01 {
 		&:after {
@@ -137,12 +150,14 @@ footer {
 		}
 	}
 }
+
 ul {
 	&.menu-user {
 		li {
 			a {
 				border-left: 5px solid transparent;
 				border-right: 0;
+
 				&:after {
 					left: inherit;
 					right: 10px;
@@ -153,15 +168,18 @@ ul {
 		}
 	}
 }
+
 .form {
 	.form-control {
 		direction: ltr;
 	}
 }
+
 .head-block {
 	.right-block {
 		h2 {
 			margin-right: 1rem;
+
 			&:before {
 				right: inherit;
 				left: -15px;
@@ -169,11 +187,13 @@ ul {
 		}
 	}
 }
+
 .bi-chevron-left {
 	&::before {
 		content: "\f285";
 	}
 }
+
 .product {
 	.item {
 		.caption {
@@ -186,6 +206,7 @@ ul {
 		}
 	}
 }
+
 .contact {
 	.Csection-01 {
 		.container {
@@ -197,6 +218,7 @@ ul {
 		}
 	}
 }
+
 .bg-myacoutn {
 	.left {
 		ul {
@@ -209,6 +231,7 @@ ul {
 		}
 	}
 }
+
 #sync2 {
 	&.owl-carousel {
 		.owl-nav {
@@ -217,19 +240,21 @@ ul {
 		}
 	}
 }
+
 .quantity {
 	#quantity {
 		margin-left: 1rem;
 		margin-right: 0;
 	}
 }
+
 .single-product {
 	.sidebar {
 		.box {
 			.product-list {
 				.item {
 					.d-flex {
-						& > a {
+						&>a {
 							margin-right: .5rem;
 							margin-left: 0;
 						}
@@ -239,6 +264,7 @@ ul {
 		}
 	}
 }
+
 .Tsection-02 {
 	&.position-relative {
 		.decor {
@@ -247,14 +273,32 @@ ul {
 		}
 	}
 }
+
 .checkout {
 	.block {
 		&.right {
 			border-left: 1px solid #ddd;
 			border-right: 0;
+
 			ul {
 				padding-left: 1rem;
 				padding-right: 0;
+			}
+		}
+	}
+}
+
+.entry-content {
+	&.checkout {
+		.block {
+			form {
+				&.copon {
+					display: flex;
+					justify-content: space-between;
+					padding: 1rem;
+					margin-top: 5rem;
+					flex-direction: row-reverse;
+				}
 			}
 		}
 	}

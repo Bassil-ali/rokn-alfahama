@@ -524,30 +524,31 @@ export default {
           order.total_shipping = this.total_shipment;
         }
         localStorage.removeItem("order");
-        await this.$store
-          .dispatch("address/store", this.selectedLocalAddress)
-          .then((address) => {
-            if (address) {
-              order.address_id = address.id;
-              this.$store.dispatch("order/store", order).then((new_order) => {
-                this.order.items.map((item) => {
-                  this.$store
-                    .dispatch("order_item/store", {
-                      ...item,
-                      order_id: new_order.id,
-                    })
-                    .then(() => {
-                      let domain = `${
-                        process.env.URL || window.location.protocol
-                      }//${window.location.host}`;
-                      window.open(`${domain}/complete-order/${new_order.id}`);
-                      this.$router.push("/cart");
-                      location.reload();
-                    });
+        let newaddress = await this.$store.dispatch(
+          "address/store",
+          this.selectedLocalAddress
+        );
+
+        if (newaddress) {
+          order.address_id = newaddress.id;
+         await this.$store.dispatch("order/store", order).then((new_order) => {
+            this.order.items.map((item) => {
+              this.$store
+                .dispatch("order_item/store", {
+                  ...item,
+                  order_id: new_order.id,
+                })
+                .then(() => {
+                  let domain = `${
+                    process.env.URL || window.location.protocol
+                  }//${window.location.host}`;
+                  window.open(`${domain}/complete-order/${new_order.id}`);
+                  this.$router.push("/cart");
+                  location.reload();
                 });
-              });
-            }
+            });
           });
+        }
       }
       // if (order_id) {
 

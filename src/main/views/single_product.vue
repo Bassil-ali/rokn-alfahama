@@ -24,8 +24,15 @@
                   alt=""
                 />
               </div> -->
+
               <div class="col-md-5">
-                <carousel
+                <div>
+                  <pic-zoom
+                    :url="selected_img ? selected_img : one.image"
+                    :scale="3"
+                  ></pic-zoom>
+                </div>
+                <!-- <carousel
                   :nav="false"
                   :dots="false"
                   id="sync1"
@@ -40,7 +47,7 @@
                       />
                     </figure>
                   </div>
-                </carousel>
+                </carousel> -->
                 <br />
                 <carousel
                   :items="5"
@@ -405,11 +412,13 @@
   </div>
 </template>
 <script>
+import PicZoom from "vue-piczoom";
 import carousel from "vue-owl-carousel2";
 import { mapState } from "vuex";
 export default {
   components: {
     carousel,
+    PicZoom,
   },
   data() {
     return {
@@ -482,9 +491,9 @@ export default {
       } else {
         item.property_id ? (item.property_id = null) : "";
       }
-       
-        this.$store.dispatch("cart/addItem", item);
-       
+
+      this.$store.dispatch("cart/addItem", item);
+
       // this.$store.dispatch("cart/addItem", item);
     },
     like(one) {
@@ -579,4 +588,9 @@ export default {
 };
 </script>
 <style scoped>
+.mouse-cover-canvas {
+  left: 404px !important ;
+  width: 500px !important ;
+  height: 500px !important ;
+}
 </style>

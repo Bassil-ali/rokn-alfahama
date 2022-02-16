@@ -21,10 +21,8 @@
                 <div id="sync1">
                   <div class="item-image active-zome" id="iamge1">
                     <figure class="item">
-                      <!--  -->
-                      <!-- @/main/@/main/assets/images/shopping-cart-2.svg -->
                       <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                        src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                         alt=""
                       />
                     </figure>
@@ -32,7 +30,7 @@
                   <div class="item-image" id="iamge2">
                     <figure class="item">
                       <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                        src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                         alt=""
                       />
                     </figure>
@@ -40,7 +38,7 @@
                   <div class="item-image" id="iamge3">
                     <figure class="item">
                       <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                        src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                         alt=""
                       />
                     </figure>
@@ -54,7 +52,7 @@
                   >
                     <figure>
                       <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                        src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                         alt=""
                       />
                     </figure>
@@ -62,7 +60,7 @@
                   <div class="item border-i" onclick="show('iamge2',this)">
                     <figure>
                       <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                        src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                         alt=""
                       />
                     </figure>
@@ -70,7 +68,7 @@
                   <div class="item border-i" onclick="show('iamge3',this)">
                     <figure>
                       <img
-                        src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                        src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                         alt=""
                       />
                     </figure>
@@ -161,14 +159,11 @@
                       "
                     >
                       <a href="" class="addToCart button"
-                        ><img
-                          src="@/main/assets/images/shopping-cart-2.svg"
-                          alt=""
-                        />
+                        ><img src="assets/images/shopping-cart-2.svg" alt="" />
                         اضف إلى السلة</a
                       >
                       <a href="" class="addToFavorite button"
-                        ><img src="@/main/assets/images/hearts.svg" alt=""
+                        ><img src="assets/images/hearts.svg" alt=""
                       /></a>
                     </div>
                   </form>
@@ -180,23 +175,17 @@
         <div class="col-md-3 left">
           <div class="section-01">
             <div class="item mb-5 text-center">
-              <figure>
-                <img src="@/main/assets/images/discount.svg" alt="" />
-              </figure>
+              <figure><img src="assets/images/discount.svg" alt="" /></figure>
               <h3>عروض دائمة</h3>
               <p>تخفيضات وعروض بشكل مستمر على اغلب المنتجات</p>
             </div>
             <div class="item mb-5 text-center">
-              <figure>
-                <img src="@/main/assets/images/shipped.svg" alt="" />
-              </figure>
+              <figure><img src="assets/images/shipped.svg" alt="" /></figure>
               <h3>توصيل مجاني</h3>
               <p>التوصيل مجاني اذا كانت قيمة الطلب اكثر من 300$</p>
             </div>
             <div class="item mb-3 text-center">
-              <figure>
-                <img src="@/main/assets/images/headphones.svg" alt="" />
-              </figure>
+              <figure><img src="assets/images/headphones.svg" alt="" /></figure>
               <h3>المساعدة</h3>
               <p>خدمة ومتابعة العملاء</p>
             </div>
@@ -215,7 +204,7 @@
                     <a href="">
                       <figure>
                         <img
-                          src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                          src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                           alt=""
                         />
                       </figure>
@@ -226,7 +215,7 @@
                         <div class="price"><strong>300</strong> ر.س</div>
                         <a href="" class="button addToCart"
                           ><img
-                            src="@/main/assets/images/shopping-cart-2.svg"
+                            src="assets/images/shopping-cart-2.svg"
                             alt=""
                           />
                           اضف للسلة</a
@@ -240,7 +229,7 @@
                     <a href="">
                       <figure>
                         <img
-                          src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                          src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                           alt=""
                         />
                       </figure>
@@ -251,7 +240,7 @@
                         <div class="price"><strong>300</strong> ر.س</div>
                         <a href="" class="button addToCart"
                           ><img
-                            src="@/main/assets/images/shopping-cart-2.svg"
+                            src="assets/images/shopping-cart-2.svg"
                             alt=""
                           />
                           اضف للسلة</a
@@ -265,7 +254,7 @@
                     <a href="">
                       <figure>
                         <img
-                          src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                          src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                           alt=""
                         />
                       </figure>
@@ -276,7 +265,7 @@
                         <div class="price"><strong>300</strong> ر.س</div>
                         <a href="" class="button addToCart"
                           ><img
-                            src="@/main/assets/images/shopping-cart-2.svg"
+                            src="assets/images/shopping-cart-2.svg"
                             alt=""
                           />
                           اضف للسلة</a
@@ -290,7 +279,7 @@
                     <a href="">
                       <figure>
                         <img
-                          src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                          src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                           alt=""
                         />
                       </figure>
@@ -301,7 +290,7 @@
                         <div class="price"><strong>300</strong> ر.س</div>
                         <a href="" class="button addToCart"
                           ><img
-                            src="@/main/assets/images/shopping-cart-2.svg"
+                            src="assets/images/shopping-cart-2.svg"
                             alt=""
                           />
                           اضف للسلة</a
@@ -315,7 +304,7 @@
                     <a href="">
                       <figure>
                         <img
-                          src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                          src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                           alt=""
                         />
                       </figure>
@@ -326,7 +315,7 @@
                         <div class="price"><strong>300</strong> ر.س</div>
                         <a href="" class="button addToCart"
                           ><img
-                            src="@/main/assets/images/shopping-cart-2.svg"
+                            src="assets/images/shopping-cart-2.svg"
                             alt=""
                           />
                           اضف للسلة</a
@@ -340,7 +329,7 @@
                     <a href="">
                       <figure>
                         <img
-                          src="@/main/assets/images/d803777492c0fe71db41dcceff187467.jpg"
+                          src="assets/images/d803777492c0fe71db41dcceff187467.jpg"
                           alt=""
                         />
                       </figure>
@@ -351,7 +340,7 @@
                         <div class="price"><strong>300</strong> ر.س</div>
                         <a href="" class="button addToCart"
                           ><img
-                            src="@/main/assets/images/shopping-cart-2.svg"
+                            src="assets/images/shopping-cart-2.svg"
                             alt=""
                           />
                           اضف للسلة</a
@@ -587,42 +576,10 @@
         </div>
       </div>
     </div>
-    <script type="application/json">
-      {{testing}}
-    </script>
-    <script type="application/json">
-      {{testing2}}
-    </script>
   </div>
 </template>
 <script>
-import test from "js-image-zoom";
-
-export default {
-  data: () => ({
-    testing: test,
-    testing2: test2,
-    options1: {
-      width: 400,
-      height: 270,
-      zoomWidth: 450,
-      offset: {
-        vertical: 0,
-        horizontal: 10,
-      },
-      zoomPosition: "original",
-      zoomPosition: "left",
-    },
-  }),
-
-  methods: {},
-  mounted() {
-    var el = document.querySelectorAll(".item-image .item");
-
-    for (let i = 0; i < el.length; i++) {
-      // el[i].className = "a_new_class"
-      new this.ImageZoom(el[i], options1);
-    }
-  },
-};
+ 
 </script>
+<style>
+</style>
