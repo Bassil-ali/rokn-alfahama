@@ -79,9 +79,12 @@ class Item extends BaseModel
         $query->when($request->most_sold, function ($query) {
             $query->whereRaw('items.id in (select item_id from order_items group by item_id order by (sum(item_quantity))');
         });
-        $query->when($request->category_id, function ($query, $category_id) {
-            // dd($category_id);
+        $query->when($request->category_id, function ($query, $category_id) {      
             $query->where("category_id", '=', "$category_id");
+        });
+        $query->when($request->category_ids, function ($query, $category_ids) {
+            
+            $query->whereIn("category_id",  $category_ids);
         });
         $query->when($request->liked, function ($query, $liked) {
             $user = auth()->user();
