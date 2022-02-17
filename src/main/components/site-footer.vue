@@ -147,9 +147,12 @@ export default {
     };
   },
   mounted() {
-    if (this.categories.length <= 0) {
+    if (this.categories.length <= 0 && this.$route.name != "category") {
       this.$store
-        .dispatch("category/index", { null_parent_id: true })
+        .dispatch("category/index", {
+          null_parent_id: true,
+          imfromeFooter: true,
+        })
         .then((data) => {
           this.categories = data;
         });
@@ -158,9 +161,16 @@ export default {
   computed: {
     ...mapState({
       settings: (state) => state.settings || [],
-      // all_categories: (state) => state.category.all || [],
+      all_categories: (state) => state.category.all || [],
       locale: (state) => state.locales.locale || [],
     }),
+  },
+  watch: {
+    all_categories(val) {
+      if (val && this.$route.name == "category") {
+        this.categories = val.filter((v) => v.parent_id == null);
+      }
+    },
   },
 };
 </script>
