@@ -92,7 +92,10 @@ class Item extends BaseModel
                 $user_id = $user->id;
                 $query->whereRaw("items.id in (select item_id from reactions where user_id=$user_id)");
             }
+
+            
         });
+        $query->where('quantity','!=',0);
         $query->when($request->search, function ($query, $search) {
             $local = app()->getLocale();
             $query->where('name->' . "$local", 'like', "%{$search}%");
