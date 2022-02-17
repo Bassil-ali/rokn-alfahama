@@ -26,14 +26,8 @@
               </div> -->
 
               <div class="col-md-5">
-                <figure style="height: 300px" v-if="windowWidth > 600">
-                  <pic-zoom
-                    :url="selected_img ? selected_img : one.image"
-                    :scale="3"
-                  ></pic-zoom>
-                </figure>
+                <viewer :options="options" :images="images"> </viewer>
                 <carousel
-                  v-else
                   :nav="false"
                   :dots="false"
                   id="sync1"
@@ -43,6 +37,7 @@
                   <div class="item">
                     <figure>
                       <img
+                        @click="show"
                         :src="selected_img ? selected_img : one.image"
                         alt=""
                       />
@@ -421,13 +416,15 @@
   </div>
 </template>
 <script>
-import PicZoom from "vue-piczoom";
 import carousel from "vue-owl-carousel2";
+import "viewerjs/dist/viewer.css";
+import VueViewer from "v-viewer";
+import Vue from "vue";
+Vue.use(VueViewer);
 import { mapState } from "vuex";
 export default {
   components: {
     carousel,
-    PicZoom,
   },
   data() {
     return {
@@ -442,6 +439,22 @@ export default {
       item_quantity: 1,
       windowWidth: window.innerHeight,
       success: false,
+      images: [],
+      options: {
+        inline: true,
+        button: false,
+        navbar: true,
+        title: false,
+        toolbar: false,
+        tooltip: false,
+        movable: false,
+        zoomable: true,
+        rotatable: false,
+        scalable: false,
+        transition: true,
+        fullscreen: false,
+        keyboard: true,
+      },
     };
   },
   mounted() {
@@ -468,6 +481,12 @@ export default {
     }),
   },
   methods: {
+    show() {
+      this.$viewerApi({
+        images: this.images,
+        options: this.options,
+      });
+    },
     coloersNames(properties) {
       let arr = properties.map((a) => a.color.name);
       return [...new Set(arr)];
@@ -504,9 +523,7 @@ export default {
       } else {
         item.property_id ? (item.property_id = null) : "";
       }
-
       this.$store.dispatch("cart/addItem", item);
-
       // this.$store.dispatch("cart/addItem", item);
     },
     like(item) {
@@ -539,6 +556,8 @@ export default {
   watch: {
     one(val) {
       this.one = val;
+      this.images = val.media.map((v) => v.url);
+      this.images.push(val.image);
     },
     one_item(val) {
       if (val) {

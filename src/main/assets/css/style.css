@@ -2139,7 +2139,7 @@ header.checkout {
     justify-content: space-between;
     padding: 1rem;
     margin-top: 5rem;
-   
+
 }
 
 .entry-content.checkout .block form.copon input[type="text"] {
@@ -2752,4 +2752,26 @@ a.button.fill.no {
     .section-02 .row {
         display: block !important;
     }
+
 }
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.pagination a.active {
+    background-color: #e9bb42;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+/* end user-order */

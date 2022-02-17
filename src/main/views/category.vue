@@ -176,7 +176,13 @@
             <div class="d-flex justify-content-between align-items-center">
               <div class="right-block">
                 <div class="d-flex align-items-center">
-                  <h2>{{ selected_category.name || $t("latest items") }}</h2>
+                  <h2>
+                    {{
+                      selected_category.name ||
+                      selected_global_category.name ||
+                      $t("latest items")
+                    }}
+                  </h2>
 
                   <span v-if="Object.keys(selected_category).length != 0">
                     {{
@@ -184,6 +190,14 @@
                         ? selected_category.items_count
                         : 0
                     }}
+                    {{ $t("Available_item") }}</span
+                  >
+                  <span
+                    v-else-if="
+                      Object.keys(selected_global_category).length != 0
+                    "
+                  >
+                    {{ category_items.length }}
                     {{ $t("Available_item") }}</span
                   >
                   <span v-else
@@ -261,6 +275,25 @@
               </div>
             </div>
           </div>
+
+          <div style="padding: 50px; display: flex; justify-content: center">
+            <div class="pagination">
+              <a @click="prev()">&laquo;</a>
+
+              <a
+                @click="to_page(index + 1)"
+                :key="index"
+                v-for="(meta1, index) in meta.last_page"
+                href="#"
+                :class="meta.current_page == index + 1 ? 'active' : ''"
+                >{{ index + 1 }}</a
+                
+              >
+           
+
+              <a @click="next()">&raquo;</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -286,6 +319,7 @@ export default {
       toggle: null,
       myNavbar: null,
       selected_category: {},
+      selected_global_category: {},
       my_categories: {},
     };
   },
@@ -295,18 +329,23 @@ export default {
     this.$store.dispatch("category/index", { null_parent_id: true });
     if (this.$route.query.search) {
       this.$store.dispatch("item/index", {
-        per_page: -1,
+        per_page: 10,
         search: this.$route.query.search,
       });
-    } else {
-      this.$store.dispatch("item/index", { per_page: -1 });
-    }
-    if (this.$attrs.id) {
+    } else if (this.$attrs.id) {
       this.$store
         .dispatch("category/show", { id: this.$attrs.id })
         .then((category) => {
-          this.selected_category = category;
+          let selected_category_items = category.children.map((v) => v.id);
+          this.selected_global_category = category;
+          if (selected_category_items.length > 0) {
+            this.$store.dispatch("item/index", {
+              category_ids: selected_category_items,
+            });
+          }
         });
+    } else {
+      this.$store.dispatch("item/index", { per_page: 10 });
     }
     // if (this.$route.query.type) {
     //   let type = this.$route.query.type;
@@ -320,6 +359,8 @@ export default {
       categories: (state) => state.category.all,
       category_items: (state) => state.item.all || [],
       locale: (state) => state.locales.locale,
+      meta: (state) => state.item.meta,
+      links: (state) => state.item.links,
     }),
     search() {
       return this.$route.query.search;
@@ -327,14 +368,14 @@ export default {
   },
   watch: {
     per_page(val) {
-      this.$store.dispatch("item/index", { per_page: val });
+      this.$store.dispatch("item/index", { per_page: parseInt(val) });
     },
     selected_category(val) {
       if (val) {
         //  this.my_categories =  this.my_categories.filter()
         this.$store.dispatch("item/index", {
           category_id: val.id,
-          per_page: -1,
+        
         });
       }
     },
@@ -345,6 +386,35 @@ export default {
     },
   },
   methods: {
+    to_page(i) {
+      if (this.links.next) {
+        this.$store.dispatch("item/index", {
+          page: i,
+          per_page: 10,
+           category_id: this.selected_category.id,
+        });
+      }
+    },
+    next() {
+      if (this.links.next) {
+        let link = this.links.next;
+        this.$store.dispatch("item/index", {
+          page: link.slice(link.indexOf("=") + 1, link.length),
+          per_page: 10,
+          category_id: this.selected_category.id,
+        });
+      }
+    },
+    prev() {
+      if (this.links.prev) {
+        let link = this.links.prev;
+        this.$store.dispatch("item/index", {
+          page: link.slice(link.indexOf("=") + 1, link.length),
+          per_page: 10,
+          category_id: this.selected_category.id,
+        });
+      }
+    },
     sort_filter(type) {
       this.$store.dispatch("item/index", { per_page: -1, type });
     },
@@ -361,7 +431,6 @@ export default {
     showsupmenu(e11, e22) {
       let e1 = this.$refs[e11][0].id;
       let e2 = this.$refs[e22][0].id;
-
       this.$el.querySelector(`#${e1}`).classList.toggle("active");
       this.$el.querySelector(`#${e2}`).classList.toggle("open");
     },
@@ -380,4 +449,3 @@ export default {
   background-color: red !important;
 }
 </style>
- 
