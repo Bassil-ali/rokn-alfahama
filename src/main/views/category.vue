@@ -332,7 +332,7 @@ export default {
       selected_category: {},
       selected_global_category: {},
       my_categories: {},
-      test_for_push:""
+      test_for_push: "",
     };
   },
   mounted() {
@@ -344,9 +344,9 @@ export default {
         per_page: 10,
         search: this.$route.query.search,
       });
-    } else if (this.$attrs.id) {
+    } else if (this.$route.params.id) {
       this.$store
-        .dispatch("category/show", { id: this.$attrs.id })
+        .dispatch("category/show", { id: this.$route.params.id })
         .then((category) => {
           if (category.children[0]) {
             let selected_category_items = category.children.map((v) => v.id);
