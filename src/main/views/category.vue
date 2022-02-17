@@ -283,13 +283,24 @@
               <a
                 @click="to_page(index + 1)"
                 :key="index"
-                v-for="(meta1, index) in meta.last_page"
+                v-for="(meta1, index) in meta.last_page > 8
+                  ? 8
+                  : meta.last_page"
                 href="#"
                 :class="meta.current_page == index + 1 ? 'active' : ''"
-                >{{ index + 1 }}</a
-                
               >
-           
+                {{ index + 1 }}
+              </a>
+              <span v-if="meta.last_page > 8"> ...... </span>
+              <a
+                v-show="meta.last_page > 8"
+                @click="to_page(meta.last_page)"
+                :key="index"
+                href="#"
+                :class="meta.current_page == meta.last_page ? 'active' : ''"
+              >
+                {{ meta.last_page }}
+              </a>
 
               <a @click="next()">&raquo;</a>
             </div>
@@ -336,23 +347,21 @@ export default {
       this.$store
         .dispatch("category/show", { id: this.$attrs.id })
         .then((category) => {
-          let selected_category_items = category.children.map((v) => v.id);
-          this.selected_global_category = category;
-          if (selected_category_items.length > 0) {
-            this.$store.dispatch("item/index", {
-              category_ids: selected_category_items,
-            });
+          if (category.children[0]) {
+            let selected_category_items = category.children.map((v) => v.id);
+            this.selected_global_category = category;
+            if (selected_category_items.length > 0) {
+              this.$store.dispatch("item/index", {
+                category_ids: selected_category_items,
+              });
+            } else {
+              this.selected_category = category;
+            }
           }
         });
     } else {
       this.$store.dispatch("item/index", { per_page: 10 });
     }
-    // if (this.$route.query.type) {
-    //   let type = this.$route.query.type;
-    //   if (this.categories.length >= 1) {
-    //     this.selected_category = this.categories.find((v) => v.id == type);
-    //   }
-    // }
   },
   computed: {
     ...mapState({
@@ -375,7 +384,6 @@ export default {
         //  this.my_categories =  this.my_categories.filter()
         this.$store.dispatch("item/index", {
           category_id: val.id,
-        
         });
       }
     },
@@ -391,7 +399,7 @@ export default {
         this.$store.dispatch("item/index", {
           page: i,
           per_page: 10,
-           category_id: this.selected_category.id,
+          category_id: this.selected_category.id,
         });
       }
     },
@@ -417,11 +425,11 @@ export default {
     },
 
     sort_filter(type) {
-      this.$store.dispatch("item/index", { per_page: -1, type });
+      this.$store.dispatch("item/index", { per_page: 15, ...type });
     },
     slider_search() {
       this.$store.dispatch("item/index", {
-        per_page: -1,
+        per_page: 15,
         slider: this.value_2,
       });
     },
