@@ -332,6 +332,7 @@ export default {
       selected_category: {},
       selected_global_category: {},
       my_categories: {},
+      test_for_push:""
     };
   },
   mounted() {
