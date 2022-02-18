@@ -406,7 +406,9 @@
   "size":"size",
   "select":"select",
    "number_of_items":"number of items",
-   "color":"color"
+   "color":"color",
+   "New Password":"New Password",
+   "Change Password":"Change Password"
 
 
   

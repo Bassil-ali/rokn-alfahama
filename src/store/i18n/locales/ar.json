@@ -438,5 +438,7 @@
   "email_error":"ادخل ايميل صحيح",
   "size":"الحجم",
   "select":"أختر",
-  "color":"اللون"
+  "color":"اللون",
+  "New Password":"كلمة المرور الجديدة",
+  "Change Password":"تغيير كلمة المرور"
 }
