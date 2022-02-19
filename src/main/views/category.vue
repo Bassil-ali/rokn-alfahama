@@ -197,7 +197,11 @@
                       Object.keys(selected_global_category).length != 0
                     "
                   >
-                    {{ category_items.length }}
+                    {{
+                      meta.last_page > 1
+                        ? 15 * meta.last_page
+                        : category_items[0].all_items_count
+                    }}
                     {{ $t("Available_item") }}</span
                   >
                   <span v-else
@@ -278,10 +282,10 @@
 
           <div style="padding: 50px; display: flex; justify-content: center">
             <div class="pagination">
-              <a @click="prev()">&laquo;</a>
+              <a @click.prevent="prev()">&laquo;</a>
 
               <a
-                @click="to_page(index + 1)"
+                @click.prevent="to_page(index + 1)"
                 :key="index"
                 v-for="(meta1, index) in meta.last_page > 8
                   ? 8
@@ -294,15 +298,14 @@
               <span v-if="meta.last_page > 8"> ...... </span>
               <a
                 v-show="meta.last_page > 8"
-                @click="to_page(meta.last_page)"
-                :key="index"
+                @click.prevent="to_page(meta.last_page)"
                 href="#"
                 :class="meta.current_page == meta.last_page ? 'active' : ''"
               >
                 {{ meta.last_page }}
               </a>
 
-              <a @click="next()">&raquo;</a>
+              <a @click.prevent="next()">&raquo;</a>
             </div>
           </div>
         </div>
@@ -332,16 +335,15 @@ export default {
       selected_category: {},
       selected_global_category: {},
       my_categories: {},
-      test_for_push: "",
+      selected_category_items: null,
     };
   },
   mounted() {
+    this.$store.dispatch("category/index", { null_parent_id: true });
     this.toggle = document.getElementById("toggle");
     this.myNavbar = document.getElementById("primary-menu");
-    this.$store.dispatch("category/index", { null_parent_id: true });
     if (this.$route.query.search) {
       this.$store.dispatch("item/index", {
-        per_page: 10,
         search: this.$route.query.search,
       });
     } else if (this.$route.params.id) {
@@ -349,19 +351,19 @@ export default {
         .dispatch("category/show", { id: this.$route.params.id })
         .then((category) => {
           if (category.children[0]) {
-            let selected_category_items = category.children.map((v) => v.id);
+            this.selected_category_items = category.children.map((v) => v.id);
             this.selected_global_category = category;
-            if (selected_category_items.length > 0) {
+            if (this.selected_category_items.length > 0) {
               this.$store.dispatch("item/index", {
-                category_ids: selected_category_items,
+                category_ids: this.selected_category_items,
               });
-            } else {
-              this.selected_category = category;
             }
+          } else {
+            this.selected_category = category;
           }
         });
     } else {
-      this.$store.dispatch("item/index", { per_page: 10 });
+      this.$store.dispatch("item/index", { per_page: 15 });
     }
   },
   computed: {
@@ -382,6 +384,7 @@ export default {
     },
     selected_category(val) {
       if (val) {
+        this.selected_category_items = null;
         //  this.my_categories =  this.my_categories.filter()
         this.$store.dispatch("item/index", {
           category_id: val.id,
@@ -399,28 +402,30 @@ export default {
       if (this.links.next) {
         this.$store.dispatch("item/index", {
           page: i,
-          per_page: 10,
-          category_id: this.selected_category.id,
+          category_id: this.selected_category?.id || null,
+          category_ids: this.selected_category_items,
         });
       }
     },
     next() {
       if (this.links.next) {
         let link = this.links.next;
+        let page_num = link.slice(link.indexOf("=") + 1, link.length);
         this.$store.dispatch("item/index", {
-          page: link.slice(link.indexOf("=") + 1, link.length),
-          per_page: 10,
-          category_id: this.selected_category.id,
+          page: page_num,
+          category_id: this.selected_category?.id || null,
+          category_ids: this.selected_category_items,
         });
       }
     },
     prev() {
       if (this.links.prev) {
         let link = this.links.prev;
+        let page_num = link.slice(link.indexOf("=") + 1, link.length);
         this.$store.dispatch("item/index", {
-          page: link.slice(link.indexOf("=") + 1, link.length),
-          per_page: 10,
-          category_id: this.selected_category.id,
+          page: page_num,
+          category_id: this.selected_category?.id || null,
+          category_ids: this.selected_category_items,
         });
       }
     },
