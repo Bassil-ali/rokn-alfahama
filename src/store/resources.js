@@ -156,10 +156,22 @@ let resources = [
 
     },
     {
+        name: 'send-reset-link',
+        parent: '',
+        discreption: 'reset password resource',
+
+    },
+    {
+        name: 'reset-password',
+        parent: '',
+        discreption: 'reset password resource',
+
+    },
+    {
         name: 'contact',
         parent: '',
         form_route: '/contact/show',
-        headers: ['id', 'name' ,'message' , 'subject' , 'created_at' ],
+        headers: ['id', 'name', 'message', 'subject', 'created_at'],
         discreption: 'contact us resource',
 
     },
