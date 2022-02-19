@@ -19,6 +19,13 @@
     "total tax": "مجموع الضريبة",
     "total shipping": "سعر التوصيل",
     "total net": "صافي المستحق",
+    "Reset Password": "إعادة تعيين كلمة المرور",
+    "Email is incorrect !": "البريد الإلكتروني غير صحيح",
+    "reset my password": "إعادة تعيين كلمة المرور",
+    "Password has been updated.":  " تم تغيير كلمة المرور بنجاح",
+    "Either your email or token is wrong.": "خطأ في  البريد الالكتروني",
+    "Reset Email is send successfully, please check your inbox.": " تم إرسال رسالة لبريدك الإلكتروني لإعادة تعيين كلمة المرور",
     "Thank you for your payment in our site , your payment id is": "شكراً لك علي عملية الشراء خلال موقعنا , رفم فاتورتك هو ",
+    "click the linke below to reset your password": "قم بالضغط علي الرابط التالي لاعادة تعيين كلمة المرور",
     "add": "إضافة"
 }

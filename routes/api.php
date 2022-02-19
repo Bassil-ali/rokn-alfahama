@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\EmaillController;
-use App\Mail\WelcomeMail;
+use App\Http\Controllers\ChangePasswordController;
+
+use App\Http\Controllers\ResetPasswordController;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail; 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,11 +45,7 @@ Route::group([
     Route::get("user", [AuthController::class, 'user']);
 });
 
-// Route::post('/patment', 'PaymentController@handleonlinepay')->name('patment');
-Route::get('/mail', [EmaillController::class, 'sendEmail']);
 
 
-// function () {
-//     Mail::to('ahmadmonkhor@gmail.com')->send(new WelcomeMail());
-//     return new WelcomeMail();
-// });
+Route::post('/send-reset-link', [ResetPasswordController::class, 'sendEmail']);
+Route::post('/reset-password', [ChangePasswordController::class, 'passwordResetProcess']);
