@@ -1524,6 +1524,7 @@ button.button:hover {
     width: 484px;
     height: 452px;
     right: 0%;
+    z-index: -1 !important;
     bottom: -5%;
     background-size: cover;
 }

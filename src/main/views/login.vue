@@ -43,7 +43,7 @@
                     {{ $t("remember_me") }}
                   </label>
                 </div>
-                <a href=""
+                <a href="/forget-password"
                   ><strong>{{ $t("forget_pass") }}</strong></a
                 >
               </div>
@@ -79,32 +79,6 @@ export default {
       user: {},
     };
   },
-  methods: {
-    login(user) {
-      this.$store.dispatch("auth/login", user).then((data) => {
-        if (data == 200) {
-          this.$swal
-            .fire({
-              title: "أهلاً بك",
-              text: "تم تسجيل دخولك بنجاح",
-              icon: "success",
-              confirmButtonText: "تم",
-              confirmButtonColor: "#41b882",
-            })
-            .then(() => {
-              this.$router.push("/");
-            });
-        } else {
-          this.$swal.fire({
-            title: "خطأ",
-            text: "خطأ في كلمة المرور او البريد الإلكتروني",
-            icon: "error",
-            confirmButtonText: "تم",
-            confirmButtonColor: "#f11818",
-          });
-        }
-      });
-    },
-  },
+  methods: {},
 };
 </script>
