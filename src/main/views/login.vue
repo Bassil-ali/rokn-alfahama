@@ -82,7 +82,7 @@ export default {
  methods: {
     login(user) {
       this.$store.dispatch("auth/login", user).then((data) => {
-       if (res.status == 200) {
+       if (data.status == 200) {
            this.$swal
           .fire({
             title: this.$t("success"),
