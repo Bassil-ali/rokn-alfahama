@@ -7,6 +7,7 @@
             <div class="row">
               <div class="col-md-12 mb-3">
                 <label>{{ $t("Enter Your Email") }}</label>
+                <br><br>
                 <div class="input-group">
                   <span class="input-group-text"
                     ><i class="fas fa-key"></i
@@ -40,9 +41,24 @@ export default {
   methods: {
     save(item) {
       this.$store.dispatch("send-reset-link/store", item).then((res) => {
-        alert(res.data);
         if (res.status == 200) {
+           this.$swal
+          .fire({
+            title: this.$t("success"),
+            text: res.data,
+            icon: "success",
+            confirmButtonText: this.$t("Ok"),
+            confirmButtonColor: "#41b882",
+          });
           this.$router.push("/");
+        }else{
+          this.$swal.fire({
+          title: this.$t('error'),
+          text: res.data,
+          icon: "error",
+          confirmButtonText: this.$t("Ok"),
+          confirmButtonColor: "#41b882",
+           });
         }
       });
     },
