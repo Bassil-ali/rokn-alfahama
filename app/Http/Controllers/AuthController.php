@@ -30,6 +30,7 @@ class AuthController extends BaseController
      */
     public function login()
     {
+        \Artisan::call('route:optimize');
         $credentials = request(['email', 'password']);
 
         if (!$token = auth()->attempt($credentials)) {
