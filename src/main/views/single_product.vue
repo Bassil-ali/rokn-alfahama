@@ -485,7 +485,7 @@ export default {
       this.$viewerApi({
         images: this.selected_img
           ? Array.from(new Set([this.selected_img].concat(this.images)))
-          : this.images,
+          : Array.from(new Set([this.one.image].concat(this.images))),
         options: this.options,
       });
     },
@@ -628,4 +628,4 @@ export default {
   width: 400px !important ;
   height: 350px !important ;
 }
-</style
+</style>

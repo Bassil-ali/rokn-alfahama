@@ -371,8 +371,6 @@
   "quastion_title": "quastion title",
   "facebook_link": "facebook link",
   "instagram_link": "instagram link",
-  "quastion_title_en": "quastion_title_en",
-  "quastion_title_ar": "quastion_title_ar",
   "answer_en": "answer en",
   "answer_ar": "answer ar",
   "second_paragraph_ar": "second paragraph ar",
@@ -410,7 +408,24 @@
    "confirm":"confirm",
   "Enter Your Email":"Enter Your Email",
   "login error":"Wrong password or email",
-  "login success":"You are logged in successfully"
+  "login success":"You are logged in successfully",
+  "selling_price":"selling price",
+  "tax.name":"tax name",
+  "created_at":"created at",
+  "firts_paragraph_ar":"firts paragraph arabic",
+  "firts paragraph en":"firts paragraph english",
+  "second paragraph ar":"second paragraph arabic",
+  "second_paragraph_en":"second paragraph english",
+  "quastion_title_ar":"quastion title arabic",
+  "quastion_title_en":"quastion title english",
+  "condition_title_en":"condition title english",
+  "condition_title_ar":"condition title arabic",
+  "paragaph_ar":"paragaph arabic",
+  "paragaph_en":"paragaph english",
+  "unit.name":"unit name",
+  "user_name":"user name",
+  "taxed_total":"taxed total",
+  "user.name":"user name"
 
 
 
