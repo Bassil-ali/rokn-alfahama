@@ -79,6 +79,29 @@ export default {
       user: {},
     };
   },
-  methods: {},
+  methods: {
+    login(user) {
+      this.$store.dispatch("auth/login", user).then((data) => {
+        if (data == 200) {
+          this.$swal.fire({
+            title: this.$t("success"),
+            text: this.$t("login success"),
+            icon: "success",
+            confirmButtonText: this.$t("Ok"),
+            confirmButtonColor: "#41b882",
+          });
+          this.$router.push("/");
+        } else {
+          this.$swal.fire({
+            title: this.$t("error"),
+            text: this.$t("login error"),
+            icon: "error",
+            confirmButtonText: this.$t("Ok"),
+            confirmButtonColor: "#41b882",
+          });
+        }
+      });
+    },
+  },
 };
 </script>

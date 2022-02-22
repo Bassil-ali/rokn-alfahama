@@ -483,7 +483,9 @@ export default {
   methods: {
     show() {
       this.$viewerApi({
-        images: this.images,
+        images: this.images.unshift({ url: this.selected_img })
+          ? this.images
+          : [{}],
         options: this.options,
       });
     },
@@ -558,8 +560,8 @@ export default {
   watch: {
     one(val) {
       this.one = val;
+      this.images.media.push(val.image);
       this.images = val.media.map((v) => v.url);
-      this.images.push(val.image);
     },
     one_item(val) {
       if (val) {
