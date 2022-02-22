@@ -483,9 +483,9 @@ export default {
   methods: {
     show() {
       this.$viewerApi({
-        images: this.images.unshift({ url: this.selected_img })
-          ? this.images
-          : [{}],
+        images: this.selected_img
+          ? Array.from(new Set([this.selected_img].concat(this.images)))
+          : this.images,
         options: this.options,
       });
     },
