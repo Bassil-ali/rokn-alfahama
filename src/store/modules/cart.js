@@ -199,7 +199,7 @@ const actions = {
         this.$axios.post(`/order/${state.order.id}/item`, { ...item_data, silent: true }).then(() => {
             dispatch('load').then(() => {
                 commit('mut_set_order_total')
-                console.log("im in the sync")
+                // console.log("im in the sync")
                 if (state.order.id) {
                     dispatch('order/store', { ...state.order, silent: true }, { root: true })
                 }

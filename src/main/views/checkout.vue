@@ -456,9 +456,9 @@ export default {
       this.$store.dispatch("cart/removeItem", item);
     },
     checkedLocale(index) {
-      console.log(index);
+      // console.log(index);
       this.localeAddresses.map((v, i) => {
-        console.log(i);
+        // console.log(i);
         return i == index ? (v.checked = true) : (v.checked = false);
       });
     },
@@ -560,7 +560,7 @@ export default {
       this.localeAddresses = JSON.parse(localStorage.getItem("address"));
     },
     saveAddress(item) {
-      console.log(this.gust_order.customer_email);
+      // console.log(this.gust_order.customer_email);
       const validateEmail = (email) => {
         return email.match(
           /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

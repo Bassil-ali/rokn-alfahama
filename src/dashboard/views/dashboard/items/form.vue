@@ -556,7 +556,7 @@ export default {
     },
 
     handleFileUpload(e) {
-      console.log(e);
+      // console.log(e);
       let files = e.target.files;
       for (var i = 0; i < files.length; i++) {
         this.images.push({ url: files[i] });
@@ -575,7 +575,7 @@ export default {
 
       item.cover_image_id = cover_image_id;
       if (item.id) {
-        console.log("start update ");
+        ("start update ");
         if (this.images.length > 0) {
           this.images.map((image) => {
             if (typeof image.url != "string") {
@@ -591,7 +591,7 @@ export default {
           this.properties.map((property) => {
             property.item_id = item.id;
           });
-          console.log(this.properties);
+          // console.log(this.properties);
           this.$store.dispatch("property/store", this.properties);
         }
         if (this.shipments[0]) {
@@ -607,7 +607,7 @@ export default {
         await this.$store.dispatch("item/store", item).then(() => {
           this.$router.push("/items");
         });
-        console.log("end update ");
+        // console.log("end update ");
       } else {
         let new_item = await this.$store.dispatch("item/store", item);
         if (this.images.length > 0) {

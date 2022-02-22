@@ -31,10 +31,10 @@ export default {
                             ...params
                         }
                     });
-                    console.log(resource);
-                    console.log("resource");
-                    console.log("resource");
-                    console.log("resource");
+                    // console.log(resource);
+                    // console.log("resource");
+                    // console.log("resource");
+                    // console.log("resource");
                     if (resource.form_route) {
                         commit('setFormRoute', resource.form_route);
                     }
@@ -73,7 +73,7 @@ export default {
 
 
                     } catch (exception) {
-                        console.log(exception)
+                        // console.log(exception)
                     }
                 },
 
@@ -104,7 +104,7 @@ export default {
                     let parent_id = data[resource.parent + '_id'];
                     console.log(`A7AAAAAAAAAAAAAAA${parent_id}`)
                     if (data.is_file) {
-                        console.log('aaa')
+                        // console.log('aaa')
                         let form_data = new FormData();
                         Object.keys(data).map(key => {
                             form_data.append(key, data[key])
@@ -130,7 +130,7 @@ export default {
                         // commit('setOne', response.data);
                         return response.data.data;
                     } catch (ex) {
-                        console.log(ex);
+                        // console.log(ex);
                         let errors = (ex.response.data.errors);
                         if (errors) {
                             commit('setErrors', errors, {

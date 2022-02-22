@@ -131,7 +131,7 @@ export default {
         : image.url;
     },
     handleFileUpload(e) {
-      console.log(e);
+      // console.log(e);
       let files = e.target.files;
       for (var i = 0; i < files.length; i++) {
         this.images.push({ url: files[i] });

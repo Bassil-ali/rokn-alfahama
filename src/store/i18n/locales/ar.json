@@ -435,8 +435,12 @@
   "your email":"بريدك الإلكتروني",
   "choose an address":"قم بإختيار عنوان",
   "error":"خطأ",
-  "email_error":"ادخل ايميل صحيح",
+  "email_error":"أدخل ايميل صحيح",
   "size":"الحجم",
   "select":"أختر",
-  "color":"اللون"
+  "color":"اللون",
+  "confirm":"تأكيد",
+  "Enter Your Email":"أدخل الايميل",
+  "login error":"خطأ في كلمه المرور أو البريد اللكتروني",
+  "login success":"تم تسجيل دخولك بنجاح"
 }

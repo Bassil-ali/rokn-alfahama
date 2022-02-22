@@ -128,7 +128,7 @@ export default {
           self.SocialLogin(provider, response);
         })
         .catch((err) => {
-          console.log({ err: err });
+          // console.log({ err: err });
         });
     },
 
@@ -136,7 +136,7 @@ export default {
       this.$http
         .post("/sociallogin/" + provider, response)
         .then((response) => {
-          console.log(response.data);
+          (response.data);
         })
         .catch((err) => {
           console.log({ err: err });

@@ -429,7 +429,6 @@ export default {
         });
       }
     },
-
     sort_filter(type) {
       this.$store.dispatch("item/index", { per_page: 15, ...type });
     },
@@ -446,7 +445,6 @@ export default {
     showsupmenu(e11, e22) {
       let e1 = this.$refs[e11][0].id;
       let e2 = this.$refs[e22][0].id;
-
       this.$el.querySelector(`#${e1}`).classList.toggle("active");
       this.$el.querySelector(`#${e2}`).classList.toggle("open");
     },
@@ -465,4 +463,3 @@ export default {
   background-color: red !important;
 }
 </style>
- 

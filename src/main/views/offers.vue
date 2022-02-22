@@ -114,9 +114,9 @@ export default {
   watch: {
     offers(val) {
       this.offer = val[0];
-      console.log("start item offers ");
+      // console.log("start item offers ");
       this.$store.dispatch("offer_item/index", { offer_id: val[0].id });
-      console.log("end item offers ");
+      // console.log("end item offers ");
     
     },
   },

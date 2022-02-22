@@ -525,9 +525,7 @@ export default {
       } else {
         item.property_id ? (item.property_id = null) : "";
       }
-
       this.$store.dispatch("cart/addItem", item);
-
       // this.$store.dispatch("cart/addItem", item);
     },
     like(item) {

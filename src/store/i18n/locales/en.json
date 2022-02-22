@@ -406,7 +406,12 @@
   "size":"size",
   "select":"select",
    "number_of_items":"number of items",
-   "color":"color"
+   "color":"color",
+   "confirm":"confirm",
+  "Enter Your Email":"Enter Your Email",
+  "login error":"Wrong password or email",
+  "login success":"You are logged in successfully"
+
 
 
   
