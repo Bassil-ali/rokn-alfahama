@@ -13,6 +13,6 @@ context.keys().map(i => {
             name: i.split(".")[1].split("/").map(r => kebabCase(r)).join("."),
             // props: true
         });
-    console.log('/' + kebabCase(i.split(".")[1]) + "/:id?")
+    // console.log('/' + kebabCase(i.split(".")[1]) + "/:id?")
 });
 export default routes;

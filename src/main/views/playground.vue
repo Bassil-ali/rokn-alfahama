@@ -61,20 +61,20 @@ export default {
   },
   methods: {
     test(event) {
-      console.log("AAAA7AAA");
-      console.log(event);
-      console.log("AAAA7AAA");
+      // console.log("AAAA7AAA");
+      // console.log(event);
+      // console.log("AAAA7AAA");
     },
     showsupmenu(e11, e22) {
-      console.log("NOT nested");
-      console.log(this.$refs);
-      console.log(this.$refs);
-      console.log(this.$refs);
-      console.log(this.$refs);
-      console.log(this.$refs);
-      console.log(this.$refs);
-      console.log(this.$refs);
-      console.log("NOT nested");
+      // console.log("NOT nested");
+      // console.log(this.$refs);
+      // console.log(this.$refs);
+      // console.log(this.$refs);
+      // console.log(this.$refs);
+      // console.log(this.$refs);
+      // console.log(this.$refs);
+      // console.log(this.$refs);
+      // console.log("NOT nested");
 
       let e1 = this.$refs[e11][0].id;
       let e2 = this.$refs[e22][0].id;

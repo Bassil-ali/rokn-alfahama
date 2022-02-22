@@ -36,7 +36,7 @@ const actions = {
     loadUserFromSocialToken({
         commit
     }, data) {
-        console.log(data);
+        // console.log(data);
         this.state.overlay = true;
         this.$axios.defaults.headers.common['Authorization'] = "Bearer " + data;
         this.$axios.post('/auth/me', {
@@ -67,13 +67,13 @@ const actions = {
         this.$axios.get('/auth/me').then((response) => {
             commit('setUser', response.data);
         }).catch(err => {
-            console.log(err);
+            // console.log(err);
         });
     },
     refresh({
         commit
     }) {
-        console.log("refreshing .. ");
+        // console.log("refreshing .. ");
         this.$axios.post('/auth/refresh').then((response) => {
             commit('setToken', response.data);
             let refresh_time = response.data.token.expires_in * 1000;
@@ -82,7 +82,7 @@ const actions = {
                 this.dispatch('refresh');
             }, refresh_time);
         }).catch(err => {
-            console.log(err);
+            // console.log(err);
         });
     },
     load({
