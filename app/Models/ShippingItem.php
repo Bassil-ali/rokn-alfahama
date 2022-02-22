@@ -12,9 +12,9 @@ class ShippingItem extends BaseModel
     public static function createRules($user)
     {
         return [
-            '*.item_id' => 'required',
-            '*.shipping_id' => 'required',
-            '*.price' => 'required',
+            '*.item_id' => 'sometimes',
+            '*.shipping_id' => 'sometimes',
+            '*.price' => 'sometimes',
         ];
     }
     public static function updateRules($user)
