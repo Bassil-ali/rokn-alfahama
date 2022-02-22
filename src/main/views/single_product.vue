@@ -558,8 +558,8 @@ export default {
   watch: {
     one(val) {
       this.one = val;
-      this.images.media.push(val.image);
       this.images = val.media.map((v) => v.url);
+      this.images.push(val.image);
     },
     one_item(val) {
       if (val) {
@@ -628,4 +628,4 @@ export default {
   width: 400px !important ;
   height: 350px !important ;
 }
-</style>
+</style
