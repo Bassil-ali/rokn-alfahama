@@ -122,7 +122,7 @@ axios.interceptors.response.use(
 );
 axios.interceptors.request.use(
   (config) => {
-    console.log(config);
+    // console.log(config);
     config.headers['Content-Language'] = store.state.locales.locale;
     if (config.method != "get")
       store.state.overlay = true;

@@ -102,7 +102,7 @@ export default {
                     }
                     // gallery_id  = 1
                     let parent_id = data[resource.parent + '_id'];
-                    console.log(`A7AAAAAAAAAAAAAAA${parent_id}`)
+                    // console.log(`A7AAAAAAAAAAAAAAA${parent_id}`)
                     if (data.is_file) {
                         // console.log('aaa')
                         let form_data = new FormData();
