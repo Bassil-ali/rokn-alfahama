@@ -44,6 +44,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/dashboard.html"
   },
   {
+    "revision": "1ba2ae710d927f13d483fd5d1e548c9b",
+    "url": "/main/favicon1.ico"
+  },
+  {
     "revision": "6750752c0a6b08565976227cd8bad24a",
     "url": "/main/fonts/DINNextLTArabic-Light.6750752c.woff"
   },
