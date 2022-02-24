@@ -1,6 +1,6 @@
 let list = [{
-    icon: 'mdi-view-dashboard',
     title: 'dashboard',
+    icon: 'fas fa-dash',
     to: '/',
 },
 // {
@@ -240,7 +240,7 @@ let list = [{
 },
 {
         title: 'contact',
-        icon: 'fas fa-money-check-alt',
+        icon: 'fas fa-users',
         to: '/contact',
         children: [{
             title: 'view',

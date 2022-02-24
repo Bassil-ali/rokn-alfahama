@@ -442,5 +442,7 @@
   "confirm":"تأكيد",
   "Enter Your Email":"أدخل الايميل",
   "login error":"خطأ في كلمه المرور أو البريد اللكتروني",
-  "login success":"تم تسجيل دخولك بنجاح"
+  "login success":"تم تسجيل دخولك بنجاح",
+  "units_table":"جدول الوحدات",
+  "account_info":"المعلومات الشخصية"
 }

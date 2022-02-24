@@ -425,7 +425,9 @@
   "unit.name":"unit name",
   "user_name":"user name",
   "taxed_total":"taxed total",
-  "user.name":"user name"
+  "user.name":"user name",
+  "units_table":"units table",
+  "account_info":"Account information"
 
 
 

@@ -215,3 +215,11 @@ export default {
   },
 };
 </script>
+<style>
+.v-progress-circular__overlay {
+    color: #2b942f;
+}
+.theme--light.v-label {
+    color: rgba(0, 0, 0, 0.774)!important;
+}
+</style>

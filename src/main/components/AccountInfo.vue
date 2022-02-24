@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-10">
     <div class="entry-content-myaccount form">
-      <h2>معلومات شخصية</h2>
+      <h2>{{$t('account_info')}}</h2>
 
       <form @submit.prevent="update">
         <div class="row mb-3">

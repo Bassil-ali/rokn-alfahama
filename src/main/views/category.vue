@@ -142,7 +142,7 @@
                 </div>
               </div>
             </div>
-            <div class="box">
+            <!-- <div class="box">
               <h2>{{ $t("Reviews") }}</h2>
               <div>
                 <div class="rating">
@@ -168,7 +168,7 @@
                   </label>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="col-md-9">
