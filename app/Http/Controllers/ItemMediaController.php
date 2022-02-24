@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Pluralizer;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+
 
 class ItemMediaController extends BaseController
 {
@@ -40,11 +43,16 @@ class ItemMediaController extends BaseController
         $arr = $validator->validated();
         unset($arr['file']);
         $file = $request->file('file');
-        $path = $file->store(
-            'media',
-            'public'
-        );
-        $arr += ['path' => $path, 'mimetype' => $file->getExtension()];
+        
+        //convert large image to jpg image
+        $encodeImage = Image::make($file)->encode('jpg', 50);     
+
+        Storage::disk('local')->put('public/media/' .  $request->file('file')->hashName(), (string)$encodeImage, 'public');
+        // $path = $wq->store(
+        //     'media',
+        //     'public'
+        // );
+        $arr += ['path' => 'media/' .  $request->file('file')->hashName(),'mimetype'=>$file->getExtension()];
         $media = Media::create($arr);
         $childRelationName = $this->childRelationName;
         $item->$childRelationName()->save($media);
