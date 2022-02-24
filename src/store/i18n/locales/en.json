@@ -427,7 +427,8 @@
   "taxed_total":"taxed total",
   "user.name":"user name",
   "units_table":"units table",
-  "account_info":"Account information"
+  "account_info":"Account information",
+  "address_selected":"please select a address for complete the order"
 
 
 

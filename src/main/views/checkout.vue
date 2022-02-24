@@ -182,6 +182,7 @@
                                 type="checkbox"
                                 value=""
                                 id="flexCheckDefault"
+                                @click="validateAddress"
                                 v-model="address.checked"
                                 @input="checkAddress(address)"
                               />
@@ -381,13 +382,16 @@
                         ><br />
                       </div>
                     </div>
-
                     <div class="pay-box form">
                       <!--                       
                       <h6>اختار طريقة الشحن</h6> -->
+                      <div  v-if="!validated">
+                      <h5 style="text-align:center">{{$t('address_selected')}}</h5>
+
+                      </div>
                       <form @submit.prevent="save">
-                        <button :disabled="!validated" class="button">
-                          {{ $t("Complete_the_order") }}
+                        <button :disabled="!validated"  class="button">
+                          {{ $t("Complete_the_order")  }}
                         </button>
                       </form>
                       <p>{{ $t("agree_condision") }}</p>
@@ -452,6 +456,9 @@ export default {
     };
   },
   methods: {
+     validateAddress(){
+      document.getElementsById('dw').style.display = 'none'
+    },
     remove(item) {
       this.$store.dispatch("cart/removeItem", item);
     },
@@ -682,6 +689,7 @@ export default {
     },
   },
   watch: {
+   
     order: {
       handler(val) {
         if (val) {
