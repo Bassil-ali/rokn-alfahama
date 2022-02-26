@@ -55,7 +55,7 @@ let resources = [
         parent: 'order',
         form_route: '/payments/form',
 
-        module_name: 'order_payment',
+       // module_name: 'order_payment',
         headers: ['order_id','user.user_name','date','status', 'amount', 'created_at'],
         discreption: 'payments resource'
     },

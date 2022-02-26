@@ -50,7 +50,7 @@
           <v-col cols="3">
             <v-text-field
               v-model="item.role_id"
-              :label="$t('admin')"
+              :label="$t('role_id')"
               required
               dense
             />

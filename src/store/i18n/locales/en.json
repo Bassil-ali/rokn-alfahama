@@ -432,7 +432,8 @@
   "not data avialble":"There are no products in this category",
   "rank":"Rank",
   "login co":"login to signin ",
-  "register_error":"user name or email already exist"
+  "register_error":"user name or email already exist",
+  "role_id":"permission"
   
 
 

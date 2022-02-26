@@ -17,13 +17,13 @@
 import { mapState } from "vuex";
 export default {
   mounted() {
-    this.$store.dispatch("payment/index");
+   // this.$store.dispatch("payment/index");
   },
-  computed: {
-    ...mapState({
-      all: (state) => state.payment.all,
-      headers: (state) => state.payment.headers,
-    }),
-  },
+  // computed: {
+  //   ...mapState({
+  //     all: (state) => state.payment.all,
+  //     headers: (state) => state.payment.headers,
+  //   }),
+  // },
 };
 </script>
