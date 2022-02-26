@@ -32,7 +32,7 @@
                 <router-link to="/about">{{ $t("about") }}</router-link>
               </li>
               <li>
-                <router-link to="/condition">{{ $t("Connect_with_us") }}</router-link>
+                <router-link to="/condition">{{ $t("Terms_of_use") }}</router-link>
               </li>
               <li>
                 <router-link to="/contact-us">{{ $t("contact") }}</router-link>
