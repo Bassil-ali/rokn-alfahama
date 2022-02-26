@@ -23,6 +23,8 @@ class Rank extends BaseModel
     public static function updateRules($user)
     {
         return [
+            'item_id'=>'required|exists:items,id',
+            'rank'=>'required|min:1|max:5'
         ];
     }
 }

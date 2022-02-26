@@ -95,7 +95,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
             'name' => 'required',
             'user_name' => 'required|unique:users,name',
             'email' => 'required|unique:users,email',
-            'mobile' => 'required|unique:users,mobile',
+            'mobile' => 'required|min:11|numeric|unique:users,mobile',
             'status' => 'somtimes|integer',
             'password' => 'required|min:6',
         ];
