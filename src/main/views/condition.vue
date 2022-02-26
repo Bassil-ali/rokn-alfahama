@@ -3,7 +3,11 @@
     <div class="head">
       <h2>{{ $t("Terms_of_use") }}</h2>
     </div>
-    <div class="Tsection-01 position-relative">
+    <div  v-if="!settings.conditions">
+<center><h1>no conditions found</h1></center>
+    </div>
+    <div class="Tsection-01 position-relative" v-if="settings.conditions">
+      
       <div class="container">
         <div class="content">
           <h4
@@ -37,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="Tsection-02 position-relative">
+    <div class="Tsection-02 position-relative" v-if="settings.conditions">
       <div class="decor"></div>
       <div class="container">
         <div class="row">

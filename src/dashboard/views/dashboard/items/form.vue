@@ -73,6 +73,14 @@
               dense
             />
           </v-col>
+           <v-col cols="3">
+            <v-text-field
+              type="number"
+              v-model="item.rank"
+              :label="$t('rank')"
+              dense
+            />
+          </v-col>
           <v-col cols="3">
             <v-autocomplete
               :items="categories"
@@ -305,6 +313,7 @@
               :label="$t('quantity')"
             ></v-text-field
           ></v-col>
+          
 
           <v-col cols="12" md="3">
             <v-autocomplete
@@ -528,6 +537,9 @@ export default {
       this.$store.dispatch("shippinga/index", {
         ids: [this.$route.params.id],
       });
+       this.$store.dispatch("rank/index", {
+        ids: [this.$route.params.id],
+      });
       this.$store.dispatch("property/index", {
         item_id: this.$route.params.id,
       });
@@ -572,10 +584,14 @@ export default {
         });
         cover_image_id = cover_image.id;
       }
-
+           
+     
       item.cover_image_id = cover_image_id;
       if (item.id) {
         ("start update ");
+         if (item.rank) {
+              this.$store.dispatch("item_rank/update",{item_id: item.id,rank: item.rank});
+            }
         if (this.images.length > 0) {
           this.images.map((image) => {
             if (typeof image.url != "string") {
@@ -610,6 +626,9 @@ export default {
         // console.log("end update ");
       } else {
         let new_item = await this.$store.dispatch("item/store", item);
+         if(item.rank) {
+              this.$store.dispatch("item_rank/store",{item_id: new_item.id,rank: item.rank});
+            }
         if (this.images.length > 0) {
           this.images.map((image) => {
             if (typeof image.url != "string") {
@@ -661,6 +680,7 @@ export default {
     saveSize() {
       this.$store.dispatch("size/store", this.size);
     },
+   
   },
 
   computed: {

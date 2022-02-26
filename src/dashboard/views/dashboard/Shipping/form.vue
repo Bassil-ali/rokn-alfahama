@@ -44,7 +44,9 @@ export default {
   },
   methods: {
     async save(item) {
-      await this.$store.dispatch("shipping/store", item);
+      await this.$store.dispatch("shipping/store", item).then(() => {
+          this.$router.push("/shipping");
+        });
     },
   },
 

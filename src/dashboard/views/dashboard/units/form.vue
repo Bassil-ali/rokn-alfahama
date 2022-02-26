@@ -67,7 +67,9 @@ export default {
   },
   methods: {
     async save(item) {
-      this.$store.dispatch('unit/store',item);
+      this.$store.dispatch('unit/store',item).then(() => {
+          this.$router.push("/units");
+        });
     },
   },
   computed:{

@@ -270,6 +270,9 @@
 
           <div class="product">
             <div class="row">
+              <div v-if="category_items == 0">
+                <h4 style="text-align:center">{{$t('not data avialble')}}</h4>
+              </div>
               <div
                 :key="index"
                 v-for="(category_item, index) in category_items"

@@ -8,13 +8,19 @@
             <p>
               <small>{{ $t("create_account") }}</small>
             </p>
-            <form @submit.prevent="$root.save(item, 'user', '/')">
+            <div v-for="(errorArray, idx) in notifmsg" :key="idx">
+    <div v-for="(allErrors, idx) in errorArray" :key="idx">
+        <span class="text-danger">{{ allErrors}} </span>
+    </div>
+</div>
+            <form @submit.prevent="register(item)">
               <div class="input-group mb-3">
                 <span class="input-group-text"
                   ><i class="fas fa-user"></i
                 ></span>
                 <input
                   v-model="item.name"
+                  required
                   type="text"
                   class="form-control"
                   :placeholder="$t('full_name')"
@@ -26,6 +32,7 @@
                 ></span>
                 <input
                   v-model="item.user_name"
+                  required
                   type="text"
                   class="form-control"
                   :placeholder="$t('enter_username')"
@@ -37,7 +44,8 @@
                 ></span>
                 <input
                   v-model="item.mobile"
-                  type="text"
+                  required
+                  type="number"
                   class="form-control"
                   :placeholder="$t('mobile_no')"
                 />
@@ -48,6 +56,7 @@
                 ></span>
                 <input
                   v-model="item.email"
+                  required
                   type="email"
                   class="form-control"
                   :placeholder="$t('email')"
@@ -59,6 +68,7 @@
                 ></span>
                 <input
                   v-model="item.password"
+                  required
                   type="password"
                   class="form-control"
                   :placeholder="$t('password')"
@@ -69,6 +79,7 @@
                   <input
                     class="form-check-input"
                     type="checkbox"
+                    required
                     value=""
                     id="flexCheckDefault"
                   />
@@ -113,7 +124,32 @@ export default {
   data() {
     return {
       item: {},
+       notifmsg: '',
     };
+  },
+   methods: {
+    register(item) {
+      this.$store.dispatch("user/store", item).then((data) => {
+        if (data != null) {
+          this.$swal.fire({
+            title: this.$t("success"),
+            text: this.$t("login co"),
+            icon: "success",
+            confirmButtonText: this.$t("Ok"),
+            confirmButtonColor: "#41b882",
+          });
+          this.$router.push("/");
+        } else {
+          this.$swal.fire({
+            title: this.$t("error"),
+            text: this.$t('register_error'),
+            icon: "error",
+            confirmButtonText: this.$t("Ok"),
+            confirmButtonColor: "#41b882",
+          });
+        }
+      })
+    },
   },
 };
 </script>

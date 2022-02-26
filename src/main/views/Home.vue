@@ -70,7 +70,7 @@
           <h2>{{ $t("latest_product") }}</h2>
         </div>
         <carousel
-          v-if="test"
+          v-if="recent_items"
           :nav="false"
           :margin="5"
           :items="display"
@@ -122,7 +122,7 @@
           <h2>{{ $t("the_most_wanted") }}</h2>
         </div>
         <carousel
-          v-if="test"
+          v-if="recent_items"
           :nav="false"
           :margin="5"
           :items="display"
@@ -537,9 +537,10 @@ export default {
   mounted() {
     this.$store.dispatch("category/index", { null_parent_id: true });
     this.$store.dispatch("item/index");
-    setTimeout(() => {
-      this.test = true;
-    }, 3800);
+    // setTimeout(() => {
+    //   this.test = true;
+    // }, 7800);
+    
     this.onResize;
   },
 };

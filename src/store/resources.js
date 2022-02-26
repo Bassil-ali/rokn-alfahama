@@ -4,7 +4,7 @@ let resources = [
         parent: '',
         discreption: 'items resource',
         form_route: '/items/form',
-        headers: ['name', 'code', 'unit.name', 'selling_price', 'quantity', 'tax.name', 'created_at']
+        headers: ['name', 'code', 'unit.name', 'selling_price', 'quantity','shippinga.price', 'tax.name', 'created_at']
     },
     {
         name: 'category',
@@ -32,7 +32,7 @@ let resources = [
         name: 'user',
         parent: '',
         form_route: '/users/form',
-        headers: ['name', 'user_name', 'email', 'mobile', 'created_at'],
+        headers: ['name','role_id', 'user_name', 'email', 'mobile', 'created_at'],
         discreption: 'customers resource'
     },
     {
@@ -56,7 +56,7 @@ let resources = [
         form_route: '/payments/form',
 
         module_name: 'order_payment',
-        headers: ['order_id', 'amount', 'created_at'],
+        headers: ['order_id','user.user_name','date','status', 'amount', 'created_at'],
         discreption: 'payments resource'
     },
     {

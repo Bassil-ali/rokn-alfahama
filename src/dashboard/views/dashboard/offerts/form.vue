@@ -175,6 +175,9 @@ export default {
           items_ids: this.offer_items_ids,
         });
       }
+     
+      this.$router.push("/offerts");
+        
     },
     dateFormat(date) {
       return date;

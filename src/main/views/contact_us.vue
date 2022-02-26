@@ -14,6 +14,7 @@
                 <div class="mb-3">
                   <input
                     v-model="item.name"
+                    required
                     type="text"
                     class="form-control"
                     :placeholder="$t('name')"
@@ -22,6 +23,7 @@
                 <div class="mb-3">
                   <input
                     v-model="item.email"
+                    required
                     type="email"
                     class="form-control"
                     :placeholder="$t('email')"
@@ -30,6 +32,7 @@
                 <div class="mb-3">
                   <input
                     v-model="item.subject"
+                    required
                     type="text"
                     class="form-control"
                     :placeholder="$t('subject')"
@@ -38,6 +41,7 @@
                 <div class="mb-3">
                   <textarea
                     v-model="item.message"
+                    required
                     cols="30"
                     rows="10"
                     class="form-control"

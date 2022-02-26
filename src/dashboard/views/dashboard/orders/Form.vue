@@ -75,6 +75,7 @@
             <v-card>
               <v-btn
                 block
+                style="background-color:#4caf50"
                 @click="
                   all.push({ item_price: 0, discount: 0, item_quantity: 0 })
                 "
@@ -109,7 +110,7 @@
                 </thead>
 
                 <tbody>
-                  <tr v-for="(one, index) in all">
+                  <tr :key="index" v-for="(one, index) in all">
                     <td>
                       <v-autocomplete
                         :items="items"
@@ -177,7 +178,7 @@ export default {
       location: {},
       item: {
         status: 0,
-        issue_date: new Date(Date.now()),
+        issue_date: new Date().toISOString().slice(0, 10),
         discount_amount: 0,
       },
     };
@@ -201,6 +202,9 @@ export default {
       await Promise.all(all_promises);
       order.status=1;
       await this.$store.dispatch('order/update',order);
+      
+          this.$router.push("/orders");
+        
     },
     item_changed(item, list_item) {
       list_item.item_quantity = 1;

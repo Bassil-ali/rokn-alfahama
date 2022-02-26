@@ -150,6 +150,9 @@ export default {
       }
 
       let item_data = await this.$store.dispatch("category/store", item);
+      
+          this.$router.push("/categories");
+      
     },
   },
 

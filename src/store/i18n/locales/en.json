@@ -428,7 +428,12 @@
   "user.name":"user name",
   "units_table":"units table",
   "account_info":"Account information",
-  "address_selected":"please select a address for complete the order"
+  "address_selected":"please select a address for complete the order",
+  "not data avialble":"There are no products in this category",
+  "rank":"Rank",
+  "login co":"login to signin ",
+  "register_error":"user name or email already exist"
+  
 
 
 

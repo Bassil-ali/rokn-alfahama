@@ -50,7 +50,9 @@ export default {
   },
   methods: {
     async save(item) {
-      this.$store.dispatch('tax/store',item);
+      this.$store.dispatch('tax/store',item).then(() => {
+          this.$router.push("/taxes");
+        });
     },
   },
   computed:{

@@ -78,7 +78,10 @@ export default {
   },
   methods: {
     save(item) {
-      this.$store.dispatch("order_payment/store", item);
+      this.$store.dispatch("order_payment/store", item)
+      .then(() => {
+          this.$router.push("/payments");
+        });
     },
   },
   computed: {

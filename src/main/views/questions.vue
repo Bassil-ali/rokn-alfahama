@@ -27,8 +27,24 @@
                   </button>
                 </h2>
                 <div
+                 v-if="index == 0"
                   :id="`collapse${index}`"
                   class="accordion-collapse collapse show"
+                  :aria-labelledby="`heading${index}`"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <p>
+                      {{
+                        locale == "ar" ? question.answer_ar : question.answer_en
+                      }}
+                    </p>
+                  </div>
+                </div>
+                 <div
+                  v-if="index != 0"
+                  :id="`collapse${index}`"
+                  class="accordion-collapse collapse"
                   :aria-labelledby="`heading${index}`"
                   data-bs-parent="#accordionExample"
                 >

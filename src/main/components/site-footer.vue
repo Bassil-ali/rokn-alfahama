@@ -34,14 +34,14 @@
               <ul class="menu">
                 <li>
                   <i class="bi bi-telephone-fill"></i>
-                  {{ settings.mobile || 9999 }}
+                  {{ settings.mobile ||  +13478108800 }}
                 </li>
                 <li>
-                  <i class="bi bi-phone"></i> {{ settings.phone || 99999 }}
+                  <i class="bi bi-phone"></i> {{ settings.phone ||  +13478108800 }}
                 </li>
                 <li>
                   <i class="bi bi-envelope"></i>
-                  {{ settings.contect_email || "Runalfakhamah@gmail.com" }}
+                  {{ settings.contect_email || "alfakhamah1895@gmail.com" }}
                 </li>
                 <li>
                   <i class="bi bi-geo-alt-fill"></i>
@@ -50,7 +50,7 @@
                     locale == "ar"
                       ? settings.address_ar
                       : settings.address_en ||
-                        "  المملكة العربية السعودية - الدمام"
+                        "1895 White Plains Rd, Bronx, NY 10462"
                   }}
                 </li>
               </ul>
@@ -63,6 +63,11 @@
                 <li>
                   <router-link to="/about">
                     {{ $t("who_are_we") }}
+                  </router-link>
+                </li>
+                 <li>
+                  <router-link to="/condition">
+                  {{ $t("Terms_of_use") }}
                   </router-link>
                 </li>
                 <li>

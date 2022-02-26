@@ -54,7 +54,9 @@ export default {
   },
   methods: {
     async save(item) {
-      this.$store.dispatch("coupon/store", item);
+      this.$store.dispatch("coupon/store", item).then(() => {
+          this.$router.push("/coupons");
+        });
     },
   },
   computed: {

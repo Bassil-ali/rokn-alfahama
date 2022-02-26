@@ -33,8 +33,8 @@ module.exports = {
   },
   pwa: {
     iconPaths: {
-      favicon32: 'img/icons/logo.png',
-      favicon16: 'img/icons/logo.png',
+      favicon32: 'favicon.ico',
+      favicon16: 'favicon.ico',
     }
   },
   configureWebpack: config => {
