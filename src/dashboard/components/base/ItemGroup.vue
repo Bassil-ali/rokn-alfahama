@@ -77,7 +77,7 @@
     computed: {
       ...mapState(['barColor']),
       children () {
-        console.log(this.item.children);
+        // console.log(this.item.children);
         return this.item.children.map(item => ({
           ...item,
           to: `/${item.group}/${item.to}`//:`/${item.group}` // undefined,

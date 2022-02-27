@@ -433,7 +433,14 @@
   "rank":"Rank",
   "login co":"login to signin ",
   "register_error":"user name or email already exist",
-  "role_id":"permission"
+  "role_id":"permission",
+  "order_id":"order_id",
+  "order.addresses":"order addresses",
+  "order.customer_email":"order customer email",
+  "order.customer_name":"order customer name",
+  "order.customer_mobile":"order customer mobile",
+  "order.discount":"discount",
+  "date":"date"
   
 
 

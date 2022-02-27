@@ -450,6 +450,14 @@
   "rank":"التقييم",
   "login co":"سجل دخول  لتأكيد حسابك",
   "register_error":"اسم المستخدم أو الايميل مسجل من قبل ",
-  "role_id":"الصلاحيات"
+  "role_id":"الصلاحيات",
+  "order_id":"رقم الطلب",
+  "order.addresses":"عنوان الطلب",
+  "order.customer_email":"ايميل العميل",
+  "order.customer_name":"اسم العميل",
+  "order.customer_mobile":"رقم الهاتف",
+  "order.discount":"الخصم",
+  "date":"التاريخ"
+
 
 }

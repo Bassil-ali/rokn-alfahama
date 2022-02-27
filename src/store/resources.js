@@ -4,7 +4,7 @@ let resources = [
         parent: '',
         discreption: 'items resource',
         form_route: '/items/form',
-        headers: ['name', 'code', 'unit.name', 'selling_price', 'quantity','shippinga.price', 'tax.name', 'created_at']
+        headers: ['name', 'code', 'unit.name', 'selling_price', 'quantity', 'tax.name', 'created_at']
     },
     {
         name: 'category',
@@ -38,7 +38,7 @@ let resources = [
     {
         name: 'order',
         parent: '',
-        form_route: '/orders/form',
+        //form_route: '/orders/form',
 
         headers: ['id', 'user.name', 'total', 'discount', 'tax', 'taxed_total', 'status', 'created_at'],
         discreption: 'orders resource',
@@ -53,10 +53,10 @@ let resources = [
     {
         name: 'payment',
         parent: 'order',
-        form_route: '/payments/form',
+       // form_route: '/payments/form',
 
         module_name: 'order_payment',
-        headers: ['user.name','order_id','amount','date','status', 'amount', 'created_at'],
+        headers: ['order_id','date','status', 'amount'],
         discreption: 'payments resource'
     },
     {
@@ -133,7 +133,9 @@ let resources = [
     },
     {
         name: 'payment',
+        form_route: '/payments/form',
         parent: '',
+        headers: ['order_id', 'order.addresses', 'order.customer_email',  'order.customer_mobile', 'order.discount', 'date', 'status', 'amount', 'created_at'],
         discreption: 'payment resource'
     },
     {

@@ -21,7 +21,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
+ 
     <v-data-table
       :headers="translateHeaders((headers || []).concat('actions'))"
       :items="data || []"
@@ -34,10 +34,12 @@
       :sort-desc.sync="options.sortDesc"
       multi-sort
       v-bind="$attrs"
+      id="example"
+      :search="search"
       v-on="$listeners"
     >
       <template v-slot:top>
-        <v-row v-if="$route.name == 'categories' || $route.name == 'items'">
+        <!-- <v-row v-if="$route.name == 'categories' || $route.name == 'items'">
           <v-col cols="3">
             <v-text-field
               @keyup.enter="searching"
@@ -52,9 +54,15 @@
                 </v-btn>
               </template>
             </v-text-field>
-          </v-col>
-          
-        </v-row>
+            <v-spacer></v-spacer> -->
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+        
       </template>
       <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"
         ><slot :name="slot" v-bind="scope"
@@ -164,5 +172,6 @@ export default {
       immediate: true,
     },
   },
+  
 };
 </script>
