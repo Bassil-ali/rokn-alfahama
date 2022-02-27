@@ -402,7 +402,7 @@ export default {
   },
   methods: {
     to_page(i) {
-      if (this.links.next) {
+      if (this.links.next || this.links.prev) {
         this.$store.dispatch("item/index", {
           page: i,
           category_id: this.selected_category?.id || null,
