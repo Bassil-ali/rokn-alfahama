@@ -12,11 +12,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/css/chunk-9eb2af90-chunk.css"
   },
   {
-    "revision": "b3b22b52b7acce17a375",
+    "revision": "2341157c1e9d1a41b792",
     "url": "/main/css/chunk-common-chunk.css"
   },
   {
-    "revision": "120c951916bb280ab32a",
+    "revision": "3b8b84a50ee4aa6f5f07",
     "url": "/main/css/chunk-d31cb614-chunk.css"
   },
   {
@@ -32,7 +32,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/css/chunk-vendors-chunk.css"
   },
   {
-    "revision": "b60fc33c12d8608bb1cb",
+    "revision": "d2201e693e1e9ff4fd58",
     "url": "/main/css/dashboard.css"
   },
   {
@@ -40,7 +40,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/css/index.css"
   },
   {
-    "revision": "a733919e3f61be4e2af45f530197f56d",
+    "revision": "98c4b860f07588a4b75d12cd29344112",
     "url": "/main/dashboard.html"
   },
   {
@@ -384,7 +384,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/img/user.0608d5e2.svg"
   },
   {
-    "revision": "8759657f2e17d849f7616c8c6a084b49",
+    "revision": "bda395eb7c797bb45cf7738004bc408d",
     "url": "/main/index.html"
   },
   {
@@ -397,10 +397,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/js/chunk-9eb2af90.0cc.2b7d83c2d972f787041c.min.js"
   },
   {
-    "url": "/main/js/chunk-common.56c.b3b22b52b7acce17a375.min.js"
+    "url": "/main/js/chunk-common.42e.2341157c1e9d1a41b792.min.js"
   },
   {
-    "url": "/main/js/chunk-d31cb614.6d2.120c951916bb280ab32a.min.js"
+    "url": "/main/js/chunk-d31cb614.8dd.3b8b84a50ee4aa6f5f07.min.js"
   },
   {
     "url": "/main/js/chunk-dd8a53c0.133.8a9c8b202d1aae29dd28.min.js"
@@ -412,7 +412,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/main/js/chunk-vendors.921.6c843e54e92a5784abba.min.js"
   },
   {
-    "url": "/main/js/dashboard.5a5.b60fc33c12d8608bb1cb.min.js"
+    "url": "/main/js/dashboard.746.d2201e693e1e9ff4fd58.min.js"
   },
   {
     "url": "/main/js/index.85f.4e2ca3d69a56798e814a.min.js"
