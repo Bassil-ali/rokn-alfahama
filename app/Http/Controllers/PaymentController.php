@@ -56,8 +56,8 @@ class PaymentController extends BaseController
     }
     public function update(Request $request, Payment $payment)
     {
-        if (!$this->user->is_permitted_to('update', Payment::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('update', Payment::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
         $validator = Validator::make($request->all(), Payment::updateRules($this->user));
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -71,8 +71,8 @@ class PaymentController extends BaseController
     }
     public function destroy(Request $request, Payment $payment)
     {
-        if (!$this->user->is_permitted_to('delete', Payment::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('delete', Payment::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
         $payment->delete();
 
         return new PaymentResource($payment);
