@@ -23,8 +23,8 @@ class CouponController extends BaseController
     }
     public function store(Request $request)
     {
-        if(!$this->user->is_permitted_to('store',Coupon::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('store',Coupon::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
 
         $validator = Validator::make($request->all(),Coupon::createRules($this->user));
         if($validator->fails()){
@@ -39,14 +39,14 @@ class CouponController extends BaseController
     }
     public function show(Request $request,Coupon $coupon)
     {
-        if(!$this->user->is_permitted_to('view',Coupon::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('view',Coupon::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
         return new CouponResource($coupon);
     }
     public function update(Request $request, Coupon $coupon)
     {
-        if(!$this->user->is_permitted_to('update',Coupon::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('update',Coupon::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
         $validator = Validator::make($request->all(),Coupon::updateRules($this->user));
         if($validator->fails()){
             return response()->json(['errors'=>$validator->errors()],422);
