@@ -457,7 +457,8 @@
   "order.customer_name":"اسم العميل",
   "order.customer_mobile":"رقم الهاتف",
   "order.discount":"الخصم",
-  "date":"التاريخ"
+  "date":"التاريخ",
+  "invalid code":"الرمز غير صحيح"
 
 
 }

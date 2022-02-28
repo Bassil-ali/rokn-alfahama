@@ -600,7 +600,20 @@ export default {
         .dispatch("coupon/show", { id: this.item.coupon })
         .then((data) => {
           this.$store.dispatch("cart/setDiscount", data.value);
-        });
+            this.$swal.fire({
+            title: this.$t("success"),
+            text: this.$t("success"),
+            icon: "success",
+            confirmButtonText: this.$t("Ok"),
+            confirmButtonColor: "#41b882",
+          });
+        }).catch(err=>{ this.$swal.fire({
+          title: this.$t('error'),
+          text: this.$t('invalid code'),
+          icon: "error",
+          confirmButtonText: "تم",
+          confirmButtonColor: "#41b882",
+        });});
     },
     checkAddress(address) {
       this.my_address = address.id;

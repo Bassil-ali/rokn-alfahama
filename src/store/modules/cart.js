@@ -246,7 +246,8 @@ const mutations = {
             state.order.items.splice(index, 1)
     },
     set_discount: (state, discount) => {
-        state.items.map(i => i.discount = discount);
+        state.order.items.map(i => i.discount = discount);
+        
     },
     set_draft_order(state, draft_orders) {
         state.order = draft_orders

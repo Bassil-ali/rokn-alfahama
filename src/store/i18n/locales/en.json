@@ -440,7 +440,8 @@
   "order.customer_name":"order customer name",
   "order.customer_mobile":"order customer mobile",
   "order.discount":"discount",
-  "date":"date"
+  "date":"date",
+  "invalid code":"invalid code"
   
 
 

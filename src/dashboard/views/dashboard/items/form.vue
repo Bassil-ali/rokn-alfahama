@@ -702,6 +702,8 @@ export default {
         this.item = JSON.parse(JSON.stringify(val));
         this.images = this.item.media;
         this.cover_image = this.item.cover_image;
+        var rank = this.item.rank;
+        this.item.rank = parseInt(rank);
       }
     },
     all_properties(val) {

@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div class="intro">
@@ -535,12 +534,28 @@ export default {
     },
   },
   mounted() {
+    let loader = this.$loading.show({
+      canCancel: false, // default false
+      color: "#7c4707",
+      loader: "spinner",
+      width: 64,
+      height: 64,
+      backgroundColor: "#ffffff",
+      opacity: 0.7,
+      zIndex: 999,
+
+    });
     this.$store.dispatch("category/index", { null_parent_id: true });
-    this.$store.dispatch("item/index");
+    
+    this.$store.dispatch("item/index").then((data) => {
+     
+        loader.hide();
+      });
+    
     // setTimeout(() => {
     //   this.test = true;
     // }, 7800);
-    
+
     this.onResize;
   },
 };
