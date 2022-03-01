@@ -28,8 +28,8 @@ class OrderPaymentController extends BaseController
     }
     public function store(Request $request, Order $order)
     {
-        if(!$this->user->is_permitted_to('store',Payment::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('store',Payment::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
 
         $validator = Validator::make($request->all(),Payment::createRules($this->user));
         if($validator->fails()){
@@ -46,14 +46,14 @@ class OrderPaymentController extends BaseController
     }
     public function show(Request $request,Order $order, Payment $payment)
     {
-        if(!$this->user->is_permitted_to('view',Payment::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('view',Payment::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
         return new PaymentResource($payment);
     }
     public function update(Request $request, Order $order, Payment $payment)
     {
-        if(!$this->user->is_permitted_to('update',Payment::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('update',Payment::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
         $validator = Validator::make($request->all(),Payment::updateRules($this->user));
         if($validator->fails()){
             return response()->json(['errors'=>$validator->errors()],422);
@@ -69,8 +69,8 @@ class OrderPaymentController extends BaseController
 
     public function destroy(Request $request,Order $order, Payment $payment)
     {
-        if(!$this->user->is_permitted_to('delete',Payment::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('delete',Payment::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
         $payment->delete();
         return new PaymentResource($payment);
     }

@@ -50,8 +50,8 @@ class PaymentController extends BaseController
     }
     public function show(Request $request, Payment $payment)
     {
-        if (!$this->user->is_permitted_to('view', Payment::class, $request))
-            return response()->json(['message' => 'not_permitted'], 422);
+        // if (!$this->user->is_permitted_to('view', Payment::class, $request))
+        //     return response()->json(['message' => 'not_permitted'], 422);
         return new PaymentResource($payment);
     }
     public function update(Request $request, Payment $payment)
