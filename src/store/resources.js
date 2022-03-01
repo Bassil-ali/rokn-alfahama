@@ -38,7 +38,7 @@ let resources = [
     {
         name: 'order',
         parent: '',
-        //form_route: '/orders/form',
+        form_route: '/orders/form',
 
         headers: ['id', 'user.name', 'total', 'discount', 'tax', 'taxed_total', 'status', 'created_at'],
         discreption: 'orders resource',
@@ -53,7 +53,7 @@ let resources = [
     {
         name: 'payment',
         parent: 'order',
-       // form_route: '/payments/form',
+        form_route: '/payments/form',
 
         module_name: 'order_payment',
         headers: ['order_id','date','status', 'amount'],

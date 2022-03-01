@@ -77,7 +77,7 @@
         >
           <v-icon> fas fa-times</v-icon>
         </v-btn>
-        <v-btn icon @click="navigate_to_form(item)">
+        <v-btn  icon @click="navigate_to_form(item)">
           <v-icon> fas fa-edit</v-icon>
         </v-btn>
       </template>

@@ -385,10 +385,10 @@
                     <div class="pay-box form">
                       <!--                       
                       <h6>اختار طريقة الشحن</h6> -->
-                      <div  v-if="!validated">
+                      <!-- <div  v-if="!validated">
                       <h5 style="text-align:center">{{$t('address_selected')}}</h5>
 
-                      </div>
+                      </div> -->
                       <form @submit.prevent="save">
                         <button :disabled="!validated"  class="button">
                           {{ $t("Complete_the_order")  }}
