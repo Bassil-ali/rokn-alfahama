@@ -458,7 +458,9 @@
   "order.customer_mobile":"رقم الهاتف",
   "order.discount":"الخصم",
   "date":"التاريخ",
-  "invalid code":"الرمز غير صحيح"
+  "invalid code":"الرمز غير صحيح",
+  "order_Form":"سجل الطلب",
+  "unit_price":"سعر الوحدة"
 
 
 }

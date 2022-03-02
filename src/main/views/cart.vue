@@ -57,7 +57,7 @@
                   {{ item.item_name || item.name }}</a
                 >
               </td>
-              <td data-title="الكمية">
+              <td :data-title="$t('quantity')">
                 <div class="quantity d-flex align-items-center">
                   <div id="quantity" class="d-flex align-items-center">
                     <button
@@ -86,7 +86,7 @@
               <td>
                 {{ calcTotal(item) }}
               </td>
-              <td data-title="حذف">
+              <td :data-title="$t('delete')">
                 <a @click.prevent="remove(item)" class="button"
                   ><img src="@/main/assets/images/delete-red.svg" alt=""
                 /></a>

@@ -108,6 +108,10 @@ export default {
       this.$store.dispatch("cart/addItem", item);
     },
     like(item) {
+      if(this.$root.user == null){
+        this.$store.dispatch('auth/unload')
+       this.$router.push("/login");
+      }
       this.$store.dispatch("item_reaction/store", {
         item_id: item.id,
         user_id: this.$root.user.id,
@@ -129,6 +133,7 @@ export default {
     offer() {
       return this.item.offer;
     },
+
   },
   watch: {
     item: {

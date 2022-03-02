@@ -461,8 +461,20 @@ export default {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
+     let loader = this.$loading.show({
+      canCancel: false, // default false
+      color: "#7c4707",
+      loader: "spinner",
+      width: 64,
+      height: 64,
+      backgroundColor: "#ffffff",
+      opacity: 0.7,
+      zIndex: 999,
+    });
     if (this.$route.params.id) {
-      this.$store.dispatch("item/show", { id: this.$route.params.id });
+      this.$store.dispatch("item/show", { id: this.$route.params.id }).then((data) => {
+          loader.hide();
+        });
       this.$store.dispatch("property/index", {
         item_id: this.$route.params.id,
       });

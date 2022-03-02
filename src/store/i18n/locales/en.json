@@ -441,7 +441,9 @@
   "order.customer_mobile":"order customer mobile",
   "order.discount":"discount",
   "date":"date",
-  "invalid code":"invalid code"
+  "invalid code":"invalid code",
+  "order_Form":"order from",
+  "unit_price":"unit price"
   
 
 
