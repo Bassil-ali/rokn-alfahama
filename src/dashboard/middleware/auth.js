@@ -3,7 +3,7 @@ import store from '../../store';
 export default (to, from, next) => {
 
   if (store.state.auth.user == null) {
-    store.dispatch('auth/unload');
+    document.location = "/main/login";
   }
   let loggedIn = store.state.auth.user != null;
   if (localStorage.user_data) {
