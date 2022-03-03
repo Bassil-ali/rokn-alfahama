@@ -1,5 +1,5 @@
 <template>
-  <div class="product">
+  <div :class="`product ${item.quantity ==0?'not_available':''}`">
     <div class="row">
       <div class="item mb-3">
         <figure style="position: relative">
@@ -57,6 +57,13 @@
 
           <div class="d-flex mt-2 justify-content-between align-items-center">
             <a
+              v-if="item.quantity == 0"
+              class="addToCart button"
+              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" />
+              {{ $t("not_available") }}
+            </a>
+             <a
+              v-else
               style="cursor: pointer"
               @click="addToCart(item)"
               class="addToCart button"
@@ -108,10 +115,10 @@ export default {
       this.$store.dispatch("cart/addItem", item);
     },
     like(item) {
-      if(this.$root.user == null){
-        this.$store.dispatch('auth/unload')
+     if(this.$root.user == null){
+      localStorage.removeItem('user_data');
        this.$router.push("/login");
-      }
+      };
       this.$store.dispatch("item_reaction/store", {
         item_id: item.id,
         user_id: this.$root.user.id,
@@ -147,3 +154,8 @@ export default {
   },
 };
 </script>
+<style>
+.not_available{
+  opacity: 0.7!important;
+}
+</style>

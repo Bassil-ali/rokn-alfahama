@@ -203,13 +203,20 @@
                       align-items-center
                     "
                   >
-                    <a @click.prevent="addToCart(one)" class="addToCart button"
-                      ><img
-                        src="@/main/assets/images/shopping-cart-2.svg"
-                        alt=""
-                      />
-                      {{ $t("add_to_cart") }}</a
-                    >
+                    <a
+              v-if="one.quantity == 0"
+              class="addToCart button"
+              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" />
+              {{ $t("not_available") }}
+            </a>
+             <a
+              v-else
+              style="cursor: pointer"
+              @click="addToCart(one)"
+              class="addToCart button"
+              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" />
+              {{ $t("add_to_cart") }}
+            </a>
                     <a @click="like(one)" class="addToFavorite button"
                       ><img src="@/main/assets/images/hearts.svg" alt=""
                     /></a>
@@ -295,15 +302,20 @@
                         <div class="price">
                           <strong>{{ calcItemPrice(same_item) }}</strong> $
                         </div>
-                        <a
-                          @click="addToCart(same_item)"
-                          class="button addToCart"
-                          ><img
-                            src="@/main/assets/images/shopping-cart-2.svg"
-                            alt=""
-                          />
-                          {{ $t("add_to_cart") }}</a
-                        >
+                          <a
+              v-if="one.quantity == 0"
+              class="addToCart button"
+              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" />
+              {{ $t("not_available") }}
+            </a>
+             <a
+              v-else
+              style="cursor: pointer"
+              @click="addToCart(one)"
+              class="addToCart button"
+              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" />
+              {{ $t("add_to_cart") }}
+            </a>
                       </div>
                     </div>
                   </div>
@@ -541,6 +553,10 @@ export default {
       // this.$store.dispatch("cart/addItem", item);
     },
     like(item) {
+      if(this.$root.user == null){
+      localStorage.removeItem('user_data');
+       this.$router.push("/login");
+      };
       this.$store.dispatch("item_reaction/store", {
         item_id: item.id,
         user_id: this.$root.user.id,

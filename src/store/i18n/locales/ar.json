@@ -460,7 +460,8 @@
   "date":"التاريخ",
   "invalid code":"الرمز غير صحيح",
   "order_Form":"سجل الطلب",
-  "unit_price":"سعر الوحدة"
+  "unit_price":"سعر الوحدة",
+  "not_available":"غير متوفر"
 
 
 }
