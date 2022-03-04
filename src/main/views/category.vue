@@ -383,6 +383,8 @@ export default {
             }
           } else {
             this.selected_category = category;
+            loader.hide();
+
           }
         });
     } else {

@@ -92,7 +92,6 @@
 </template>
 <script>
 import { mapState } from "vuex";
-import XLSX from "vue-excel-xlsx";
 
 export default {
   name: "data-table",
@@ -135,112 +134,6 @@ export default {
     }),
   },
   methods: {
-  //   expordt(data) {
-  //     let { utils, writeFile } = XLSX;
-
-  //     // export const download = function Download (data, name, cb = null) {
-  //     /* if (typeof data === 'object' || data instanceof Array) {
-  //   data = data;
-  // } */
-  //     if (typeof data !== "object" || data instanceof Array === false) {
-  //       throw new Error(
-  //         "download function accept first argument only as an array or an object"
-  //       );
-  //     }
-  //     let sheet = utils.json_to_sheet(data);
-  //     let workbook = utils.book_new();
-  //     utils.book_append_sheet(workbook, sheet, "export");
-  //     writeFile(workbook, name + ".xlsx");
-
-  //     if (cb && typeof cb === "function") {
-  //       return cb();
-  //     }
-  //     // };
-
-  //     /**
-  //      * Read Excel file
-  //      *
-  //      * @param {Blob} file
-  //      * @param {Object} config
-  //      * @returns {Promise}
-  //      */
-  //     //  readExcel (upload, cb = null) {
-  //     return new Promise((resolve, reject) => {
-  //       try {
-  //         let file = upload.arrayBuffer();
-  //         file.then((data) => {
-  //           let wb = XLSX.read(data);
-  //           let sheets = wb.SheetNames;
-  //           let sheetsData = wb.Sheets;
-  //           let getIndex = (index = null) => {
-  //             if (index === null) {
-  //               index = 0;
-  //             }
-  //             if (typeof index === "string") {
-  //               let sheetIndex = sheets.indexOf(index);
-  //               index = sheetIndex > -1 ? sheetIndex : 0;
-  //             }
-  //             return sheets[index];
-  //           };
-  //           if (cb && typeof cb === "function") {
-  //             return cb();
-  //           }
-  //           resolve({
-  //             /**
-  //              * Get all workbook sheets
-  //              *
-  //              * @returns {Array}
-  //              */
-  //             sheets() {
-  //               return sheets;
-  //             },
-  //             /**
-  //              * Generate output to json data
-  //              *
-  //              * @param {String|Number} index
-  //              * @returns {Object}
-  //              */
-  //             toJson: (index = null) => {
-  //               index = getIndex(index);
-  //               return {
-  //                 sheets,
-  //                 data: utils.sheet_to_json(sheetsData[index]),
-  //               };
-  //             },
-  //             /**
-  //              * Return excel data to HTML TABLE
-  //              *
-  //              * @param {String|Number} index
-  //              * @returns {Object}
-  //              */
-  //             toTable: (index) => {
-  //               index = getIndex(index);
-  //               return {
-  //                 sheets,
-  //                 data: utils.sheet_to_html(sheetsData[index]),
-  //               };
-  //             },
-  //             /**
-  //              * Return excel data to CSV
-  //              *
-  //              * @param {String|Number} index
-  //              * @returns {Object}
-  //              */
-  //             toCsv: (index) => {
-  //               index = getIndex(index);
-  //               return {
-  //                 sheets,
-  //                 data: utils.sheet_to_csv(sheetsData[index]),
-  //               };
-  //             },
-  //           });
-  //         });
-  //       } catch (e) {
-  //         reject(e);
-  //       }
-  //     });
-  //     //}
-  //   },
     searching() {
       this.$store.dispatch(`${this.module}/index`, { search: this.search });
     },

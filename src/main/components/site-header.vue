@@ -75,7 +75,7 @@
                   /></a>
                 </li>
                 <li v-show="user.user.role_id == 1 ? true : false">
-                  <a href="/dashboard"><i class="fas fa-user-cog"></i></a>
+                  <a target="_blank" href="/dashboard"><i class="fas fa-user-cog"></i></a>
                 </li>
                 <li>
                   <a href="/main" @click="logout()"
