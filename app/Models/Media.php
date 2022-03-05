@@ -18,7 +18,7 @@ class Media extends BaseModel
     {
         return [
             'name' => 'nullable',
-            'file' => 'required|file|mimes:jpg,png'
+            'file' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
         ];
     }
     public static function updateRules($user)
