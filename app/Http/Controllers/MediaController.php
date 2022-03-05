@@ -41,7 +41,6 @@ class MediaController extends BaseController
         $file = $request->file('file');
         
         //convert large image to jpg image
-        if(!strpos($file->getExtension(),'jpg'))
         $encodeImage = Image::make($file)->encode('jpg', 50);     
 
         Storage::disk('local')->put('public/media/' .  $request->file('file')->hashName(), (string)$encodeImage, 'public');
