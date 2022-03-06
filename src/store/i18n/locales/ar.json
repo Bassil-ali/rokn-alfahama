@@ -65,6 +65,9 @@
   "item_images": "صور العنصر",
   "total": "المجموع",
   "discount": "الخصم",
+  "taxed_total":"مجموع الضريبة",
+  "user.name":"اسم المستخدم",
+  "user_name":"اسم المستخدم",
   "total_taxed": "المجموع بعد الضريبة",
   "click_here_to_add_items": "اضغط لإضافة المزيد من العناصر .",
   "free_quantity": "الكمية المجانية",
@@ -461,7 +464,8 @@
   "invalid code":"الرمز غير صحيح",
   "order_Form":"سجل الطلب",
   "unit_price":"سعر الوحدة",
-  "not_available":"غير متوفر"
+  "not_available":"غير متوفر",
+  "export_excl":"تصدير لملف اكسل"
 
 
 }

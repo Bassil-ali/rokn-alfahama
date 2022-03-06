@@ -444,7 +444,8 @@
   "invalid code":"invalid code",
   "order_Form":"order from",
   "unit_price":"unit price",
-  "not_available":"Not Available"
+  "not_available":"Not Available",
+  "export_excl":"Export Excel"
 
   
 

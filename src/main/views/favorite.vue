@@ -57,14 +57,16 @@
 import { mapState } from "vuex";
 export default {
   mounted() {
-     if(this.$root.user == null){
+     let isUser = this.$root.user!=null?this.$root.user:null;
+     //console.log(isUser);
+     if(isUser == null && localStorage.user_data !=null){
       localStorage.removeItem('user_data');
        this.$router.push("/login");
       }else{
     this.$store.dispatch("item/index", {
       liked: true,
     });
-      };
+      }
   },
   computed: {
     ...mapState({

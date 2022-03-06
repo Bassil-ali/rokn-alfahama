@@ -61,6 +61,9 @@
           single-line
           hide-details
         ></v-text-field>
+        <v-btn class="ma-2" color="success" @click="exportxclx">
+         {{$t('export_excl')}}
+        </v-btn>
         <!-- <v-btn icon @click="expordt(data)">few</v-btn> -->
       </template>
       <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"
@@ -77,7 +80,7 @@
         >
           <v-icon> fas fa-times</v-icon>
         </v-btn>
-        <v-btn  icon @click="navigate_to_form(item)">
+        <v-btn icon @click="navigate_to_form(item)">
           <v-icon> fas fa-edit</v-icon>
         </v-btn>
       </template>
@@ -92,6 +95,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
+import { json2excel, excel2json } from "js2excel";
 
 export default {
   name: "data-table",
@@ -134,6 +138,31 @@ export default {
     }),
   },
   methods: {
+    exportxclx() {
+      let data = this.data;
+      // this will be export a excel and the file's name is user-info-data.xlsx
+      // the default file's name is excel.xlsx
+      try {
+        json2excel({
+          data,
+          name: this.$route.name,
+          formateDate: "yyyy/mm/dd",
+        });
+      } catch (e) {
+        console.error("export error");
+      }
+
+      // for webpack 3: dynamic import
+      // import(/* webpackChunkName: "js2excel" */ 'js2excel').then(({json2excel}) => {
+      //     json2excel({
+      //         data,
+      //         name: 'test',
+      //         formateDate: 'dd/mm/yyyy'
+      //     });
+      // }).catch((e) => {
+
+      // });
+    },
     searching() {
       this.$store.dispatch(`${this.module}/index`, { search: this.search });
     },

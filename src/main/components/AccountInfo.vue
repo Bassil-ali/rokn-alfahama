@@ -81,7 +81,14 @@ export default {
         
             localStorage.user_data = JSON.stringify({
                 user
-       })
+       }),
+        this.$swal.fire({
+            title: this.$t("success"),
+            text: this.$t("success"),
+            icon: "success",
+            confirmButtonText: this.$t("Ok"),
+            confirmButtonColor: "#41b882",
+          }),
       );
     },
   },
