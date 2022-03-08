@@ -99,7 +99,7 @@ let resources = [
     {
         name: 'coupon',
         parent: '',
-        form_route: '/coupon/form',
+        form_route: '/coupons/form',
 
         headers: ['id', 'code', 'value'],
         discreption: 'coupon resource'
