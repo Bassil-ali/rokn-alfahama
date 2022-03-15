@@ -197,12 +197,14 @@ export default {
       this.$store.dispatch("locales/change", val);
       this.$i18n.locale = val;
       localStorage.setItem("locale", val);
+       window.location.reload();
     },
     changeLocaleToEnglish(val) {
       this.rtl = false;
       this.$store.dispatch("locales/change", val);
       this.$i18n.locale = val;
       localStorage.setItem("locale", val);
+       window.location.reload();
     },
   },
   watch: {
