@@ -54,7 +54,12 @@ class CategoryController extends BaseController
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        $category->update($validator->validated());
+        $data = $validator->validated();
+        
+        if(!isset($request->parent_id)){
+          $data['parent_id'] = null;
+        }
+        $category->update($data);
         if ($request->translations) {
             foreach ($request->translations as $translation)
                 $category->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();

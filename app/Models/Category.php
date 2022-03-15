@@ -35,7 +35,7 @@ class Category extends BaseModel
     {
         return [
             'cover_image_id' => 'required',
-            'parent_id' => 'sometimes|exists:categories,id',
+            'parent_id' => 'sometimes:null',
 
         ];
     }
