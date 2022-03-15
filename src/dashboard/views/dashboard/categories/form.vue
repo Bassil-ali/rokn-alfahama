@@ -105,7 +105,7 @@ export default {
       this.$store.dispatch("category/show", { id: this.$route.params.id });
       console.log(this.categories.unshift(`NULL`));
     }
-    this.$store.dispatch("category/index", { per_page: -1 });
+    this.$store.dispatch("category/index");
     if (this.$attrs.id) {
       this.$store.dispatch("item/show", { id: this.$attrs.id }).then((res) => {
         this.cover_image = res.gallery.cover_image;
@@ -150,9 +150,10 @@ export default {
         item.cover_image_id = this.cover_image.id;
       }
      
+      if(item.parent_id){
       if(item.parent_id.toString().toLowerCase() === 'null'){
         item.parent_id = null
-      }
+      }}
       console.log(item);
       let item_data = await this.$store.dispatch("category/store", item);
       
