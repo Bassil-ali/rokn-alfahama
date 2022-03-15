@@ -22,7 +22,7 @@ class CategoryController extends BaseController
     public function index(Request $request)
     {
 
-        return CategoryResource::collection(Category::search($request)->sort($request)->paginate(300));
+        return CategoryResource::collection(Category::search($request)->sort($request)->paginate(100));
     }
     public function store(Request $request)
     {
