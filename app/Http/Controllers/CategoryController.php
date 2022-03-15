@@ -55,7 +55,9 @@ class CategoryController extends BaseController
             return response()->json(['errors' => $validator->errors()], 422);
         }
         $data = $validator->validated();
-        
+        if($request->parent_id == $request->id){
+            return new CategoryResource($data);
+        }
         if(!isset($request->parent_id)){
           $data['parent_id'] = null;
         }
@@ -64,7 +66,7 @@ class CategoryController extends BaseController
             foreach ($request->translations as $translation)
                 $category->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
         }
-        return new CategoryResource($category);
+        return new CategoryResource($data);
     }
     public function destroy(Request $request, Category $category)
     {
