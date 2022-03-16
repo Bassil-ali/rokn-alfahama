@@ -11,7 +11,7 @@ class Category extends BaseModel
     use HasFactory;
     use HasTranslations;
     public $translatable = ['name'];
-    protected $with = ['items', 'children'];
+    protected $with = ['items'];
     protected $appends = ['translations', 'image', 'items_count', 'children_count'];
     protected $guarded = [];
 
