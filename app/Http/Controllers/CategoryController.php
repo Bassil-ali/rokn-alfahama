@@ -33,6 +33,7 @@ class CategoryController extends BaseController
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
+        
         $category = Category::create($validator->validated());
         if ($request->translations) {
             foreach ($request->translations as $translation)
