@@ -103,17 +103,17 @@ export default {
     // this.$store.dispatch("type/index");
     if (this.$route.params.id) {
       this.$store.dispatch("category/show", { id: this.$route.params.id });
-      console.log(this.categories.unshift(`NULL`));
     }
-    this.$store.dispatch("category/index");
-    if (this.$attrs.id) {
-      this.$store.dispatch("item/show", { id: this.$attrs.id }).then((res) => {
-        this.cover_image = res.gallery.cover_image;
-        this.item.categories = res.category_ids;
-        this.item.tags = res.tag_ids;
-        this.images = res.gallery.media;
-      });
-    }
+    this.$store.dispatch("category/index", { per_page: -1 });
+    // if (this.$attrs.id) {
+    //   this.$store.dispatch("item/show", { id: this.$attrs.id }).then((res) => {
+    //     this.cover_image = res.gallery.cover_image;
+    //     this.item.categories = res.category_ids;
+    //     this.item.tags = res.tag_ids;
+    //     this.images = res.gallery.media;
+    //   });
+    // }
+    console.log(this.categories.unshift("NULL"));
   },
   methods: {
     clearCategories() {
@@ -149,16 +149,16 @@ export default {
       } else {
         item.cover_image_id = this.cover_image.id;
       }
-     
-      if(item.parent_id){
-      if(item.parent_id.toString().toLowerCase() === 'null'){
-        item.parent_id = null
-      }}
-      console.log(item);
+
+      if (item.parent_id) {
+        if (item.parent_id.toString().toLowerCase() === "null") {
+          item.parent_id = null;
+        }
+      }
+      //console.log(item);
       let item_data = await this.$store.dispatch("category/store", item);
-      
-          this.$router.push("/categories");
-      
+
+      this.$router.push("/categories");
     },
   },
 
