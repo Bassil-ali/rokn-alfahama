@@ -369,9 +369,10 @@ export default {
       this.$store
         .dispatch("category/show", { id: this.$route.params.id })
         .then((category) => {
-          if (category.children[0]) {
-            this.selected_category_items = category.children.map((v) => v.id);
-            this.selected_global_category = category;
+          //console.log(category[0]);
+          if (category[0].children[0]) {
+            this.selected_category_items = category[0].children.map((v) => v.id);
+            this.selected_global_category = category[0];
             if (this.selected_category_items.length > 0) {
               this.$store
                 .dispatch("item/index", {
@@ -382,7 +383,7 @@ export default {
                 });
             }
           } else {
-            this.selected_category = category;
+            this.selected_category = category[0];
             loader.hide();
 
           }
