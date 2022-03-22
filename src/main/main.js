@@ -25,7 +25,10 @@ Vue.component('vue-phone-number-input', VuePhoneNumberInput);
 Vue.prototype.jQuery = jQuery;
 Vue.use(VueMeta)
 Vue.use(sweatAleart)
-// Vue.use(FlagIcon);
+
+
+
+
 new Vue({
   mixins: [mixins],
   router,
@@ -34,5 +37,6 @@ new Vue({
   i18n,
   render: h => h(App)
 }).$mount('#app')
+
 if (localStorage.user_data)
   store.dispatch('auth/load', JSON.parse(localStorage.user_data).user);

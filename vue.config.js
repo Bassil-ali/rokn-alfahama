@@ -32,9 +32,10 @@ module.exports = {
     disableHostCheck: true,
   },
   pwa: {
+    themeColor: '#fff',
+    msTileColor: '#000000',
     iconPaths: {
-      favicon32: 'favicon.ico',
-      favicon16: 'favicon.ico',
+      msTileImage: 'img/icons/logo.png'
     }
   },
   configureWebpack: config => {

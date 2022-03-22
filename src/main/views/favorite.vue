@@ -57,6 +57,7 @@
 import { mapState } from "vuex";
 export default {
   mounted() {
+    
      let isUser = this.$root.user!=null?this.$root.user:null;
      //console.log(isUser);
      if(isUser == null && localStorage.user_data !=null){

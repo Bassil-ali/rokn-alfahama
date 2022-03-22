@@ -445,7 +445,14 @@
   "order_Form":"order from",
   "unit_price":"unit price",
   "not_available":"Not Available",
-  "export_excl":"Export Excel"
+  "export_excl":"Export Excel",
+  "Home":"Home",
+  "my-account":"Profile",
+  "single-product":"single-product",
+  "condition":"condition",
+  "contact-us":"contact-us",
+  "questions":"questions",
+  "favorite":"favorite"
 
   
 

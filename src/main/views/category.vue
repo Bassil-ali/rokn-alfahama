@@ -324,6 +324,7 @@ import { mapState } from "vuex";
 import VueSlider from "vue-slider-component";
 import "vue-slider-component/theme/antd.css";
 export default {
+  
   components: {
     VueSlider,
   },
@@ -405,8 +406,10 @@ export default {
     search() {
       return this.$route.query.search;
     },
+    
   },
   watch: {
+   
     per_page(val) {
       let loader = this.$loading.show({
         canCancel: false, // default false

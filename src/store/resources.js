@@ -50,6 +50,7 @@ let resources = [
         headers: ['order_id', 'item.name', 'quantity'],
         discreption: 'purchases resource'
     },
+   
     {
         name: 'payment',
         parent: 'order',
@@ -177,6 +178,7 @@ let resources = [
         discreption: 'contact us resource',
 
     },
+    
     {
         name: 'user.address',
         parent: 'user',

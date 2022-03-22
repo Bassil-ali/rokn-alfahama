@@ -92,5 +92,9 @@ export default {
       );
     },
   },
+  mounted() {
+    document.title = 'ruknalfakhamah | ' + this.$t(this.$route.name);
+
+  },
 };
 </script>

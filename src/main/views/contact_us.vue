@@ -105,6 +105,7 @@ export default {
       locale: (state) => state.locales.locale,
     }),
   },
+  
 
   methods: {
     save(item) {

@@ -161,6 +161,7 @@ export default {
     };
   },
   mounted() {
+    
     if (this.$route.params.id) {
       localStorage.removeItem("order");
       this.$store.dispatch("order/show", { id: this.$route.params.id });

@@ -103,6 +103,7 @@ export default {
     };
   },
   mounted() {
+    
     this.$store.dispatch("offer/index");
   },
   computed: {

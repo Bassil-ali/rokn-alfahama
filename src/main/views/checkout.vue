@@ -417,6 +417,7 @@
 import { mapState } from "vuex";
 export default {
   mounted() {
+    
     if (this.$root.user) {
       this.$store.dispatch("address/index", { user_id: this.$root.user.id });
     } else {

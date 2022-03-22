@@ -79,6 +79,7 @@ export default {
     },
   },
   mounted() {
+    
     if (this.$route.query.token) {
       this.item.resetToken = this.$route.query.token;
     } else {

@@ -42,6 +42,7 @@ export default {
     };
   },
   mounted() {
+    
     this.$store.dispatch("category/index", { null_parent_id: true });
   },
   computed: {

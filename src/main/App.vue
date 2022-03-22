@@ -19,6 +19,7 @@ export default {
     logged_in: false,
   }),
   mounted() {
+    
     localStorage.getItem("locale") == "ar"
       ? (document.body.style.direction = "rtl")
       : (document.body.style.direction = "ltr");
@@ -28,6 +29,7 @@ export default {
     // window.FB.getLoginStatus(function (response) {
     //   console.log(response);
     // });
+   
   },
   updated() {},
   computed: {
@@ -54,6 +56,7 @@ export default {
   },
   watch: {
     all_settings(val) {
+      
       if (val) {
         let newItem = JSON.parse(JSON.stringify(val));
         let paresedSettings = newItem

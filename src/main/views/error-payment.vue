@@ -157,6 +157,7 @@ export default {
     };
   },
   mounted() {
+    
     if (this.$route.params.id) {
       this.$store.dispatch("order/show", { id: this.$route.params.id });
       this.$store.dispatch("settings/index");

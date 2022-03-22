@@ -134,7 +134,13 @@ export default {
       myNavbar: "",
     };
   },
+  
   mounted() {
+    if(this.locale == "ar"){
+    document.title = 'ruknalfakhamah | ' + this.$t(this.$route.name==null?'Home':this.$route.name,'ar');
+    }else
+    document.title = 'ruknalfakhamah | ' + this.$t(this.$route.name==null?'Home':this.$route.name,'en');
+
     this.$el.addEventListener("click", this.onClick);
     this.$store.dispatch("order/index");
   },
@@ -153,6 +159,7 @@ export default {
         return 0;
       }
     },
+   
   },
   methods: {
     togglling() {
@@ -192,7 +199,9 @@ export default {
   beforeDestroy() {
     this.$el.removeEventListener("click", this.onClick);
   },
+  
 };
+
 </script>
 <style>
 </style>
