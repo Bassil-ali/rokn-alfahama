@@ -137,7 +137,7 @@ export default {
   
   mounted() {
     if(this.locale == "ar"){
-    document.title = 'ruknalfakhamah | ' + this.$t(this.$route.name==null?'Home':this.$route.name,'ar');
+    document.title = 'ركن الفخامة | ' + this.$t(this.$route.name==null?'Home':this.$route.name,'ar');
     }else
     document.title = 'ruknalfakhamah | ' + this.$t(this.$route.name==null?'Home':this.$route.name,'en');
 
