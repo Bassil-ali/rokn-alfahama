@@ -147,4 +147,5 @@ class Item extends BaseModel
     {
         return $this->hasMany(Property::class);
     }
+    
 }
