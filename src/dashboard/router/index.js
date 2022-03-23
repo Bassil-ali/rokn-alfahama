@@ -51,8 +51,13 @@ const router = new VueRouter({
   base: '/d',
   routes
 });
+let locale = localStorage.getItem("locale");
+
 router.beforeEach((to, from, next) => {
-  document.title = 'ruknalfakhamah | ' + i18n.t(to.name);
+  if (locale == 'en')
+    document.title = 'ruknalfakhamah | ' + i18n.t(to.name);
+  else
+    document.title = 'ركن الفخامة | ' + i18n.t(to.name);
   next();
 });
 router.beforeResolve(auth);
