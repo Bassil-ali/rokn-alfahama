@@ -121,7 +121,7 @@
           <h2>{{ $t("the_most_wanted") }}</h2>
         </div>
         <carousel
-          v-if="recent_items"
+          v-if="most_orders"
           :nav="false"
           :margin="5"
           :items="display"
@@ -129,7 +129,7 @@
           dir="ltr"
           :autoplay="true"
         >
-          <div class="item" v-for="item in recent_items" :key="item.id">
+          <div class="item" v-for="item in most_orders" :key="item.id">
             <product :item="item" />
           </div>
         </carousel>
@@ -520,6 +520,7 @@ export default {
     ...mapState({
       settings: (state) => state.setting.all || [],
       recent_items: (state) => state.item.all,
+      most_orders: (state) => state.most.all,
       categories: (state) => state.category.all,
     }),
     display() {
@@ -546,7 +547,7 @@ export default {
 
     });
     this.$store.dispatch("category/index", { null_parent_id: true });
-    
+    this.$store.dispatch("most/index");
     this.$store.dispatch("item/index").then((data) => {
      
         loader.hide();

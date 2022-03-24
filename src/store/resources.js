@@ -178,6 +178,14 @@ let resources = [
         discreption: 'contact us resource',
 
     },
+    {
+        name: 'most',
+        parent: '',
+        //form_route: '/contact/show',
+        headers: ['id', 'name', 'message', 'subject', 'created_at'],
+        discreption: 'most order resource',
+
+    },
     
     {
         name: 'user.address',
