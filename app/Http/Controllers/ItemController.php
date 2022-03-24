@@ -21,7 +21,7 @@ class ItemController extends BaseController
     }
     public function index(Request $request)
     {
-     
+       
         return ItemResource::collection(Item::search($request)->sort($request)->latest()->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
     }
     public function store(Request $request)
