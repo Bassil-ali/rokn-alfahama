@@ -7,7 +7,6 @@ use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Spatie\Sitemap\SitemapGenerator;
 
 
 class ItemController extends BaseController
@@ -23,7 +22,6 @@ class ItemController extends BaseController
     }
     public function index(Request $request)
     {
-       SitemapGenerator::create('https://ruknalfakhamah.fashion/main')->getSitemap()->writeToDisk('public', 'sitemap.xml');
         return ItemResource::collection(Item::search($request)->sort($request)->latest()->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
     }
     public function store(Request $request)
