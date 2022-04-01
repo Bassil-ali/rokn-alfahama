@@ -54,7 +54,18 @@ class UserController extends BaseController
 
         // if (!$this->user->is_permitted_to('update', User::class, $request))
         //     return response()->json(['message' => 'not_permitted'], 422);
-
+        if($request->dash == 1 ){
+            $user->update(
+                [
+                    'name'=>$request->name,
+                    'mobile'=>$request->mobile,
+                    'user_name'=>$request->user_name,
+                    'email'=>$request->email,
+                    'role_id'=>$request->role_id,
+                ]
+            );
+            return new UserResource($user);
+        }
         $validator = Validator::make($request->all(), User::updateRules($request, $this->user));
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);

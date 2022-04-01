@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChangePasswordController;
 
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\MostController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -46,6 +47,6 @@ Route::group([
 });
 
 
-
+Route::get('/most',[MostController::class,'index']);
 Route::post('/send-reset-link', [ResetPasswordController::class, 'sendEmail']);
 Route::post('/reset-password', [ChangePasswordController::class, 'passwordResetProcess']);
