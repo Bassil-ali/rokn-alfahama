@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "ssr:build": "vue-cli-service ssr:build",
+    "ssr:serve": "vue-cli-service ssr:serve",
+    "ssr:start": "cross-env NODE_ENV=production vue-cli-service ssr:serve --mode production"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^27.1.0",
@@ -30,6 +33,7 @@
     "material-design-icons-iconfont": "^6.1.1",
     "mdi-vue": "^3.0.12",
     "popper.js": "^1.16.1",
+    "prerender-spa-plugin": "^3.4.0",
     "register-service-worker": "^1.7.1",
     "tiptap-vuetify": "^2.24.0",
     "v-viewer": "^1.6.4",
@@ -96,5 +100,18 @@
     "vue-template-compiler": "^2.6.11",
     "vue-world-map": "^0.1.1",
     "vuetify-loader": "^1.7.0"
-  }
+  },
+  "description": "## Project setup ``` npm install ```",
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bassil-ali/rokn-alfahama.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bassil-ali/rokn-alfahama/issues"
+  },
+  "homepage": "https://github.com/Bassil-ali/rokn-alfahama#readme"
 }

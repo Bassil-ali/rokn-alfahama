@@ -39,7 +39,7 @@
               required
             ></v-text-field>
           </v-col>
-          <v-col cols="3">
+          <v-col cols="3" v-if="!this.$route.params.id">
             <v-text-field
               v-model="item.password"
               :label="$t('password')"
@@ -65,6 +65,12 @@
           {{ $t("save") }}
         </v-btn>
       </v-col>
+       <v-col cols="12" v-if="this.$route.params.id">
+        <v-btn dark color="primary" block @click="update(item)">
+          <v-icon> mdi-check </v-icon>
+          {{ $t("save") }}
+        </v-btn>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -85,6 +91,12 @@ export default {
   methods: {
     async save(item) {
       this.$store.dispatch("user/store", item).then(() => {
+          this.$router.push("/users");
+        });
+    },
+    async update(item) {
+      item.dash =1;
+      this.$store.dispatch("user/update", item).then(() => {
           this.$router.push("/users");
         });
     },

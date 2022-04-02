@@ -11,7 +11,8 @@ let rtl = locale == 'ar';
 // console.log(locale + " "+rtl);
 Vue.use(Vuex)
 let store = new Vuex.Store({
-  state: {
+  state () {
+            return {
     overlay: false,
     get_alert: false,
     post_alert: false,
@@ -31,8 +32,9 @@ let store = new Vuex.Store({
     redirect: null,
     success_msg: null,
     settings: null
-  },
-  mutations: {
+  }
+          },
+          mutations: {
 
     SET_BAR_IMAGE(state, payload) {
       state.barImage = payload
