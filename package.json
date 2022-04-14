@@ -2,13 +2,13 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "## Project setup ``` npm install ```",
+  "author": "",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "ssr:build": "vue-cli-service ssr:build",
-    "ssr:serve": "vue-cli-service ssr:serve",
-    "ssr:start": "cross-env NODE_ENV=production vue-cli-service ssr:serve --mode production"
+    "build": "vue-cli-service build"
   },
+  "main": "babel.config.js",
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^27.1.0",
     "@ckeditor/ckeditor5-vue2": "^1.0.5",
@@ -67,6 +67,7 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@akryum/vue-cli-plugin-ssr": "~0.6.0",
     "@ckeditor/ckeditor5-alignment": "^18.0.0",
     "@ckeditor/ckeditor5-autoformat": "^16.0.0",
     "@ckeditor/ckeditor5-basic-styles": "^16.0.0",
@@ -101,17 +102,14 @@
     "vue-world-map": "^0.1.1",
     "vuetify-loader": "^1.7.0"
   },
-  "description": "## Project setup ``` npm install ```",
-  "main": "babel.config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Bassil-ali/rokn-alfahama.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Bassil-ali/rokn-alfahama/issues"
   },
-  "homepage": "https://github.com/Bassil-ali/rokn-alfahama#readme"
+  "homepage": "https://github.com/Bassil-ali/rokn-alfahama#readme",
+  "keywords": [],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bassil-ali/rokn-alfahama.git"
+  }
 }

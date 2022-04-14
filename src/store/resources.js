@@ -32,7 +32,7 @@ let resources = [
         name: 'user',
         parent: '',
         form_route: '/users/form',
-        headers: ['name','role_id', 'user_name', 'email', 'mobile', 'created_at'],
+        headers: ['name','role_id','permissions', 'user_name', 'email', 'mobile', 'created_at'],
         discreption: 'customers resource'
     },
     {

@@ -39,13 +39,17 @@
       <!-- https://github.com/vuetifyjs/vuetify/pull/8574 -->
       <div />
 
-      <template v-for="(item, i) in computedItems">
+     <template v-for="(item, i) in computedItems">
+       <template v-if="check(item.to)">
         <base-item-group v-if="item.children" :key="`group-${i}`" :item="item">
           <!--  -->
         </base-item-group>
 
         <base-item v-else :key="`item-${i}`" :item="item" />
+       </template>
+       
       </template>
+     
 
       <!-- Style cascading bug  -->
       <!-- https://github.com/vuetifyjs/vuetify/pull/8574 -->
@@ -85,6 +89,8 @@ export default {
     };
   },
   mounted() {
+     this.$store.dispatch("user/show", { id: this.user.user.id });
+
     if (!this.user) {
       // document.location = '/';
     } else {
@@ -107,7 +113,8 @@ export default {
       },
     },
     computedItems() {
-      if (this.items) return this.items.map(this.mapItem);
+      if (this.items) return this.items.map(this.mapItem)
+      
       else return [];
     },
     profile() {
@@ -118,7 +125,9 @@ export default {
     },
     ...mapState({
       user: (state) => state.auth.user,
+      perm: (state) => state.user.one,
     }),
+    
   },
   methods: {
     mapItem(item) {
@@ -128,6 +137,18 @@ export default {
         title: this.$t(item.title),
       };
     },
+    check(page){
+      let r =  page.substring(1);
+      if(this.perm.permissions == null){
+        return true
+      }
+     let per =  this.perm.permissions.split(" ");
+     for(var i = 0;i<per.length;i++){
+       if(`${per[i]}` == r){
+         return true
+       }
+     }
+    }
   },
 };
 </script>

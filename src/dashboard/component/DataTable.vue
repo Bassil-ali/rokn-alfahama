@@ -28,7 +28,6 @@
       :options.sync="options"
       :page.sync="options.page"
       item-key="id"
-      :items-per-page="meta.per_page ? Number(meta.per_page) : -1"
       class="elevation-1"
       :sort-by.sync="options.sortBy"
       :sort-desc.sync="options.sortDesc"

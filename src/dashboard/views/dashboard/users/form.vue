@@ -56,6 +56,33 @@
             />
           </v-col>
         </v-row>
+        <v-row>
+          <v-col>
+            <p>{{ $t("permissions") }}</p>
+            <template v-if="this.$route.params.id && one.permissions != null">
+              
+            {{this.item.permissions = ''}}
+            </template>
+            <v-card flat>
+              <v-card-text>
+                <v-container fluid>
+                  <v-row>
+                    <v-col cols="12" sm="4" md="4">
+                      <v-checkbox
+                        v-for="(page, i) in permissions"
+                        :key="i"
+                        :label="$t(page)"
+                        color="red"
+                        hide-details
+                        @click="set_per(page)"
+                      ></v-checkbox>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-form>
     </base-material-card>
     <v-row>
@@ -65,7 +92,7 @@
           {{ $t("save") }}
         </v-btn>
       </v-col>
-       <v-col cols="12" v-if="this.$route.params.id">
+      <v-col cols="12" v-if="this.$route.params.id">
         <v-btn dark color="primary" block @click="update(item)">
           <v-icon> mdi-check </v-icon>
           {{ $t("save") }}
@@ -81,6 +108,20 @@ export default {
   data() {
     return {
       item: {},
+      permissions: [
+        "settings",
+        "items",
+        "categories",
+        "units",
+        "taxes",
+        "coupons",
+        "orders",
+        "payments",
+        "shipping",
+        "contact",
+        "users",
+        "offerts",
+      ],
     };
   },
   mounted() {
@@ -91,14 +132,21 @@ export default {
   methods: {
     async save(item) {
       this.$store.dispatch("user/store", item).then(() => {
-          this.$router.push("/users");
-        });
+        this.$router.push("/users");
+      });
     },
     async update(item) {
-      item.dash =1;
+      item.dash = 1;
       this.$store.dispatch("user/update", item).then(() => {
-          this.$router.push("/users");
-        });
+        this.$router.push("/users");
+      });
+    },
+    set_per(page) {
+      if(`${this.item.permissions}` == 'undefined')
+      this.item.permissions = page;
+      else
+      this.item.permissions += ` ${page}`;
+      console.log( this.item.permissions);
     },
   },
   computed: {
@@ -106,7 +154,6 @@ export default {
       one: (state) => state.user.one,
     }),
   },
-
   watch: {
     one(val) {
       if (val) {
