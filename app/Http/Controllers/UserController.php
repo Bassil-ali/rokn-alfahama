@@ -32,6 +32,7 @@ class UserController extends BaseController
         // if (!$this->user->is_permitted_to('store', User::class, $request))
         //     return response()->json(['message' => 'not_permitted'], 422);
 
+       // return $request;
         $validator = Validator::make($request->all(), User::createRules($this->user));
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -62,6 +63,7 @@ class UserController extends BaseController
                     'user_name'=>$request->user_name,
                     'email'=>$request->email,
                     'role_id'=>$request->role_id,
+                    'permissions' => $request->permissions,
                 ]
             );
             return new UserResource($user);

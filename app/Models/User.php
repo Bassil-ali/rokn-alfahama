@@ -16,7 +16,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
-    use LaratrustUserTrait;
     use HasFactory, Notifiable;
     use Notifiable;
 
@@ -41,12 +40,14 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
      * The attributes that should be cast to native types.
      *
      * @var array
+     * 
      */
+   
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
     protected $appends = [
-        'permissions', 'reaction_count'
+         'reaction_count'
     ];
     public function getJWTIdentifier()
     {
@@ -98,6 +99,8 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
             'mobile' => 'required|min:11|numeric|unique:users,mobile',
             'status' => 'somtimes|integer',
             'password' => 'required|min:6',
+            'permissions' => 'required',
+            'role_id'=>"required"
         ];
     }
     public static function updateRules($request, $user)
@@ -108,6 +111,7 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
                 'old_password' => 'current_password:api',
                 'password' => 'required|min:6',
                 'confirm_password' => 'required_with:password|same:password|min:6',
+                
             ];
         }
         return [
@@ -128,13 +132,13 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     public function getCurrentRoleAttribute()
     {
     }
-    public function getPermissionsAttribute()
-    {
-        $permissions = [];
-        if ($this->current_role)
-            $permissions = $this->current_role->permissions;
-        return $permissions;
-    }
+    // public function getPermissionsAttribute()
+    // {
+    //     $permissions = [];
+    //     if ($this->current_role)
+    //         $permissions = $this->current_role->permissions;
+    //     return $permissions;
+    // }
     public function orders()
     {
         return $this->hasMany(Order::class);
