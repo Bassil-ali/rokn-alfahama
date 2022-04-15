@@ -160,7 +160,7 @@
 
         <div class="instagram">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
               <figure>
                 <!-- src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FAhmed.Rafie65%2Fposts%2F4564443757005434&show_text=true&width=500" -->
                 <!-- src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FAlmostashar.ahmad%2Fposts%2F1506469573029133&show_text=true&width=500" -->
@@ -177,17 +177,10 @@
                 ></iframe>
               </figure>
             </div>
-            <div class="col-md-4">
-              <figure>
-                <!-- w.slice(0 ,w.length-1 ) -->
-
-                <Tweet
-                  :id="tweet[0] ? tweet.slice(0, tweet.length - 1) : ''"
-                  :options="{ theme: 'dark' }"
-                />
-              </figure>
+            <div class="col-md-2">
+             
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
               <figure>
                 <blockquote
                   class="instagram-media"

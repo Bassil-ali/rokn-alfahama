@@ -19,6 +19,7 @@ import mixins from './mixins/mixins';
 import sweatAleart from './plugins/sweet_alert';
 
 
+
 import VueFacebook from 'vue-facebook';
 Vue.use(VueFacebook)
 Vue.component('vue-phone-number-input', VuePhoneNumberInput);

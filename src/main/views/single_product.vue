@@ -203,24 +203,33 @@
                       align-items-center
                     "
                   >
+                    <a v-if="one.quantity == 0" class="addToCart button"
+                      ><img
+                        src="@/main/assets/images/shopping-cart-2.svg"
+                        alt=""
+                      />
+                      {{ $t("not_available") }}
+                    </a>
                     <a
-              v-if="one.quantity == 0"
-              class="addToCart button"
-              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" />
-              {{ $t("not_available") }}
-            </a>
-             <a
-              v-else
-              style="cursor: pointer"
-              @click="addToCart(one)"
-              class="addToCart button"
-              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" />
-              {{ $t("add_to_cart") }}
-            </a>
+                      v-else
+                      style="cursor: pointer"
+                      @click="addToCart(one)"
+                      class="addToCart button"
+                      ><img
+                        src="@/main/assets/images/shopping-cart-2.svg"
+                        alt=""
+                      />
+                      {{ $t("add_to_cart") }}
+                    </a>
                     <a @click="like(one)" class="addToFavorite button"
                       ><img src="@/main/assets/images/hearts.svg" alt=""
                     /></a>
                   </div>
+                  <br />
+                  <button class="button" @click="myFunction()">
+                    share product link{{ " "
+                    }}<i class="fas fa-sign-out-alt"></i>
+                  </button>
                 </div>
               </div>
 
@@ -302,20 +311,24 @@
                         <div class="price">
                           <strong>{{ calcItemPrice(same_item) }}</strong> $
                         </div>
-                          <a
-              v-if="one.quantity == 0"
-              class="addToCart button"
-              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" />
-              {{ $t("not_available") }}
-            </a>
-             <a
-              v-else
-              style="cursor: pointer"
-              @click="addToCart(one)"
-              class="addToCart button"
-              ><img src="@/main/assets/images/shopping-cart-2.svg" alt="" />
-              {{ $t("add_to_cart") }}
-            </a>
+                        <a v-if="one.quantity == 0" class="addToCart button"
+                          ><img
+                            src="@/main/assets/images/shopping-cart-2.svg"
+                            alt=""
+                          />
+                          {{ $t("not_available") }}
+                        </a>
+                        <a
+                          v-else
+                          style="cursor: pointer"
+                          @click="addToCart(one)"
+                          class="addToCart button"
+                          ><img
+                            src="@/main/assets/images/shopping-cart-2.svg"
+                            alt=""
+                          />
+                          {{ $t("add_to_cart") }}
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -470,11 +483,10 @@ export default {
     };
   },
   mounted() {
-    
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
-     let loader = this.$loading.show({
+    let loader = this.$loading.show({
       canCancel: false, // default false
       color: "#7c4707",
       loader: "spinner",
@@ -485,7 +497,9 @@ export default {
       zIndex: 999,
     });
     if (this.$route.params.id) {
-      this.$store.dispatch("item/show", { id: this.$route.params.id }).then((data) => {
+      this.$store
+        .dispatch("item/show", { id: this.$route.params.id })
+        .then((data) => {
           loader.hide();
         });
       this.$store.dispatch("property/index", {
@@ -506,6 +520,16 @@ export default {
     }),
   },
   methods: {
+    myFunction() {
+      navigator.clipboard.writeText(
+        `${window.location.protocol}//${window.location.host}/main/${this.$route.params.id}`
+      );
+      this.$swal.fire({
+        text: this.$t("copied"),
+        icon: "success",
+        confirmButtonColor: "#41b882",
+      });
+    },
     show() {
       this.$viewerApi({
         images: this.selected_img
@@ -554,10 +578,10 @@ export default {
       // this.$store.dispatch("cart/addItem", item);
     },
     like(item) {
-      if(this.$root.user == null){
-      localStorage.removeItem('user_data');
-       this.$router.push("/login");
-      };
+      if (this.$root.user == null) {
+        localStorage.removeItem("user_data");
+        this.$router.push("/login");
+      }
       this.$store.dispatch("item_reaction/store", {
         item_id: item.id,
         user_id: this.$root.user.id,
