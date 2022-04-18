@@ -22,7 +22,7 @@ class ShippingItemController extends BaseController
     }
     public function index(Request $request)
     {
-        return ShippingItemResource::collection(ShippingItem::search($request)->sort($request)->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
+        return ShippingItemResource::collection(ShippingItem::search($request)->sort($request)->latest()->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
     }
     public function store(Request $request)
     {

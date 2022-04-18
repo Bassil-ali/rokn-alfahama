@@ -26,7 +26,7 @@ class OfferItemController extends BaseController
     public function index(Request $request, Offer $offer)
     {
         
-        return ItemResource::collection($offer->items()->search($request)->sort($request)->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
+        return ItemResource::collection($offer->items()->search($request)->sort($request)->latest()->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
     }
     public function store(Request $request)
     {

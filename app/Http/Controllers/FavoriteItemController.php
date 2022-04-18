@@ -24,7 +24,7 @@ class FavoriteItemController extends BaseController
     public function index(Request $request,Favorite $favorite)
     {
         $childRelationName = $this->childRelationName;
-        return FavoriteItemResource::collection($favorite->$childRelationName()->search($request)->sort($request)->paginate((request('per_page')??request('itemsPerPage'))??15));
+        return FavoriteItemResource::collection($favorite->$childRelationName()->search($request)->sort($request)->latest()->paginate((request('per_page')??request('itemsPerPage'))??15));
     }
     public function store(Request $request, Favorite $favorite)
     {

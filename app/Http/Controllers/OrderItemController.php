@@ -26,7 +26,7 @@ class OrderItemController extends BaseController
     {
         
         $childRelationName = $this->childRelationName;
-        return OrderItemResource::collection($order->$childRelationName()->search($request)->sort($request)->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
+        return OrderItemResource::collection($order->$childRelationName()->search($request)->sort($request)->latest()->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
     }
     public function store(Request $request, Order $order)
     {
