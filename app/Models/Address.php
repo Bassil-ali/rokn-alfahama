@@ -25,6 +25,11 @@ class Address extends BaseModel
             'zip_code' => 'required',
             'city' => 'required',
             'country_region' => 'required',
+            'first_name'=>'sometimes:null',
+            'last_name'=>'sometimes:null',
+            'email'=>'sometimes:null',
+            'phone_number'=>'sometimes:null',
+
  
            
         ];
@@ -38,6 +43,10 @@ class Address extends BaseModel
             'zip_code' => 'required',
             'city' => 'required',
             'country_region' => 'required',
+            'first_name'=>'sometimes:null',
+            'last_name'=>'sometimes:null',
+            'email'=>'sometimes:null',
+            'phone_number'=>'sometimes:null',
  
         ];
     }
