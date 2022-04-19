@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Mail\ErrorPaymentMail;
 use App\Mail\SuccessPaymentMail;
 use App\Mail\WelcomeMail;
+use App\Models\Setting;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
@@ -20,6 +21,7 @@ class Payment extends BaseModel
     {
         return $this->belongsTo(Order::class);
     }
+    
     public static function createRules($user)
     {
         return [
@@ -131,14 +133,18 @@ class Payment extends BaseModel
 
                     $this->update(["status" => 1]);
                     Mail::to($myOrder->customer_email ??  $myOrder->user->email)->send(new SuccessPaymentMail($this));
+                    Mail::to(Setting::where('key','officer_email')->value('value')??$myOrder->user->email)->send(new SuccessPaymentMail($this));
+
                     return true;
                 } else {
                     Mail::to($myOrder->customer_email ??  $myOrder->user->email)->send(new ErrorPaymentMail($this));
+                    Mail::to(Setting::where('key','officer_email')->value('value')??$myOrder->user->email)->send(new ErrorPaymentMail($this));
                     return false;
                 }
                 // Or, print errors if the API request wasn't successful
             } else {
                 Mail::to($myOrder->customer_email ??  $myOrder->user->email)->send(new ErrorPaymentMail($this));
+                Mail::to(Setting::where('key','officer_email')->value('value')??$myOrder->user->email)->send(new ErrorPaymentMail($this));
                 return ["status" => 500, "messages" => "Transaction Failed "];
             }
         } else {

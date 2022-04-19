@@ -19,7 +19,7 @@ class SettingCountroller extends BaseController
     }
     public function index(Request $request)
     {
-        return SettingResource::collection(Setting::search($request)->sort($request)->paginate((request('per_page')??request('itemsPerPage'))??15));
+        return SettingResource::collection(Setting::search($request)->sort($request)->get());
     }
     public function store(Request $request)
     {
