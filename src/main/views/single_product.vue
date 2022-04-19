@@ -72,6 +72,7 @@
                   </div>
                 </carousel>
               </div>
+
               <div class="col-md-7">
                 <div class="desc">
                   <h2>
@@ -221,16 +222,25 @@
                       />
                       {{ $t("add_to_cart") }}
                     </a>
-                    <a @click="like(one)" class="addToFavorite button"
+                    <a
+                      @click="like(one)"
+                      style="margin-left: 10px"
+                      class="addToFavorite button"
                       ><img src="@/main/assets/images/hearts.svg" alt=""
                     /></a>
                   </div>
-                  <br />
-                  <button class="button" @click="myFunction()">
-                    share product link{{ " "
-                    }}<i class="fas fa-sign-out-alt"></i>
-                  </button>
                 </div>
+              </div>
+              <div class="col-md-3 left">
+                <!-- <div class="row"> -->
+                  <button
+                    class="
+                      button
+                     
+                    " @click="myFunction()">
+                    {{ $t("share product link") }}<i class="fas fa-sign-out-alt"></i>
+                  </button>
+                <!-- </div> -->
               </div>
 
               <!-- <div class="col-md-12">
@@ -522,7 +532,7 @@ export default {
   methods: {
     myFunction() {
       navigator.clipboard.writeText(
-        `${window.location.protocol}//${window.location.host}/main/${this.$route.params.id}`
+        `${window.location.protocol}//${window.location.host}/main/single-product/${this.$route.params.id}`
       );
       this.$swal.fire({
         text: this.$t("copied"),

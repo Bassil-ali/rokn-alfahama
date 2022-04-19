@@ -89,6 +89,11 @@ export default {
   methods: {
     save(item) {
       item.user_id = this.user.id;
+      item.email = this.user.email;
+      item.phone_number = this.user.mobile;
+      item.first_name = this.user.name;
+      item.last_name = this.user.user_name;
+
       this.$store.dispatch("address/store", item);
     },
   },

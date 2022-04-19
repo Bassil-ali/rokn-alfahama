@@ -112,7 +112,15 @@ export default {
       // return parseFloat(item.selling_price * (tax / 100 + 1)).toFixed(2);
     },
     addToCart(item) {
-      this.$store.dispatch("cart/addItem", item);
+      this.$store.dispatch("cart/addItem", item).then(
+         this.$swal.fire({
+            title: this.$t("success"),
+            text: this.$t("add to cart"),
+            icon: "success",
+            confirmButtonText: this.$t("Ok"),
+            confirmButtonColor: "#41b882",
+          })
+      );
     },
     like(item) {
      if(this.$root.user == null){

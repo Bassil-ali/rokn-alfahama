@@ -240,7 +240,7 @@
   "Your_cart_is_empty": "Your cart is empty",
   "go_to_option": "You can go to the option to continue shopping and add your favorite products",
   "Continue_shopping": "Continue shopping",
-  "Shopping_cart": "Shopping cartt",
+  "Shopping_cart": "Shopping cart",
   "cart_empty": "Your cart is empty",
   "Photo": "photo",
   "Quantity": "Quantity",
@@ -453,7 +453,29 @@
   "contact-us":"contact-us",
   "questions":"questions",
   "favorite":"favorite",
-  "permissions":"permissions"
+  "permissions":"permissions",
+  "share product link":" share product link",
+  "add to cart":"The product has been added to the cart",
+  "addresses.first_name":"Customer first name",
+  "addresses.last_name":"Customer last name",
+  "addresses.street_address":"Customer street address",
+  "addresses.apt_suit_building":"Customer apt suit building",
+  "addresses.zip_code" :"Customer zip code",
+  "addresses.city" :"Customer city",
+  "addresses.country_region":"Customer country region", 
+  "addresses.email" :"Customer email",
+  "addresses.phone_number":"Customer phone number",
+  "order.addresses.first_name":"Customer first name",
+  "order.addresses.last_name":"Customer last name",
+  "order.addresses.street_address":"Customer street address",
+  "order.addresses.apt_suit_building":"Customer apt suit building",
+  "order.addresses.zip_code" :"Customer zip code",
+  "order.addresses.city" :"Customer city",
+  "order.addresses.country_region":"Customer country region", 
+  "order.addresses.email" :"Customer email",
+  "order.addresses.phone_number":"Customer phone number",
+  "officer_email":"officer email"
+  
   
 
   

@@ -40,9 +40,9 @@ let resources = [
         parent: '',
         form_route: '/orders/form',
 
-        headers: ['id', 'user.name', 'total', 'discount', 'tax', 'taxed_total', 'status', 'created_at'],
+        headers: ['id', 'addresses.first_name', 'addresses.last_name', 'addresses.street_address', 'addresses.apt_suit_building', 'addresses.zip_code', 'addresses.city', 'addresses.country_region', 'addresses.email','addresses.phone_number', 'total', 'discount', 'tax', 'taxed_total', 'status', 'created_at'],
         discreption: 'orders resource',
-        no_success_msg: true
+       // no_success_msg: true
     },
     {
         name: 'item',
@@ -136,7 +136,7 @@ let resources = [
         name: 'payment',
         form_route: '/payments/form',
         parent: '',
-        headers: ['order_id', 'order.addresses', 'order.customer_email',  'order.customer_mobile', 'order.discount', 'date', 'status', 'amount', 'created_at'],
+        headers: ['order_id', 'order.addresses.first_name', 'order.addresses.last_name', 'order.addresses.street_address', 'order.addresses.apt_suit_building', 'order.addresses.zip_code', 'order.addresses.city', 'order.addresses.country_region', 'order.addresses.email', 'order.addresses.phone_number', 'order.discount', 'date', 'status', 'amount', 'created_at'],
         discreption: 'payment resource'
     },
     {

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Meta from 'vue-meta'
 import test_auth from '../middleware/test_auth'
 import routes_list from '../plugins/router_provider';
 import auth from '../middleware/auth';
@@ -7,6 +8,8 @@ import i18n from '../../store/i18n/i18n'
 
 
 Vue.use(VueRouter);
+Vue.use(Meta);
+
 const routes = [
   {
     path: '/',
@@ -22,6 +25,13 @@ const router = new VueRouter({
   base: 'main',
   routes
 })
+Vue.use(Meta, {
+  keyName: 'metaInfo',
+  attribute: 'data-vue-meta',
+  ssrAttribute: 'data-vue-meta-server-rendered',
+  tagIDKeyName: 'vmid',
+  refreshOnceOnNavigation: true
+});
 let locale = localStorage.getItem("locale");
 
 router.beforeEach((to, from, next) => {

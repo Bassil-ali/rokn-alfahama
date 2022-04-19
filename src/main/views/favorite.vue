@@ -4,7 +4,7 @@
       <div class="head">
         <h2>{{ $t("Favorite") }}</h2>
       </div>
-
+{{this.$root.user==null?localStorage.removeItem('user_data'):''}}
       <div class="product">
         <div class="row">
           <div class="col-md-3" v-for="item in items" :key="item.id">
@@ -73,6 +73,7 @@ export default {
     ...mapState({
       items: (state) => state.item.all,
     }),
+    
   },
   methods: {
     addToCart(item) {

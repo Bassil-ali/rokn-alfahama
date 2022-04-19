@@ -3,6 +3,7 @@ import store from '../../store';
 export default function auth(to, from, next) {
   let loggedIn = store.state.auth.user != null;
 
+ 
   if (localStorage.user_data !=null) {
     loggedIn = true;
     store.dispatch('auth/load', JSON.parse(localStorage.user_data).user).catch((data)=>{

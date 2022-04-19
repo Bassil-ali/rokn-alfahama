@@ -345,6 +345,9 @@ export default {
     };
   },
   mounted() {
+    window.onpopstate = function(event) {
+       location.reload();
+   };
     this.$store.dispatch("category/index", { null_parent_id: true });
     this.toggle = document.getElementById("toggle");
     this.myNavbar = document.getElementById("primary-menu");
@@ -367,6 +370,7 @@ export default {
           loader.hide();
         });
     } else if (this.$route.params.id) {
+     
       this.$store
         .dispatch("category/show", { id: this.$route.params.id })
         .then((category) => {
@@ -428,6 +432,11 @@ export default {
         });
     },
     selected_category(val) {
+      if(this.$route.params.id)
+      this.$router.push(`${this.selected_category.id}`);
+      else
+      this.$router.push(`category/${this.selected_category.id}`);
+
       let loader = this.$loading.show({
         canCancel: false, // default false
         color: "#7c4707",

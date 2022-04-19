@@ -108,6 +108,7 @@ export default {
     },
   },
   created() {
+  
     this.$store.dispatch("setting/index");
     var locale = localStorage.getItem("locale");
     if (!locale) localStorage.setItem("locale", "en");

@@ -1,4 +1,5 @@
 <template>
+
   <v-navigation-drawer
     id="core-navigation-drawer"
     v-model="drawer"
@@ -16,7 +17,6 @@
     </template>
 
     <v-divider class="mb-1" />
-
     <v-list dense nav>
       <v-list-item>
         <v-list-item-avatar class="align-self-center" color="white" contain>
@@ -106,6 +106,7 @@ export default {
     ...mapState(["barColor", "barImage"]),
     drawer: {
       get() {
+
         return this.$store.state.drawer;
       },
       set(val) {

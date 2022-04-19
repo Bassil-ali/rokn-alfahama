@@ -1,5 +1,6 @@
 <template>
   <header>
+
     <div class="container">
       <div class="logo-container">
         <div class="d-flex align-items-center">
@@ -10,6 +11,7 @@
           </div>
 
           <div class="search-menu">
+
             <form @submit.prevent="searchInItems(search_title)">
               <input
                 v-model="search_title"

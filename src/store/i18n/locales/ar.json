@@ -474,7 +474,31 @@
   "favorite":"المفضلة",
   "my-account":"البروفايل",
   "login":"تسجيل الدخول",
-  "permissions":"الصلاحيات"
+  "permissions":"الصلاحيات",
+  "share product link":"نسخ رابط المنتج",
+  "add to cart":"تم اضافة المنتج الى السة",
+  "addresses.first_name":"اسم العميل الاول",
+  "addresses.last_name":"اسم العميل الثاني",
+  "addresses.street_address":"عنوان الشارع",
+  "addresses.apt_suit_building":"apt suit building",
+  "addresses.zip_code" :"zip code",
+  "addresses.city" :"مدينة العميل",
+  "addresses.country_region":"منطقة العميل", 
+  "addresses.email" :"ايميل العميل",
+  "addresses.phone_number":"رقم هاتف العميل",
+  "order.addresses.first_name":"اسم العميل الاول",
+  "order.addresses.last_name":"اسم العميل الثاني",
+  "order.addresses.street_address":"عنوان الشارع",
+  "order.addresses.apt_suit_building":"apt suit building",
+  "order.addresses.zip_code" :"zip code",
+  "order.addresses.city" :"مدينة العميل",
+  "order.addresses.country_region":"منطقة العميل", 
+  "order.addresses.email" :"ايميل العميل",
+  "order.addresses.phone_number":"رقم هاتف العميل",
+  "officer_email":"ايميل الموضف"
+
+
+
  
 
 

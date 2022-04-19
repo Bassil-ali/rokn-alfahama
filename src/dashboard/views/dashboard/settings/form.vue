@@ -12,6 +12,9 @@
           <v-col cols="12" lg="3">
             <v-text-field v-model="item.phone" :label="$t('phone')" dense />
           </v-col>
+           <v-col cols="12" lg="3">
+            <v-text-field v-model="item.officer_email" :label="$t('officer_email')" dense />
+          </v-col>
           <v-col cols="12" lg="3">
             <v-text-field v-model="item.mobile" :label="$t('mobile')" dense />
           </v-col>

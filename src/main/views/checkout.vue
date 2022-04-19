@@ -223,7 +223,7 @@
                               <input
                                 type="text"
                                 required
-                                v-model="gust_order.customer_first_name"
+                                v-model="address.first_name"
                                 class="form-control"
                                 :placeholder="$t('first_name')"
                               />
@@ -235,7 +235,7 @@
                               <input
                                 type="text"
                                 required
-                                v-model="gust_order.customer_last_name"
+                                v-model="address.last_name"
                                 class="form-control"
                                 :placeholder="$t('last_name')"
                               />
@@ -247,7 +247,7 @@
                                 <label>{{ $t("email") }} <span>*</span></label>
                                 <input
                                   type="email"
-                                  v-model="gust_order.customer_email"
+                                  v-model="address.email"
                                   class="form-control"
                                   :placeholder="$t('email')"
                                 />
@@ -262,7 +262,7 @@
                                 <input
                                   type="number"
                                   required
-                                  v-model="gust_order.customer_mobile"
+                                  v-model="address.phone_number"
                                   class="form-control"
                                   :placeholder="$t('phone_number')"
                                 />
@@ -390,8 +390,8 @@
 
                       </div> -->
                       <form @submit.prevent="save">
-                        <button :disabled="!validated"  class="button">
-                          {{ $t("Complete_the_order")  }}
+                        <button class="button">
+                          {{ $t("Complete_the_order") }}
                         </button>
                       </form>
                       <p>{{ $t("agree_condision") }}</p>
@@ -417,7 +417,6 @@
 import { mapState } from "vuex";
 export default {
   mounted() {
-    
     if (this.$root.user) {
       this.$store.dispatch("address/index", { user_id: this.$root.user.id });
     } else {
@@ -457,8 +456,8 @@ export default {
     };
   },
   methods: {
-     validateAddress(){
-      document.getElementsById('dw').style.display = 'none'
+    validateAddress() {
+      document.getElementsById("dw").style.display = "none";
     },
     remove(item) {
       this.$store.dispatch("cart/removeItem", item);
@@ -495,8 +494,13 @@ export default {
           order_copy.taxed_total += this.total_shipment;
           order_copy.total_shipping = this.total_shipment;
         }
-
         await this.$store.dispatch("order/store", order_copy).then(() => {
+          this.order.items.map((item) => {
+            this.$store.dispatch("order_item/store", {
+              ...item,
+              order_id: this.order.id,
+            });
+          });
           let domain = `${process.env.URL || window.location.protocol}//${
             window.location.host
           }`;
@@ -505,18 +509,32 @@ export default {
           location.reload();
         });
       } else {
-        if (
-          !(
-            this.gust_order.customer_email &&
-            this.gust_order.customer_last_name &&
-            this.gust_order.customer_first_name &&
-            this.gust_order.customer_mobile
-          )
-        ) {
-          alert("complete the fields ");
+        // if (
+        //   !(
+        //     this.gust_order.customer_email &&
+        //     this.gust_order.customer_last_name &&
+        //     this.gust_order.customer_first_name &&
+        //     this.gust_order.customer_mobile
+        //   )
+        // ) {
+        //    this.$swal.fire({
+        //   title: this.$t('error'),
+        //   text: "complete the fields ",
+        //   icon: "error",
+        //   confirmButtonText: "ok",
+        //   confirmButtonColor: "#41b882",
+        // });
+        //   return;
+        // };
+        if (!this.selectedLocalAddress) {
+          this.$swal.fire({
+            title: this.$t("error"),
+            text: "choose an address",
+            icon: "error",
+            confirmButtonText: "ok",
+            confirmButtonColor: "#41b882",
+          });
           return;
-        } else if (!this.selectedLocalAddress) {
-          alert("choose an address");
         }
 
         let order = { ...this.gust_order };
@@ -530,7 +548,8 @@ export default {
           order.taxed_total += this.total_shipment;
           order.total_shipping = this.total_shipment;
         }
-        localStorage.removeItem("order");
+         localStorage.removeItem("order");
+        console.log(this.selectedLocalAddress);
         let newaddress = await this.$store.dispatch(
           "address/store",
           this.selectedLocalAddress
@@ -538,21 +557,25 @@ export default {
 
         if (newaddress) {
           order.address_id = newaddress.id;
-         await this.$store.dispatch("order/store", order).then((new_order) => {
+          order.customer_email = this.selectedLocalAddress.email;
+          order.customer_name = this.selectedLocalAddress.first_name;
+          order.customer_mobile = this.selectedLocalAddress.phone_number;
+          await this.$store.dispatch("order/store", order).then((new_order) => {
             this.order.items.map((item) => {
               this.$store
                 .dispatch("order_item/store", {
                   ...item,
                   order_id: new_order.id,
-                })
-                .then(() => {
+                });
+                
                   let domain = `${
                     process.env.URL || window.location.protocol
                   }//${window.location.host}`;
-                  window.open(`${domain}/complete-order/${new_order.id}`);
                   this.$router.push("/cart");
                   location.reload();
-                });
+                  window.location = `${domain}/complete-order/${new_order.id}`;
+                
+               
             });
           });
         }
@@ -574,7 +597,7 @@ export default {
           /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
       };
-      const email = this.gust_order.customer_email;
+      const email = item.email;
 
       if (validateEmail(email ?? "invalid")) {
         if (localStorage.getItem("address")) {
@@ -587,8 +610,8 @@ export default {
         this.localeAddresses = JSON.parse(localStorage.getItem("address"));
       } else {
         this.$swal.fire({
-          title: this.$t('error'),
-          text: this.$t('email_error'),
+          title: this.$t("error"),
+          text: this.$t("email_error"),
           icon: "error",
           confirmButtonText: "تم",
           confirmButtonColor: "#41b882",
@@ -601,20 +624,23 @@ export default {
         .dispatch("coupon/show", { id: this.item.coupon })
         .then((data) => {
           this.$store.dispatch("cart/setDiscount", data.value);
-            this.$swal.fire({
+          this.$swal.fire({
             title: this.$t("success"),
             text: this.$t("success"),
             icon: "success",
             confirmButtonText: this.$t("Ok"),
             confirmButtonColor: "#41b882",
           });
-        }).catch(err=>{ this.$swal.fire({
-          title: this.$t('error'),
-          text: this.$t('invalid code'),
-          icon: "error",
-          confirmButtonText: "تم",
-          confirmButtonColor: "#41b882",
-        });});
+        })
+        .catch((err) => {
+          this.$swal.fire({
+            title: this.$t("error"),
+            text: this.$t("invalid code"),
+            icon: "error",
+            confirmButtonText: "تم",
+            confirmButtonColor: "#41b882",
+          });
+        });
     },
     checkAddress(address) {
       this.my_address = address.id;
@@ -703,7 +729,6 @@ export default {
     },
   },
   watch: {
-   
     order: {
       handler(val) {
         if (val) {
