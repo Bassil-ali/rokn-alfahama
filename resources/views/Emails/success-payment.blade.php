@@ -217,6 +217,10 @@
                                                 width="100%">
                                                 <tr>
                                                     <th>
+                                                        {{ __('photo') }}
+                                                    </th>
+
+                                                    <th>
                                                         {{ __('item') }}
                                                     </th>
 
@@ -242,6 +246,9 @@
                                                 </tr>
                                                 @foreach ($order->items as $item)
                                                     <tr>
+                                                        <td>
+                                                            <img style="width: 10%;heigh:10%" src="{{$item->image}}">
+                                                        </td>
                                                         <td>
                                                             {{ $item->item_name }}
                                                         </td>
