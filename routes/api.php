@@ -5,6 +5,8 @@ use App\Http\Controllers\ChangePasswordController;
 
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\MostController;
+use App\Http\Controllers\ShowOrderItemController;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -48,5 +50,6 @@ Route::group([
 
 
 Route::get('/most',[MostController::class,'index']);
+Route::get('/orderitem',[ShowOrderItemController::class,'index'])->name('orderitem');
 Route::post('/send-reset-link', [ResetPasswordController::class, 'sendEmail']);
 Route::post('/reset-password', [ChangePasswordController::class, 'passwordResetProcess']);

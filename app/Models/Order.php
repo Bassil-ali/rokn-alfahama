@@ -88,9 +88,12 @@ class Order extends BaseModel
             'tax' => 0,
             'taxed_total' => 0,
             'status' => 0,
+            'item_quantity'=>0
+
         ];
 
         for ($i = 0; $i < count($items); $i++) {
+            $totlas['item_quantity'] +=$items[$i]['item_quantity'];
             $totlas['total'] += ($items[$i]['item_price'] * $items[$i]['item_quantity']);
             $totlas['discount'] +=  $items[$i]['discount'];
             if ($items[$i]['tax_id'] >= 1) {
@@ -114,4 +117,5 @@ class Order extends BaseModel
 
         return  $total;
     }
+    
 }
