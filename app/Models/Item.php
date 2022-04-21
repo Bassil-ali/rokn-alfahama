@@ -113,8 +113,13 @@ class Item extends BaseModel
 
         $query->when($request->most_liked, function ($query) {
             $query->whereRaw('items.id in (select item_id from reactions)')
-                ->orderBy('id');;
+                ->orderBy('id');
         });
+    }
+    public function scopeSimilar($query,$request){
+        if($request->category_id)
+        $query->where('category_id',$request->category_id);
+        
     }
     public function reactions()
     {
