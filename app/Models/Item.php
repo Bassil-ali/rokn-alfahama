@@ -117,8 +117,8 @@ class Item extends BaseModel
         });
     }
     public function scopeSimilar($query,$request){
-        if($request->category_id)
-        $query->where('category_id',$request->category_id);
+        if($request->category_id && $request->code)
+        $query->where('category_id',$request->category_id)->orWhere('code',$request->code);
         
     }
     public function reactions()
