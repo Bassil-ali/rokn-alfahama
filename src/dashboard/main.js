@@ -12,7 +12,6 @@ import './plugins/registrar'
 import ckeditor from './plugins/ckeditor';
 import mixins from './mixins/mixins';
 
-
 Vue.config.productionTip = false
 new Vue({
   mixins: [mixins],

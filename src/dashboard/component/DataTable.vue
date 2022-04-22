@@ -177,10 +177,19 @@ export default {
       this.$store.dispatch(`${module}/delete`, item);
     },
     navigate_to_form(item) {
+       if(this.module == 'order'){
+        this.$router.push(`/orders/show/${item.id}`);
+      }else{
+     
      if(this.module == 'discount'||this.module== 'coupon')
       this.$router.push(`${this.form_route}/${item.code}`);
       else
       this.$router.push(`${this.form_route}/${item.id}`);
+      }
+
+
+
+     
     },
   },
   watch: {

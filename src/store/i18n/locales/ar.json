@@ -495,7 +495,16 @@
   "order.addresses.country_region":"منطقة العميل", 
   "order.addresses.email" :"ايميل العميل",
   "order.addresses.phone_number":"رقم هاتف العميل",
-  "officer_email":"ايميل الموضف"
+  "officer_email":"ايميل الموضف",
+  "order.items.item_quantity":"الكمية",
+  "items.item_quantity":"الكمية",
+  "orders.show":"تفاصيل الطلب",
+  "item_name":"اسم المنتج",
+  "tax_percentage":"نسبة الضريبة",
+  "item price":"سعر المنتج"
+  
+
+
 
 
 

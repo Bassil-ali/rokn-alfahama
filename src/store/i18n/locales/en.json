@@ -474,7 +474,13 @@
   "order.addresses.country_region":"Customer country region", 
   "order.addresses.email" :"Customer email",
   "order.addresses.phone_number":"Customer phone number",
-  "officer_email":"officer email"
+  "officer_email":"officer email",
+  "order.items.item_quantity":"quantity",
+  "items.item_quantity":"quantity",
+   "orders.show":"order information",
+  "item_name":"order name",
+  "tax_percentage":"tax percentage",
+  "item price":"item price"
   
   
 

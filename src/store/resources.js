@@ -45,6 +45,13 @@ let resources = [
        // no_success_msg: true
     },
     {
+        name: 'orderitem',
+        parent: '',
+        headers: ['id', 'addresses.first_name', 'addresses.last_name', 'addresses.street_address', 'addresses.apt_suit_building', 'addresses.zip_code', 'addresses.city', 'addresses.country_region', 'addresses.email', 'addresses.phone_number', 'total', 'discount', 'tax', 'taxed_total', 'status', 'created_at'],
+        discreption: 'orders resource',
+        // no_success_msg: true
+    },
+    {
         name: 'item',
         parent: 'order',
         headers: ['order_id', 'item.name', 'quantity'],

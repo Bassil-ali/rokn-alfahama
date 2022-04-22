@@ -166,7 +166,7 @@ export default {
     ...mapState({
       // types: (state) => state.type.all,
       categories: (state) => state.category.all,
-      one: (state) => state.category.one,
+      one: (state) => state.category.one[0],
     }),
   },
   watch: {

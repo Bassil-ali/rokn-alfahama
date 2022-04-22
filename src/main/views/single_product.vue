@@ -233,13 +233,10 @@
               </div>
               <div class="col-md-3 left">
                 <!-- <div class="row"> -->
-                  <button
-                    class="
-                      button
-                     
-                    " @click="myFunction()">
-                    {{ $t("share product link") }}<i class="fas fa-sign-out-alt"></i>
-                  </button>
+                <button class="button" @click="myFunction()">
+                  {{ $t("share product link")
+                  }}<i class="fas fa-sign-out-alt"></i>
+                </button>
                 <!-- </div> -->
               </div>
 
@@ -343,6 +340,12 @@
                     </div>
                   </div>
                 </div>
+                <br />
+                <center>
+                  <a :href="`/main/category/${one.category_id}`" class="button">
+                    {{ $t("show more ") }}...
+                  </a>
+                </center>
               </div>
             </div>
           </div>
@@ -450,6 +453,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import carousel from "vue-owl-carousel2";
 import "viewerjs/dist/viewer.css";
@@ -506,10 +510,15 @@ export default {
       opacity: 0.7,
       zIndex: 999,
     });
+
     if (this.$route.params.id) {
       this.$store
         .dispatch("item/show", { id: this.$route.params.id })
         .then((data) => {
+          this.$store.dispatch("item/index", {
+            category_id: data.category_id,
+            code: data.code,
+          });
           loader.hide();
         });
       this.$store.dispatch("property/index", {
