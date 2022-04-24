@@ -133,9 +133,8 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("item/index");
-    console.log("this.$route.params");
-
+    this.$store.dispatch("item/index",{ per_page: -1 });
+     //console.log("this.$route.params");
     if (this.$route.params.id) {
       this.$store.dispatch("offer/show", { id: this.$route.params.id });
       this.$store.dispatch("offer_item/index", {

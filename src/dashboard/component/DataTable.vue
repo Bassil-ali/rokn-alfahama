@@ -5,8 +5,20 @@
         ><v-card-title>
           {{ $t("are you sure you want to delete") }} ?
         </v-card-title>
-        <v-card-actions class="justify-center">
+        <v-card-actions class="justify-center"
+        >
           <v-btn
+            v-if="this.delete_item.length >= 1"
+            @click="
+              delete_all();
+              dialog = false;
+            "
+            class="warning"
+          >
+            {{ $t("yes") }}
+          </v-btn>
+           <v-btn
+            v-else
             @click="
               remove(module, globalItem);
               dialog = false;
@@ -61,7 +73,10 @@
           hide-details
         ></v-text-field>
         <v-btn class="ma-2" color="success" @click="exportxclx">
-         {{$t('export_excl')}}
+          {{ $t("export_excl") }}
+        </v-btn>
+        <v-btn class="ma-2" color="error" @click="dialog = true;">
+          {{ $t("multi delete") }}
         </v-btn>
         <!-- <v-btn icon @click="expordt(data)">few</v-btn> -->
       </template>
@@ -70,26 +85,29 @@
       /></template>
 
       <template v-slot:item.actions="{ item }">
-        <v-btn
-          icon
-          @click="
-            dialog = true;
-            globalItem = item;
-          "
-        >
-          <v-icon> fas fa-times</v-icon>
-        </v-btn>
-        <v-btn icon @click="navigate_to_form(item)">
-          <v-icon> fas fa-edit</v-icon>
-        </v-btn>
+        <v-row>
+          <v-btn
+            icon
+            @click="
+              dialog = true;
+              globalItem = item;
+            "
+          >
+            <v-icon> fas fa-times</v-icon>
+          </v-btn>
+
+          <v-btn icon @click="navigate_to_form(item)">
+            <v-icon> fas fa-edit</v-icon>
+          </v-btn>
+          <v-checkbox
+            style="margin-top: 4px"
+            color="red"
+            hide-details
+            @change="multi_delete(item.id)"
+          ></v-checkbox>
+        </v-row>
       </template>
     </v-data-table>
-    <v-pagination
-      v-model="options.page"
-      :length="meta.last_page"
-      circle
-      color="primary"
-    ></v-pagination>
   </div>
 </template>
 <script>
@@ -106,6 +124,7 @@ export default {
     return {
       globalItem: {},
       search: "",
+      delete_item: [],
       dialog: false,
       options: {
         sortBy: [],
@@ -137,6 +156,15 @@ export default {
     }),
   },
   methods: {
+    delete_all(){
+      if(this.delete_item.length >= 1){
+         this.delete_item.forEach(element => {
+            this.$store.dispatch(`${this.module}/delete`, {id:element});
+         });
+         this.delete_item = [];
+        // window.location.reload()
+      }
+    },
     exportxclx() {
       let data = this.data;
       // this will be export a excel and the file's name is user-info-data.xlsx
@@ -176,20 +204,22 @@ export default {
     remove(module, item) {
       this.$store.dispatch(`${module}/delete`, item);
     },
+    multi_delete(id) {
+     if(!this.delete_item.includes(id)){
+       this.delete_item.push(id)
+    } else {
+        this.delete_item.splice(this.delete_item.indexOf(id),1)
+    }
+    console.log(this.delete_item);
+    },
     navigate_to_form(item) {
-       if(this.module == 'order'){
+      if (this.module == "order") {
         this.$router.push(`/orders/show/${item.id}`);
-      }else{
-     
-     if(this.module == 'discount'||this.module== 'coupon')
-      this.$router.push(`${this.form_route}/${item.code}`);
-      else
-      this.$router.push(`${this.form_route}/${item.id}`);
+      } else {
+        if (this.module == "discount" || this.module == "coupon")
+          this.$router.push(`${this.form_route}/${item.code}`);
+        else this.$router.push(`${this.form_route}/${item.id}`);
       }
-
-
-
-     
     },
   },
   watch: {

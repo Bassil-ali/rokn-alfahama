@@ -7,7 +7,7 @@
       title="offers table"
       class="px-5 py-3"
     >
-      <v-btn icon fab large dark color="red" to="/items/form">
+      <v-btn icon fab large dark color="red" to="/offers/form">
         <v-icon large> fas fa-plus </v-icon>
       </v-btn>
       <data-table module="offer" :params="{}" />

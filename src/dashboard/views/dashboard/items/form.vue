@@ -588,9 +588,8 @@ export default {
      
       item.cover_image_id = cover_image_id;
       if (item.id) {
-        ("start update ");
          if (item.rank) {
-              this.$store.dispatch("item_rank/update",{item_id: item.id,rank: item.rank});
+              this.$store.dispatch("item_rank/store",{edit:1,item_id: item.id,rank: item.rank});
             }
         if (this.images.length > 0) {
           this.images.map((image) => {
