@@ -28,6 +28,14 @@ class ItemRankController extends BaseController
     }
     public function store(Request $request, Item $item)
     {
+        if($request->edit == 1){
+            Rank::where('item_id',$request->item_id)->update([
+                'rank' => $request->rank
+            ]);
+
+            return true;
+
+        }
         if(!$this->user->is_permitted_to('store',Rank::class,$request))
             return response()->json(['message'=>'not_permitted'],422);
 
@@ -53,8 +61,8 @@ class ItemRankController extends BaseController
     }
     public function update(Request $request, Item $item, Rank $rank)
     {
-        if(!$this->user->is_permitted_to('update',Rank::class,$request))
-            return response()->json(['message'=>'not_permitted'],422);
+        // if(!$this->user->is_permitted_to('update',Rank::class,$request))
+        //     return response()->json(['message'=>'not_permitted'],422);
         $validator = Validator::make($request->all(),Rank::updateRules($this->user));
         if($validator->fails()){
             return response()->json(['errors'=>$validator->errors()],422);
