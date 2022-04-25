@@ -274,7 +274,7 @@
   "do_you_have_question": "do you have a question ?",
   "subject": "Subject",
   "follow_us_on": "Follow us on",
-  "status": "Satus",
+  "status": "status",
   "order_date": "Order Date",
   "details": "details",
   "Favorite": "Favorite",
@@ -480,7 +480,8 @@
    "orders.show":"order information",
   "item_name":"order name",
   "tax_percentage":"tax percentage",
-  "item price":"item price"
+  "item price":"item price",
+  "update_status":"update status"
   
   
 

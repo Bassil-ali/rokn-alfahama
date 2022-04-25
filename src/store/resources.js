@@ -143,7 +143,7 @@ let resources = [
         name: 'payment',
         form_route: '/payments/form',
         parent: '',
-        headers: ['order_id', 'order.addresses.first_name', 'order.addresses.last_name', 'order.addresses.street_address', 'order.addresses.apt_suit_building', 'order.addresses.zip_code', 'order.addresses.city', 'order.addresses.country_region', 'order.addresses.email', 'order.addresses.phone_number', 'order.discount', 'date', 'status', 'amount', 'created_at'],
+        headers: ['order_id', 'status', 'order.addresses.first_name', 'order.addresses.last_name', 'order.addresses.street_address', 'order.addresses.apt_suit_building', 'order.addresses.zip_code', 'order.addresses.city', 'order.addresses.country_region', 'order.addresses.email', 'order.addresses.phone_number', 'order.discount', 'date', 'amount', 'created_at'],
         discreption: 'payment resource'
     },
     {

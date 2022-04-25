@@ -5,8 +5,7 @@
         ><v-card-title>
           {{ $t("are you sure you want to delete") }} ?
         </v-card-title>
-        <v-card-actions class="justify-center"
-        >
+        <v-card-actions class="justify-center">
           <v-btn
             v-if="this.delete_item.length >= 1"
             @click="
@@ -17,7 +16,7 @@
           >
             {{ $t("yes") }}
           </v-btn>
-           <v-btn
+          <v-btn
             v-else
             @click="
               remove(module, globalItem);
@@ -35,7 +34,14 @@
     </v-dialog>
 
     <v-data-table
-      :headers="translateHeaders((headers || []).concat('actions'))"
+      :headers="
+        translateHeaders(
+          (headers || []).concat(
+            $route.name == 'orders' ? 'update_status' : '',
+            'actions'
+          )
+        )
+      "
       :items="data || []"
       :options.sync="options"
       :page.sync="options.page"
@@ -75,7 +81,7 @@
         <v-btn class="ma-2" color="success" @click="exportxclx">
           {{ $t("export_excl") }}
         </v-btn>
-        <v-btn class="ma-2" color="error" @click="dialog = true;">
+        <v-btn class="ma-2" color="error" @click="dialog = true">
           {{ $t("multi delete") }}
         </v-btn>
         <!-- <v-btn icon @click="expordt(data)">few</v-btn> -->
@@ -83,6 +89,82 @@
       <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"
         ><slot :name="slot" v-bind="scope"
       /></template>
+
+      <template v-if="$route.name == 'orders'" v-slot:item.status="{ item }">
+        <tr>
+          <td
+            v-if="item.status == '1'"
+            style="background-color: #98bb2f"
+            class="custom-class"
+          >
+            {{ $t("Delivery") }}
+          </td>
+          <td
+            v-if="item.status == '2'"
+            style="background-color: rgb(187 86 47)"
+            class="custom-class"
+          >
+            {{ $t("canceled") }}
+          </td>
+          <td
+            v-if="item.status == '3'"
+            style="background-color: rgb(56 187 47)"
+            class="custom-class"
+          >
+            {{ $t("complete") }}
+          </td>
+          <td
+            v-if="item.status == '0'"
+            style="background-color: rgb(116 139 141)"
+            class="custom-class"
+          >
+            {{ $t("no payment") }}
+          </td>
+        </tr>
+      </template>
+      <template
+        v-if="$route.name == 'orders'"
+        v-slot:item.update_status="{ item }"
+      >
+        <v-col>
+          <v-btn
+            style="margin-bottom: 3px"
+            @click="update_status(item,1)"
+            small
+            color="warning"
+            dark
+          >
+            {{ $t("Delivery") }}
+          </v-btn>
+          <v-btn
+            style="margin-bottom: 3px"
+            @click="update_status(item,0)"
+            small
+            color="secondary"
+            dark
+          >
+            {{ $t("no payment") }}
+          </v-btn>
+          <v-btn
+            style="margin-bottom: 3px"
+            @click="update_status(item,2)"
+            small
+            color="error"
+            dark
+          >
+            {{ $t("canceled") }}
+          </v-btn>
+          <v-btn
+            style="margin-bottom: 3px"
+            @click="update_status(item,3)"
+            small
+            color="success"
+            dark
+          >
+            {{ $t("complete") }}
+          </v-btn>
+        </v-col>
+      </template>
 
       <template v-slot:item.actions="{ item }">
         <v-row>
@@ -156,12 +238,18 @@ export default {
     }),
   },
   methods: {
-    delete_all(){
-      if(this.delete_item.length >= 1){
-         this.delete_item.forEach(element => {
-            this.$store.dispatch(`${this.module}/delete`, {id:element});
-         });
-         this.delete_item = [];
+    update_status(item,status){
+      console.log(item);
+      item.status = status;
+      this.$store.dispatch("order/update",{id:item.id,status:status,update_status:1});
+      
+    },
+    delete_all() {
+      if (this.delete_item.length >= 1) {
+        this.delete_item.forEach((element) => {
+          this.$store.dispatch(`${this.module}/delete`, { id: element });
+        });
+        this.delete_item = [];
         // window.location.reload()
       }
     },
@@ -205,12 +293,12 @@ export default {
       this.$store.dispatch(`${module}/delete`, item);
     },
     multi_delete(id) {
-     if(!this.delete_item.includes(id)){
-       this.delete_item.push(id)
-    } else {
-        this.delete_item.splice(this.delete_item.indexOf(id),1)
-    }
-    console.log(this.delete_item);
+      if (!this.delete_item.includes(id)) {
+        this.delete_item.push(id);
+      } else {
+        this.delete_item.splice(this.delete_item.indexOf(id), 1);
+      }
+      console.log(this.delete_item);
     },
     navigate_to_form(item) {
       if (this.module == "order") {

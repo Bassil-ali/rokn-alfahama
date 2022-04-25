@@ -502,7 +502,8 @@
   "item_name":"اسم المنتج",
   "tax_percentage":"نسبة الضريبة",
   "item price":"سعر المنتج",
-  "multi delete": "حذف متعدد"
+  "multi delete": "حذف متعدد",
+  "update_status":"تحديث الحالة"
   
 
 
