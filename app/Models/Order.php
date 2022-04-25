@@ -46,7 +46,7 @@ class Order extends BaseModel
     public static function updateRules($user)
     {
         return [
-            'user_id' => 'required_without:customer_last_name,customer_first_name,customer_mobile,customer_email|exists:users,id',
+             'user_id' => 'required_without:customer_last_name,customer_first_name,customer_mobile,customer_email|exists:users,id',
             'customer_name' => 'required_without:user_id',
             'customer_mobile' => 'required_without:user_id',
             'customer_email' => 'required_without:user_id',
@@ -57,8 +57,8 @@ class Order extends BaseModel
             'discount' => 'sometimes|numeric',
             'tax' => 'sometimes|numeric',
             'taxed_total' => 'sometimes|numeric',
-            'status' => 'sometimes|in:0,1,128,255',
-            'currency_id' => 'sometimes|exists:currencies,id',
+            'status' => 'sometimes',
+            'currency_id' => 'sometimes',
             'address_id' => 'sometimes|exists:addresses,id'
         ];
     }

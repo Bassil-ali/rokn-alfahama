@@ -55,6 +55,12 @@ class OrderController extends BaseController
     {
         // if (!$this->user->is_permitted_to('update', Order::class, $request))
         //     return response()->json(['message' => 'not_permitted'], 422);
+        if($request->update_status == 1){
+           $order->update([
+               'status'=>$request->status
+           ]);
+           return true;
+        }
         $validator = Validator::make($request->all(), Order::updateRules($this->user));
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
