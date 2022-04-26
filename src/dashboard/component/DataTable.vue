@@ -137,7 +137,7 @@
           <td
             v-if="item.status == '1'"
             style="background-color: #98bb2f"
-            class="custom-class"
+            
           >
             {{ $t("Delivery") }}
           </td>
@@ -170,7 +170,7 @@
       >
         <v-col>
           <v-btn
-            class="btn-search"
+            style="margin-bottom:3px"
             @click="update_status(item,1)"
             small
             color="warning"
@@ -179,7 +179,7 @@
             {{ $t("Delivery") }}
           </v-btn>
           <v-btn
-            class="btn-search"
+            style="margin-bottom:3px"
             @click="update_status(item,0)"
             small
             color="secondary"
@@ -188,7 +188,7 @@
             {{ $t("no payment") }}
           </v-btn>
           <v-btn
-            class="btn-search"
+            style="margin-bottom:3px"
             @click="update_status(item,2)"
             small
             color="error"
@@ -197,7 +197,7 @@
             {{ $t("canceled") }}
           </v-btn>
           <v-btn
-            class="btn-search"
+            style="margin-bottom:3px"
             @click="update_status(item,3)"
             small
             color="success"
@@ -232,6 +232,12 @@
         </v-row>
       </template>
     </v-data-table>
+     <v-pagination
+      v-model="options.page"
+      :length="meta.last_page"
+      circle
+      color="primary"
+    ></v-pagination>
   </div>
 </template>
 <script>
