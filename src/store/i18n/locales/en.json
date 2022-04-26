@@ -481,7 +481,12 @@
   "item_name":"order name",
   "tax_percentage":"tax percentage",
   "item price":"item price",
-  "update_status":"update status"
+  "update_status":"update status",
+  "FILTER BY :":"FILTER BY : ",
+  "Delivery":"Delivery",
+  "no payment":"no payment",
+  "canceled":"canceled",
+  "complete":"complete"
   
   
 

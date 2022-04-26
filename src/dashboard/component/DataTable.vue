@@ -71,6 +71,7 @@
               </template>
             </v-text-field>
             <v-spacer></v-spacer> -->
+      
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
@@ -84,6 +85,47 @@
         <v-btn class="ma-2" color="error" @click="dialog = true">
           {{ $t("multi delete") }}
         </v-btn>
+        <template v-if="$route.name == 'orders'">
+          {{$t('FILTER BY :')}}
+          <v-btn
+          
+            style="margin-right: 3px"
+            @click="filter_status(1)"
+            small
+            color="warning"
+            dark
+          >
+            {{ $t("Delivery") }}
+          </v-btn>
+          <v-btn
+            style="margin-right: 3px"
+            @click="filter_status(0)"
+            small
+            color="secondary"
+            dark
+          >
+            {{ $t("no payment") }}
+          </v-btn>
+          <v-btn
+            style="margin-right: 3px"
+            @click="filter_status(2)"
+            small
+            color="error"
+            dark
+          >
+            {{ $t("canceled") }}
+          </v-btn>
+          <v-btn
+            style="margin-right: 3px"
+            @click="filter_status(3)"
+            small
+            color="success"
+            dark
+          >
+            {{ $t("complete") }}
+          </v-btn>
+          </template>
+
         <!-- <v-btn icon @click="expordt(data)">few</v-btn> -->
       </template>
       <template v-for="(_, slot) of $scopedSlots" v-slot:[slot]="scope"
@@ -104,7 +146,7 @@
             style="background-color: rgb(187 86 47)"
             class="custom-class"
           >
-            {{ $t("canceled") }}
+            {{  $t("canceled") }}
           </td>
           <td
             v-if="item.status == '3'"
@@ -128,7 +170,7 @@
       >
         <v-col>
           <v-btn
-            style="margin-bottom: 3px"
+            class="btn-search"
             @click="update_status(item,1)"
             small
             color="warning"
@@ -137,7 +179,7 @@
             {{ $t("Delivery") }}
           </v-btn>
           <v-btn
-            style="margin-bottom: 3px"
+            class="btn-search"
             @click="update_status(item,0)"
             small
             color="secondary"
@@ -146,7 +188,7 @@
             {{ $t("no payment") }}
           </v-btn>
           <v-btn
-            style="margin-bottom: 3px"
+            class="btn-search"
             @click="update_status(item,2)"
             small
             color="error"
@@ -155,7 +197,7 @@
             {{ $t("canceled") }}
           </v-btn>
           <v-btn
-            style="margin-bottom: 3px"
+            class="btn-search"
             @click="update_status(item,3)"
             small
             color="success"
@@ -238,11 +280,13 @@ export default {
     }),
   },
   methods: {
+    filter_status(status){
+      this.$store.dispatch("order/index",{status_filter:status});
+
+    },
     update_status(item,status){
-      console.log(item);
-      item.status = status;
       this.$store.dispatch("order/update",{id:item.id,status:status,update_status:1});
-      
+    
     },
     delete_all() {
       if (this.delete_item.length >= 1) {
@@ -333,3 +377,4 @@ export default {
   },
 };
 </script>
+
