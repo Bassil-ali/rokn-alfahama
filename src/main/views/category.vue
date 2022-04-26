@@ -331,6 +331,7 @@ export default {
   data() {
     return {
       per_page: null,
+      pagination_page:null,
       value_2: [0, 3000],
       lowest_price: { lowest_price: true },
       highest_price: { highest_price: true },
@@ -338,6 +339,7 @@ export default {
       testtype: null,
       toggle: null,
       myNavbar: null,
+      selected_category_not_page:{},
       selected_category: {},
       selected_global_category: {},
       my_categories: {},
@@ -348,6 +350,8 @@ export default {
     window.onpopstate = function(event) {
        location.reload();
    };
+   this.pagination_page =  localStorage.getItem('page');
+
     this.$store.dispatch("category/index", { null_parent_id: true });
     this.toggle = document.getElementById("toggle");
     this.myNavbar = document.getElementById("primary-menu");
@@ -382,19 +386,20 @@ export default {
               this.$store
                 .dispatch("item/index", {
                   category_ids: this.selected_category_items,
+                  page: this.pagination_page?this.pagination_page:1,
                 })
                 .then((data) => {
                   loader.hide();
                 });
             }
           } else {
-            this.selected_category = category[0];
+            this.selected_category_not_page = category[0];
             loader.hide();
 
           }
         });
     } else {
-      this.$store.dispatch("item/index", { per_page: 15 }).then((data) => {
+      this.$store.dispatch("item/index", { per_page: 15,page:this.pagination_page?this.pagination_page:1, }).then((data) => {
         loader.hide();
       });
     }
@@ -415,6 +420,7 @@ export default {
   watch: {
    
     per_page(val) {
+     
       let loader = this.$loading.show({
         canCancel: false, // default false
         color: "#7c4707",
@@ -431,7 +437,39 @@ export default {
           loader.hide();
         });
     },
+    selected_category_not_page(val){
+      if(this.$route.params.id)
+      this.$router.push(`${this.$route.params.id}`);
+      else
+      this.$router.push(`category/${this.$route.params.id}`);
+
+      let loader = this.$loading.show({
+        canCancel: false, // default false
+        color: "#7c4707",
+        loader: "spinner",
+        width: 64,
+        height: 64,
+        backgroundColor: "#ffffff",
+        opacity: 0.7,
+        zIndex: 999,
+      });
+      if (val) {
+        this.selected_category_items = null;
+        //  this.my_categories =  this.my_categories.filter()
+        this.$store
+          .dispatch("item/index", {
+            category_id: val.id,
+            page: this.pagination_page?this.pagination_page:1,
+          })
+          .then((data) => {
+            loader.hide();
+          });
+      }
+      this.selected_category.items_count = this.selected_category_not_page.items_count;
+    },
     selected_category(val) {
+      localStorage.removeItem('page');
+      this.pagination_page = null;
       if(this.$route.params.id)
       this.$router.push(`${this.selected_category.id}`);
       else
@@ -453,6 +491,7 @@ export default {
         this.$store
           .dispatch("item/index", {
             category_id: val.id,
+            page: this.pagination_page?this.pagination_page:1,
           })
           .then((data) => {
             loader.hide();
@@ -467,6 +506,7 @@ export default {
   },
   methods: {
     to_page(i) {
+      localStorage.setItem('page',i);
       let loader = this.$loading.show({
         canCancel: false, // default false
         color: "#7c4707",
