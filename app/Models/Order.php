@@ -76,6 +76,10 @@ class Order extends BaseModel
             $query->where('status', '=', request('status'))->where('id', '=', request('id'));
         });
     }
+    public function scopeStatus($query, $request){
+        if($request->status_filter != null)
+        $query->where('status',$request->status_filter);
+    }
     public function getItemsCountAttribute()
     {
         return $this->items()->count();
