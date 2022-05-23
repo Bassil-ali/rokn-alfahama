@@ -146,6 +146,7 @@ class Payment extends BaseModel
                 Mail::to($myOrder->customer_email ??  $myOrder->user->email)->send(new ErrorPaymentMail($this));
                 Mail::to(Setting::where('key','officer_email')->value('value')??$myOrder->user->email)->send(new ErrorPaymentMail($this));
                 return ["status" => 500, "messages" => "Transaction Failed "];
+                
             }
         } else {
             return ["status" => 404, "messages" => "No response returned "];
