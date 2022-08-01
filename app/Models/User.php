@@ -99,8 +99,8 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
             'mobile' => 'required|min:11|numeric|unique:users,mobile',
             'status' => 'somtimes|integer',
             'password' => 'required|min:6',
-            'permissions' => 'required',
-            'role_id'=>"required"
+            'permissions' => 'somtimes',
+            'role_id'=>"somtimes"
         ];
     }
     public static function updateRules($request, $user)

@@ -21,8 +21,12 @@ class CategoryController extends BaseController
     }
     public function index(Request $request)
     {
+        if($request->per_page =-1){
+            return CategoryResource::collection(Category::with('children')->search($request)->sort($request)->get());
+        }else{
 
-        return CategoryResource::collection(Category::search($request)->sort($request)->with('children')->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
+        return CategoryResource::collection(Category::with('children')->search($request)->sort($request)->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
+        }
     }
     public function store(Request $request)
     {

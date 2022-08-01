@@ -20,7 +20,12 @@ class ColorController extends BaseController
     }
     public function index(Request $request)
     {
+        if($request->per_page =-1){
+        return ColorResource::collection(Color::search($request)->sort($request)->get());
+
+        }else{
         return ColorResource::collection(Color::search($request)->sort($request)->paginate((request('per_page')??request('itemsPerPage'))??15));
+        }
     }
     public function store(Request $request)
     {

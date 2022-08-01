@@ -19,7 +19,13 @@ class UnitController extends BaseController
     }
     public function index(Request $request)
     {
-        return UnitResource::collection(Unit::search($request)->sort($request)->latest()->paginate((request('per_page')??request('itemsPerPage'))??15));
+        if($request->per_page =-1){
+            return UnitResource::collection(Unit::search($request)->sort($request)->latest()->get());
+
+        }else{
+            return UnitResource::collection(Unit::search($request)->sort($request)->latest()->paginate((request('per_page')??request('itemsPerPage'))??15));
+
+        }
     }
     public function store(Request $request)
     {

@@ -19,7 +19,12 @@ class TaxController extends BaseController
     }
     public function index(Request $request)
     {
+        if($request->per_page =-1){
+            return TaxResource::collection(Tax::search($request)->sort($request)->latest()->get());
+
+        }else{
         return TaxResource::collection(Tax::search($request)->sort($request)->latest()->paginate((request('per_page')??request('itemsPerPage'))??15));
+        }
     }
     public function store(Request $request)
     {

@@ -20,7 +20,13 @@ class SizeController extends BaseController
     }
     public function index(Request $request)
     {
-        return SizeResource::collection(Size::search($request)->sort($request)->paginate((request('per_page')??request('itemsPerPage'))??15));
+        if($request->per_page =-1){
+            return SizeResource::collection(Size::search($request)->sort($request)->get());
+
+        }else{
+            return SizeResource::collection(Size::search($request)->sort($request)->paginate((request('per_page')??request('itemsPerPage'))??15));
+
+        }
     }
     public function store(Request $request)
     {
