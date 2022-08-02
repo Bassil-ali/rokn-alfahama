@@ -51,7 +51,6 @@
       :sort-desc.sync="options.sortDesc"
       multi-sort
       v-bind="$attrs"
-      :search="search"
       v-on="$listeners"
     >
       <template v-slot:top>
@@ -72,9 +71,10 @@
             </v-text-field>
             <v-spacer></v-spacer> -->
       
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
+        <v-text-field v-if="$route.name != 'order' || $route.name != 'payment'"
+          @keyup.enter="searching"
+           v-model="search"
+           append-icon="mdi-magnify"
           label="Search"
           single-line
           hide-details
