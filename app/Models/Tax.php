@@ -26,4 +26,12 @@ class Tax extends BaseModel
             'percentage'=>'required|numeric'
         ];
     }
+
+    public function scopeSearch($query, $request)
+    {
+        $query->when($request->search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%");
+            
+        });
+    }
 }

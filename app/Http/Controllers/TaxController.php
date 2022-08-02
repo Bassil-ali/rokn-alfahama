@@ -19,7 +19,7 @@ class TaxController extends BaseController
     }
     public function index(Request $request)
     {
-        if($request->per_page =-1){
+        if($request->per_page ==-1){
             return TaxResource::collection(Tax::search($request)->sort($request)->latest()->get());
 
         }else{

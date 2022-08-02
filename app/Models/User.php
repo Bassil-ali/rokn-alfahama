@@ -122,6 +122,14 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     }
     public function scopeSearch($query, $request)
     {
+        $query->when($request->search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%")
+            ->orWhere('role_id','like',"%{$search}%")
+            ->orWhere('name','like',"%{$search}%")
+            ->orWhere('user_name','like',"%{$search}%")
+            ->orWhere('email','like',"%{$search}%")
+            ->orWhere('mobile','like',"%{$search}%");
+        });
     }
     public function scopeSort($query, $request)
     {
@@ -164,4 +172,5 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     {
         return $this->reactions()->count();
     }
+   
 }

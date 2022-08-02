@@ -48,4 +48,14 @@ class Offer extends BaseModel
     {
         return $this->hasManyThrough(Item::class, OfferItem::class, 'offer_id', 'id', 'id', 'item_id');
     }
+
+    public function scopeSearch($query, $request)
+    {
+        $query->when($request->search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%")
+            ->orWhere('percentage', 'like', "%{$search}%");
+
+            
+        });
+    }
 }

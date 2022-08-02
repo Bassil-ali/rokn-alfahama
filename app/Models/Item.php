@@ -96,7 +96,9 @@ class Item extends BaseModel
         });
         $query->when($request->search, function ($query, $search) {
             $local = app()->getLocale();
-            $query->where('name->' . "$local", 'like', "%{$search}%");
+            $query->where('name->' . "$local", 'like', "%{$search}%")
+            ->orWhere('code','like',"%{$search}%")
+            ->orWhere('quantity','like',"%{$search}%");
         });
         $query->when($request->slider, function ($query, $slider) {
             $query->whereBetween('selling_price', $slider);

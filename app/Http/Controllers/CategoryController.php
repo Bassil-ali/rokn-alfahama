@@ -21,7 +21,7 @@ class CategoryController extends BaseController
     }
     public function index(Request $request)
     {
-        if($request->per_page =-1){
+        if($request->per_page ==-1){
             return CategoryResource::collection(Category::with('children')->search($request)->sort($request)->get());
         }else{
 

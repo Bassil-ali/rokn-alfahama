@@ -23,4 +23,12 @@ class Unit extends BaseModel
         return [
         ];
     }
+    public function scopeSearch($query, $request)
+    {
+        $query->when($request->search, function ($query, $search) {
+            $local = app()->getLocale();
+            $query->where('name->' . "$local", 'like', "%{$search}%");
+            
+        });
+    }
 }

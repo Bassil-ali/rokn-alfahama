@@ -39,4 +39,14 @@ class ContactUs extends BaseModel
             'message' => 'required',
         ];
     }
+    public function scopeSearch($query, $request)
+    {
+        $query->when($request->search, function ($query, $search) {
+            $query->where('name', 'like', "%{$search}%")
+            ->orWhere('subject','like',"%{$search}%")
+            ->orWhere('message','like',"%{$search}%")
+            ->orWhere('email','like',"%{$search}%");
+
+        });
+    }
 }

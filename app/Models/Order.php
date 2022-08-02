@@ -75,6 +75,7 @@ class Order extends BaseModel
         $query->when(($request->status != null && $request->id), function ($query) {
             $query->where('status', '=', request('status'))->where('id', '=', request('id'));
         });
+
     }
     public function scopeStatus($query, $request){
         if($request->status_filter != null)
@@ -121,5 +122,7 @@ class Order extends BaseModel
 
         return  $total;
     }
+
+    
     
 }
