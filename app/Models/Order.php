@@ -76,6 +76,17 @@ class Order extends BaseModel
             $query->where('status', '=', request('status'))->where('id', '=', request('id'));
         });
 
+        $query->when($request->search, function ($query, $search) {
+            $query->where('total', 'like', "%{$search}%")
+            ->orWhere('total_shipping', 'like', "%{$search}%")
+            ->orWhere('discount', 'like', "%{$search}%")
+            ->orWhere('tax', 'like', "%{$search}%")
+            ->orWhere('status', 'like', "%{$search}%")
+            ->orWhere('id', 'like', "%{$search}%");
+
+    });
+
+
     }
     public function scopeStatus($query, $request){
         if($request->status_filter != null)
