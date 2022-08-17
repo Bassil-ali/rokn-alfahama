@@ -239,8 +239,8 @@
             ><v-btn @click="removeShipment(index, shipment)" icon>
               <v-icon> fac fa-times </v-icon>
             </v-btn></v-col
-          > 
-           -->
+          >  -->
+          
         </v-row>
       </v-form>
     </base-material-card>
@@ -545,6 +545,19 @@ export default {
       });
     }
   },
+   computed: {
+    ...mapState({
+      categories: (state) => state.category.all,
+      units: (state) => state.unit.all,
+      taxes: (state) => state.tax.all,
+      one: (state) => state.item.one,
+      colors: (state) => state.color.all,
+      sizes: (state) => state.size.all,
+      all_properties: (state) => state.property.all,
+      shippings: (state) => state.shipping.all,
+      shippinga: (state) => state.shippinga.all,
+    }),
+  },
   methods: {
     addProperty() {
       this.properties.push({});
@@ -556,10 +569,16 @@ export default {
     removeProperty(index, item) {
       this.properties.splice(index, 1);
       this.$store.dispatch("property/delete", item);
+      document.location = `/dashboard/items/form/`+this.$route.params.id;
+     
+      
     },
-    // removeShipment(index, item) {
-    //   this.properties.splice(index, 1);
-    //   this.$store.dispatch("shipping/delete", item);
+    // removeShipment(index, shipment) {
+    //   this.shipments.splice(index, 1);
+    //   console.log(shipment);
+    //   this.$store.dispatch("shippinga/delete", shipment);
+    //   //document.location = `/dashboard/items/form/`+this.$route.params.id;
+
     // },
     get_url(image) {
       return typeof image.url != "string"
@@ -604,10 +623,15 @@ export default {
         }
         if (this.properties.length > 0) {
           this.properties.map((property) => {
-            property.item_id = item.id;
+            if (property.item_id > 0) {
+              this.$store.dispatch("property/update", property);
+            } else {
+               property.item_id = item.id;
+              this.$store.dispatch("property/store", this.properties);
+            }
           });
-          // console.log(this.properties);
-          this.$store.dispatch("property/store", this.properties);
+         
+         
         }
         if (this.shipments[0]) {
           this.shipments.map((shipment) => {
@@ -682,19 +706,7 @@ export default {
    
   },
 
-  computed: {
-    ...mapState({
-      categories: (state) => state.category.all,
-      units: (state) => state.unit.all,
-      taxes: (state) => state.tax.all,
-      one: (state) => state.item.one,
-      colors: (state) => state.color.all,
-      sizes: (state) => state.size.all,
-      all_properties: (state) => state.property.all,
-      shippings: (state) => state.shipping.all,
-      shippinga: (state) => state.shippinga.all,
-    }),
-  },
+ 
   watch: {
     one(val) {
       if (val) {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-dialog width="fit-content" v-model="dialog">
-      <v-card width="500"></v-card>
+      <v-card width="500">
         <v-card-title>
           {{ $t("are you sure you want to delete") }} ?
         </v-card-title>
@@ -23,6 +23,7 @@
           </v-btn>
         </v-card-actions>
       </v-card>
+      
     </v-dialog>
 
     <v-data-table :headers="

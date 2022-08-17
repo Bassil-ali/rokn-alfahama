@@ -159,6 +159,11 @@ const actions = {
     }, discount) {
         commit('set_discount', discount);
     },
+    setDiscountCoupon({
+        commit
+    }, discount) {
+        commit('set_discount_coupon', discount);
+    },
     loadLocal({ state, dispatch }) {
         let order = JSON.parse(localStorage.getItem("order"))
         state.order = order;
@@ -247,6 +252,11 @@ const mutations = {
     },
     set_discount: (state, discount) => {
         state.order.items.map(i => i.discount = discount);
+        
+    },
+    set_discount_coupon: (state, discount) => {
+        
+        state.order.items.map(i => i.discount = (discount/100 * i.item_price) );
         
     },
     set_draft_order(state, draft_orders) {

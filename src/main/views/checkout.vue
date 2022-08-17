@@ -485,7 +485,7 @@ export default {
         delete order_copy.items;
 
         order_copy.due_date = this.getTime();
-        order_copy.status = 1;
+        order_copy.status = 0;
         order_copy.taxed_total = this.totals.total_taxed;
         order_copy.discount = this.totals.discount;
         order_copy.total = this.totals.total;
@@ -540,7 +540,7 @@ export default {
         let order = { ...this.gust_order };
         order.due_date = this.getTime();
         order.issue_date = this.getTime();
-        order.status = 1;
+        order.status = 0;
         order.taxed_total = this.totals.total_taxed;
         order.discount = this.totals.discount;
         order.total = this.totals.total;
@@ -623,7 +623,7 @@ export default {
       this.$store
         .dispatch("coupon/show", { id: this.item.coupon })
         .then((data) => {
-          this.$store.dispatch("cart/setDiscount", data.value);
+          this.$store.dispatch("cart/setDiscountCoupon", data.value);
           this.$swal.fire({
             title: this.$t("success"),
             text: this.$t("success"),
