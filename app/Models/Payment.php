@@ -6,6 +6,7 @@ use App\Mail\ErrorPaymentMail;
 use App\Mail\SuccessPaymentMail;
 use App\Mail\WelcomeMail;
 use App\Models\Setting;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
@@ -57,6 +58,7 @@ class Payment extends BaseModel
     public function confirmAndSendMail()
     {
         $myOrder = $this->order;
+        Order::where('id', $myOrder->id )->update(['status'=>1]);
      
         $myAddress = Address::find($myOrder->address_id);
         $amount = $myOrder->taxed_total;

@@ -25,6 +25,7 @@ class Coupon extends BaseModel
     public static function updateRules($user)
     {
         return [
+            'code' => 'required',
             'value'=>'required|numeric',
             'is_percentage'=>'sometimes|boolean'
         ];

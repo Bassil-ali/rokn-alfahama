@@ -24,7 +24,7 @@ class SizeController extends BaseController
             return SizeResource::collection(Size::search($request)->sort($request)->get());
 
         }else{
-            return SizeResource::collection(Size::search($request)->sort($request)->paginate((request('per_page')??request('itemsPerPage'))??15));
+            return SizeResource::collection(Size::search($request)->sort($request)->get());
 
         }
     }

@@ -43,20 +43,23 @@ class CouponController extends BaseController
         //     return response()->json(['message'=>'not_permitted'],422);
         return new CouponResource($coupon);
     }
-    public function update(Request $request, Coupon $coupon)
+    public function update(Request $request)
     {
+        Coupon::where('id',$request->id)->update(['value'=>$request->value,'code'=>$request->code]);
+        return;
+
         // if(!$this->user->is_permitted_to('update',Coupon::class,$request))
         //     return response()->json(['message'=>'not_permitted'],422);
-        $validator = Validator::make($request->all(),Coupon::updateRules($this->user));
-        if($validator->fails()){
-            return response()->json(['errors'=>$validator->errors()],422);
-        }
-        $coupon->update($validator->validated());
-          if ($request->translations) {
-            foreach ($request->translations as $translation)
-                $coupon->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
-        }
-        return new CouponResource($coupon);
+        // $validator = Validator::make($request->all(),Coupon::updateRules($this->user));
+        // if($validator->fails()){
+        //     return response()->json(['errors'=>$validator->errors()],422);
+        // }
+        // $coupon->update($validator->validated());
+        //   if ($request->translations) {
+        //     foreach ($request->translations as $translation)
+        //         $coupon->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
+        // }
+        // return new CouponResource($coupon);
     }
     public function destroy(Request $request,Coupon $coupon)
     {

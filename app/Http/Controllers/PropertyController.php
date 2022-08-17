@@ -26,6 +26,8 @@ class PropertyController extends BaseController
     }
     public function store(Request $request)
     {
+       
+      
 
 
         if (!$this->user->is_permitted_to('store', Property::class, $request))
@@ -43,6 +45,7 @@ class PropertyController extends BaseController
                 $property->setTranslation($translation['field'], $translation['locale'], $translation['value'])->save();
         }
         return new PropertyResource($property);
+    
     }
     public function show(Request $request, Property $property)
     {

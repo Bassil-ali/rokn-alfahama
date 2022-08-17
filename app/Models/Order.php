@@ -85,7 +85,7 @@ class Order extends BaseModel
             ->orWhere('id', 'like', "%{$search}%");
 
     });
-
+    
 
     }
     public function scopeStatus($query, $request){

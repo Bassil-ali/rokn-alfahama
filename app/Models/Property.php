@@ -39,11 +39,11 @@ class Property extends BaseModel
     public static function updateRules($user)
     {
         return [
-            '*.item_id' => 'required',
-            '*.color_id' => 'sometimes|exists:colors,id',
-            '*.size_id' => 'sometimes|exists:sizes,id',
-            '*.price' => 'sometimes|numeric',
-            '*.qty' => 'sometimes',
+            'item_id' => 'required',
+            'color_id' => 'sometimes|exists:colors,id',
+            'size_id' => 'sometimes|exists:sizes,id',
+            'price' => 'sometimes|numeric',
+            'qty' => 'sometimes',
         ];
     }
 

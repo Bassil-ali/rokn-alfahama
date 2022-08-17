@@ -23,8 +23,16 @@ class OrderController extends BaseController
     }
     public function index(Request $request)
     {
+        if($request->page >=1){
+            return OrderResource::collection(Order::where('total','>',0)->status($request)->search($request)->sort($request)->latest()->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
+
+
+        }else{
+            return OrderResource::collection(Order::status($request)->search($request)->sort($request)->latest()->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
+
+
+        }
         
-        return OrderResource::collection(Order::status($request)->search($request)->sort($request)->latest()->paginate((request('per_page') ?? request('itemsPerPage')) ?? 15));
     }
     public function store(Request $request)
     {
