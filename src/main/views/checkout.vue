@@ -24,7 +24,7 @@
                     <h2>{{ item.name }}</h2>
                     <div class="d-flex justify-content-between">
                       <div class="price">
-                        {{ item.item_price - item.discount }}
+                        {{ item.item_price - (item.discount/100 * item.item_price)  }}
                         $ <br />
                         <span
                           v-if="item.discount > 0"
@@ -35,7 +35,7 @@
                             font-weight: 500;
                           "
                         >
-                          {{ item.item_price }}
+                          {{ item.item_price  }}
                           $
                         </span>
                       </div>

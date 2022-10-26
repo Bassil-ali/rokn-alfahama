@@ -251,7 +251,7 @@ const mutations = {
             state.order.items.splice(index, 1)
     },
     set_discount: (state, discount) => {
-        state.order.items.map(i => i.discount = discount);
+        state.order.items.map(i => i.discount = (discount/100 * i.item_price));
         
     },
     set_discount_coupon: (state, discount) => {
