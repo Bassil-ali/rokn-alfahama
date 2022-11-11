@@ -12,8 +12,8 @@ class Offer extends BaseModel
     protected $guarded = [];
     use HasTranslations;
     protected $appends = ['translations'];
-    protected $with = ['image'  ];
-    protected $casts = [
+    protected $with = ['image'];
+    protected $casts =[
         'end_date' => 'date:Y-m-d',
         'start_date' => 'date:Y-m-d'
     ];
@@ -21,6 +21,7 @@ class Offer extends BaseModel
     public static function createRules($user)
     {
         return [
+            'selling_price' => 'required|numeric',
             'percentage' => 'required|numeric',
             'image_id' => 'required',
             'start_date' => 'required',
@@ -30,6 +31,7 @@ class Offer extends BaseModel
     public static function updateRules($user)
     {
         return [
+            'selling_price' => 'required|numeric',
             'percentage' => 'nullable',
             'image_id' => 'nullable',
             'start_date' => 'sometimes',
@@ -40,9 +42,10 @@ class Offer extends BaseModel
     {
         return $this->belongsTo(Media::class);
     }
-    // public function itoms()
+    // public function items()
     // {
-    //     return $this->hasMany(OfferItem::class, 'offer_id');
+    //      $item_id = $this->hasMany(OfferItem::class, 'offer_id');
+    //      return 
     // }
     public function items()
     {

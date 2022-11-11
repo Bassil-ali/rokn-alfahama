@@ -15,6 +15,7 @@ class CreateOffersTable extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
+            $table->double('selling_price');
             $table->json('name')->nullable();
             $table->double('percentage');
             $table->dateTime('start_date')->nullable();
