@@ -129,6 +129,7 @@ export default {
         ],
       },
       cover_image: {},
+      selling_price: {},
       offer_items_ids: [],
     };
   },
@@ -167,6 +168,9 @@ export default {
       item.start_date = this.dateFormat(item.start_date);
       item.end_date = this.dateFormat(item.end_date);
       item.image_id = cover_image_id;
+      var id = this.items.filter(itemin => itemin.id ==this.offer_items_ids);
+      item.selling_price = id[0].selling_price;
+      console.log(item.selling_price);
       let new_offer = await this.$store.dispatch("offer/store", item);
       if (this.offer_items_ids.length > 0) {
         this.$store.dispatch("offer_item/store", {
@@ -175,7 +179,7 @@ export default {
         });
       }
      
-      this.$router.push("/offerts");
+     this.$router.push("/offerts");
         
     },
     dateFormat(date) {

@@ -12,22 +12,33 @@
         <img src="@/main/assets/images/0001.jpg" alt="" />
       </div>
 
-      <div v-if="items" class="product">
+      <div v-if="offers" class="product">
         <div class="row">
-          <div :key="index" v-for="(item, index) in items" class="col-md-3">
+          <div :key="index" v-for="(item, index) in offers" class="col-md-3">
             <div class="item mb-3">
               <figure>
                 <a :href="`/main/single-product/${item.id}`"
-                  ><img :src="item.image" alt=""
+                  ><img :src="`http://127.0.0.1:8000/storage/`+item.image.path" alt=""
                 /></a>
               </figure>
               <div class="caption">
                 <a :href="`/main/single-product/${item.id}`" class="title">
+                   <span
+              style="
+                float: left;
+                color: #9f9f9f;
+                text-decoration: line-through;
+                font-weight: 500;
+              "
+            >
+              <span>
+                {{ item.selling_price  }}
+              </span> </span>
                   {{ item.name }}
                 </a>
                 <div class="d-flex align-items-center justify-content-between">
                   <p class="price">
-                    {{ calcNewPrice(item.selling_price) }}
+                    {{ calcNewPrice(item.selling_price).toFixed(2)}}
                     $
                   </p>
                   <p class="star">
@@ -49,7 +60,7 @@
                   "
                 >
                   <div class="price-old">
-                    <span>{{ (item.selling_price).toFixed(2) }} </span>
+                    <!-- <span>{{ (item.selling_price) }} </span> -->
                   </div>
                   <div class="discount">
                     <strong>{{ $t("Discount") }}</strong>
