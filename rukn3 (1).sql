@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 11, 2022 at 08:20 AM
+-- Generation Time: Nov 11, 2022 at 02:02 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -3499,7 +3499,26 @@ INSERT INTO `media` (`id`, `name`, `path`, `mimetype`, `mediable_type`, `mediabl
 (2342, NULL, 'media/nDduinvhSgxVGBoKCxWgejZEPFaRksx6MAmel5k2.jpg', '', NULL, NULL, '2022-08-02 16:39:16', '2022-08-02 16:39:16'),
 (2343, NULL, 'media/LDEwqoX3RSxqeJAJ8sEdE4OLIgfjxnTyw8pCpc0Q.jpg', '', NULL, NULL, '2022-08-03 10:46:29', '2022-08-03 10:46:29'),
 (2344, NULL, 'media/bF4KpIr5mtpPdj6Llr0LJXUyVbLpFgm8S2zU4opP.jpg', '', NULL, NULL, '2022-08-06 11:42:59', '2022-08-06 11:42:59'),
-(2345, NULL, 'media/UuAfe9XyLvhCJBHCiroInZ5Qe35PY5NNnAm5la55.png', '', NULL, NULL, '2022-08-17 14:24:05', '2022-08-17 14:24:05');
+(2345, NULL, 'media/UuAfe9XyLvhCJBHCiroInZ5Qe35PY5NNnAm5la55.png', '', NULL, NULL, '2022-08-17 14:24:05', '2022-08-17 14:24:05'),
+(2346, NULL, 'media/ZflP737onH9wV6W7pFX5TlgpH8rhKzfQjGhuYgEG.png', '', NULL, NULL, '2022-11-11 06:28:59', '2022-11-11 06:28:59'),
+(2347, NULL, 'media/CflOSpN1JJmFqhmzrY9aTbDEksqxRQXKzVU69Wqe.png', '', NULL, NULL, '2022-11-11 10:02:18', '2022-11-11 10:02:18'),
+(2348, NULL, 'media/B98yHVLGi5jGd3WrKlkDVPS6xiHwCTOQs55rrRFH.png', '', NULL, NULL, '2022-11-11 10:09:07', '2022-11-11 10:09:07'),
+(2349, NULL, 'media/77hZMt5Be9LFA00rl62JppaYEXgEBXADeauGOBEF.png', '', NULL, NULL, '2022-11-11 10:09:57', '2022-11-11 10:09:57'),
+(2350, NULL, 'media/U04B2kNKNjtdsEIrxVL7HpMq6EMnRI4Y37kd0lYs.png', '', NULL, NULL, '2022-11-11 10:10:58', '2022-11-11 10:10:58'),
+(2351, NULL, 'media/xQl3a50Cb3yfgFtxfKzTVhI0FrYTLahYL7HXRh7R.png', '', NULL, NULL, '2022-11-11 10:13:38', '2022-11-11 10:13:38'),
+(2352, NULL, 'media/hnOkdKDYKy8Qjll6CuotajZoF2yUHb5240xLE9SO.png', '', NULL, NULL, '2022-11-11 10:14:04', '2022-11-11 10:14:04'),
+(2353, NULL, 'media/UKadhZtfti4IImwep7Z5ihcGz6y140cnEWMaMZQg.png', '', NULL, NULL, '2022-11-11 10:16:58', '2022-11-11 10:16:58'),
+(2354, NULL, 'media/6h69CKlcqBVipb6MytEh0MnzVzUNg3ZZq08XhmDX.png', '', NULL, NULL, '2022-11-11 10:19:40', '2022-11-11 10:19:40'),
+(2355, NULL, 'media/m05Uux5MqAdXiYKKYv6vmf3b1lwBj2L1IgfdfQlO.png', '', NULL, NULL, '2022-11-11 10:22:28', '2022-11-11 10:22:28'),
+(2356, NULL, 'media/xvHGDjACNWMdtNiMNlm1h69JoK0sQI1qVFjLSCmt.png', '', NULL, NULL, '2022-11-11 10:24:03', '2022-11-11 10:24:03'),
+(2357, NULL, 'media/HXg8yYRBO6boKhlBLwU5Y2T5HZ7CloY1J9Ah22hv.png', '', NULL, NULL, '2022-11-11 10:24:04', '2022-11-11 10:24:04'),
+(2358, NULL, 'media/SeddlyR9mDQfcRwxevwWPTITYtxcs12KmWV6Jqsx.png', '', NULL, NULL, '2022-11-11 10:25:16', '2022-11-11 10:25:16'),
+(2359, NULL, 'media/SFcphW6yLdDVuosYaNpt5wkj5JmG8PFifK8vzOMn.png', '', NULL, NULL, '2022-11-11 10:27:38', '2022-11-11 10:27:38'),
+(2360, NULL, 'media/NvH2QuZPiFAyCNOmVrvnbsdCXaMekU4C2qbqTCZA.png', '', NULL, NULL, '2022-11-11 10:29:18', '2022-11-11 10:29:18'),
+(2361, NULL, 'media/ORm4RzsANVbyV3DBjTd653pxGPBeOWHbtGmYiaRI.png', '', NULL, NULL, '2022-11-11 10:42:13', '2022-11-11 10:42:13'),
+(2362, NULL, 'media/G18g4bqALsufOFTFbxB44EvFXRnr20aIemYvMcdL.png', '', NULL, NULL, '2022-11-11 10:47:37', '2022-11-11 10:47:37'),
+(2363, NULL, 'media/aYlEpWMRhzjIaCEZIs5aHZo0m419I1tj0ZQsUCcm.png', '', NULL, NULL, '2022-11-11 10:47:59', '2022-11-11 10:47:59'),
+(2364, NULL, 'media/AYwDqWNYdSr13lAuaYJCAQ1uiXSw81I0dqKy7RJn.png', '', NULL, NULL, '2022-11-11 10:49:16', '2022-11-11 10:49:16');
 
 -- --------------------------------------------------------
 
@@ -3561,6 +3580,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `offers` (
   `id` bigint(20) NOT NULL,
   `name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `selling_price` int(11) NOT NULL,
   `percentage` double NOT NULL,
   `start_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `end_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -3574,9 +3594,9 @@ CREATE TABLE `offers` (
 -- Dumping data for table `offers`
 --
 
-INSERT INTO `offers` (`id`, `name`, `percentage`, `start_date`, `end_date`, `image_id`, `brief`, `created_at`, `updated_at`) VALUES
-(9, '{\"ar\":\"\\u0639\\u0631\\u0636 \\u062a\\u062c\\u0631\\u064a\\u0628\\u064a\",\"en\":\"test offer\"}', 20, '2022-08-16 22:00:00', '2022-08-19 22:00:00', 42, '{\"ar\":\"\\u0648\\u0635\\u0641\",\"en\":\"brief\"}', '2022-01-25 22:14:27', '2022-08-17 14:25:43'),
-(10, '{\"ar\":\"dw\",\"en\":\"dwq\"}', 20, '2022-08-17 16:24:05', '2022-08-19 22:00:00', 2345, '{\"ar\":\"dwq\",\"en\":\"dwq\"}', '2022-08-17 14:24:05', '2022-08-17 14:24:05');
+INSERT INTO `offers` (`id`, `name`, `selling_price`, `percentage`, `start_date`, `end_date`, `image_id`, `brief`, `created_at`, `updated_at`) VALUES
+(11, '{\"ar\":\"gre\",\"en\":\"gre\"}', 100, 4, '2022-11-11 12:50:20', '2022-11-29 22:00:00', 2346, '{\"ar\":\"few\",\"en\":\"few\"}', '2022-11-11 06:28:59', '2022-11-11 06:28:59'),
+(12, '{\"ar\":\"43\",\"en\":\"43\"}', 75, 34, '2022-11-11 12:49:17', '2022-11-25 22:00:00', 2364, '{\"ar\":\"43\",\"en\":\"34\"}', '2022-11-11 10:49:17', '2022-11-11 10:49:17');
 
 -- --------------------------------------------------------
 
@@ -3592,6 +3612,14 @@ CREATE TABLE `offer_items` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `offer_items`
+--
+
+INSERT INTO `offer_items` (`id`, `offer_id`, `item_id`, `property_id`, `created_at`, `updated_at`) VALUES
+(1, 11, 70, NULL, '2022-11-11 06:28:59', '2022-11-11 06:28:59'),
+(2, 12, 97, NULL, '2022-11-11 10:49:17', '2022-11-11 10:49:17');
 
 -- --------------------------------------------------------
 
@@ -6212,7 +6240,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2346;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2365;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -6224,13 +6252,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `offers`
 --
 ALTER TABLE `offers`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `offer_items`
 --
 ALTER TABLE `offer_items`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders`
