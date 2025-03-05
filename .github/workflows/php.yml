@@ -26,6 +26,11 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 
+    - name: Ensure storage and cache directories exist
+      run: |
+        mkdir -p bootstrap/cache
+        chmod -R 775 bootstrap/cache
+    
     - name: Cache Composer packages
       id: composer-cache
       uses: actions/cache@v3
