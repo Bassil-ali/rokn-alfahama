@@ -30,7 +30,9 @@ jobs:
       run: |
         mkdir -p bootstrap/cache
         chmod -R 775 bootstrap/cache
-    
+        mkdir -p storage/framework/views
+        chmod -R 775 storage/framework
+
     - name: Cache Composer packages
       id: composer-cache
       uses: actions/cache@v3
